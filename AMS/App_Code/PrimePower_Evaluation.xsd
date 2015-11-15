@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PrimePower_Evaluation" targetNamespace="http://tempuri.org/PrimePower_Evaluation.xsd" xmlns:mstns="http://tempuri.org/PrimePower_Evaluation.xsd" xmlns="http://tempuri.org/PrimePower_Evaluation.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PrimePower_Evaluation" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PrimePower_Evaluation" msprop:Generator_UserDSName="PrimePower_Evaluation">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblCooperation" msprop:Generator_TableClassName="tblCooperationDataTable" msprop:Generator_TableVarName="tabletblCooperation" msprop:Generator_TablePropName="tblCooperation" msprop:Generator_RowDeletingName="tblCooperationRowDeleting" msprop:Generator_RowChangingName="tblCooperationRowChanging" msprop:Generator_RowEvHandlerName="tblCooperationRowChangeEventHandler" msprop:Generator_RowDeletedName="tblCooperationRowDeleted" msprop:Generator_UserTableName="tblCooperation" msprop:Generator_RowChangedName="tblCooperationRowChanged" msprop:Generator_RowEvArgName="tblCooperationRowChangeEvent" msprop:Generator_RowClassName="tblCooperationRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblAttendanceAndPunctuality" msprop:Generator_TableClassName="tblAttendanceAndPunctualityDataTable" msprop:Generator_TableVarName="tabletblAttendanceAndPunctuality" msprop:Generator_TablePropName="tblAttendanceAndPunctuality" msprop:Generator_RowDeletingName="tblAttendanceAndPunctualityRowDeleting" msprop:Generator_RowChangingName="tblAttendanceAndPunctualityRowChanging" msprop:Generator_RowEvHandlerName="tblAttendanceAndPunctualityRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAttendanceAndPunctualityRowDeleted" msprop:Generator_UserTableName="tblAttendanceAndPunctuality" msprop:Generator_RowChangedName="tblAttendanceAndPunctualityRowChanged" msprop:Generator_RowEvArgName="tblAttendanceAndPunctualityRowChangeEvent" msprop:Generator_RowClassName="tblAttendanceAndPunctualityRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblInterpersonalRelationship" msprop:Generator_TableClassName="tblInterpersonalRelationshipDataTable" msprop:Generator_TableVarName="tabletblInterpersonalRelationship" msprop:Generator_TablePropName="tblInterpersonalRelationship" msprop:Generator_RowDeletingName="tblInterpersonalRelationshipRowDeleting" msprop:Generator_RowChangingName="tblInterpersonalRelationshipRowChanging" msprop:Generator_RowEvHandlerName="tblInterpersonalRelationshipRowChangeEventHandler" msprop:Generator_RowDeletedName="tblInterpersonalRelationshipRowDeleted" msprop:Generator_UserTableName="tblInterpersonalRelationship" msprop:Generator_RowChangedName="tblInterpersonalRelationshipRowChanged" msprop:Generator_RowEvArgName="tblInterpersonalRelationshipRowChangeEvent" msprop:Generator_RowClassName="tblInterpersonalRelationshipRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblAttitude" msprop:Generator_TableClassName="tblAttitudeDataTable" msprop:Generator_TableVarName="tabletblAttitude" msprop:Generator_TablePropName="tblAttitude" msprop:Generator_RowDeletingName="tblAttitudeRowDeleting" msprop:Generator_RowChangingName="tblAttitudeRowChanging" msprop:Generator_RowEvHandlerName="tblAttitudeRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAttitudeRowDeleted" msprop:Generator_UserTableName="tblAttitude" msprop:Generator_RowChangedName="tblAttitudeRowChanged" msprop:Generator_RowEvArgName="tblAttitudeRowChangeEvent" msprop:Generator_RowClassName="tblAttitudeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblInitiative" msprop:Generator_TableClassName="tblInitiativeDataTable" msprop:Generator_TableVarName="tabletblInitiative" msprop:Generator_TablePropName="tblInitiative" msprop:Generator_RowDeletingName="tblInitiativeRowDeleting" msprop:Generator_RowChangingName="tblInitiativeRowChanging" msprop:Generator_RowEvHandlerName="tblInitiativeRowChangeEventHandler" msprop:Generator_RowDeletedName="tblInitiativeRowDeleted" msprop:Generator_UserTableName="tblInitiative" msprop:Generator_RowChangedName="tblInitiativeRowChanged" msprop:Generator_RowEvArgName="tblInitiativeRowChangeEvent" msprop:Generator_RowClassName="tblInitiativeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblJudgement" msprop:Generator_TableClassName="tblJudgementDataTable" msprop:Generator_TableVarName="tabletblJudgement" msprop:Generator_TablePropName="tblJudgement" msprop:Generator_RowDeletingName="tblJudgementRowDeleting" msprop:Generator_RowChangingName="tblJudgementRowChanging" msprop:Generator_RowEvHandlerName="tblJudgementRowChangeEventHandler" msprop:Generator_RowDeletedName="tblJudgementRowDeleted" msprop:Generator_UserTableName="tblJudgement" msprop:Generator_RowChangedName="tblJudgementRowChanged" msprop:Generator_RowEvArgName="tblJudgementRowChangeEvent" msprop:Generator_RowClassName="tblJudgementRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblCommunication" msprop:Generator_TableClassName="tblCommunicationDataTable" msprop:Generator_TableVarName="tabletblCommunication" msprop:Generator_TablePropName="tblCommunication" msprop:Generator_RowDeletingName="tblCommunicationRowDeleting" msprop:Generator_RowChangingName="tblCommunicationRowChanging" msprop:Generator_RowEvHandlerName="tblCommunicationRowChangeEventHandler" msprop:Generator_RowDeletedName="tblCommunicationRowDeleted" msprop:Generator_UserTableName="tblCommunication" msprop:Generator_RowChangedName="tblCommunicationRowChanged" msprop:Generator_RowEvArgName="tblCommunicationRowChangeEvent" msprop:Generator_RowClassName="tblCommunicationRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblSafety" msprop:Generator_TableClassName="tblSafetyDataTable" msprop:Generator_TableVarName="tabletblSafety" msprop:Generator_TablePropName="tblSafety" msprop:Generator_RowDeletingName="tblSafetyRowDeleting" msprop:Generator_RowChangingName="tblSafetyRowChanging" msprop:Generator_RowEvHandlerName="tblSafetyRowChangeEventHandler" msprop:Generator_RowDeletedName="tblSafetyRowDeleted" msprop:Generator_UserTableName="tblSafety" msprop:Generator_RowChangedName="tblSafetyRowChanged" msprop:Generator_RowEvArgName="tblSafetyRowChangeEvent" msprop:Generator_RowClassName="tblSafetyRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblDependability" msprop:Generator_TableClassName="tblDependabilityDataTable" msprop:Generator_TableVarName="tabletblDependability" msprop:Generator_TablePropName="tblDependability" msprop:Generator_RowDeletingName="tblDependabilityRowDeleting" msprop:Generator_RowChangingName="tblDependabilityRowChanging" msprop:Generator_RowEvHandlerName="tblDependabilityRowChangeEventHandler" msprop:Generator_RowDeletedName="tblDependabilityRowDeleted" msprop:Generator_UserTableName="tblDependability" msprop:Generator_RowChangedName="tblDependabilityRowChanged" msprop:Generator_RowEvArgName="tblDependabilityRowChangeEvent" msprop:Generator_RowClassName="tblDependabilityRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblSpecificJobSkills" msprop:Generator_TableClassName="tblSpecificJobSkillsDataTable" msprop:Generator_TableVarName="tabletblSpecificJobSkills" msprop:Generator_TablePropName="tblSpecificJobSkills" msprop:Generator_RowDeletingName="tblSpecificJobSkillsRowDeleting" msprop:Generator_RowChangingName="tblSpecificJobSkillsRowChanging" msprop:Generator_RowEvHandlerName="tblSpecificJobSkillsRowChangeEventHandler" msprop:Generator_RowDeletedName="tblSpecificJobSkillsRowDeleted" msprop:Generator_UserTableName="tblSpecificJobSkills" msprop:Generator_RowChangedName="tblSpecificJobSkillsRowChanged" msprop:Generator_RowEvArgName="tblSpecificJobSkillsRowChangeEvent" msprop:Generator_RowClassName="tblSpecificJobSkillsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblProductivity" msprop:Generator_TableClassName="tblProductivityDataTable" msprop:Generator_TableVarName="tabletblProductivity" msprop:Generator_TablePropName="tblProductivity" msprop:Generator_RowDeletingName="tblProductivityRowDeleting" msprop:Generator_RowChangingName="tblProductivityRowChanging" msprop:Generator_RowEvHandlerName="tblProductivityRowChangeEventHandler" msprop:Generator_RowDeletedName="tblProductivityRowDeleted" msprop:Generator_UserTableName="tblProductivity" msprop:Generator_RowChangedName="tblProductivityRowChanged" msprop:Generator_RowEvArgName="tblProductivityRowChangeEvent" msprop:Generator_RowClassName="tblProductivityRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblOrganizationalSkills" msprop:Generator_TableClassName="tblOrganizationalSkillsDataTable" msprop:Generator_TableVarName="tabletblOrganizationalSkills" msprop:Generator_TablePropName="tblOrganizationalSkills" msprop:Generator_RowDeletingName="tblOrganizationalSkillsRowDeleting" msprop:Generator_RowChangingName="tblOrganizationalSkillsRowChanging" msprop:Generator_RowEvHandlerName="tblOrganizationalSkillsRowChangeEventHandler" msprop:Generator_RowDeletedName="tblOrganizationalSkillsRowDeleted" msprop:Generator_UserTableName="tblOrganizationalSkills" msprop:Generator_RowChangedName="tblOrganizationalSkillsRowChanged" msprop:Generator_RowEvArgName="tblOrganizationalSkillsRowChangeEvent" msprop:Generator_RowClassName="tblOrganizationalSkillsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SpecificJobSkill" targetNamespace="http://tempuri.org/SpecificJobSkill.xsd" xmlns:mstns="http://tempuri.org/SpecificJobSkill.xsd" xmlns="http://tempuri.org/SpecificJobSkill.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SpecificJobSkill" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SpecificJobSkill" msprop:Generator_UserDSName="SpecificJobSkill">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblSpecificJobSkills" msprop:Generator_TableClassName="tblSpecificJobSkillsDataTable" msprop:Generator_TableVarName="tabletblSpecificJobSkills" msprop:Generator_TablePropName="tblSpecificJobSkills" msprop:Generator_RowDeletingName="tblSpecificJobSkillsRowDeleting" msprop:Generator_RowChangingName="tblSpecificJobSkillsRowChanging" msprop:Generator_RowEvHandlerName="tblSpecificJobSkillsRowChangeEventHandler" msprop:Generator_RowDeletedName="tblSpecificJobSkillsRowDeleted" msprop:Generator_UserTableName="tblSpecificJobSkills" msprop:Generator_RowChangedName="tblSpecificJobSkillsRowChanged" msprop:Generator_RowEvArgName="tblSpecificJobSkillsRowChangeEvent" msprop:Generator_RowClassName="tblSpecificJobSkillsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

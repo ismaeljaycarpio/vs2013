@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Cooperation" targetNamespace="http://tempuri.org/Cooperation.xsd" xmlns:mstns="http://tempuri.org/Cooperation.xsd" xmlns="http://tempuri.org/Cooperation.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Cooperation" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Cooperation" msprop:Generator_UserDSName="Cooperation">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblCooperation" msprop:Generator_TableClassName="tblCooperationDataTable" msprop:Generator_TableVarName="tabletblCooperation" msprop:Generator_TablePropName="tblCooperation" msprop:Generator_RowDeletingName="tblCooperationRowDeleting" msprop:Generator_RowChangingName="tblCooperationRowChanging" msprop:Generator_RowEvHandlerName="tblCooperationRowChangeEventHandler" msprop:Generator_RowDeletedName="tblCooperationRowDeleted" msprop:Generator_UserTableName="tblCooperation" msprop:Generator_RowChangedName="tblCooperationRowChanged" msprop:Generator_RowEvArgName="tblCooperationRowChangeEvent" msprop:Generator_RowClassName="tblCooperationRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

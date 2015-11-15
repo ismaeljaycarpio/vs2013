@@ -1,0 +1,905 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0B1A6788-2662-48C5-9F8E-A9B4826B8B48}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AMS</RootNamespace>
+    <AssemblyName>AMS</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=15.1.3.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.15.1.3.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Membership.OpenAuth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Membership.OpenAuth.2.0.1\lib\net40\Microsoft.AspNet.Membership.OpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.0\lib\net40\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Manage.aspx" />
+    <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Admin\PerformanceEvaluation.aspx" />
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker.min.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.css" />
+    <Content Include="Content\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Dashboard\Dashboard.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Employee\ARBa_Score_Sheet.aspx" />
+    <Content Include="Employee\Awards.aspx" />
+    <Content Include="Employee\Contacts.aspx" />
+    <Content Include="Employee\Education.aspx" />
+    <Content Include="Employee\Employee.aspx" />
+    <Content Include="Employee\Evaluation.aspx" />
+    <Content Include="Employee\JobDetails.aspx" />
+    <Content Include="Employee\JobExperience.aspx" />
+    <Content Include="Employee\PerformanceEvaluation.aspx" />
+    <Content Include="Employee\PersonalCards.aspx" />
+    <Content Include="Employee\post_back.aspx" />
+    <Content Include="Employee\pPerformanceEvaluation.aspx" />
+    <Content Include="Employee\pPrime_Performance_Evaluation.aspx" />
+    <Content Include="Employee\Prime_Performance_Evaluation.aspx" />
+    <Content Include="Employee\Profile.aspx" />
+    <Content Include="Employee\Self_Evaluation.aspx" />
+    <Content Include="Employee\Trainings.aspx" />
+    <Content Include="Employee\ViewEmployee.aspx" />
+    <Content Include="Employee\Violations.aspx" />
+    <Content Include="Employee\vPerformanceEvaluation.aspx" />
+    <Content Include="Employee\vPrime_Performance_Evaluation.aspx" />
+    <Content Include="Evaluation\ApprovedEvaluations.aspx" />
+    <Content Include="Evaluation\PendingApprovals.aspx" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\PrimePowerLogo.png" />
+    <Content Include="Login.aspx" />
+    <Content Include="HR\Register.aspx" />
+    <Content Include="MasterConfig\Agency.aspx" />
+    <Content Include="MasterConfig\RoleManager.aspx" />
+    <Content Include="packages.config" />
+    <Content Include="Employee\Web.config" />
+    <Content Include="ProfileImages\378bcb0b-be04-4e83-9dc0-072f8106bbf6.png" />
+    <Content Include="ProfileImages\4c4a4fd3-cd25-448a-8633-44370de6e579.png" />
+    <Content Include="ProfileImages\fb2f4325-ed5c-4ccc-b4bd-6151ebd6c7e0.png" />
+    <Content Include="ProfileImages\noImage.png" />
+    <Content Include="ProfileNested.master" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Documents\countriesoftheworld.xlsx" />
+    <Content Include="Documents\DataTable.doc" />
+    <Content Include="Documents\EmployeeList %281%29.xls" />
+    <Content Include="Documents\EmployeeList %282%29.xls" />
+    <Content Include="Documents\EmployeeList.xls" />
+    <Content Include="App_Code\PerformanceEvaluation.xsc">
+      <DependentUpon>PerformanceEvaluation.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\AttendanceAndPunctuality.xsc">
+      <DependentUpon>AttendanceAndPunctuality.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\AttendanceAndPunctuality.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AttendanceAndPunctuality1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="App_Code\AttendanceAndPunctuality.xss">
+      <DependentUpon>AttendanceAndPunctuality.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Attitude.xsc">
+      <DependentUpon>Attitude.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\Attitude.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Attitude1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="App_Code\Attitude.xss">
+      <DependentUpon>Attitude.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Communication.xsc">
+      <DependentUpon>Communication.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\Communication.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Communication1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="App_Code\Communication.xss">
+      <DependentUpon>Communication.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Cooperation.xsc">
+      <DependentUpon>Cooperation.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\Cooperation.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Cooperation1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="App_Code\Cooperation.xss">
+      <DependentUpon>Cooperation.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Dependability.xsc">
+      <DependentUpon>Dependability.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\Dependability.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Dependability1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="App_Code\Dependability.xss">
+      <DependentUpon>Dependability.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Initiative.xsc">
+      <DependentUpon>Initiative.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\Initiative.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Initiative1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="App_Code\Initiative.xss">
+      <DependentUpon>Initiative.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\InterpersonalRelationship.xsc">
+      <DependentUpon>InterpersonalRelationship.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\InterpersonalRelationship.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InterpersonalRelationship1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="App_Code\InterpersonalRelationship.xss">
+      <DependentUpon>InterpersonalRelationship.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Judgement.xsc">
+      <DependentUpon>Judgement.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\Judgement.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Judgement1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="App_Code\Judgement.xss">
+      <DependentUpon>Judgement.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\OrganizationalSkill.xsc">
+      <DependentUpon>OrganizationalSkill.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\OrganizationalSkill.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OrganizationalSkill1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="App_Code\OrganizationalSkill.xss">
+      <DependentUpon>OrganizationalSkill.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\PerformanceEvaluation.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PerformanceEvaluation.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="App_Code\PerformanceEvaluation.xss">
+      <DependentUpon>PerformanceEvaluation.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\TSI_Performance_Evaluation.xsc">
+      <DependentUpon>TSI_Performance_Evaluation.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\PrimePower_Evaluation.xsc">
+      <DependentUpon>PrimePower_Evaluation.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\PrimePower_Evaluation.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PrimePower_Evaluation.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="App_Code\PrimePower_Evaluation.xss">
+      <DependentUpon>PrimePower_Evaluation.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Productivity.xsc">
+      <DependentUpon>Productivity.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\Productivity.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Productivity1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="App_Code\Productivity.xss">
+      <DependentUpon>Productivity.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Safety.xsc">
+      <DependentUpon>Safety.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\Safety.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Safety1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="App_Code\Safety.xss">
+      <DependentUpon>Safety.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\SpecificJobSkill.xsc">
+      <DependentUpon>SpecificJobSkill.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\SpecificJobSkill.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SpecificJobSkill1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="App_Code\SpecificJobSkill.xss">
+      <DependentUpon>SpecificJobSkill.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\TSI_Performance_Evaluation.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TSI_Performance_Evaluation.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="App_Code\TSI_Performance_Evaluation.xss">
+      <DependentUpon>TSI_Performance_Evaluation.xsd</DependentUpon>
+    </Content>
+    <Content Include="EvaluationNested.master" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ar.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.az.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bg.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ca.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cy.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.da.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.de.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.el.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.en-GB.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.es.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.et.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.eu.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fa.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fi.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fo.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr-CH.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.gl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.he.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hu.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hy.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.id.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.is.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it-CH.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ja.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ka.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kh.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lt.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lv.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.me.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ms.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nb.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl-BE.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.no.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt-BR.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ro.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs-latin.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ru.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sq.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sr-latin.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sv.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sw.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.th.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.tr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.uk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.vi.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="test.aspx" />
+    <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Site.Mobile.Master" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\PerformanceEvaluation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PerformanceEvaluation.xsd</DependentUpon>
+    </Content>
+    <Compile Include="Admin\PerformanceEvaluation.aspx.cs">
+      <DependentUpon>PerformanceEvaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PerformanceEvaluation.aspx.designer.cs">
+      <DependentUpon>PerformanceEvaluation.aspx</DependentUpon>
+    </Compile>
+    <Content Include="App_Code\TSI_Performance_Evaluation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TSI_Performance_Evaluation.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\PrimePower_Evaluation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrimePower_Evaluation.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\SpecificJobSkill1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpecificJobSkill.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Productivity1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Productivity.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Safety1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Safety.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\AttendanceAndPunctuality1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AttendanceAndPunctuality.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Attitude1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Attitude.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Communication1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Communication.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Cooperation1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cooperation.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Dependability1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Dependability.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Initiative1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Initiative.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\InterpersonalRelationship1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InterpersonalRelationship.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Judgement1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Judgement.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\OrganizationalSkill1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrganizationalSkill.xsd</DependentUpon>
+    </Content>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="DAL\Agency.cs" />
+    <Compile Include="DAL\Award.cs" />
+    <Compile Include="DAL\Contact.cs" />
+    <Compile Include="DAL\Education.cs" />
+    <Compile Include="DAL\Employee.cs" />
+    <Compile Include="DAL\Evaluation.cs" />
+    <Compile Include="DAL\FileUpload.cs" />
+    <Compile Include="DAL\Filler.cs" />
+    <Compile Include="DAL\Job.cs" />
+    <Compile Include="DAL\Experience.cs" />
+    <Compile Include="DAL\MembershipCard.cs" />
+    <Compile Include="DAL\PositionManagement.cs" />
+    <Compile Include="DAL\Profile.cs" />
+    <Compile Include="DAL\Training.cs" />
+    <Compile Include="DAL\Violation.cs" />
+    <Compile Include="Dashboard\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ARBa_Score_Sheet.aspx.cs">
+      <DependentUpon>ARBa_Score_Sheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ARBa_Score_Sheet.aspx.designer.cs">
+      <DependentUpon>ARBa_Score_Sheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Awards.aspx.cs">
+      <DependentUpon>Awards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Awards.aspx.designer.cs">
+      <DependentUpon>Awards.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Contacts.aspx.cs">
+      <DependentUpon>Contacts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Contacts.aspx.designer.cs">
+      <DependentUpon>Contacts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Education.aspx.cs">
+      <DependentUpon>Education.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Education.aspx.designer.cs">
+      <DependentUpon>Education.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Employee.aspx.cs">
+      <DependentUpon>Employee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Employee.aspx.designer.cs">
+      <DependentUpon>Employee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Evaluation.aspx.cs">
+      <DependentUpon>Evaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Evaluation.aspx.designer.cs">
+      <DependentUpon>Evaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\JobDetails.aspx.cs">
+      <DependentUpon>JobDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\JobDetails.aspx.designer.cs">
+      <DependentUpon>JobDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\JobExperience.aspx.cs">
+      <DependentUpon>JobExperience.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\JobExperience.aspx.designer.cs">
+      <DependentUpon>JobExperience.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\PerformanceEvaluation.aspx.cs">
+      <DependentUpon>PerformanceEvaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\PerformanceEvaluation.aspx.designer.cs">
+      <DependentUpon>PerformanceEvaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\PersonalCards.aspx.cs">
+      <DependentUpon>PersonalCards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\PersonalCards.aspx.designer.cs">
+      <DependentUpon>PersonalCards.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\post_back.aspx.cs">
+      <DependentUpon>post_back.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\post_back.aspx.designer.cs">
+      <DependentUpon>post_back.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\pPerformanceEvaluation.aspx.cs">
+      <DependentUpon>pPerformanceEvaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\pPerformanceEvaluation.aspx.designer.cs">
+      <DependentUpon>pPerformanceEvaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\pPrime_Performance_Evaluation.aspx.cs">
+      <DependentUpon>pPrime_Performance_Evaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\pPrime_Performance_Evaluation.aspx.designer.cs">
+      <DependentUpon>pPrime_Performance_Evaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Prime_Performance_Evaluation.aspx.cs">
+      <DependentUpon>Prime_Performance_Evaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Prime_Performance_Evaluation.aspx.designer.cs">
+      <DependentUpon>Prime_Performance_Evaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Self_Evaluation.aspx.cs">
+      <DependentUpon>Self_Evaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Self_Evaluation.aspx.designer.cs">
+      <DependentUpon>Self_Evaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Trainings.aspx.cs">
+      <DependentUpon>Trainings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Trainings.aspx.designer.cs">
+      <DependentUpon>Trainings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ViewEmployee.aspx.cs">
+      <DependentUpon>ViewEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ViewEmployee.aspx.designer.cs">
+      <DependentUpon>ViewEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Violations.aspx.cs">
+      <DependentUpon>Violations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Violations.aspx.designer.cs">
+      <DependentUpon>Violations.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\vPerformanceEvaluation.aspx.cs">
+      <DependentUpon>vPerformanceEvaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\vPerformanceEvaluation.aspx.designer.cs">
+      <DependentUpon>vPerformanceEvaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\vPrime_Performance_Evaluation.aspx.cs">
+      <DependentUpon>vPrime_Performance_Evaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\vPrime_Performance_Evaluation.aspx.designer.cs">
+      <DependentUpon>vPrime_Performance_Evaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluationNested.master.cs">
+      <DependentUpon>EvaluationNested.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EvaluationNested.master.designer.cs">
+      <DependentUpon>EvaluationNested.master</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluation\ApprovedEvaluations.aspx.cs">
+      <DependentUpon>ApprovedEvaluations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluation\ApprovedEvaluations.aspx.designer.cs">
+      <DependentUpon>ApprovedEvaluations.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluation\PendingApprovals.aspx.cs">
+      <DependentUpon>PendingApprovals.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluation\PendingApprovals.aspx.designer.cs">
+      <DependentUpon>PendingApprovals.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterConfig\Agency.aspx.cs">
+      <DependentUpon>Agency.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterConfig\Agency.aspx.designer.cs">
+      <DependentUpon>Agency.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterConfig\RoleManager.aspx.cs">
+      <DependentUpon>RoleManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterConfig\RoleManager.aspx.designer.cs">
+      <DependentUpon>RoleManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProfileNested.master.cs">
+      <DependentUpon>ProfileNested.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProfileNested.master.designer.cs">
+      <DependentUpon>ProfileNested.master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config" />
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Employee\Report2.rdlc" />
+    <EmbeddedResource Include="Employee\Report3.rdlc" />
+    <EmbeddedResource Include="Report1.rdlc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>26770</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:26475/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

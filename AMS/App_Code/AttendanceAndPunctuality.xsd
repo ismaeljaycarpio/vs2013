@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AttendanceAndPunctuality" targetNamespace="http://tempuri.org/AttendanceAndPunctuality.xsd" xmlns:mstns="http://tempuri.org/AttendanceAndPunctuality.xsd" xmlns="http://tempuri.org/AttendanceAndPunctuality.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AttendanceAndPunctuality" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AttendanceAndPunctuality" msprop:Generator_UserDSName="AttendanceAndPunctuality">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblAttendanceAndPunctuality" msprop:Generator_TableClassName="tblAttendanceAndPunctualityDataTable" msprop:Generator_TableVarName="tabletblAttendanceAndPunctuality" msprop:Generator_TablePropName="tblAttendanceAndPunctuality" msprop:Generator_RowDeletingName="tblAttendanceAndPunctualityRowDeleting" msprop:Generator_RowChangingName="tblAttendanceAndPunctualityRowChanging" msprop:Generator_RowEvHandlerName="tblAttendanceAndPunctualityRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAttendanceAndPunctualityRowDeleted" msprop:Generator_UserTableName="tblAttendanceAndPunctuality" msprop:Generator_RowChangedName="tblAttendanceAndPunctualityRowChanged" msprop:Generator_RowEvArgName="tblAttendanceAndPunctualityRowChangeEvent" msprop:Generator_RowClassName="tblAttendanceAndPunctualityRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Question" msprop:Generator_ColumnVarNameInTable="columnQuestion" msprop:Generator_ColumnPropNameInRow="Question" msprop:Generator_ColumnPropNameInTable="QuestionColumn" msprop:Generator_UserColumnName="Question" type="xs:string" minOccurs="0" />
+              <xs:element name="StaffRating" msprop:Generator_ColumnVarNameInTable="columnStaffRating" msprop:Generator_ColumnPropNameInRow="StaffRating" msprop:Generator_ColumnPropNameInTable="StaffRatingColumn" msprop:Generator_UserColumnName="StaffRating" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluatorRating" msprop:Generator_ColumnVarNameInTable="columnEvaluatorRating" msprop:Generator_ColumnPropNameInRow="EvaluatorRating" msprop:Generator_ColumnPropNameInTable="EvaluatorRatingColumn" msprop:Generator_UserColumnName="EvaluatorRating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
