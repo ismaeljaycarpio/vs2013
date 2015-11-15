@@ -1312,5 +1312,157 @@ namespace AMS.DAL
 
             return dt;
         }
+
+        ////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////// SELF EVALUATION ////////////////////////////////
+        public DataTable getSelf_SocialSkill()
+        {
+            //11 -> Initiative
+            strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 23";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getSelf_CustomerService()
+        {
+            //11 -> Initiative
+            strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 24";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getSelf_Originality()
+        {
+            //11 -> Initiative
+            strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 25";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getSelf_Responsibility()
+        {
+            //11 -> Initiative
+            strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 26";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getSelf_Excellent()
+        {
+            //11 -> Initiative
+            strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 27";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public int insertEvaluation_Self(
+            Guid UserId,
+            string evaluationType,
+            string agency,
+            string PeriodCovered
+            )
+        {
+            int _newlyInsertedId = 0;
+
+            strSql = "INSERT INTO Evaluation(UserId,EvaluationType,Agency,PeriodCovered) " +
+                "VALUES(@UserId,@EvaluationType,@Agency,@PeriodCovered);" +
+                "SELECT SCOPE_IDENTITY()";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@UserId", UserId);
+                comm.Parameters.AddWithValue("@EvaluationType", evaluationType);
+                comm.Parameters.AddWithValue("@Agency", agency);
+                comm.Parameters.AddWithValue("@PeriodCovered", PeriodCovered);
+
+                object exScalar = comm.ExecuteScalar();
+                _newlyInsertedId = (exScalar == null ? -1 : Convert.ToInt32(exScalar.ToString()));
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+
+            return _newlyInsertedId;
+        }
+
+        public void addSelf_Evaluation_Rating(
+            int evaluationId,
+            int competencyId,
+            int rating,
+            string remarks)
+        {
+            strSql = "INSERT INTO Evaluation_Self(EvaluationId, CompetenceCatQId, Rating,Remarks) " +
+                "VALUES(@Agency, @CompetenceCatId, @Rating)";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@Agency", evaluationId);
+                comm.Parameters.AddWithValue("@CompetenceCatId", competencyId);
+                comm.Parameters.AddWithValue("@Rating", rating);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
     }
 }

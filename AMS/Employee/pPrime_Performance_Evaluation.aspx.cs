@@ -48,27 +48,40 @@ namespace AMS.Employee
             dtEvaluation = eval.getEvaluated(evaluationId);
 
             //params
-            //ReportParameter[] param = new ReportParameter[17];
+            ReportParameter[] param = new ReportParameter[30];
 
             //fill params
-            //param[0] = new ReportParameter("lblName", dt.Rows[0]["LName"].ToString() + ", " + dt.Rows[0]["FName"].ToString() + " " + dt.Rows[0]["MName"].ToString());
-            //param[1] = new ReportParameter("lblDateHired", job.getHiredDate(UserId));
-            //param[2] = new ReportParameter("lblPosition", job.getPosition(UserId));
-            //param[3] = new ReportParameter("lblRemarksName", dtEvaluation.Rows[0]["RemarksName"].ToString());
-            //param[4] = new ReportParameter("lblUnacceptable", dtEvaluation.Rows[0]["ImpUnacceptable"].ToString());
-            //param[5] = new ReportParameter("lblFallShort", dtEvaluation.Rows[0]["ImpFallShort"].ToString());
-            //param[6] = new ReportParameter("lblEffective", dtEvaluation.Rows[0]["ImpEffective"].ToString());
-            //param[7] = new ReportParameter("lblExceptional", dtEvaluation.Rows[0]["ImpExceptional"].ToString());
-            //param[8] = new ReportParameter("lblRecommendation", dtEvaluation.Rows[0]["Recommendation"].ToString());
-            //param[9] = new ReportParameter("lblNeedImrpo", dtEvaluation.Rows[0]["NeedImprovement"].ToString());
-            //param[10] = new ReportParameter("lblDateEvaluated", dtEvaluation.Rows[0]["DateEvaluated"].ToString());
-            //param[11] = new ReportParameter("TotalScore", dtEvaluation.Rows[0]["TotalScore"].ToString());
-            //param[12] = new ReportParameter("lblHighlyEffective", dtEvaluation.Rows[0]["ImpHighlyEffective"].ToString());
-            //param[13] = new ReportParameter("lblEvaluatedBy", dtEvaluation.Rows[0]["EvaluatedBy"].ToString());
-            //param[14] = new ReportParameter("lblApprovedByManager", dtEvaluation.Rows[0]["ApprovedByManager"].ToString());
-            //param[15] = new ReportParameter("lblAcknowledgedBy", dtEvaluation.Rows[0]["AcknowledgedBy"].ToString());
-            //param[16] = new ReportParameter("lblApprovedByHR", dtEvaluation.Rows[0]["ApprovedByHR"].ToString());
-            //ReportViewer1.LocalReport.SetParameters(param);
+            param[0] = new ReportParameter("lblName", dt.Rows[0]["LName"].ToString() + ", " + dt.Rows[0]["FName"].ToString() + " " + dt.Rows[0]["MName"].ToString());
+            param[1] = new ReportParameter("lblDepartment", job.getDepartment(UserId));
+            param[2] = new ReportParameter("lblDateHired", job.getHiredDate(UserId));
+            param[3] = new ReportParameter("lblEvaluationDate", dtEvaluation.Rows[0]["DateEvaluated"].ToString());
+            param[4] = new ReportParameter("lblDateLastEvaluation", dtEvaluation.Rows[0]["LastDateEvaluation"].ToString());
+            param[5] = new ReportParameter("lblDateNextEvaluation", dtEvaluation.Rows[0]["DateNextEvaluation"].ToString());
+            param[6] = new ReportParameter("CommentSection1A", dtEvaluation.Rows[0]["CommentSection1A"].ToString());
+            param[7] = new ReportParameter("CommentSection1B", dtEvaluation.Rows[0]["CommentSection1B"].ToString());
+            param[8] = new ReportParameter("CommentSection1C", dtEvaluation.Rows[0]["CommentSection1C"].ToString());
+            param[9] = new ReportParameter("CommentSection2A", dtEvaluation.Rows[0]["CommentSection2A"].ToString());
+            param[10] = new ReportParameter("CommentSection2B", dtEvaluation.Rows[0]["CommentSection2B"].ToString());
+            param[11] = new ReportParameter("CommentSection2C", dtEvaluation.Rows[0]["CommentSection2C"].ToString());
+            param[12] = new ReportParameter("CommentSection3A", dtEvaluation.Rows[0]["CommentSection3A"].ToString());
+            param[13] = new ReportParameter("CommentSection3B", dtEvaluation.Rows[0]["CommentSection3B"].ToString());
+            param[14] = new ReportParameter("CommentSection3C", dtEvaluation.Rows[0]["CommentSection3C"].ToString());
+            param[15] = new ReportParameter("CommentSection3D", dtEvaluation.Rows[0]["CommentSection3D"].ToString());
+            param[16] = new ReportParameter("CommentSection3E", dtEvaluation.Rows[0]["CommentSection3E"].ToString());
+            param[17] = new ReportParameter("CommentSection3F", dtEvaluation.Rows[0]["CommentSection3F"].ToString());
+            param[18] = new ReportParameter("lblCreativeContribution", dtEvaluation.Rows[0]["EmployeesCreativeContribution"].ToString());
+            param[19] = new ReportParameter("lblNewSkill", dtEvaluation.Rows[0]["EmployeesNewSkills"].ToString());
+            param[20] = new ReportParameter("lblStrength", dtEvaluation.Rows[0]["EmployeesStrength"].ToString());
+            param[21] = new ReportParameter("EmployeeImprovement", dtEvaluation.Rows[0]["EmployeesImprovement"].ToString());
+            param[22] = new ReportParameter("EmployeeChanges", dtEvaluation.Rows[0]["EmployeesChanges"].ToString());
+            param[23] = new ReportParameter("PersonalGoals", dtEvaluation.Rows[0]["EmployeesPersonalGoals"].ToString());
+            param[24] = new ReportParameter("EmployeeRecommendation", dtEvaluation.Rows[0]["EmployeesRecommendation"].ToString());
+            param[25] = new ReportParameter("lblDaysSick", dtEvaluation.Rows[0]["DaysSick"].ToString());
+            param[26] = new ReportParameter("lblDaysTardy", dtEvaluation.Rows[0]["DaysTardy"].ToString());
+            param[27] = new ReportParameter("lblPersonalComments", dtEvaluation.Rows[0]["primeComments"].ToString());
+            param[28] = new ReportParameter("EmployeeName", dtEvaluation.Rows[0]["AcknowledgedBy"].ToString());
+            param[29] = new ReportParameter("SupervisorName", dtEvaluation.Rows[0]["EvaluatedBy"].ToString());
+            ReportViewer1.LocalReport.SetParameters(param);
 
             DataSet dsCooperation = getCooperation(evaluationId);
             DataSet dsAttendanceAndPunctuality = getAttendanceAndPunctuality(evaluationId);
