@@ -12,7 +12,6 @@ namespace AMS.MasterConfig
     public partial class Agency : System.Web.UI.Page
     {
         DAL.Agency agency = new DAL.Agency();
-        DataTable dt;
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!Page.IsPostBack)

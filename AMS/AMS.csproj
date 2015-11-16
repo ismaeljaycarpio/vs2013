@@ -136,6 +136,10 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Admin\PerformanceEvaluation.aspx" />
+    <Content Include="App_Data\dbAMS.mdf" />
+    <Content Include="App_Data\dbAMS_log.ldf">
+      <DependentUpon>dbAMS.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -172,6 +176,7 @@
     <Content Include="Employee\Violations.aspx" />
     <Content Include="Employee\vPerformanceEvaluation.aspx" />
     <Content Include="Employee\vPrime_Performance_Evaluation.aspx" />
+    <Content Include="Employee\vSelf_Evaluation.aspx" />
     <Content Include="Evaluation\ApprovedEvaluations.aspx" />
     <Content Include="Evaluation\PendingApprovals.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -769,6 +774,13 @@
     <Compile Include="Employee\vPrime_Performance_Evaluation.aspx.designer.cs">
       <DependentUpon>vPrime_Performance_Evaluation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Employee\vSelf_Evaluation.aspx.cs">
+      <DependentUpon>vSelf_Evaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\vSelf_Evaluation.aspx.designer.cs">
+      <DependentUpon>vSelf_Evaluation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EvaluationNested.master.cs">
       <DependentUpon>EvaluationNested.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -858,9 +870,7 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />

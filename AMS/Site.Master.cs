@@ -78,10 +78,6 @@ namespace AMS
                     if(Session["UserId"] == null)
                         Session["UserId"] = UserId;
                 }
-
-                //menu
-                //LoginView1.RoleGroups[0].Roles = new string[2] {"SuperAdmin", "IT Manager"};
-                //LoginView1.RoleGroups[1].Roles = new string[1] { "Painter (On Call)" };
             }
         }
 

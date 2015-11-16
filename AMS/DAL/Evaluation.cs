@@ -1314,8 +1314,8 @@ namespace AMS.DAL
         }
 
         ////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////// SELF EVALUATION ////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
         public DataTable getSelf_SocialSkill()
         {
             //11 -> Initiative
@@ -1440,14 +1440,37 @@ namespace AMS.DAL
             return _newlyInsertedId;
         }
 
+        public void updateEvaluation_Self(
+            string agency,
+            string PeriodCovered,
+            int evaluationId
+            )
+        {
+            strSql = "UPDATE Evaluation SET Agency=@Agency, PeriodCovered=@PeriodCovered WHERE Id=@Id";
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@Agency", agency);
+                comm.Parameters.AddWithValue("@PeriodCovered", PeriodCovered);
+                comm.Parameters.AddWithValue("@Id", evaluationId);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+        
         public void addSelf_Evaluation_Rating(
             int evaluationId,
-            int competencyId,
+            int competencyCatQId,
             int rating,
             string remarks)
         {
             strSql = "INSERT INTO Evaluation_Self(EvaluationId, CompetenceCatQId, Rating,Remarks) " +
-                "VALUES(@Agency, @CompetenceCatId, @Rating)";
+                "VALUES(@Agency, @CompetenceCatId, @Rating, @Remarks)";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -1456,8 +1479,146 @@ namespace AMS.DAL
             {
                 conn.Open();
                 comm.Parameters.AddWithValue("@Agency", evaluationId);
-                comm.Parameters.AddWithValue("@CompetenceCatId", competencyId);
+                comm.Parameters.AddWithValue("@CompetenceCatId", competencyCatQId);
                 comm.Parameters.AddWithValue("@Rating", rating);
+                comm.Parameters.AddWithValue("@Remarks", remarks);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+
+        public DataTable getSelf_SocialSkill_filled(int evaluationId)
+        {
+            strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
+                "Evaluation_Self.Rating, Evaluation_Self.Remarks " +
+                "FROM Evaluation_Self, CompetenceCatQ " +
+                "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
+                "AND Evaluation_Self.CompetenceCatQId = 23 " +
+                "AND Evaluation_Self.Evaluation.Id = @EvaluationId";
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@EvaluationId", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getSelf_CustomerService_filled(int evaluationId)
+        {
+            strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
+                "Evaluation_Self.Rating, Evaluation_Self.Remarks " +
+                "FROM Evaluation_Self, CompetenceCatQ " +
+                "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
+                "AND Evaluation_Self.CompetenceCatQId = 24 " +
+                "AND Evaluation_Self.Evaluation.Id = @EvaluationId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@EvaluationId", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getSelf_Originality_filled(int evaluationId)
+        {
+            strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
+                "Evaluation_Self.Rating, Evaluation_Self.Remarks " +
+                "FROM Evaluation_Self, CompetenceCatQ " +
+                "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
+                "AND Evaluation_Self.CompetenceCatQId = 25 " +
+                "AND Evaluation_Self.Evaluation.Id = @EvaluationId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@EvaluationId", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getSelf_Responsibility_filled(int evaluationId)
+        {
+            strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
+                "Evaluation_Self.Rating, Evaluation_Self.Remarks " +
+                "FROM Evaluation_Self, CompetenceCatQ " +
+                "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
+                "AND Evaluation_Self.CompetenceCatQId = 26 " +
+                "AND Evaluation_Self.Evaluation.Id = @EvaluationId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@EvaluationId", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getSelf_Excellent_filled(int evaluationId)
+        {
+            strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
+                "Evaluation_Self.Rating, Evaluation_Self.Remarks " +
+                "FROM Evaluation_Self, CompetenceCatQ " +
+                "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
+                "AND Evaluation_Self.CompetenceCatQId = 27 " +
+                "AND Evaluation_Self.Evaluation.Id = @EvaluationId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@EvaluationId", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public void updateSelf_Evaluation_Rating(
+            int rating,
+            string remarks,
+            int Id)
+        {
+            strSql = "UPDATE Evaluation_Self SET Rating=@Rating, Remarks=@Remarks " +
+                "WHERE Id = @Id";
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@Rating", rating);
+                comm.Parameters.AddWithValue("@Remarks", remarks);
+                comm.Parameters.AddWithValue("@Id", Id);
                 comm.ExecuteNonQuery();
                 conn.Close();
             }

@@ -148,7 +148,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="rblGender" class="col-sm-2 control-label">Blood Type</label>
+                            <label for="rblBloodType" class="col-sm-2 control-label">Blood Type</label>
                             <div class="col-sm-10">
                                 <asp:RadioButtonList ID="rblBloodType" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="0-">&nbsp; O- &nbsp;</asp:ListItem>
