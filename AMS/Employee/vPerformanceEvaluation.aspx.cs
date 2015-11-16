@@ -37,6 +37,11 @@ namespace AMS.Employee
                 dt = new DataTable();
                 dt = eval.getEvaluated(evaluationId);
 
+                if(dt.Rows[0]["EvaluationType"].ToString().Equals("Self Evaluation"))
+                {
+                    Response.Redirect("~/Employee/vSelf_Evaluation");
+                }
+
                 if (dt.Rows[0]["Agency"].ToString().Equals("PrimePower"))
                 {
                     Response.Redirect("~/Employee/vPrime_Performance_Evaluation");

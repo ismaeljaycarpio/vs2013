@@ -1495,8 +1495,8 @@ namespace AMS.DAL
                 "Evaluation_Self.Rating, Evaluation_Self.Remarks " +
                 "FROM Evaluation_Self, CompetenceCatQ " +
                 "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
-                "AND Evaluation_Self.CompetenceCatQId = 23 " +
-                "AND Evaluation_Self.Evaluation.Id = @EvaluationId";
+                "AND CompetenceCatQ.CompetenceCatId = 23 " +
+                "AND Evaluation_Self.EvaluationId = @EvaluationId";
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
@@ -1517,8 +1517,8 @@ namespace AMS.DAL
                 "Evaluation_Self.Rating, Evaluation_Self.Remarks " +
                 "FROM Evaluation_Self, CompetenceCatQ " +
                 "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
-                "AND Evaluation_Self.CompetenceCatQId = 24 " +
-                "AND Evaluation_Self.Evaluation.Id = @EvaluationId";
+                "AND CompetenceCatQ.CompetenceCatId  = 24 " +
+                "AND Evaluation_Self.EvaluationId = @EvaluationId";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -1540,8 +1540,8 @@ namespace AMS.DAL
                 "Evaluation_Self.Rating, Evaluation_Self.Remarks " +
                 "FROM Evaluation_Self, CompetenceCatQ " +
                 "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
-                "AND Evaluation_Self.CompetenceCatQId = 25 " +
-                "AND Evaluation_Self.Evaluation.Id = @EvaluationId";
+                "AND CompetenceCatQ.CompetenceCatId  = 25 " +
+                "AND Evaluation_Self.EvaluationId = @EvaluationId";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -1563,8 +1563,8 @@ namespace AMS.DAL
                 "Evaluation_Self.Rating, Evaluation_Self.Remarks " +
                 "FROM Evaluation_Self, CompetenceCatQ " +
                 "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
-                "AND Evaluation_Self.CompetenceCatQId = 26 " +
-                "AND Evaluation_Self.Evaluation.Id = @EvaluationId";
+                "AND CompetenceCatQ.CompetenceCatId  = 26 " +
+                "AND Evaluation_Self.EvaluationId = @EvaluationId";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -1586,8 +1586,8 @@ namespace AMS.DAL
                 "Evaluation_Self.Rating, Evaluation_Self.Remarks " +
                 "FROM Evaluation_Self, CompetenceCatQ " +
                 "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
-                "AND Evaluation_Self.CompetenceCatQId = 27 " +
-                "AND Evaluation_Self.Evaluation.Id = @EvaluationId";
+                "AND CompetenceCatQ.CompetenceCatId  = 27 " +
+                "AND Evaluation_Self.EvaluationId = @EvaluationId";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;

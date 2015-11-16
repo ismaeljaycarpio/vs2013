@@ -125,7 +125,7 @@ namespace AMS.Employee
                         eval.addSelf_Evaluation_Rating(evaluationId, Id, rating, remarks);
                     }
                 }
-
+                Session["EvaluationId"] = evaluationId;
                 Response.Redirect("~/Employee/vSelf_Evaluation");
             }
         }
