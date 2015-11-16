@@ -18,7 +18,6 @@ namespace AMS.Employee
         DAL.Evaluation eval = new DAL.Evaluation();
         DAL.Profile profile = new DAL.Profile();
         DAL.Job job = new DAL.Job();
-        DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
         {
