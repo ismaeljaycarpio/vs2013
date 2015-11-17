@@ -14,6 +14,13 @@ namespace AMS.Employee
         {
             if (!Page.IsPostBack)
             {
+                if(Session["UserId"] == null)
+                {
+                    Response.Redirect("~/Employee/Employee");
+                }
+
+                hfUserId.Value = Session["UserId"].ToString();
+
                 BindData();
 
                 if (!User.IsInRole("Admin") && !User.IsInRole("HR"))
@@ -29,7 +36,7 @@ namespace AMS.Employee
         {
             DAL.Training training = new DAL.Training();
             DataTable dt = new DataTable();
-            Guid UserId = Guid.Parse(Session["UserId"].ToString());
+            Guid UserId = Guid.Parse(hfUserId.Value);
             dt = training.getTrainingsById(UserId);
 
             gvTrainings.DataSource = dt;
@@ -39,7 +46,7 @@ namespace AMS.Employee
         protected void btnSave_Click(object sender, EventArgs e)
         {
             DAL.Training training = new DAL.Training();
-            training.addTraining(Guid.Parse(Session["UserId"].ToString()),
+            training.addTraining(Guid.Parse(hfUserId.Value),
                 txtAddDescription.Text,
                 txtAddVenue.Text,
                 txtAddDate.Text,

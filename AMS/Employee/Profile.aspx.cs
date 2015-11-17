@@ -20,21 +20,23 @@ namespace AMS.Employee
 
                 fillNationality();
 
+                hfUserId.Value = Session["UserId"].ToString();
+
                 //check image
-                if (!File.Exists(Server.MapPath("~/ProfileImages/") + Session["UserId"].ToString() + ".png"))
+                if (!File.Exists(Server.MapPath("~/ProfileImages/") + hfUserId.Value + ".png"))
                 {
                     imgProfile.ImageUrl = "~/ProfileImages/noImage.png";
                     
                 }
                 else
                 {
-                    imgProfile.ImageUrl = "~/ProfileImages/" + Session["UserId"].ToString() + ".png";
+                    imgProfile.ImageUrl = "~/ProfileImages/" + hfUserId.Value + ".png";
                 }
 
                 //load personal details
                 DAL.Profile profile = new DAL.Profile();
                 DataTable dt = new DataTable();
-                Guid UserId = Guid.Parse(Session["UserId"].ToString());
+                Guid UserId = Guid.Parse(hfUserId.Value);
                 dt = profile.getProfileById(UserId);
 
                 txtFirstName.Text = dt.Rows[0]["FName"].ToString();
@@ -94,7 +96,7 @@ namespace AMS.Employee
                     txtDoB.Text,
                     rblBloodType.SelectedValue.ToString(),
                     txtLanguage.Text,
-                    Guid.Parse(Session["UserId"].ToString()));
+                    Guid.Parse(hfUserId.Value));
         }
 
         public void fillNationality()
@@ -110,8 +112,8 @@ namespace AMS.Employee
         {
             if(FileUpload1.HasFile)
             {
-                FileUpload1.SaveAs(Server.MapPath("~/ProfileImages/") + Session["UserId"].ToString() + ".png" );
-                imgProfile.ImageUrl = "~/ProfileImages/" + Session["UserId"].ToString() + ".png";
+                FileUpload1.SaveAs(Server.MapPath("~/ProfileImages/") + hfUserId.Value + ".png" );
+                imgProfile.ImageUrl = "~/ProfileImages/" + hfUserId.Value + ".png";
             }
         }
     }

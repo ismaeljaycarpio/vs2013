@@ -14,6 +14,10 @@ namespace AMS.Employee
         {
             if (!Page.IsPostBack)
             {
+                if (Session["UserId"] == null)
+                    Response.Redirect("~/Employee/Employee");
+
+                hfUserId.Value = Session["UserId"].ToString();
                 BindData();
 
                 //show/hide controls based on role
@@ -22,8 +26,7 @@ namespace AMS.Employee
                     btnOpenModal.Visible = false;
                     gvAwards.Columns[1].Visible = false;
                     gvAwards.Columns[5].Visible = false;
-                }
-                    
+                }                
             }
         }
 
@@ -31,7 +34,8 @@ namespace AMS.Employee
         {
             DAL.Award awards = new DAL.Award();
             DataTable dt = new DataTable();
-            Guid UserId = Guid.Parse(Session["UserId"].ToString());
+
+            Guid UserId = Guid.Parse(hfUserId.Value);
             dt = awards.getAwardsById(UserId);
 
             gvAwards.DataSource = dt;
@@ -99,7 +103,7 @@ namespace AMS.Employee
         protected void btnSave_Click(object sender, EventArgs e)
         {
             DAL.Award awards = new DAL.Award();
-            awards.addAward(Guid.Parse(Session["UserId"].ToString()),
+            awards.addAward(Guid.Parse(hfUserId.Value),
                 txtAddDescription.Text,
                 txtAddVenue.Text,
                 txtAddDate.Text);

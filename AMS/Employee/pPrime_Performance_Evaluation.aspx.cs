@@ -21,6 +21,11 @@ namespace AMS.Employee
         {
             if (!Page.IsPostBack)
             {
+                if(Session["UserId"] == null)
+                {
+                    Response.Redirect("~/Employee/Employee");
+                }
+                hfUserId.Value = Session["UserId"].ToString();
                 GenerateReport();
             }
         }
@@ -31,7 +36,7 @@ namespace AMS.Employee
             ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Employee/Report3.rdlc");
 
             //get selected user
-            Guid UserId = Guid.Parse(Session["UserId"].ToString());
+            Guid UserId = Guid.Parse(hfUserId.Value);
 
             //Get selected evaluation id
             int evaluationId = Convert.ToInt32(Session["EvaluationId"]);
@@ -568,7 +573,5 @@ namespace AMS.Employee
                 }
             }
         }
-
-
     }
 }

@@ -24,10 +24,14 @@ namespace AMS.Employee
             if(!Page.IsPostBack)
             {
                 if (Session["UserId"] == null)
+                {
                     Response.Redirect("~/Employee/Employee");
+                }
+                    
 
                 //get selected user
-                Guid UserId = Guid.Parse(Session["UserId"].ToString());
+                hfUserId.Value = Session["UserId"].ToString();
+                Guid UserId = Guid.Parse(hfUserId.Value);
 
                 lblEmpName.Text = profile.getProfileName(UserId);
                 lblDesignation.Text = job.getDepartment(UserId);
@@ -56,7 +60,7 @@ namespace AMS.Employee
             if(Page.IsValid)
             {
                 //get selected user
-                Guid UserId = Guid.Parse(Session["UserId"].ToString());
+                Guid UserId = Guid.Parse(hfUserId.Value);
                 string agency = job.getAgencyName(UserId);
 
                 int evaluationId = eval.insertEvaluation_Self(

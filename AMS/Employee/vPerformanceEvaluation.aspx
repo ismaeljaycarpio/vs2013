@@ -207,4 +207,5 @@
         </div>
     </div>
     <asp:HiddenField ID="hfEvaluationId" runat="server" />
+    <asp:HiddenField ID="hfUserId" runat="server" />
 </asp:Content>

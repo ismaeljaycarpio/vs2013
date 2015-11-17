@@ -15,4 +15,5 @@
             </rsweb:ReportViewer>
         </div>
     </div>
+    <asp:HiddenField ID="hfUserId" runat="server" />
 </asp:Content>

@@ -13,6 +13,13 @@ namespace AMS.Employee
         {
             if (!Page.IsPostBack)
             {
+                if(Session["UserId"] == null)
+                {
+                    Response.Redirect("~/Employee/Employee");
+                }
+
+                hfUserId.Value = Session["UserId"].ToString();
+
                 BindData();
 
                 if (!User.IsInRole("Admin") && !User.IsInRole("HR"))
@@ -28,7 +35,7 @@ namespace AMS.Employee
         {
             DAL.Violation violation = new DAL.Violation();
             DataTable dt = new DataTable();
-            Guid UserId = Guid.Parse(Session["UserId"].ToString());
+            Guid UserId = Guid.Parse(hfUserId.Value);
             dt = violation.getViolationsById(UserId);
 
             gvViolations.DataSource = dt;
@@ -39,7 +46,7 @@ namespace AMS.Employee
         {
             DAL.Violation violation = new DAL.Violation();
             violation.addViolation(
-                Guid.Parse(Session["UserId"].ToString()),
+                Guid.Parse(hfUserId.Value),
                 txtAddViolation.Text,
                 txtAddCode.Text,
                 txtAddDate.Text,

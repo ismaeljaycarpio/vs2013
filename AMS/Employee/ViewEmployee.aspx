@@ -245,4 +245,5 @@
             </div>
         </div>
     </div>
+    <asp:HiddenField ID="hfUserId" runat="server" />
 </asp:Content>

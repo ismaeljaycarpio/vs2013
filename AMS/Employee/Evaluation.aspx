@@ -49,4 +49,5 @@
         </div>
     </div>
     <asp:HiddenField ID="hfAgency" runat="server"  Visible="true"/>
+    <asp:HiddenField ID="hfUserId" runat="server" />
 </asp:Content>

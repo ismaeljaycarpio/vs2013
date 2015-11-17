@@ -19,18 +19,20 @@ namespace AMS.Employee
                 if (Session["UserId"] == null)
                     Response.Redirect("~/Employee/Employee");
 
-                
+                //bind userid to control
+                hfUserId.Value = Session["UserId"].ToString();
+
                 //check image
-                if (!File.Exists(Server.MapPath("~/ProfileImages/") + Session["UserId"].ToString() + ".png"))
+                if (!File.Exists(Server.MapPath("~/ProfileImages/") + hfUserId.Value + ".png"))
                 {
                     imgProfile.ImageUrl = "~/ProfileImages/noImage.png";
                 }
                 else
                 {
-                    imgProfile.ImageUrl = "~/ProfileImages/" + Session["UserId"].ToString() + ".png";
+                    imgProfile.ImageUrl = "~/ProfileImages/" + hfUserId.Value + ".png";
                 }
 
-                Guid UserId = Guid.Parse(Session["UserId"].ToString());
+                Guid UserId = Guid.Parse(hfUserId.Value);
                 DataTable dt = new DataTable();
                 DAL.Profile profile = new DAL.Profile();
                 dt = profile.displayProfile(UserId);
@@ -116,12 +118,12 @@ namespace AMS.Employee
                 
                 //log to db
                 fileUpload.addDocuments(
-                    Guid.Parse(Session["UserId"].ToString()),
+                    Guid.Parse(hfUserId.Value),
                     fileName,
                     "~/Documents/" + fileName);
             }
 
-            Guid UserId = Guid.Parse(Session["UserId"].ToString());
+            Guid UserId = Guid.Parse(hfUserId.Value);
             BindDocuments(UserId);
 
             lblFileStatus.Text = "File(s) uploaded successfully";

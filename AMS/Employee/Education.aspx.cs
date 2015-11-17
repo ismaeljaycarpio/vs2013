@@ -14,6 +14,12 @@ namespace AMS.Employee
         {
             if (!Page.IsPostBack)
             {
+                if(Session["UserId"] == null)
+                {
+                    Response.Redirect("~/Employee/Employee");
+                }
+
+                hfUserId.Value = Session["UserId"].ToString();
                 BindData();
 
                 if (!User.IsInRole("Admin") && !User.IsInRole("HR"))
@@ -29,7 +35,7 @@ namespace AMS.Employee
         {
             DAL.Education edu = new DAL.Education();
             DataTable dt = new DataTable();
-            Guid UserId = Guid.Parse(Session["UserId"].ToString());
+            Guid UserId = Guid.Parse(hfUserId.Value);
             dt = edu.getEducationById(UserId);
 
             gvEducation.DataSource = dt;
@@ -39,7 +45,7 @@ namespace AMS.Employee
         protected void btnSave_Click(object sender, EventArgs e)
         {
             DAL.Education edu = new DAL.Education();
-            edu.addEducation(Guid.Parse(Session["UserId"].ToString()),
+            edu.addEducation(Guid.Parse(hfUserId.Value),
                 txtAddYear.Text,
                 txtAddAchievement.Text,
                 txtAddSchool.Text,

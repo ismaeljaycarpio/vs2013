@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+
 namespace AMS.DAL
 {
     public class Evaluation
@@ -15,6 +16,11 @@ namespace AMS.DAL
         SqlDataAdapter adp;
         DataTable dt;
         string strSql = "";
+
+
+        #region TOPLIS
+
+        #endregion
 
         //TOPLIS Only
         public DataTable displayTSIQuestions()
@@ -134,6 +140,7 @@ namespace AMS.DAL
         }
 
         //Pending Approval List by GM ->only managers
+        //GM the signatory of Managers
         public DataTable getPendingApprovalGM()
         {
             strSql = "SELECT Evaluation.Id,Evaluation.RemarksName,Evaluation.EvaluatedBy, " +
@@ -1313,6 +1320,7 @@ namespace AMS.DAL
             return dt;
         }
 
+        #region SELF EVALUATION
         ////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////// SELF EVALUATION ////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////
@@ -1625,5 +1633,6 @@ namespace AMS.DAL
             comm.Dispose();
             conn.Dispose();
         }
+        #endregion
     }
 }
