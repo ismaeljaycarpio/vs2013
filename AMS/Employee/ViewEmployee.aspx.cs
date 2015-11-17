@@ -92,20 +92,6 @@ namespace AMS.Employee
 
                 BindDocuments(UserId);
 
-                //chk evaluation link
-                if (User.IsInRole("Staff"))
-                {
-                    lbEvaluate.Visible = false;
-                    lbEvaluate.Enabled = false;
-                }
-                else if (User.IsInRole("General Manager") ||
-                    User.IsInRole("HR"))
-                {
-                    //show if managers only
-                    if (!job.getRoleNameBypPositionName(lblPosition.Text).Equals("Manager"))
-                        lbEvaluate.Visible = false;
-                }
-
                 //hide controls
                 hideControls();
             }

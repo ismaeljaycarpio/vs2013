@@ -9,9 +9,6 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             Profile Overview
-            <div class="pull-right">
-                <asp:LinkButton ID="lbEvaluate" runat="server" OnClick="lbEvaluate_Click">Evaluation</asp:LinkButton>
-            </div>
         </div>
         <div class="panel-body">
 

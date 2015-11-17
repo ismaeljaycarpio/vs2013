@@ -22,6 +22,7 @@ namespace AMS.Employee
                 {
                     Response.Redirect("~/Employee/Employee");
                 }
+
                 hfUserId.Value = Session["UserId"].ToString();
                 Guid UserId = Guid.Parse(hfUserId.Value);
                 BindGridView(UserId);
@@ -36,29 +37,57 @@ namespace AMS.Employee
                 //chk if user is evaluating itself
                 if (loggedUserId.Equals(UserId))
                 {
-                    if (hfAgency.Value.Equals("TOPLIS Solutions Inc."))
+                    if (hfAgency.Value.Equals("TOPLIS Solutions Inc.") ||
+                        hfAgency.Value.Equals("None"))
                     {
                         btnPerfEval.Visible = false;
                         btnPerfEval.Enabled = false;
                     }
                     else
                     {
+                        //show PrimePower evaluation
                         btnPerfEval.Visible = true;
                         btnPerfEval.Enabled = true;
                     }
+                    //show self evaluation
+                    btnSelfEval.Visible = true;
+                    btnSelfEval.Enabled = true;
                 }
-
-                //evaluate managers only ->for GM,HR
-                if (User.IsInRole("General Manager") ||
-                    User.IsInRole("HR"))
+                else
                 {
-                    //show if managers only
-                    if (!job.getRoleName(UserId).Equals("Manager"))
+                    btnSelfEval.Enabled = false;
+                    btnSelfEval.Visible = false;
+                    btnPerfEval.Visible = false;
+                    btnPerfEval.Enabled = false;
+
+                    //GM-> evaluate Managers and HR/Manager
+                    //HR-> evaluate Managers only
+                    if (User.IsInRole("General Manager"))
                     {
-                        btnPerfEval.Enabled = false;
-                        btnPerfEval.Visible = false;
+                        if (hfAgency.Value.Equals("PrimePower"))
+                        {
+                            //show if managers only
+                            if (job.getRoleName(UserId).Equals("Manager") ||
+                                job.getRoleName(UserId).Equals("HR"))
+                            {
+                                btnPerfEval.Enabled = true;
+                                btnPerfEval.Visible = true;
+                            }
+                        }
                     }
-                }
+                    else if(User.IsInRole("HR"))
+                    {
+                        if (hfAgency.Value.Equals("PrimePower"))
+                        {
+                            //show if managers only
+                            if (job.getRoleName(UserId).Equals("Manager"))
+                            {
+                                btnPerfEval.Enabled = true;
+                                btnPerfEval.Visible = true;
+                            }
+                        }
+                    }
+                }          
             }
         }
 
