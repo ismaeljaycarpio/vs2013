@@ -14,6 +14,12 @@ namespace AMS.Employee
         {
             if (!Page.IsPostBack)
             {
+                if(Session["UserId"] == null)
+                {
+                    Response.Redirect("~/Employee/Employee");
+                }
+
+                hfUserId.Value = Session["UserId"].ToString();
                 BindData();
 
                 if (!User.IsInRole("Admin") && !User.IsInRole("HR"))
@@ -29,7 +35,7 @@ namespace AMS.Employee
         {
             DAL.Contact contact = new DAL.Contact();
             DataTable dt = new DataTable();
-            Guid UserId = Guid.Parse(Session["UserId"].ToString());
+            Guid UserId = Guid.Parse(hfUserId.Value);
             dt = contact.getContactById(UserId);
 
             gvContacts.DataSource = dt;
@@ -40,7 +46,7 @@ namespace AMS.Employee
         {
             DAL.Contact contact = new DAL.Contact();
             contact.addContact(
-                Guid.Parse(Session["UserId"].ToString()),
+                Guid.Parse(hfUserId.Value),
                 txtAddAddress.Text,
                 txtAddHomeAddress.Text,
                 txtAddCity.Text,

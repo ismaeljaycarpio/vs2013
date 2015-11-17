@@ -134,6 +134,7 @@ namespace AMS.DAL
         }
 
         //Pending Approval List by GM ->only managers
+        //GM the signatory of Managers
         public DataTable getPendingApprovalGM()
         {
             strSql = "SELECT Evaluation.Id,Evaluation.RemarksName,Evaluation.EvaluatedBy, " +

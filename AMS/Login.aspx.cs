@@ -24,6 +24,7 @@ namespace AMS
             if(!Page.IsPostBack)
             {
                 Session["UserId"] = null;
+                Session["EvaluationId"] = null;
                 FormsAuthentication.SignOut();
             }
         }

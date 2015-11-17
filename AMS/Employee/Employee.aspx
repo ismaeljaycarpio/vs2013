@@ -57,18 +57,6 @@
                                 <asp:BoundField DataField="LName" HeaderText="Last Name" SortExpression="LName" />
                                 <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
                                 <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
-                                <%--<asp:TemplateField HeaderText="Action">
-                                    <ItemTemplate>
-                                        <div class="btn-group">
-                                            <a class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" href="#"><i class="icon-cog"></i><span class="caret"></span></a>
-                                            <ul role="menu" class="dropdown-menu pull-right">
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-edit"></span>&nbsp;Edit User Info</a></li>
-                                                <li class="divider"></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-trash"></span>&nbsp;Delete user</a> </li>
-                                            </ul>
-                                        </div>
-                                    </ItemTemplate>
-                                </asp:TemplateField>--%>
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

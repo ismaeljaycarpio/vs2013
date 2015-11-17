@@ -27,10 +27,13 @@ namespace AMS.Employee
             if(!Page.IsPostBack)
             {
                 if (Session["UserId"] == null)
+                {
                     Response.Redirect("~/Employee/Employee");
+                }
 
                 //get selected user
-                Guid UserId = Guid.Parse(Session["UserId"].ToString());
+                hfUserId.Value = Session["UserId"].ToString();
+                Guid UserId = Guid.Parse(hfUserId.Value);
 
                 //if (eval.IsEvaluated(UserId, DateTime.Now.Year))
                 //{
@@ -73,7 +76,7 @@ namespace AMS.Employee
             decimal formattedScores = 0;
 
             //insert to evaluation
-            Guid UserId = Guid.Parse(Session["UserId"].ToString());
+            Guid UserId = Guid.Parse(hfUserId.Value);
             MembershipUser _evaluatedBy = Membership.GetUser();
             Guid evaluatedById = ((Guid)_evaluatedBy.ProviderUserKey);
             string remarksName = "";

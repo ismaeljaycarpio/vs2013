@@ -14,6 +14,14 @@ namespace AMS.Employee
         {
             if (!Page.IsPostBack)
             {
+                if(Session["UserId"] == null)
+                {
+                    Response.Redirect("~/Employee/Employee");
+                }
+
+                //get selected user
+                hfUserId.Value = Session["UserId"].ToString();
+
                 BindData();
 
                 if (!User.IsInRole("Admin") && !User.IsInRole("HR"))
@@ -29,7 +37,7 @@ namespace AMS.Employee
         {
             DAL.MembershipCard memCard = new DAL.MembershipCard();
             DataTable dt = new DataTable();
-            Guid UserId = Guid.Parse(Session["UserId"].ToString());
+            Guid UserId = Guid.Parse(hfUserId.Value);
             dt = memCard.getPersonalCardsById(UserId);
 
             gvMembership.DataSource = dt;
@@ -39,7 +47,7 @@ namespace AMS.Employee
         protected void btnSave_Click(object sender, EventArgs e)
         {
             DAL.MembershipCard memCard = new DAL.MembershipCard();
-            memCard.addMembershipCard(Guid.Parse(Session["UserId"].ToString()),
+            memCard.addMembershipCard(Guid.Parse(hfUserId.Value),
                 txtAddType.Text,
                 txtAddNumber.Text,
                 txtAddIssuedDate.Text,

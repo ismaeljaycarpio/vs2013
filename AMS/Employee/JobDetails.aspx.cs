@@ -16,6 +16,13 @@ namespace AMS.Employee
         {
             if (!Page.IsPostBack)
             {
+                if(Session["UserId"] == null)
+                {
+                    Response.Redirect("~/Employee/Employee");
+                }
+
+                hfUserId.Value = Session["UserId"].ToString();
+
                 //load ddls
                 fillPosition();
                 fillDept();
@@ -23,12 +30,12 @@ namespace AMS.Employee
 
                 DAL.Job job = new DAL.Job();
                 DataTable dt = new DataTable();
-                dt = job.getJobDetailsById(Guid.Parse(Session["UserId"].ToString()));
+                dt = job.getJobDetailsById(Guid.Parse(hfUserId.Value));
 
                 //load job details
                 txtEmpId.Text = dt.Rows[0]["Emp_ID"].ToString();
                 ddlPosition.SelectedValue = dt.Rows[0]["PositionId"].ToString();
-                ddlDepartment.SelectedValue = job.getDepartmentId(Guid.Parse(Session["UserId"].ToString()));
+                ddlDepartment.SelectedValue = job.getDepartmentId(Guid.Parse(hfUserId.Value));
                 txtSubUnit.Text = dt.Rows[0]["SubUnit"].ToString();
 
                 ddlAgency.SelectedValue = dt.Rows[0]["AgencyId"].ToString();
@@ -86,10 +93,10 @@ namespace AMS.Employee
                     txtContractEndingDate.Text,
                     ddlAgency.SelectedValue,
                     txtEMovement.Text,
-                    Guid.Parse(Session["UserId"].ToString()));
+                    Guid.Parse(hfUserId.Value));
 
             //get user
-            MembershipUser _user = Membership.GetUser(Guid.Parse(Session["UserId"].ToString()));
+            MembershipUser _user = Membership.GetUser(Guid.Parse(hfUserId.Value));
 
             //remove user from role membership
             foreach (string role in Roles.GetRolesForUser(_user.UserName))

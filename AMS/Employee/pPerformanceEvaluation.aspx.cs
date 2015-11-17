@@ -20,6 +20,11 @@ namespace AMS.Employee
         {
             if (!Page.IsPostBack)
             {
+                if(Session["UserId"] == null)
+                {
+                    Response.Redirect("~/Employee/Employee");
+                }
+                hfUserId.Value = Session["UserId"].ToString();
                 GenerateReport();
             }
         }
@@ -33,7 +38,7 @@ namespace AMS.Employee
             DataSet dsEvaluation = TSI_PerformanceEval();
 
             //get selected user
-            Guid UserId = Guid.Parse(Session["UserId"].ToString());
+            Guid UserId = Guid.Parse(hfUserId.Value);
 
             //Get selected evaluation id
             int evaluationId = Convert.ToInt32(Session["EvaluationId"]);
@@ -84,7 +89,7 @@ namespace AMS.Employee
             using (SqlConnection conn = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString))
             {
                 //get selected user
-                Guid UserId = Guid.Parse(Session["UserId"].ToString());
+                Guid UserId = Guid.Parse(hfUserId.Value);
 
                 conn.Open();
                 comm = new SqlCommand();

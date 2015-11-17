@@ -22,8 +22,8 @@ namespace AMS.Employee
                 {
                     Response.Redirect("~/Employee/Employee");
                 }
-
-                Guid UserId = Guid.Parse(Session["UserId"].ToString());
+                hfUserId.Value = Session["UserId"].ToString();
+                Guid UserId = Guid.Parse(hfUserId.Value);
                 BindGridView(UserId);
 
                 hfAgency.Value = job.getAgencyName(UserId);
