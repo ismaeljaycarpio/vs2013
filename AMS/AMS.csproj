@@ -214,8 +214,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Documents\countriesoftheworld.xlsx" />
-    <Content Include="Documents\DataTable.doc" />
-    <Content Include="Documents\EmployeeList %281%29.xls" />
     <Content Include="Documents\EmployeeList %282%29.xls" />
     <Content Include="Documents\EmployeeList.xls" />
     <Content Include="App_Code\PerformanceEvaluation.xsc">

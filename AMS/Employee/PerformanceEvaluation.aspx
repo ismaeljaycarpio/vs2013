@@ -92,19 +92,37 @@
                                                     ControlToValidate="txtRating"
                                                     ForeColor="Red"
                                                     ErrorMessage="*"></asp:RequiredFieldValidator>
+                                                <asp:RangeValidator ID="RangeValidator1"
+                                                    runat="server"
+                                                    ForeColor="Red"
+                                                    ControlToValidate="txtRating"
+                                                    Display="Dynamic"
+                                                    MaximumValue="5"
+                                                    MinimumValue="1"
+                                                    Type="Integer"
+                                                    ErrorMessage="(1-5) only"></asp:RangeValidator>
                                             </ItemTemplate>
-                                            <FooterTemplate>
-                                                <asp:Label runat="server" ID="lblRating" Width="50"></asp:Label>
-                                            </FooterTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Average Rating" ControlStyle-Width="50">
+                                        <asp:TemplateField HeaderText="Evaluator Rating">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblAveRating" runat="server" Text='<%# Eval("TSIRating") %>'></asp:Label>
+                                                <asp:TextBox runat="server" ID="txtEvaluatorRating" Width="50"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
+                                                    runat="server"
+                                                    Display="Dynamic"
+                                                    ControlToValidate="txtEvaluatorRating"
+                                                    ForeColor="Red"
+                                                    ErrorMessage="*"></asp:RequiredFieldValidator>
+                                                <asp:RangeValidator ID="RangeValidator2"
+                                                    runat="server"
+                                                    ForeColor="Red"
+                                                    ControlToValidate="txtEvaluatorRating"
+                                                    Display="Dynamic"
+                                                    MaximumValue="5"
+                                                    MinimumValue="1"
+                                                    Type="Integer"
+                                                    ErrorMessage="(1-5) only"></asp:RangeValidator>
                                             </ItemTemplate>
-                                            <FooterTemplate>
-                                                <asp:Label runat="server" ID="lblTSIRating" Width="50" Enabled="false" Font-Bold="true">40.00</asp:Label>
-                                            </FooterTemplate>
                                         </asp:TemplateField>
 
                                     </Columns>
@@ -174,28 +192,6 @@
                         </tr>
                     </table>
                 </div>
-
-                <%--<div class="panel-body">
-                    <table class="table">
-                        <tr>
-                            <td>Evaluated By:
-                                <asp:Label ID="lblEvaluatedBy" runat="server"></asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>Approved By (Manager):
-                                <asp:Label ID="lblApprovedByManager" runat="server"></asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>Approved By (HR Manager):
-                                <asp:Label ID="lblApprovedByHRManager" runat="server"></asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>Acknowledged By:
-                                <asp:Label ID="lblAckBy" runat="server"></asp:Label></td>
-                        </tr>
-                    </table>
-                </div>--%>
-
                 <div class="panel-footer text-center">
                     <asp:Button ID="btnSumbit" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="btnSumbit_Click" />
                 </div>

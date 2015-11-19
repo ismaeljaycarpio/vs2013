@@ -85,26 +85,44 @@
 
                                         <asp:TemplateField HeaderText="Rating">
                                             <ItemTemplate>
-                                                <asp:TextBox runat="server" ID="txtRating" Width="50" Text='<%# Eval("Rating") %>'></asp:TextBox>
+                                                <asp:TextBox runat="server" ID="txtRating" Width="50" Text='<%# Eval("StaffRating") %>'></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
                                                     runat="server"
                                                     Display="Dynamic"
                                                     ControlToValidate="txtRating"
                                                     ForeColor="Red"
                                                     ErrorMessage="*"></asp:RequiredFieldValidator>
+                                                <asp:RangeValidator ID="RangeValidator1"
+                                                    runat="server"
+                                                    ForeColor="Red"
+                                                    ControlToValidate="txtRating"
+                                                    Display="Dynamic"
+                                                    MaximumValue="5"
+                                                    MinimumValue="1"
+                                                    Type="Integer"
+                                                    ErrorMessage="(1-5) only"></asp:RangeValidator>
                                             </ItemTemplate>
-                                            <FooterTemplate>
-                                                <asp:Label runat="server" ID="lblRating" Width="50"></asp:Label>
-                                            </FooterTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Average Rating" ControlStyle-Width="50">
+                                        <asp:TemplateField HeaderText="Evaluator Rating">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblAveRating" runat="server" Text='<%# Eval("TSIRating") %>' Font-Bold="true"></asp:Label>
+                                                <asp:TextBox runat="server" ID="txtEvaluatorRating" Width="50" Text='<%# Eval("EvaluatorRating") %>'></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
+                                                    runat="server"
+                                                    Display="Dynamic"
+                                                    ControlToValidate="txtEvaluatorRating"
+                                                    ForeColor="Red"
+                                                    ErrorMessage="*"></asp:RequiredFieldValidator>
+                                                <asp:RangeValidator ID="RangeValidator2"
+                                                    runat="server"
+                                                    ForeColor="Red"
+                                                    ControlToValidate="txtEvaluatorRating"
+                                                    Display="Dynamic"
+                                                    MaximumValue="5"
+                                                    MinimumValue="1"
+                                                    Type="Integer"
+                                                    ErrorMessage="(1-5) only"></asp:RangeValidator>
                                             </ItemTemplate>
-                                            <FooterTemplate>
-                                                <asp:Label runat="server" ID="lblTSIRating" Width="50" Font-Bold="true">40.00</asp:Label>
-                                            </FooterTemplate>
                                         </asp:TemplateField>
 
                                     </Columns>
