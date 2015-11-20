@@ -60,6 +60,10 @@ namespace AMS.HR
                 txtEmpId.Text,
                 ddlPosition.SelectedValue.ToString());
 
+
+            //notes:
+            //nationality-> default 67
+
             Response.Redirect("~/Employee/Employee");      
         }
 

@@ -50,6 +50,10 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -140,6 +144,7 @@
     <Content Include="App_Data\dbAMS_log.ldf">
       <DependentUpon>dbAMS.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -160,6 +165,7 @@
     <Content Include="Employee\Contacts.aspx" />
     <Content Include="Employee\Education.aspx" />
     <Content Include="Employee\Employee.aspx" />
+    <Content Include="Employee\EmployeeMovement.aspx" />
     <Content Include="Employee\Evaluation.aspx" />
     <Content Include="Employee\JobDetails.aspx" />
     <Content Include="Employee\JobExperience.aspx" />
@@ -601,6 +607,7 @@
     <Compile Include="DAL\Contact.cs" />
     <Compile Include="DAL\Education.cs" />
     <Compile Include="DAL\Employee.cs" />
+    <Compile Include="DAL\EmployeeMovement.cs" />
     <Compile Include="DAL\Evaluation.cs" />
     <Compile Include="DAL\FileUpload.cs" />
     <Compile Include="DAL\Filler.cs" />
@@ -659,6 +666,13 @@
     </Compile>
     <Compile Include="Employee\Employee.aspx.designer.cs">
       <DependentUpon>Employee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmployeeMovement.aspx.cs">
+      <DependentUpon>EmployeeMovement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EmployeeMovement.aspx.designer.cs">
+      <DependentUpon>EmployeeMovement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\Evaluation.aspx.cs">
       <DependentUpon>Evaluation.aspx</DependentUpon>

@@ -47,6 +47,13 @@ namespace AMS.Employee
                 lblContactNo.Text = dt.Rows[0]["PHONENO"].ToString();
                 lblAgency.Text = dt.Rows[0]["Agency"].ToString();
 
+
+                //get grid emovement
+                dt = new DataTable();
+                DAL.EmployeeMovement emov = new DAL.EmployeeMovement();
+                gvEMovement.DataSource = emov.displayEMovement(UserId);
+                gvEMovement.DataBind();
+
                 //get grid jobexp
                 dt = new DataTable();
                 DAL.Experience exp = new DAL.Experience();

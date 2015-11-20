@@ -73,5 +73,12 @@ namespace AMS.DAL
             dt = getList("SELECT * FROM tmpPERSONAL");
             return dt;
         }
+
+        public DataTable fillEmployeeMovement()
+        {
+            dt = new DataTable();
+            dt = getList("SELECT * FROM EMOVEMENT");
+            return dt;
+        }
     }
 }
