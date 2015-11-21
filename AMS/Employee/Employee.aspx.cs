@@ -14,7 +14,6 @@ namespace AMS.Employee
     public partial class Employee : System.Web.UI.Page
     {
         DAL.Employee emp = new DAL.Employee();
-        DAL.Job job = new DAL.Job();
         DataTable dt;
         string dept = String.Empty;
         string position = String.Empty;

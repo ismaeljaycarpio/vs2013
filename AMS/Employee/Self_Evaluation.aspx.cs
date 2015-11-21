@@ -16,8 +16,7 @@ namespace AMS.Employee
     public partial class Self_Evaluation : System.Web.UI.Page
     {
         DAL.Evaluation eval = new DAL.Evaluation();
-        DAL.Profile profile = new DAL.Profile();
-        DAL.Job job = new DAL.Job();
+        DAL.Employee emp = new DAL.Employee();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,9 +32,9 @@ namespace AMS.Employee
                 hfUserId.Value = Session["UserId"].ToString();
                 Guid UserId = Guid.Parse(hfUserId.Value);
 
-                lblEmpName.Text = profile.getProfileName(UserId);
-                lblDesignation.Text = job.getDepartment(UserId);
-                txtHiredDate.Text = job.getHiredDate(UserId);
+                lblEmpName.Text = emp.GetFullName(UserId);
+                lblDesignation.Text = emp.GetDepartment(UserId);
+                txtHiredDate.Text = emp.GetHiredDate(UserId);
 
                 gvSocialSkills.DataSource = eval.getSelf_SocialSkill();
                 gvSocialSkills.DataBind();
@@ -61,7 +60,7 @@ namespace AMS.Employee
             {
                 //get selected user
                 Guid UserId = Guid.Parse(hfUserId.Value);
-                string agency = job.getAgencyName(UserId);
+                string agency = emp.GetAgencyName(UserId);
 
                 int evaluationId = eval.insertEvaluation_Self(
                     UserId, 

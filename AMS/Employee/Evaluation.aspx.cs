@@ -13,7 +13,7 @@ namespace AMS.Employee
     public partial class Evaluation : System.Web.UI.Page
     {
         DAL.Evaluation eval = new DAL.Evaluation();
-        DAL.Job job = new DAL.Job();
+        DAL.Employee emp = new DAL.Employee();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -27,7 +27,7 @@ namespace AMS.Employee
                 Guid UserId = Guid.Parse(hfUserId.Value);
                 BindGridView(UserId);
 
-                hfAgency.Value = job.getAgencyName(UserId);
+                hfAgency.Value = emp.GetAgencyName(UserId);
 
 
                 //check ids
@@ -67,8 +67,8 @@ namespace AMS.Employee
                         if (hfAgency.Value.Equals("PrimePower"))
                         {
                             //show if managers only
-                            if (job.getRoleName(UserId).Equals("Manager") ||
-                                job.getRoleName(UserId).Equals("HR"))
+                            if (emp.GetRoleName(UserId).Equals("Manager") ||
+                                emp.GetRoleName(UserId).Equals("HR"))
                             {
                                 btnPerfEval.Enabled = true;
                                 btnPerfEval.Visible = true;
@@ -80,7 +80,7 @@ namespace AMS.Employee
                         if (hfAgency.Value.Equals("PrimePower"))
                         {
                             //show if managers only
-                            if (job.getRoleName(UserId).Equals("Manager"))
+                            if (emp.GetRoleName(UserId).Equals("Manager"))
                             {
                                 btnPerfEval.Enabled = true;
                                 btnPerfEval.Visible = true;

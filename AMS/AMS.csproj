@@ -388,6 +388,8 @@
       <DependentUpon>TSI_Performance_Evaluation.xsd</DependentUpon>
     </Content>
     <Content Include="EvaluationNested.master" />
+    <None Include="Properties\PublishProfiles\ams-test00 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ams-test00 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
@@ -611,11 +613,9 @@
     <Compile Include="DAL\Evaluation.cs" />
     <Compile Include="DAL\FileUpload.cs" />
     <Compile Include="DAL\Filler.cs" />
-    <Compile Include="DAL\Job.cs" />
     <Compile Include="DAL\Experience.cs" />
     <Compile Include="DAL\MembershipCard.cs" />
     <Compile Include="DAL\PositionManagement.cs" />
-    <Compile Include="DAL\Profile.cs" />
     <Compile Include="DAL\Training.cs" />
     <Compile Include="DAL\Violation.cs" />
     <Compile Include="Dashboard\Dashboard.aspx.cs">

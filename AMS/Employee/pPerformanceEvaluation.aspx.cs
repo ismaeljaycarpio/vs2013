@@ -16,6 +16,8 @@ namespace AMS.Employee
         SqlCommand comm;
         SqlDataAdapter adap;
         DataTable dt;
+        DAL.Employee emp = new DAL.Employee();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -47,20 +49,18 @@ namespace AMS.Employee
             dt = new DataTable();
             DataTable dtEvaluation = new DataTable();
 
-            DAL.Profile profile = new DAL.Profile();
-            DAL.Job job = new DAL.Job();
             DAL.Evaluation eval = new DAL.Evaluation();
 
-            dt = profile.getProfileById(UserId);
+            dt = emp.GetProfileById(UserId);
             dtEvaluation = eval.getEvaluated(evaluationId);
 
             //params
             ReportParameter[] param = new ReportParameter[17];
 
             //fill params
-            param[0] = new ReportParameter("lblName", dt.Rows[0]["LName"].ToString() + ", " + dt.Rows[0]["FName"].ToString() + " " + dt.Rows[0]["MName"].ToString());
-            param[1] = new ReportParameter("lblDateHired", job.getHiredDate(UserId));
-            param[2] = new ReportParameter("lblPosition", job.getPosition(UserId));
+            param[0] = new ReportParameter("lblName", emp.GetFullName(UserId));
+            param[1] = new ReportParameter("lblDateHired", emp.GetHiredDate(UserId));
+            param[2] = new ReportParameter("lblPosition", emp.GetPosition(UserId));
             param[3] = new ReportParameter("lblRemarksName", dtEvaluation.Rows[0]["RemarksName"].ToString());
             param[4] = new ReportParameter("lblUnacceptable", dtEvaluation.Rows[0]["ImpUnacceptable"].ToString());
             param[5] = new ReportParameter("lblFallShort", dtEvaluation.Rows[0]["ImpFallShort"].ToString());

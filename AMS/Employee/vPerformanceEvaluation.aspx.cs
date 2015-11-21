@@ -16,8 +16,7 @@ namespace AMS.Employee
     public partial class vPerformanceEvaluation : System.Web.UI.Page
     {
         DAL.Evaluation eval = new DAL.Evaluation();
-        DAL.Profile profile = new DAL.Profile();
-        DAL.Job job = new DAL.Job();
+        DAL.Employee emp = new DAL.Employee();
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -50,12 +49,11 @@ namespace AMS.Employee
                     Response.Redirect("~/Employee/vPrime_Performance_Evaluation");
                 }
 
-                lblEmpName.Text = profile.getProfileName(UserId);
+                lblEmpName.Text = emp.GetFullName(UserId);
 
                 lblAgency.Text = "TOPLIS Solutions Inc.";
-                //lblAgency.Text = job.getAgencyName(UserId);
-                lblDateHired.Text = job.getHiredDate(UserId);
-                lblPosition.Text = job.getPosition(UserId);
+                lblDateHired.Text = emp.GetHiredDate(UserId);
+                lblPosition.Text = emp.GetPosition(UserId);
 
 
                 hfEvaluationId.Value = dt.Rows[0]["Id"].ToString();
@@ -116,8 +114,8 @@ namespace AMS.Employee
             string AcknowledgedBy = ""; //get who
 
             //get approvals
-            evaluatedBy = profile.getProfileName(evaluatedById);
-            AcknowledgedBy = profile.getProfileName(UserId);
+            evaluatedBy = emp.GetFullName(evaluatedById);
+            AcknowledgedBy = emp.GetFullName(UserId);
 
             //compute for scores
             foreach (GridViewRow row in gvEvaluation.Rows)

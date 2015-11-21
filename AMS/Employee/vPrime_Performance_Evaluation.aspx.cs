@@ -16,8 +16,7 @@ namespace AMS.Employee
     public partial class vPrime_Performance_Evaluation : System.Web.UI.Page
     {
         DAL.Evaluation eval = new DAL.Evaluation();
-        DAL.Profile profile = new DAL.Profile();
-        DAL.Job job = new DAL.Job();
+        DAL.Employee emp = new DAL.Employee();
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -40,11 +39,11 @@ namespace AMS.Employee
                 dt = new DataTable();
                 dt = eval.getEvaluated(evaluationId);
 
-                lblEmpName.Text = profile.getProfileName(UserId);
-                lblDepartment.Text = job.getDepartment(UserId);
-                lblDateHired.Text = job.getHiredDate(UserId);
+                lblEmpName.Text = emp.GetFullName(UserId);
+                lblDepartment.Text = emp.GetDepartment(UserId);
+                lblDateHired.Text = emp.GetHiredDate(UserId);
 
-                lblAgency.Text = job.getAgencyName(UserId);
+                lblAgency.Text = emp.GetAgencyName(UserId);
                 lblEvaluateeName.Text = lblEmpName.Text;
 
                 lblEvalDate.Text = dt.Rows[0]["DateEvaluated"].ToString();
@@ -424,8 +423,8 @@ namespace AMS.Employee
 
             MembershipUser _evaluatedBy = Membership.GetUser();
             Guid evaluatedById = ((Guid)_evaluatedBy.ProviderUserKey);
-            string evaluatedBy = profile.getProfileName(evaluatedById);
-            string AcknowledgedBy = profile.getProfileName(UserId);
+            string evaluatedBy = emp.GetFullName(evaluatedById);
+            string AcknowledgedBy = emp.GetFullName(UserId);
 
             //chk if user is evaluating itself
             if (loggedUserId.Equals(UserId))
