@@ -255,7 +255,50 @@ namespace AMS.DAL
         #region Profile
         public DataTable GetEmployee(Guid UserId)
         {
+            strSql = "SELECT * FROM EMPLOYEE WHERE UserId= @UserId";
 
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable displayProfile(Guid UserId)
+        {
+            strSql = "SELECT EMPLOYEE.Emp_Id, " +
+                "EMPLOYEE.FirstName, EMPLOYEE.MiddleName, EMPLOYEE.LastName, " +
+                "EMPLOYEE.M_Status, EMPLOYEE.ContactNo, " +
+                "Agency.Agency, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
+                "FROM EMPLOYEE, POSITION, DEPARTMENT, AGENCY " +
+                "WHERE " +
+                "EMPLOYEE.UserId = JOB.UserId " +
+                "AND POSITION.DepartmentId = DEPARTMENT.Id " +
+                "AND JOB.PositionId = POSITION.Id " +
+                "AND JOB.AgencyId = Agency.Id " +
+                "AND PERSONAL.UserId = @UserId";
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
         }
         #endregion
     }
