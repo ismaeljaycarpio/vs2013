@@ -104,13 +104,14 @@
                         <div class="form-group">
                             <label for="txtEmpStatus" class="col-sm-2 control-label">Employment Status</label>
                             <div class="col-sm-10">
-                                <asp:TextBox ID="txtEmpStatus" runat="server" CssClass="form-control" placeholder="Employment Status"></asp:TextBox>
+                                <asp:DropDownList ID="ddlEmpStatus" runat="server" CssClass="form-control"></asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5"
                                     runat="server"
                                     Display="Static"
-                                    ControlToValidate="txtEmpStatus"
+                                    ControlToValidate="ddlEmpStatus"
+                                    InitialValue="1"
                                     CssClass="label label-danger"
-                                    ErrorMessage="Employment Status is required"></asp:RequiredFieldValidator>
+                                    ErrorMessage="Set Employment Status"></asp:RequiredFieldValidator>
                             </div>
                         </div>
 
@@ -166,19 +167,6 @@
                                     ControlToValidate="txtContractEndingDate"
                                     CssClass="label label-danger"
                                     ErrorMessage="Contract Ending Date is required"></asp:RequiredFieldValidator>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="txtEMovement" class="col-sm-2 control-label">E-Movement</label>
-                            <div class="col-sm-10">
-                                <asp:TextBox ID="txtEMovement" runat="server" CssClass="form-control" placeholder="E-Movement"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator10"
-                                    runat="server"
-                                    Display="Dynamic"
-                                    ControlToValidate="txtEMovement"
-                                    CssClass="label label-danger"
-                                    ErrorMessage="E-Movement is required"></asp:RequiredFieldValidator>
                             </div>
                         </div>
 

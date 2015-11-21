@@ -83,14 +83,21 @@ namespace AMS.HR
                     ////roles
                     Roles.AddUserToRole(newUser.UserName, "Admin");
 
-                    ////personal
+                    ////emp
                     emp = new DAL.Employee();
-                    emp.RegisterUser((Guid)newUser.ProviderUserKey, 
-                        rw["FNAME"].ToString(),
-                        rw["MNAME"].ToString(), 
-                        rw["LNAME"].ToString());
-                }
-            
+                    emp.SeedUser((Guid)newUser.ProviderUserKey,
+                        rw["Emp_Id"].ToString(),
+                        rw["FirstName"].ToString(),
+                        rw["MiddleName"].ToString(),
+                        rw["LastName"].ToString(),
+                        rw["M_Status"].ToString(),
+                        rw["Gender"].ToString(),
+                        rw["NationalityId"].ToString(),
+                        rw["BirthDate"].ToString(),
+                        rw["Age"].ToString(),
+                        rw["BloodType"].ToString(),
+                        rw["Language"].ToString());
+                }          
         }
 
         protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)

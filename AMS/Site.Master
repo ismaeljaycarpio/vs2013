@@ -69,7 +69,7 @@
                                     </asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" />
+                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" CausesValidation="false" />
                                 </li>
                             </ul>
                         </LoggedInTemplate>
@@ -99,7 +99,7 @@
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li>
-                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click">
+                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                             </asp:LinkButton>
                                         </li>
@@ -129,7 +129,7 @@
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li>
-                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click">
+                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                             </asp:LinkButton>
                                         </li>
@@ -154,7 +154,7 @@
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li>
-                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click">
+                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                             </asp:LinkButton>
                                         </li>
@@ -179,7 +179,7 @@
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li>
-                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click">
+                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                             </asp:LinkButton>
                                         </li>
@@ -199,7 +199,7 @@
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li>
-                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click">
+                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                             </asp:LinkButton>
                                         </li>

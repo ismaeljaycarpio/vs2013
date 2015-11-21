@@ -36,7 +36,8 @@ namespace AMS.Employee
             dt = new DataTable();
 
             //get departmentId
-            string deptId = job.getDepartmentId(Guid.Parse(_user.ProviderUserKey.ToString()));
+            //string deptId = job.getDepartmentId(Guid.Parse(_user.ProviderUserKey.ToString()));
+            string deptId = emp.GetDepartmentId(Guid.Parse(_user.ProviderUserKey.ToString()));
 
             //check logged-in user's role, position and dept
             if(User.IsInRole("Admin") || 

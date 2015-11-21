@@ -80,5 +80,12 @@ namespace AMS.DAL
             dt = getList("SELECT * FROM EMOVEMENT");
             return dt;
         }
+
+        public DataTable fillEmpStatus()
+        {
+            dt = new DataTable();
+            dt = getList("SELECT * FROM EMPLOYMENT_STATUS");
+            return dt;
+        }
     }
 }
