@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="row">
-        <%--<asp:Button ID="btnMassReg" runat="server" OnClick="btnMassReg_Click" Text="Mass" CausesValidation="false" />--%>
+        <asp:Button ID="btnMassReg" runat="server" OnClick="btnMassReg_Click" Text="Mass" CausesValidation="false" />
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="panel panel-default">

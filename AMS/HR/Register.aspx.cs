@@ -70,35 +70,26 @@ namespace AMS.HR
         protected void btnMassReg_Click(object sender, EventArgs e)
         {
 
-            //DAL.Filler filler = new DAL.Filler();
-            //    DAL.Profile profile;
-            //    DAL.Job job;
-            //DataTable dt = new DataTable();
-            //    dt = filler.fillTempPers();
-            ////dt = filler.fillPosition();
+            DAL.Filler filler = new DAL.Filler();
+            DAL.Employee emp;
+            DataTable dt = new DataTable();
+            dt = filler.fill_tmpEMPLOYEE();
 
-            //foreach (DataRow rw in dt.Rows)
-            //{
-            //    ////membership class2
-            //    MembershipUser newUser = Membership.CreateUser(rw["EMP_ID"].ToString(), "pass123");
+                foreach (DataRow rw in dt.Rows)
+                {
+                    ////membership class
+                    MembershipUser newUser = Membership.CreateUser(rw["Emp_Id"].ToString(), "pass123");
 
-            //    ////roles - not yet
-            //    Roles.AddUserToRole(newUser.UserName, "Sales Associate");
+                    ////roles
+                    Roles.AddUserToRole(newUser.UserName, "Admin");
 
-
-            //    ////personal
-            //    profile = new DAL.Profile();
-            //    profile.addProfile((Guid)newUser.ProviderUserKey, rw["FNAME"].ToString(),
-            //        rw["MNAME"].ToString(), rw["LNAME"].ToString());
-
-            //    ////job
-            //    job = new DAL.Job();
-            //    job.addJobDetails((Guid)newUser.ProviderUserKey, 
-            //        rw["EMP_ID"].ToString());
-                
-
-            //    //roles
-            //    //Roles.CreateRole(rw["Position"].ToString());
+                    ////personal
+                    emp = new DAL.Employee();
+                    emp.RegisterUser((Guid)newUser.ProviderUserKey, 
+                        rw["FNAME"].ToString(),
+                        rw["MNAME"].ToString(), 
+                        rw["LNAME"].ToString());
+                }
             
         }
 

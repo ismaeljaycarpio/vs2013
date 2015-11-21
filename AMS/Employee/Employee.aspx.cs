@@ -43,17 +43,17 @@ namespace AMS.Employee
                 User.IsInRole("General Manager") ||
                 User.IsInRole("HR"))
             {
-                return dt = emp.displayEmployee(txtSearch.Text);
+                return dt = emp.DisplayEmployee(txtSearch.Text);
             }
             else if(User.IsInRole("Manager"))
             {
                 //display supervisors and staff by dept
-                return dt = emp.displayEmployeeOfManager(txtSearch.Text, deptId);
+                return dt = emp.DisplayEmployeeOfManager(txtSearch.Text, deptId);
             }
             else if(User.IsInRole("Supervisor"))
             {
                 //display staff by dept
-                return dt = emp.displayEmployeeOfSupervisor(txtSearch.Text, deptId);
+                return dt = emp.DisplayEmployeeOfSupervisor(txtSearch.Text, deptId);
             }
 
             return dt = null;
