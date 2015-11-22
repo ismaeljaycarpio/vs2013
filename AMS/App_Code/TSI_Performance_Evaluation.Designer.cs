@@ -285,9 +285,9 @@ namespace AMS.App_Code {
             
             private global::System.Data.DataColumn columnDescription;
             
-            private global::System.Data.DataColumn columnRating;
+            private global::System.Data.DataColumn columnStaffRating;
             
-            private global::System.Data.DataColumn columnTSIRating;
+            private global::System.Data.DataColumn columnEvaluatorRating;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -348,17 +348,17 @@ namespace AMS.App_Code {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RatingColumn {
+            public global::System.Data.DataColumn StaffRatingColumn {
                 get {
-                    return this.columnRating;
+                    return this.columnStaffRating;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TSIRatingColumn {
+            public global::System.Data.DataColumn EvaluatorRatingColumn {
                 get {
-                    return this.columnTSIRating;
+                    return this.columnEvaluatorRating;
                 }
             }
             
@@ -399,14 +399,14 @@ namespace AMS.App_Code {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblTSI_Performance_EvaluationRow AddtblTSI_Performance_EvaluationRow(string Competence, string CompetenceCat, string Description, string Rating, string TSIRating) {
+            public tblTSI_Performance_EvaluationRow AddtblTSI_Performance_EvaluationRow(string Competence, string CompetenceCat, string Description, string StaffRating, string EvaluatorRating) {
                 tblTSI_Performance_EvaluationRow rowtblTSI_Performance_EvaluationRow = ((tblTSI_Performance_EvaluationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Competence,
                         CompetenceCat,
                         Description,
-                        Rating,
-                        TSIRating};
+                        StaffRating,
+                        EvaluatorRating};
                 rowtblTSI_Performance_EvaluationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblTSI_Performance_EvaluationRow);
                 return rowtblTSI_Performance_EvaluationRow;
@@ -432,8 +432,8 @@ namespace AMS.App_Code {
                 this.columnCompetence = base.Columns["Competence"];
                 this.columnCompetenceCat = base.Columns["CompetenceCat"];
                 this.columnDescription = base.Columns["Description"];
-                this.columnRating = base.Columns["Rating"];
-                this.columnTSIRating = base.Columns["TSIRating"];
+                this.columnStaffRating = base.Columns["StaffRating"];
+                this.columnEvaluatorRating = base.Columns["EvaluatorRating"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -445,10 +445,10 @@ namespace AMS.App_Code {
                 base.Columns.Add(this.columnCompetenceCat);
                 this.columnDescription = new global::System.Data.DataColumn("Description", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescription);
-                this.columnRating = new global::System.Data.DataColumn("Rating", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRating);
-                this.columnTSIRating = new global::System.Data.DataColumn("TSIRating", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTSIRating);
+                this.columnStaffRating = new global::System.Data.DataColumn("StaffRating", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStaffRating);
+                this.columnEvaluatorRating = new global::System.Data.DataColumn("EvaluatorRating", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEvaluatorRating);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -642,35 +642,35 @@ namespace AMS.App_Code {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Rating {
+            public string StaffRating {
                 get {
                     try {
-                        return ((string)(this[this.tabletblTSI_Performance_Evaluation.RatingColumn]));
+                        return ((string)(this[this.tabletblTSI_Performance_Evaluation.StaffRatingColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Rating\' in table \'tblTSI_Performance_Evaluation\' is DBNull." +
-                                "", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'StaffRating\' in table \'tblTSI_Performance_Evaluation\' is DB" +
+                                "Null.", e);
                     }
                 }
                 set {
-                    this[this.tabletblTSI_Performance_Evaluation.RatingColumn] = value;
+                    this[this.tabletblTSI_Performance_Evaluation.StaffRatingColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string TSIRating {
+            public string EvaluatorRating {
                 get {
                     try {
-                        return ((string)(this[this.tabletblTSI_Performance_Evaluation.TSIRatingColumn]));
+                        return ((string)(this[this.tabletblTSI_Performance_Evaluation.EvaluatorRatingColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TSIRating\' in table \'tblTSI_Performance_Evaluation\' is DBNu" +
-                                "ll.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'EvaluatorRating\' in table \'tblTSI_Performance_Evaluation\' i" +
+                                "s DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblTSI_Performance_Evaluation.TSIRatingColumn] = value;
+                    this[this.tabletblTSI_Performance_Evaluation.EvaluatorRatingColumn] = value;
                 }
             }
             
@@ -712,26 +712,26 @@ namespace AMS.App_Code {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsRatingNull() {
-                return this.IsNull(this.tabletblTSI_Performance_Evaluation.RatingColumn);
+            public bool IsStaffRatingNull() {
+                return this.IsNull(this.tabletblTSI_Performance_Evaluation.StaffRatingColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetRatingNull() {
-                this[this.tabletblTSI_Performance_Evaluation.RatingColumn] = global::System.Convert.DBNull;
+            public void SetStaffRatingNull() {
+                this[this.tabletblTSI_Performance_Evaluation.StaffRatingColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTSIRatingNull() {
-                return this.IsNull(this.tabletblTSI_Performance_Evaluation.TSIRatingColumn);
+            public bool IsEvaluatorRatingNull() {
+                return this.IsNull(this.tabletblTSI_Performance_Evaluation.EvaluatorRatingColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTSIRatingNull() {
-                this[this.tabletblTSI_Performance_Evaluation.TSIRatingColumn] = global::System.Convert.DBNull;
+            public void SetEvaluatorRatingNull() {
+                this[this.tabletblTSI_Performance_Evaluation.EvaluatorRatingColumn] = global::System.Convert.DBNull;
             }
         }
         

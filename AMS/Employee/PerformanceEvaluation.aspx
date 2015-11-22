@@ -85,17 +85,17 @@
 
                                         <asp:TemplateField HeaderText="Rating">
                                             <ItemTemplate>
-                                                <asp:TextBox runat="server" ID="txtRating" Width="50"></asp:TextBox>
+                                                <asp:TextBox runat="server" ID="txtStaffRating" Width="50"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
                                                     runat="server"
                                                     Display="Dynamic"
-                                                    ControlToValidate="txtRating"
+                                                    ControlToValidate="txtStaffRating"
                                                     ForeColor="Red"
                                                     ErrorMessage="*"></asp:RequiredFieldValidator>
                                                 <asp:RangeValidator ID="RangeValidator1"
                                                     runat="server"
                                                     ForeColor="Red"
-                                                    ControlToValidate="txtRating"
+                                                    ControlToValidate="txtStaffRating"
                                                     Display="Dynamic"
                                                     MaximumValue="5"
                                                     MinimumValue="1"
@@ -136,13 +136,9 @@
                     </div>
                 </div>
 
-                <div class="panel-body">
+                <asp:Panel ID="pnlEvaluatorOnly" runat="server" Visible="false">
+                    <div class="panel-body">
                     <table class="table">
-                        <%--<tr>
-                            <td>RATING (Total rating divided by number of elements applicable)</td>
-                            <td>
-                                <asp:Label ID="lblRemarksName" runat="server"></asp:Label></td>
-                        </tr>--%>
                         <tr>
                             <td>REMARKS:
                             </td>
@@ -192,6 +188,7 @@
                         </tr>
                     </table>
                 </div>
+                </asp:Panel>
                 <div class="panel-footer text-center">
                     <asp:Button ID="btnSumbit" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="btnSumbit_Click" />
                 </div>

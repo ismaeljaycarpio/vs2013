@@ -34,12 +34,6 @@ namespace AMS.Employee
                 hfUserId.Value = Session["UserId"].ToString();
                 Guid UserId = Guid.Parse(hfUserId.Value);
 
-                //if (eval.IsEvaluated(UserId, DateTime.Now.Year))
-                //{
-                //    //redirect to update form
-                //    Response.Redirect("~/Employee/vPerformanceEvaluation");
-                //}
-
                 lblEmpName.Text = emp.GetFullName(UserId);
                 lblAgency.Text = emp.GetAgencyName(UserId);
                 lblDateHired.Text = emp.GetHiredDate(UserId);
@@ -47,6 +41,23 @@ namespace AMS.Employee
 
                 //populate gridview
                 BindData();
+
+                //chk id
+                MembershipUser loggedInUser = Membership.GetUser();
+                Guid loggedUserId = Guid.Parse(loggedInUser.ProviderUserKey.ToString());
+
+                //chk if user is evaluating itself
+                if(loggedUserId.Equals(UserId))
+                {
+                    //hide evaluator rating
+                    gvEvaluation.Columns[5].Visible = false;
+                }
+                else
+                {
+                    gvEvaluation.Columns[4].Visible = false;
+                    //show evaluator panel
+                    pnlEvaluatorOnly.Visible = true;
+                }
             }
         }
 
@@ -58,7 +69,6 @@ namespace AMS.Employee
             gvEvaluation.DataSource = dt;
             gvEvaluation.DataBind();
         }
-
 
         protected void gvEvaluation_DataBound(object sender, EventArgs e)
         {
@@ -78,6 +88,7 @@ namespace AMS.Employee
             Guid UserId = Guid.Parse(hfUserId.Value);
             MembershipUser _evaluatedBy = Membership.GetUser();
             Guid evaluatedById = ((Guid)_evaluatedBy.ProviderUserKey);
+
             string remarksName = "";
             string impUnacceptable = txtUnacceptable.Text;
             string impFallShort = txtFallShort.Text;
@@ -91,45 +102,76 @@ namespace AMS.Employee
             string approvedByHR = ""; //get who
             string AcknowledgedBy = ""; //get who
 
-            evaluatedBy = emp.GetFullName(UserId);
+            evaluatedBy = emp.GetFullName(evaluatedById);
             AcknowledgedBy = emp.GetFullName(UserId);
 
-            //compute for scores
-            foreach(GridViewRow row in gvEvaluation.Rows)
+            //check ids
+            MembershipUser loggedInUser = Membership.GetUser();
+            Guid loggedUserId = Guid.Parse(loggedInUser.ProviderUserKey.ToString());
+
+            //evaluator
+            if(!loggedUserId.Equals(UserId))
             {
-                if(row.RowType == DataControlRowType.DataRow)
+                //compute for scores for evaluator
+                foreach (GridViewRow row in gvEvaluation.Rows)
                 {
-                    _scores += decimal.Parse((row.FindControl("txtRating") as TextBox).Text);
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        _scores += decimal.Parse((row.FindControl("txtEvaluatorRating") as TextBox).Text);
+                    }
+                }
+                totalScore = _scores / gvEvaluation.Rows.Count;
+                formattedScores = Decimal.Ceiling(totalScore);
+                if (formattedScores == 1)
+                {
+                    remarksName = "Unacceptable";
+                }
+                else if (formattedScores == 2)
+                {
+                    remarksName = "Fall Short of Objectives";
+                }
+                else if (formattedScores == 3)
+                {
+                    remarksName = "Effective";
+                }
+                else if (formattedScores == 4)
+                {
+                    remarksName = "Highly Effective";
+                }
+                else if (formattedScores == 5)
+                {
+                    remarksName = "Exceptional";
+                }
+                else
+                {
+                    remarksName = "ERROR";
+                }
+
+                //chk evaluator's role ->auto-approve
+                if(User.IsInRole("HR"))
+                {
+                    //auto-approve HR
+                    approvedByHR = emp.GetFullName(loggedUserId);
+                }
+                else if(User.IsInRole("Manager"))
+                {
+                    //auto-approve Manager
+                    approvedByManager = emp.GetFullName(loggedUserId);
+                }
+                else if(User.IsInRole("Supervisor"))
+                {
+                    //auto-approve supervisor
+                    
                 }
             }
-            totalScore = _scores / gvEvaluation.Rows.Count;
-            formattedScores = Decimal.Ceiling(totalScore);
-            if(formattedScores == 1)
-            {
-                remarksName = "Unacceptable";
-            }
-            else if(formattedScores == 2)
-            {
-                remarksName = "Fall Short of Objectives";
-            }
-            else if(formattedScores == 3)
-            {
-                remarksName = "Effective";
-            }
-            else if(formattedScores ==4)
-            {
-                remarksName = "Highly Effective";
-            }
-            else if(formattedScores == 5)
-            {
-                remarksName = "Exceptional";
-            }
+                //self
             else
             {
-                remarksName = "ERROR";
+                evaluatedById = Guid.Empty;
+                evaluatedBy = "";
             }
 
-
+            
             int evaluationId = eval.insertEvaluation(
                 UserId,
                 "Performance Evaluation",
@@ -149,21 +191,43 @@ namespace AMS.Employee
                 AcknowledgedBy,
                 lblAgency.Text);
 
-
             //get grid values
-            foreach(GridViewRow row in gvEvaluation.Rows)
+            //evaluators
+            if(!loggedUserId.Equals(UserId))
             {
-                if(row.RowType == DataControlRowType.DataRow)
-                {                
-                    int competenceCatId = int.Parse((row.FindControl("lblCompetenceCatId") as Label).Text);
-                    decimal rating = decimal.Parse((row.FindControl("txtRating") as TextBox).Text);
+                foreach (GridViewRow row in gvEvaluation.Rows)
+                {
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        int competenceCatId = int.Parse((row.FindControl("lblCompetenceCatId") as Label).Text);
+                        decimal rating = decimal.Parse((row.FindControl("txtEvaluatorRating") as TextBox).Text);
 
-                    eval.addEvaluation_Scores(
-                        evaluationId,
-                        competenceCatId,
-                        rating);
+                        eval.addEvaluation_Scores_Evaluator(
+                            evaluationId,
+                            competenceCatId,
+                            rating);
+                    }
                 }
             }
+                //staff
+            else
+            {
+                foreach (GridViewRow row in gvEvaluation.Rows)
+                {
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        int competenceCatId = int.Parse((row.FindControl("lblCompetenceCatId") as Label).Text);
+                        decimal rating = decimal.Parse((row.FindControl("txtStaffRating") as TextBox).Text);
+
+                        eval.addEvaluation_Scores_Staff(
+                            evaluationId,
+                            competenceCatId,
+                            rating);
+                    }
+                }
+            }
+            
+            
             Response.Redirect("~/Employee/Evaluation");
         }
     }

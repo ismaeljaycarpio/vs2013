@@ -45,7 +45,7 @@ namespace AMS.DAL
         public DataTable display_filled_TSIQuestions(Guid UserId)
         {
             strSql = "SELECT Competence.Competence,CompetenceCat.CompetenceCat,CompetenceCat.Description,CompetenceCat.TSIRating, " +
-                "Evaluation_Score.Rating,Evaluation_Score.Id " +
+                "Evaluation_Score.StaffRating,Evaluation_Score.EvaluatorRating, Evaluation_Score.Id " +
                     "FROM Competence_Master, Competence, CompetenceCat, Evaluation, Evaluation_Score " +
                     "WHERE " +
                     "Competence_Master.Id = Competence.Competence_MasterId AND " +
@@ -198,13 +198,13 @@ namespace AMS.DAL
             conn.Dispose();
         }
 
-        public void addEvaluation_Scores(
+        public void addEvaluation_Scores_Evaluator(
             int evaluationId,
             int competencyId,
-            decimal rating)
+            decimal evaluator_rating)
         {
-            strSql = "INSERT INTO Evaluation_Score(EvaluationId, CompetenceCatId, Rating) " +
-                "VALUES(@Agency, @CompetenceCatId, @Rating)";
+            strSql = "INSERT INTO Evaluation_Score(EvaluationId, CompetenceCatId, EvaluatorRating) " +
+                "VALUES(@Agency, @CompetenceCatId, @EvaluatorRating)";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -214,7 +214,7 @@ namespace AMS.DAL
                 conn.Open();
                 comm.Parameters.AddWithValue("@Agency", evaluationId);
                 comm.Parameters.AddWithValue("@CompetenceCatId", competencyId);
-                comm.Parameters.AddWithValue("@Rating", rating);
+                comm.Parameters.AddWithValue("@EvaluatorRating", evaluator_rating);
                 comm.ExecuteNonQuery();
                 conn.Close();
             }
@@ -222,11 +222,35 @@ namespace AMS.DAL
             conn.Dispose();
         }
 
-        public void updateEvaluation_Scores(
+        public void addEvaluation_Scores_Staff(
+            int evaluationId,
+            int competencyId,
+            decimal rating_staff)
+        {
+            strSql = "INSERT INTO Evaluation_Score(EvaluationId, CompetenceCatId, StaffRating) " +
+                "VALUES(@Agency, @CompetenceCatId, @StaffRating)";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@Agency", evaluationId);
+                comm.Parameters.AddWithValue("@CompetenceCatId", competencyId);
+                comm.Parameters.AddWithValue("@StaffRating", rating_staff);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+
+        public void updateEvaluation_Scores_Evaluator(
             int eva_score_id,
             decimal rating)
         {
-            strSql = "UPDATE Evaluation_Score SET Rating=@Rating WHERE " +
+            strSql = "UPDATE Evaluation_Score SET EvaluatorRating=@Rating WHERE " +
                 "Id = @Id";
 
             conn = new SqlConnection();
@@ -243,6 +267,29 @@ namespace AMS.DAL
             comm.Dispose();
             conn.Dispose();
         }
+
+        public void updateEvaluation_Scores_Staff(
+            int eva_score_id,
+            decimal rating)
+        {
+            strSql = "UPDATE Evaluation_Score SET StaffRating=@Rating WHERE " +
+                "Id = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@Rating", rating);
+                comm.Parameters.AddWithValue("@Id", eva_score_id);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+
 
 
 

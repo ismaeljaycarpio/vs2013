@@ -85,23 +85,26 @@
 
                                         <asp:TemplateField HeaderText="Rating">
                                             <ItemTemplate>
-                                                <asp:TextBox runat="server" ID="txtRating" Width="50" Text='<%# Eval("StaffRating") %>'></asp:TextBox>
+                                                <asp:TextBox runat="server" ID="txtStaffRating" Width="50" Text='<%# Eval("StaffRating") %>'></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
                                                     runat="server"
                                                     Display="Dynamic"
-                                                    ControlToValidate="txtRating"
+                                                    ControlToValidate="txtStaffRating"
                                                     ForeColor="Red"
                                                     ErrorMessage="*"></asp:RequiredFieldValidator>
                                                 <asp:RangeValidator ID="RangeValidator1"
                                                     runat="server"
                                                     ForeColor="Red"
-                                                    ControlToValidate="txtRating"
+                                                    ControlToValidate="txtStaffRating"
                                                     Display="Dynamic"
                                                     MaximumValue="5"
                                                     MinimumValue="1"
                                                     Type="Integer"
                                                     ErrorMessage="(1-5) only"></asp:RangeValidator>
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblStaffTotal" runat="server"></asp:Label>
+                                            </FooterTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Evaluator Rating">
@@ -123,6 +126,9 @@
                                                     Type="Integer"
                                                     ErrorMessage="(1-5) only"></asp:RangeValidator>
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblEvaluatorTotal" runat="server"></asp:Label>
+                                            </FooterTemplate>
                                         </asp:TemplateField>
 
                                     </Columns>
@@ -136,7 +142,8 @@
                     </div>
                 </div>
 
-                <div class="panel-body">
+                <asp:Panel ID="pnlEvaluator" runat="server">
+                    <div class="panel-body">
                     <table class="table">
                         <tr>
                             <td>RATING (Total rating divided by number of elements applicable)</td>
@@ -217,6 +224,7 @@
                         </tr>
                     </table>
                 </div>
+                </asp:Panel>
 
                 <div class="panel-footer text-center">
                     <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-primary" OnClick="btnUpdate_Click" />

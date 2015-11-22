@@ -39,7 +39,7 @@ namespace AMS.Employee
                 dt = emp.DisplayProfile(UserId);
 
                 //populate fields
-                lblName.Text = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["MiddleName"].ToString() + " " + dt.Rows[0]["lastName"].ToString();
+                lblName.Text = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["MiddleName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
                 lblPosition.Text = dt.Rows[0]["POSITION"].ToString();
                 lblDepartment.Text = dt.Rows[0]["DEPARTMENT"].ToString();
 

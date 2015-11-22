@@ -209,6 +209,7 @@ namespace AMS.DAL
             return dt.Rows[0]["FullName"].ToString();
         }
 
+        //use only for sampling
         public void SeedUser(
             Guid UserId,
             string emp_Id,
@@ -642,6 +643,45 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@RoleId", RoleId);
                 comm.Parameters.AddWithValue("@UserId", UserId);
 
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+        #endregion
+
+        #region User Membership
+        //fill EMPLOYEE tbl
+        public void RegisterUser(
+            Guid UserId,
+            string emp_Id,
+            string firstName,
+            string middleName,
+            string lastName,
+            string positionId)
+        {
+            strSql = "INSERT INTO [EMPLOYEE] " +
+                "(UserId, Emp_Id,FirstName, MiddleName, LastName, M_Status, Gender, NationalityId, PositionId,AgencyId) " +
+                "VALUES(@UserId,@Emp_Id,@FirstName,@MiddleName,@LastName,@M_Status,@Gender,@NationalityId,@PositionId,@AgencyId)";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@UserId", UserId);
+                comm.Parameters.AddWithValue("@Emp_Id", emp_Id);
+                comm.Parameters.AddWithValue("@FirstName", firstName);
+                comm.Parameters.AddWithValue("@MiddleName", middleName);
+                comm.Parameters.AddWithValue("@LastName", lastName);
+                comm.Parameters.AddWithValue("@M_Status", "Single");
+                comm.Parameters.AddWithValue("@Gender", "MALE");
+                //67 -> Filipino
+                comm.Parameters.AddWithValue("@NationalityId", 67);
+                comm.Parameters.AddWithValue("@PositionId", positionId);
+                comm.Parameters.AddWithValue("@AgencyId", 3);
                 comm.ExecuteNonQuery();
                 conn.Close();
             }

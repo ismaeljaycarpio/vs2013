@@ -102,7 +102,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>TSI Rating</Value>
+                              <Value>Evaluator</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>11pt</FontSize>
@@ -342,14 +342,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Rating">
+                    <Textbox Name="StaffRating">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Rating.Value</Value>
+                              <Value>=Fields!StaffRating.Value</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <Color>#4d4d4d</Color>
@@ -361,7 +361,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Rating</rd:DefaultName>
+                      <rd:DefaultName>StaffRating</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>#e5e5e5</Color>
@@ -377,14 +377,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="TSIRating">
+                    <Textbox Name="EvaluatorRating">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!TSIRating.Value</Value>
+                              <Value>=Fields!EvaluatorRating.Value</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <Color>#4d4d4d</Color>
@@ -396,7 +396,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>TSIRating</rd:DefaultName>
+                      <rd:DefaultName>EvaluatorRating</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>#e5e5e5</Color>
@@ -852,7 +852,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Sum(Fields!Rating.Value, )</Value>
+                <Value>=Sum(Fields!StaffRating.Value)</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -884,18 +884,20 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=Sum(Fields!EvaluatorRating.Value)</Value>
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox22</rd:DefaultName>
         <Top>2.39062in</Top>
         <Left>6.30208in</Left>
         <Height>0.25in</Height>
-        <Width>0.9375in</Width>
+        <Width>0.91667in</Width>
         <ZIndex>14</ZIndex>
         <Style>
           <Border>
@@ -1408,7 +1410,9 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox50</rd:DefaultName>
@@ -1440,7 +1444,9 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox50</rd:DefaultName>
@@ -1472,7 +1478,9 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox50</rd:DefaultName>
@@ -1594,14 +1602,16 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox50</rd:DefaultName>
         <Top>8.38889in</Top>
         <Left>0.125in</Left>
         <Height>0.25in</Height>
-        <Width>1.29277in</Width>
+        <Width>1.32055in</Width>
         <ZIndex>37</ZIndex>
         <Style>
           <Border>
@@ -1629,9 +1639,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox50</rd:DefaultName>
         <Top>8.40278in</Top>
-        <Left>1.45943in</Left>
+        <Left>1.47333in</Left>
         <Height>0.25in</Height>
-        <Width>5.79057in</Width>
+        <Width>5.77667in</Width>
         <ZIndex>38</ZIndex>
         <Style>
           <Border>
@@ -1762,18 +1772,18 @@
           <DataField>Description</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Rating">
-          <DataField>Rating</DataField>
+        <Field Name="StaffRating">
+          <DataField>StaffRating</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TSIRating">
-          <DataField>TSIRating</DataField>
+        <Field Name="EvaluatorRating">
+          <DataField>EvaluatorRating</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>TSI_Performance_Evaluation</rd:DataSetName>
-        <rd:SchemaPath>D:\Ismael\Current Projects\AMS\AMS\App_Code\TSI_Performance_Evaluation.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Ismael\Documents\Visual Studio 2013\Projects\AMS\AMS\App_Code\TSI_Performance_Evaluation.xsd</rd:SchemaPath>
         <rd:TableName>tblTSI_Performance_Evaluation</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />

@@ -81,6 +81,7 @@ namespace AMS.Employee
             ReportDataSource datasource = new ReportDataSource("TSI_Performance_Evaluation", dsEvaluation.Tables[0]);
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource);
+            ReportViewer1.LocalReport.DisplayName = "TOPLIS_Performance_Evaluation";
             ReportViewer1.LocalReport.Refresh();
         }
 
@@ -94,7 +95,7 @@ namespace AMS.Employee
                 conn.Open();
                 comm = new SqlCommand();
                 string sqlStr = "SELECT Competence.Competence,CompetenceCat.CompetenceCat,CompetenceCat.Description,CompetenceCat.TSIRating, " +
-                    "Evaluation_Score.Rating,Evaluation_Score.Id " +
+                    "Evaluation_Score.StaffRating,Evaluation_Score.EvaluatorRating,Evaluation_Score.Id " +
                     "FROM Competence_Master, Competence, CompetenceCat, Evaluation, Evaluation_Score " +
                     "WHERE " +
                     "Competence_Master.Id = Competence.Competence_MasterId AND " +

@@ -34,60 +34,40 @@ namespace AMS.Employee
                 MembershipUser loggedInUser = Membership.GetUser();
                 Guid loggedUserId = Guid.Parse(loggedInUser.ProviderUserKey.ToString());
 
+                //disable controls
+                btnPerfEval.Enabled = false;
+                btnPerfEval.Visible = false;
+
                 //chk if user is evaluating itself
-                if (loggedUserId.Equals(UserId))
+                if (!loggedUserId.Equals(UserId))
                 {
-                    if (hfAgency.Value.Equals("TOPLIS Solutions Inc.") ||
-                        hfAgency.Value.Equals("None"))
+                    //GM-> evaluate Managers and HR/Manager                   
+                    if (User.IsInRole("General Manager"))
                     {
-                        btnPerfEval.Visible = false;
-                        btnPerfEval.Enabled = false;
+                        //show managers/hr only
+                        if (emp.GetRoleName(UserId).Equals("Manager") ||
+                            emp.GetRoleName(UserId).Equals("HR"))
+                        {
+                            btnPerfEval.Enabled = true;
+                            btnPerfEval.Visible = true;
+                        }
                     }
-                    else
+                    //HR-> evaluate Managers only
+                    else if (User.IsInRole("HR"))
                     {
-                        //show PrimePower evaluation
-                        btnPerfEval.Visible = true;
-                        btnPerfEval.Enabled = true;
+                        //show if managers only
+                        if (emp.GetRoleName(UserId).Equals("Manager"))
+                        {
+                            btnPerfEval.Enabled = true;
+                            btnPerfEval.Visible = true;
+                        }
                     }
-                    //show self evaluation
-                    btnSelfEval.Visible = true;
-                    btnSelfEval.Enabled = true;
                 }
                 else
                 {
-                    btnSelfEval.Enabled = false;
-                    btnSelfEval.Visible = false;
-                    btnPerfEval.Visible = false;
-                    btnPerfEval.Enabled = false;
-
-                    //GM-> evaluate Managers and HR/Manager
-                    //HR-> evaluate Managers only
-                    if (User.IsInRole("General Manager"))
-                    {
-                        if (hfAgency.Value.Equals("PrimePower"))
-                        {
-                            //show if managers only
-                            if (emp.GetRoleName(UserId).Equals("Manager") ||
-                                emp.GetRoleName(UserId).Equals("HR"))
-                            {
-                                btnPerfEval.Enabled = true;
-                                btnPerfEval.Visible = true;
-                            }
-                        }
-                    }
-                    else if(User.IsInRole("HR"))
-                    {
-                        if (hfAgency.Value.Equals("PrimePower"))
-                        {
-                            //show if managers only
-                            if (emp.GetRoleName(UserId).Equals("Manager"))
-                            {
-                                btnPerfEval.Enabled = true;
-                                btnPerfEval.Visible = true;
-                            }
-                        }
-                    }
-                }          
+                    btnPerfEval.Visible = true;
+                    btnPerfEval.Enabled = true;
+                }
             }
         }
 
