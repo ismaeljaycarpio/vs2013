@@ -27,7 +27,6 @@ namespace AMS.Employee
                     Response.Redirect("~/Employee/Employee");
                 }
                     
-
                 //get selected user
                 hfUserId.Value = Session["UserId"].ToString();
                 Guid UserId = Guid.Parse(hfUserId.Value);
@@ -271,6 +270,8 @@ namespace AMS.Employee
             Guid evaluatedById = ((Guid)_evaluatedBy.ProviderUserKey);
             string evaluatedBy = emp.GetFullName(evaluatedById);
             string AcknowledgedBy = emp.GetFullName(UserId);
+            string approveByHR = "";
+            string approveByManager = "";
 
             //chk if user is evaluating itself
             if (loggedUserId.Equals(UserId))
@@ -278,14 +279,28 @@ namespace AMS.Employee
                 evaluatedById = Guid.Empty;
                 evaluatedBy = "";
             }
+            else
+            {
+                //chk user role
+                if(User.IsInRole("HR"))
+                {
+                    //auto approve HR
+                    approveByHR = emp.GetFullName(loggedUserId);
+                }
+                else if(User.IsInRole("Manager"))
+                {
+                    //auto-approve Manager
+                    approveByManager = emp.GetFullName(loggedUserId);
+                }
+            }
 
             int evaluationId = eval.insertEvaluation_Prime(
                 UserId,
                 "Performance Evaluation",
                 evaluatedById,
                 evaluatedBy,
-                "",
-                "",
+                approveByManager, //manager
+                approveByHR, //HR
                 AcknowledgedBy,
                 lblAgency.Text,
                 txtCommentSection1A.Text,

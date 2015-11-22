@@ -38,7 +38,7 @@ namespace AMS.Employee
                 btnPerfEval.Enabled = false;
                 btnPerfEval.Visible = false;
 
-                //chk if user is evaluating itself
+                //evaluator
                 if (!loggedUserId.Equals(UserId))
                 {
                     //GM-> evaluate Managers and HR/Manager                   
@@ -61,6 +61,11 @@ namespace AMS.Employee
                             btnPerfEval.Enabled = true;
                             btnPerfEval.Visible = true;
                         }
+                    }
+                    else
+                    {
+                        btnPerfEval.Visible = true;
+                        btnPerfEval.Enabled = true;
                     }
                 }
                 else

@@ -674,6 +674,8 @@ namespace AMS.DAL
             Guid EvaluatedById,
             string dateEvaluated,
             string EvaluatedBy,
+            string approvedByManager,
+            string approvedByHR,
             string commentSection1A,
             string commentSection1B,
             string commentSection1C,
@@ -717,6 +719,8 @@ namespace AMS.DAL
                 "EvaluatedById = @EvaluatedById, " +
                 "DateEvaluated=@DateEvaluated, " +
                 "EvaluatedBy=@EvaluatedBy, " +
+                "ApprovedByManager=@ApprovedByManager, " +
+                "ApprovedByHR=@ApprovedByHR, " +
                 "EmployeesCreativeContribution=@EmployeesCreativeContribution, " +
                 "EmployeesNewSkills=@EmployeesNewSkills, " +
                 "EmployeesStrength=@EmployeesStrength, " +
@@ -747,6 +751,8 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@EvaluatedById", EvaluatedById);
                 comm.Parameters.AddWithValue("@DateEvaluated", dateEvaluated);
                 comm.Parameters.AddWithValue("@EvaluatedBy", EvaluatedBy);
+                comm.Parameters.AddWithValue("@ApprovedByManager", approvedByManager);
+                comm.Parameters.AddWithValue("@ApprovedByHR", approvedByHR);
                 comm.Parameters.AddWithValue("@Section1A", section1A);
                 comm.Parameters.AddWithValue("@Section1B", section1B);
                 comm.Parameters.AddWithValue("@Section1C", section1C);
@@ -1240,18 +1246,24 @@ namespace AMS.DAL
         }
 
         //Pending Approval List by Manager ->
-        public DataTable getPendingApprovalManager()
+        public DataTable getPendingApprovalManager(string deptId)
         {
             strSql = "SELECT Evaluation.Id,Evaluation.RemarksName,Evaluation.EvaluatedBy, " +
                 "Evaluation.AcknowledgedBy, Evaluation.UserId " +
-                "FROM Evaluation, UsersInRoles, Roles WHERE " +
+                "FROM EMPLOYEE, POSITION, DEPARTMENT, Evaluation, UsersInRoles, Roles WHERE " +
+                "EMPLOYEE.UserId = Evaluation.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
                 "Evaluation.UserId = UsersInRoles.UserId AND " +
                 "UsersInRoles.RoleId = Roles.RoleId AND " +
-                "((Roles.RoleName = 'Supervisor') OR (Roles.RoleName = 'Staff'))";
+                "POSITION.DepartmentId = @DepartmentId AND " +
+                "((Roles.RoleName = 'Supervisor') OR (Roles.RoleName = 'Staff')) AND " +
+                "Evaluation.ApprovedByManager = ''";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 
@@ -1296,47 +1308,19 @@ namespace AMS.DAL
             comm.Dispose();
             conn.Close();
         }
-
-
-        //Pending Approval List by Manager
-        public DataTable getPendingApprovalManager(string year, string department)
+        public void ApprovePendingApprovalManager(string evaluationId, string signatory)
         {
-            strSql = "SELECT RemarksName,EvaluatedBy,AcknowledgedBy FROM Evaluation WHERE " +
-                    "DATEPART(yyyy,DateEvaluated) = @YearEvaluated AND " +
-                    "(ApprovedByManager = '')";
+            strSql = "UPDATE Evaluation SET ApprovedByManager = @ApprovedByManager WHERE Id = @Id";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
-            comm.Parameters.AddWithValue("@YearEvaluated", year);
-            dt = new DataTable();
-            adp = new SqlDataAdapter(comm);
-
+            comm.Parameters.AddWithValue("@ApprovedByManager", signatory);
+            comm.Parameters.AddWithValue("@Id", evaluationId);
             conn.Open();
-            adp.Fill(dt);
+            comm.ExecuteNonQuery();
+            comm.Dispose();
             conn.Close();
-
-            return dt;
-        }
-
-        public DataTable getPendingEvaluationManager(string year)
-        {
-            strSql = "SELECT * FROM Evaluation WHERE " +
-                    "DATEPART(yyyy,DateEvaluated) = @YearEvaluated AND " +
-                    "(ApprovedByManager = '')";
-
-            conn = new SqlConnection();
-            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
-            comm = new SqlCommand(strSql, conn);
-            comm.Parameters.AddWithValue("@YearEvaluated", year);
-            dt = new DataTable();
-            adp = new SqlDataAdapter(comm);
-
-            conn.Open();
-            adp.Fill(dt);
-            conn.Close();
-
-            return dt;
         }
         #endregion
 

@@ -32,7 +32,7 @@ namespace AMS.Employee
                 {
                     btnOpenModal.Visible = false;
                     gvEMovement.Columns[1].Visible = false;
-                    gvEMovement.Columns[8].Visible = false;
+                    gvEMovement.Columns[4].Visible = false;
                 }
 
                 DataTable dtEmp = new DataTable();
