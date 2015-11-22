@@ -21,6 +21,7 @@ namespace AMS.DAL
         public DataTable displayEMovement(Guid UserId)
         {
             strSql = "SELECT EMOVEMENT_EMPLOYEE.Id, " +
+                "EMOVEMENT.EMovement, " + 
                 "EMOVEMENT_EMPLOYEE.Remarks, " +
                 "EMOVEMENT_EMPLOYEE.MovementDate " +
                 "FROM EMOVEMENT, EMOVEMENT_EMPLOYEE " +
@@ -109,7 +110,7 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@UserId", userId);
                 comm.Parameters.AddWithValue("@Remarks", remarks);
                 comm.Parameters.AddWithValue("@MovementDate", eMovementDate);
-                comm.Parameters.AddWithValue("@Id", rowId);
+                comm.Parameters.AddWithValue("@RowId", rowId);
                 comm.ExecuteNonQuery();
                 conn.Close();
             }
