@@ -18,8 +18,7 @@ namespace AMS.Employee
     public partial class PerformanceEvaluation : System.Web.UI.Page
     {
         DAL.Evaluation eval = new DAL.Evaluation();
-        DAL.Profile profile = new DAL.Profile();
-        DAL.Job job = new DAL.Job();
+        DAL.Employee emp = new DAL.Employee();
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -41,10 +40,10 @@ namespace AMS.Employee
                 //    Response.Redirect("~/Employee/vPerformanceEvaluation");
                 //}
 
-                lblEmpName.Text = profile.getProfileName(UserId);
-                lblAgency.Text = job.getAgencyName(UserId);
-                lblDateHired.Text = job.getHiredDate(UserId);
-                lblPosition.Text = job.getPosition(UserId);
+                lblEmpName.Text = emp.GetFullName(UserId);
+                lblAgency.Text = emp.GetAgencyName(UserId);
+                lblDateHired.Text = emp.GetHiredDate(UserId);
+                lblPosition.Text = emp.GetPosition(UserId);
 
                 //populate gridview
                 BindData();
@@ -92,8 +91,8 @@ namespace AMS.Employee
             string approvedByHR = ""; //get who
             string AcknowledgedBy = ""; //get who
 
-            evaluatedBy = profile.getProfileName(evaluatedById);
-            AcknowledgedBy = profile.getProfileName(UserId);
+            evaluatedBy = emp.GetFullName(UserId);
+            AcknowledgedBy = emp.GetFullName(UserId);
 
             //compute for scores
             foreach(GridViewRow row in gvEvaluation.Rows)

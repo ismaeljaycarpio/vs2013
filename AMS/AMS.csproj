@@ -50,6 +50,10 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -140,6 +144,7 @@
     <Content Include="App_Data\dbAMS_log.ldf">
       <DependentUpon>dbAMS.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -160,6 +165,7 @@
     <Content Include="Employee\Contacts.aspx" />
     <Content Include="Employee\Education.aspx" />
     <Content Include="Employee\Employee.aspx" />
+    <Content Include="Employee\EmployeeMovement.aspx" />
     <Content Include="Employee\Evaluation.aspx" />
     <Content Include="Employee\JobDetails.aspx" />
     <Content Include="Employee\JobExperience.aspx" />
@@ -214,8 +220,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Documents\countriesoftheworld.xlsx" />
-    <Content Include="Documents\DataTable.doc" />
-    <Content Include="Documents\EmployeeList %281%29.xls" />
     <Content Include="Documents\EmployeeList %282%29.xls" />
     <Content Include="Documents\EmployeeList.xls" />
     <Content Include="App_Code\PerformanceEvaluation.xsc">
@@ -384,6 +388,8 @@
       <DependentUpon>TSI_Performance_Evaluation.xsd</DependentUpon>
     </Content>
     <Content Include="EvaluationNested.master" />
+    <None Include="Properties\PublishProfiles\ams-test00 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ams-test00 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
@@ -603,14 +609,13 @@
     <Compile Include="DAL\Contact.cs" />
     <Compile Include="DAL\Education.cs" />
     <Compile Include="DAL\Employee.cs" />
+    <Compile Include="DAL\EmployeeMovement.cs" />
     <Compile Include="DAL\Evaluation.cs" />
     <Compile Include="DAL\FileUpload.cs" />
     <Compile Include="DAL\Filler.cs" />
-    <Compile Include="DAL\Job.cs" />
     <Compile Include="DAL\Experience.cs" />
     <Compile Include="DAL\MembershipCard.cs" />
     <Compile Include="DAL\PositionManagement.cs" />
-    <Compile Include="DAL\Profile.cs" />
     <Compile Include="DAL\Training.cs" />
     <Compile Include="DAL\Violation.cs" />
     <Compile Include="Dashboard\Dashboard.aspx.cs">
@@ -661,6 +666,13 @@
     </Compile>
     <Compile Include="Employee\Employee.aspx.designer.cs">
       <DependentUpon>Employee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmployeeMovement.aspx.cs">
+      <DependentUpon>EmployeeMovement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EmployeeMovement.aspx.designer.cs">
+      <DependentUpon>EmployeeMovement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\Evaluation.aspx.cs">
       <DependentUpon>Evaluation.aspx</DependentUpon>

@@ -19,7 +19,7 @@ namespace AMS.DAL
 
         public DataTable getDocumentsById(Guid UserId)
         {
-            strSql = "SELECT * FROM Documents WHERE UserId = @UserId";
+            strSql = "SELECT * FROM DOCUMENTS WHERE UserId = @UserId";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -37,7 +37,7 @@ namespace AMS.DAL
 
         public DataTable getDocumentByRowId(int rowId)
         {
-            strSql = "SELECT * FROM Documents WHERE Id = @Id";
+            strSql = "SELECT * FROM DOCUMENTS WHERE Id = @Id";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -58,7 +58,7 @@ namespace AMS.DAL
             string fileName,
             string filePath)
         {
-            strSql = "INSERT INTO Documents(UserId,FileName,FilePath) " +
+            strSql = "INSERT INTO DOCUMENTS(UserId,FileName,FilePath) " +
                 "VALUES(@UserId, @FileName, @FilePath)";
 
             conn = new SqlConnection();
@@ -81,7 +81,7 @@ namespace AMS.DAL
         public void deleteDocuments(
             string filePath)
         {
-            strSql = "DELETE FROM Documents WHERE FilePath = @FilePath";
+            strSql = "DELETE FROM DOCUMENTS WHERE FilePath = @FilePath";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;

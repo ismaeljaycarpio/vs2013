@@ -72,6 +72,26 @@
         </div>
 
         <div class="panel-body">
+            <h5>Employee Movement</h5>
+            <div class="table table-responsive">
+                <asp:GridView ID="gvEMovement"
+                    runat="server"
+                    CssClass="table table-striped"
+                    AutoGenerateColumns="false"
+                    ShowHeaderWhenEmpty="true"
+                    EmptyDataText="No Record(s) found"
+                    GridLines="None">
+                    <Columns>
+                        <asp:BoundField DataField="EMovement" HeaderText="Movement" />
+                        <asp:BoundField DataField="Remarks" HeaderText="Remarks" />
+                        <asp:BoundField DataField="MovementDate" HeaderText="Date" />
+                    </Columns>
+                </asp:GridView>
+            </div>
+        </div>
+        <hr />
+
+        <div class="panel-body">
             <h5>Job Experience</h5>
             <div class="table table-responsive">
                 <asp:GridView ID="gvExperience"
@@ -79,6 +99,7 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    EmptyDataText="No Record(s) found"
                     GridLines="None">
                     <Columns>
                         <asp:BoundField DataField="Job" HeaderText="Job" />
@@ -100,6 +121,7 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    EmptyDataText="No Record(s) found"
                     GridLines="None">
                     <Columns>
                         <asp:BoundField DataField="Course" HeaderText="Course" />
@@ -120,6 +142,7 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    EmptyDataText="No Record(s) found"
                     GridLines="None">
                     <Columns>
                         <asp:BoundField DataField="Description" HeaderText="Description" />
@@ -140,6 +163,7 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    EmptyDataText="No Record(s) found"
                     GridLines="None">
                     <Columns>
                         <asp:BoundField DataField="Description" HeaderText="Description" />
@@ -159,6 +183,7 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    EmptyDataText="No Record(s) found"
                     GridLines="None">
                     <Columns>
                         <asp:BoundField DataField="Violation" HeaderText="Description" />
@@ -179,6 +204,7 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    EmptyDataText="No Record(s) found"
                     GridLines="None">
                     <Columns>
                         <asp:BoundField DataField="G_Name" HeaderText="Guardian" />
@@ -199,6 +225,7 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    EmptyDataText="No Record(s) found"
                     GridLines="None">
                     <Columns>
                         <asp:BoundField DataField="Type" HeaderText="Type" />

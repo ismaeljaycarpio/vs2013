@@ -11,6 +11,8 @@ namespace AMS.HR
 {
     public partial class Register : System.Web.UI.Page
     {
+        DAL.Employee emp = new DAL.Employee();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!Page.IsPostBack)
@@ -35,8 +37,6 @@ namespace AMS.HR
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            DAL.Profile profile = new DAL.Profile();
-            DAL.Job job = new DAL.Job();
 
             //membership class 
             //default pass->'pass123'
@@ -44,21 +44,12 @@ namespace AMS.HR
 
             //add to roles
             //get role name from ddl position
-            string roleName = job.getRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
+            string roleName = emp.GetRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
             Roles.AddUserToRole(newUser.UserName, roleName);
 
 
-            //add to PERSONAL
-            profile.addProfile((Guid)newUser.ProviderUserKey,
-                txtFirstName.Text,
-                txtMiddleName.Text,
-                txtLastName.Text);
-
-            //add to job
-            job.addJobDetails(
-                (Guid)newUser.ProviderUserKey,
-                txtEmpId.Text,
-                ddlPosition.SelectedValue.ToString());
+            //notes:
+            //nationality-> default 67
 
             Response.Redirect("~/Employee/Employee");      
         }
@@ -66,36 +57,34 @@ namespace AMS.HR
         protected void btnMassReg_Click(object sender, EventArgs e)
         {
 
-            //DAL.Filler filler = new DAL.Filler();
-            //    DAL.Profile profile;
-            //    DAL.Job job;
-            //DataTable dt = new DataTable();
-            //    dt = filler.fillTempPers();
-            ////dt = filler.fillPosition();
+            DAL.Filler filler = new DAL.Filler();
+            DAL.Employee emp;
+            DataTable dt = new DataTable();
+            dt = filler.fill_tmpEMPLOYEE();
 
-            //foreach (DataRow rw in dt.Rows)
-            //{
-            //    ////membership class2
-            //    MembershipUser newUser = Membership.CreateUser(rw["EMP_ID"].ToString(), "pass123");
+                foreach (DataRow rw in dt.Rows)
+                {
+                    ////membership class
+                    MembershipUser newUser = Membership.CreateUser(rw["Emp_Id"].ToString(), "pass123");
 
-            //    ////roles - not yet
-            //    Roles.AddUserToRole(newUser.UserName, "Sales Associate");
+                    ////roles
+                    Roles.AddUserToRole(newUser.UserName, "Admin");
 
-
-            //    ////personal
-            //    profile = new DAL.Profile();
-            //    profile.addProfile((Guid)newUser.ProviderUserKey, rw["FNAME"].ToString(),
-            //        rw["MNAME"].ToString(), rw["LNAME"].ToString());
-
-            //    ////job
-            //    job = new DAL.Job();
-            //    job.addJobDetails((Guid)newUser.ProviderUserKey, 
-            //        rw["EMP_ID"].ToString());
-                
-
-            //    //roles
-            //    //Roles.CreateRole(rw["Position"].ToString());
-            
+                    ////emp
+                    emp = new DAL.Employee();
+                    emp.SeedUser((Guid)newUser.ProviderUserKey,
+                        rw["Emp_Id"].ToString(),
+                        rw["FirstName"].ToString(),
+                        rw["MiddleName"].ToString(),
+                        rw["LastName"].ToString(),
+                        rw["M_Status"].ToString(),
+                        rw["Gender"].ToString(),
+                        rw["NationalityId"].ToString(),
+                        rw["BirthDate"].ToString(),
+                        rw["Age"].ToString(),
+                        rw["BloodType"].ToString(),
+                        rw["Language"].ToString());
+                }          
         }
 
         protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)

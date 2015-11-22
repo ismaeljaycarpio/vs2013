@@ -11,7 +11,9 @@ namespace AMS.Employee
 {
     public partial class ViewEmployee : System.Web.UI.Page
     {
-        DAL.Job job = new DAL.Job();
+        DAL.Employee emp = new DAL.Employee();
+        DataTable dt;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -33,19 +35,25 @@ namespace AMS.Employee
                 }
 
                 Guid UserId = Guid.Parse(hfUserId.Value);
-                DataTable dt = new DataTable();
-                DAL.Profile profile = new DAL.Profile();
-                dt = profile.displayProfile(UserId);
+                dt = new DataTable();
+                dt = emp.DisplayProfile(UserId);
 
                 //populate fields
-                lblName.Text = dt.Rows[0]["FNAME"].ToString() + " " + dt.Rows[0]["MNAME"].ToString() + " " + dt.Rows[0]["LNAME"].ToString();
+                lblName.Text = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["MiddleName"].ToString() + " " + dt.Rows[0]["lastName"].ToString();
                 lblPosition.Text = dt.Rows[0]["POSITION"].ToString();
                 lblDepartment.Text = dt.Rows[0]["DEPARTMENT"].ToString();
 
-                lblEmpNo.Text = dt.Rows[0]["EMP_ID"].ToString();
-                lblMarriedStatus.Text = dt.Rows[0]["M_STATUS"].ToString();
-                lblContactNo.Text = dt.Rows[0]["PHONENO"].ToString();
+                lblEmpNo.Text = dt.Rows[0]["Emp_Id"].ToString();
+                lblMarriedStatus.Text = dt.Rows[0]["M_Status"].ToString();
+                lblContactNo.Text = dt.Rows[0]["ContactNo"].ToString();
                 lblAgency.Text = dt.Rows[0]["Agency"].ToString();
+
+
+                //get grid emovement
+                dt = new DataTable();
+                DAL.EmployeeMovement emov = new DAL.EmployeeMovement();
+                gvEMovement.DataSource = emov.displayEMovement(UserId);
+                gvEMovement.DataBind();
 
                 //get grid jobexp
                 dt = new DataTable();

@@ -14,7 +14,7 @@ namespace AMS.Evaluation
     public partial class PendingApprovals : System.Web.UI.Page
     {
         DAL.Evaluation eval = new DAL.Evaluation();
-        DAL.Profile profile = new DAL.Profile();
+        DAL.Employee emp = new DAL.Employee();
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace AMS.Evaluation
             //get current user
             MembershipUser _loggedUser = Membership.GetUser();
             Guid loggedUserId = Guid.Parse(_loggedUser.ProviderUserKey.ToString());
-            string signatory = profile.getProfileName(loggedUserId);
+            string signatory = emp.GetFullName(loggedUserId);
 
             int count = 0;
             SetData();

@@ -16,8 +16,7 @@ namespace AMS.Employee
     public partial class vSelf_Evaluation : System.Web.UI.Page
     {
         DAL.Evaluation eval = new DAL.Evaluation();
-        DAL.Profile profile = new DAL.Profile();
-        DAL.Job job = new DAL.Job();
+        DAL.Employee emp = new DAL.Employee();
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -36,9 +35,9 @@ namespace AMS.Employee
                 //Get selected evaluation id
                 int evaluationId = Convert.ToInt32(Session["EvaluationId"]);
 
-                lblEmpName.Text = profile.getProfileName(UserId);
-                lblDesignation.Text = job.getDepartment(UserId);
-                txtHiredDate.Text = job.getHiredDate(UserId);
+                lblEmpName.Text = emp.GetFullName(UserId);
+                lblDesignation.Text = emp.GetDepartment(UserId);
+                txtHiredDate.Text = emp.GetHiredDate(UserId);
 
                 //get evaluation details
                 dt = new DataTable();
@@ -74,7 +73,7 @@ namespace AMS.Employee
                 //Get selected evaluation id
                 int evaluationId = Convert.ToInt32(Session["EvaluationId"]);
 
-                string agency = job.getAgencyName(UserId);
+                string agency = emp.GetAgencyName(UserId);
                 //update eval
                 eval.updateEvaluation_Self(agency, txtPeriodCovered.Text, evaluationId);
 

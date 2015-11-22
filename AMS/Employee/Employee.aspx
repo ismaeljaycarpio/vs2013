@@ -47,14 +47,12 @@
                             OnPageIndexChanging="gvEmployee_PageIndexChanging"
                             OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging">
                             <Columns>
-                                <asp:BoundField DataField="Emp_ID" HeaderText="ID" SortExpression="Emp_ID" />
-                                <asp:TemplateField HeaderText="First Name" SortExpression="FName">
+                                <asp:BoundField DataField="Emp_Id" HeaderText="ID" SortExpression="Emp_Id" />
+                                <asp:TemplateField HeaderText="Full Name" SortExpression="FullName">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lnkFNAME" runat="server" Text='<%# Eval("FName") %>' CommandName="Select"></asp:LinkButton>
+                                        <asp:LinkButton ID="lnkFNAME" runat="server" Text='<%# Eval("FullName") %>' CommandName="Select"></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="MName" HeaderText="Middle Name" SortExpression="MName" />
-                                <asp:BoundField DataField="LName" HeaderText="Last Name" SortExpression="LName" />
                                 <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
                                 <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
                             </Columns>
