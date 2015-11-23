@@ -1,9 +1,9 @@
-﻿<%@ Page Title="Employee"
+﻿<%@ Page Title="Employee Master List"
     Language="C#"
     MasterPageFile="~/Site.Master"
     AutoEventWireup="true"
-    CodeBehind="Employee.aspx.cs"
-    Inherits="AMS.Employee.Employee" %>
+    CodeBehind="Employee_Account_MasterList.aspx.cs"
+    Inherits="AMS.MasterConfig.Employee_Account_MasterList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h5>List of Employee</h5>
+                    <h5>Employee Accounts</h5>
                 </div>
                 <div class="panel-body">
                     <div class="form-horizontal">
@@ -43,8 +43,8 @@
                             AllowPaging="true"
                             AllowSorting="true"
                             DataKeyNames="UserId"
-                            EmptyDataText="No Record(s) found"
                             OnSorting="gvEmployee_Sorting"
+                            OnRowDataBound="gvEmployee_RowDataBound"
                             OnPageIndexChanging="gvEmployee_PageIndexChanging"
                             OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging">
                             <Columns>
@@ -54,8 +54,27 @@
                                         <asp:LinkButton ID="lnkFNAME" runat="server" Text='<%# Eval("FullName") %>' CommandName="Select"></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
-                                <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
+
+                                <asp:TemplateField HeaderText="Account Status">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lblStatus"
+                                            runat="server"
+                                            OnClick="lblStatus_Click"
+                                            Text='<%# (Boolean.Parse(Eval("IsApproved").ToString())) ? "Active" : "Inactive" %>'>
+                                        </asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Reset Password">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lblReset"
+                                            runat="server"
+                                            OnClick="lblReset_Click"
+                                            Text="Reset Password">
+                                        </asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

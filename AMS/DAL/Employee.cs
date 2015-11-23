@@ -18,13 +18,15 @@ namespace AMS.DAL
         string strSql = "";
 
         #region NEW IMPLEMENTATION
+        //active employees
         //display all employee->user by HR manager, HR staff, GM
         public DataTable DisplayEmployee(string strSearch)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
-                "FROM EMPLOYEE, POSITION, DEPARTMENT WHERE " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
                 "EMPLOYEE.PositionId = POSITION.Id AND " +
                 "POSITION.DepartmentId = DEPARTMENT.Id AND " +
                 "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
@@ -33,6 +35,7 @@ namespace AMS.DAL
                 "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
                 "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
                 "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') " +
+                "AND Memberships.IsApproved = 'True' " + 
                 "ORDER BY Employee.Emp_Id ASC";
 
             conn = new SqlConnection();
@@ -55,7 +58,8 @@ namespace AMS.DAL
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
-                "FROM EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
                 "EMPLOYEE.PositionId = POSITION.Id AND " +
                 "POSITION.DepartmentId = DEPARTMENT.Id AND " +
                 "DEPARTMENT.Id = @DepartmentId AND " +
@@ -68,6 +72,7 @@ namespace AMS.DAL
                 "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
                 "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
                 "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%' ) " +
+                "AND Memberships.IsApproved = 'True' " +
                 "ORDER BY Employee.Emp_Id ASC";
 
             conn = new SqlConnection();
@@ -91,7 +96,8 @@ namespace AMS.DAL
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
-                "FROM EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
                 "EMPLOYEE.PositionId = POSITION.Id AND " +
                 "POSITION.DepartmentId = DEPARTMENT.Id AND " +
                 "DEPARTMENT.Id = @DepartmentId AND " +
@@ -104,6 +110,7 @@ namespace AMS.DAL
                 "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
                 "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
                 "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%' ) " +
+                "AND Memberships.IsApproved = 'True' " +
                 "ORDER BY Employee.Emp_Id ASC";
 
             conn = new SqlConnection();
