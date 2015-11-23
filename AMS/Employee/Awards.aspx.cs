@@ -10,12 +10,17 @@ namespace AMS.Employee
 {
     public partial class Awards : System.Web.UI.Page
     {
+        DAL.Award awards = new DAL.Award();
+        DataTable dt;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 if (Session["UserId"] == null)
+                {
                     Response.Redirect("~/Employee/Employee");
+                }
+                    
 
                 hfUserId.Value = Session["UserId"].ToString();
                 BindData();
@@ -31,11 +36,9 @@ namespace AMS.Employee
         }
 
         private void BindData()
-        {
-            DAL.Award awards = new DAL.Award();
-            DataTable dt = new DataTable();
-
+        {        
             Guid UserId = Guid.Parse(hfUserId.Value);
+            dt = new DataTable();
             dt = awards.getAwardsById(UserId);
 
             gvAwards.DataSource = dt;
@@ -54,7 +57,6 @@ namespace AMS.Employee
         protected void gvAwards_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string rowId = ((Label)gvAwards.Rows[e.RowIndex].FindControl("lblRowId")).Text;
-            DAL.Award awards = new DAL.Award();
             awards.deleteAward(rowId);
 
             BindData();
@@ -62,14 +64,12 @@ namespace AMS.Employee
 
         protected void gvAwards_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            DataTable dt = new DataTable();
-
+            dt = new DataTable();
             int index = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("editRecord"))
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-                DAL.Award awards = new DAL.Award();
                 dt = awards.getAwardExByRowId((int)(gvAwards.DataKeys[index].Value));
                 lblRowId.Text = dt.Rows[0]["Id"].ToString();
                 txtEditDescription.Text = dt.Rows[0]["Description"].ToString();
@@ -85,7 +85,6 @@ namespace AMS.Employee
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            DAL.Award awards = new DAL.Award();
             awards.updateAward(txtEditDescription.Text,
                 txtEditVenue.Text,
                 txtEditDate.Text,
@@ -102,7 +101,6 @@ namespace AMS.Employee
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            DAL.Award awards = new DAL.Award();
             awards.addAward(Guid.Parse(hfUserId.Value),
                 txtAddDescription.Text,
                 txtAddVenue.Text,

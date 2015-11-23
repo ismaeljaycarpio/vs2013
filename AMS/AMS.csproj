@@ -201,6 +201,7 @@
     <Content Include="Login.aspx" />
     <Content Include="HR\Register.aspx" />
     <Content Include="MasterConfig\Agency.aspx" />
+    <Content Include="MasterConfig\Department_Master.aspx" />
     <Content Include="MasterConfig\RoleManager.aspx" />
     <Content Include="myLogs.txt" />
     <Content Include="packages.config" />
@@ -835,6 +836,13 @@
     </Compile>
     <Compile Include="MasterConfig\Agency.aspx.designer.cs">
       <DependentUpon>Agency.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterConfig\Department_Master.aspx.cs">
+      <DependentUpon>Department_Master.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterConfig\Department_Master.aspx.designer.cs">
+      <DependentUpon>Department_Master.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterConfig\RoleManager.aspx.cs">
       <DependentUpon>RoleManager.aspx</DependentUpon>

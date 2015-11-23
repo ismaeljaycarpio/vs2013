@@ -9,6 +9,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        Dashboard goes here...
+        Dashboard under construction...
     </div>
 </asp:Content>

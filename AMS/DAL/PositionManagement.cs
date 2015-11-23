@@ -19,7 +19,7 @@ namespace AMS.DAL
 
 
         //get managerial position
-        public DataTable displayPositions(string strSearch)
+        public DataTable DisplayPositions(string strSearch)
         {
             strSql = "SELECT POSITION.Id, POSITION.Position, DEPARTMENT.Department, Roles.RoleName FROM POSITION, DEPARTMENT,Roles " +
                 "WHERE DEPARTMENT.Id = POSITION.DepartmentId AND POSITION.RoleId = Roles.RoleId " +
@@ -39,7 +39,7 @@ namespace AMS.DAL
             return dt;
         }
 
-        public DataTable fillPositionByRoleId(Guid RoleId)
+        public DataTable FillPositionByRoleId(Guid RoleId)
         {
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -56,7 +56,7 @@ namespace AMS.DAL
             return dt;
         }
 
-        public DataTable getPositionByRowId(int rowId)
+        public DataTable GetPositionByRowId(int rowId)
         {
             strSql = "SELECT * FROM POSITION WHERE Id = @Id";
 
@@ -74,7 +74,7 @@ namespace AMS.DAL
             return dt;
         }
 
-        public string getDepartmentIdBypPosition(string PositionId)
+        public string GetDepartmentIdBypPosition(string PositionId)
         {
             strSql = "SELECT DepartmentId FROM POSITION WHERE Id = @Id";
 
@@ -92,7 +92,7 @@ namespace AMS.DAL
             return dt.Rows[0]["DepartmentId"].ToString();
         }
 
-        public void addPosition(
+        public void AddPosition(
             string position,
             Guid RoleId,
             string deptId)
@@ -117,7 +117,7 @@ namespace AMS.DAL
             conn.Dispose();
         }
 
-        public void updatePosition(
+        public void UpdatePosition(
             string position,
             Guid RoleId,
             string deptId,
@@ -145,6 +145,31 @@ namespace AMS.DAL
             }
             comm.Dispose();
             conn.Dispose();
+        }
+
+        public bool CheckIfDuplicate(string position)
+        {
+            strSql = "SELECT Position FROM POSITION WHERE Position = @Position";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Position", position);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

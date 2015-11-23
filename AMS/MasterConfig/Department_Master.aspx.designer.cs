@@ -10,7 +10,7 @@
 namespace AMS.MasterConfig {
     
     
-    public partial class RoleManager {
+    public partial class Department_Master {
         
         /// <summary>
         /// upAdd control.
@@ -22,40 +22,22 @@ namespace AMS.MasterConfig {
         protected global::System.Web.UI.UpdatePanel upAdd;
         
         /// <summary>
-        /// ddlAddRole control.
+        /// txtAddDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAddRole;
+        protected global::System.Web.UI.WebControls.TextBox txtAddDepartment;
         
         /// <summary>
-        /// ddlAddDepartment control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAddDepartment;
-        
-        /// <summary>
-        /// txtAddPosition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAddPosition;
-        
-        /// <summary>
-        /// RequiredFieldValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
         /// btnSave control.
@@ -85,40 +67,22 @@ namespace AMS.MasterConfig {
         protected global::System.Web.UI.WebControls.Label lblRowId;
         
         /// <summary>
-        /// ddlEditRole control.
+        /// txtEditDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEditRole;
+        protected global::System.Web.UI.WebControls.TextBox txtEditDepartment;
         
         /// <summary>
-        /// ddlEditDepartment control.
+        /// RequiredFieldValidator3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEditDepartment;
-        
-        /// <summary>
-        /// txtEditPosition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEditPosition;
-        
-        /// <summary>
-        /// RequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
         /// btnUpdate control.
@@ -130,48 +94,39 @@ namespace AMS.MasterConfig {
         protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
-        /// Panel1 control.
+        /// upDepartments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.UpdatePanel upDepartments;
         
         /// <summary>
-        /// btnSearch control.
+        /// gvDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.WebControls.GridView gvDepartment;
         
         /// <summary>
-        /// txtSearch control.
+        /// btnOpenModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+        protected global::System.Web.UI.WebControls.Button btnOpenModal;
         
         /// <summary>
-        /// upRoles control.
+        /// hfUserId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upRoles;
-        
-        /// <summary>
-        /// gvRoles control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRoles;
+        protected global::System.Web.UI.WebControls.HiddenField hfUserId;
     }
 }

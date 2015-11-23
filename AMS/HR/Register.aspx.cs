@@ -12,14 +12,14 @@ namespace AMS.HR
     public partial class Register : System.Web.UI.Page
     {
         DAL.Employee emp = new DAL.Employee();
+        DAL.PositionManagement position = new DAL.PositionManagement();
+        DAL.Filler filler = new DAL.Filler();
+        DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!Page.IsPostBack)
             {
-                DAL.Filler filler = new DAL.Filler();
-                DAL.PositionManagement pos = new DAL.PositionManagement();
-
                 ddlPosition.DataSource = filler.fillPosition();
                 ddlPosition.DataValueField = "Id";
                 ddlPosition.DataTextField = "Position";
@@ -31,7 +31,7 @@ namespace AMS.HR
                 ddlDepartment.DataBind();
 
                 //load dept based on pos
-                ddlDepartment.SelectedValue = pos.getDepartmentIdBypPosition(ddlPosition.SelectedValue.ToString());
+                ddlDepartment.SelectedValue = position.GetDepartmentIdBypPosition(ddlPosition.SelectedValue.ToString());
             }
         }
 
@@ -98,7 +98,7 @@ namespace AMS.HR
             DAL.PositionManagement pos = new DAL.PositionManagement();
 
             //load dept based on pos
-            ddlDepartment.SelectedValue = pos.getDepartmentIdBypPosition(ddlPosition.SelectedValue.ToString());
+            ddlDepartment.SelectedValue = position.GetDepartmentIdBypPosition(ddlPosition.SelectedValue.ToString());
         }
     }
 }

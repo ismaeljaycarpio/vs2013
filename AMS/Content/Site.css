@@ -49,9 +49,10 @@ input[type="select"] {
     white-space: nowrap;
 }
 
-.clsDatePicker{
-    z-index:100000 !important;
+.clsDatePicker {
+    z-index: 100000 !important;
 }
+
 
 .pagination-ys {
     /*display: inline-block;*/

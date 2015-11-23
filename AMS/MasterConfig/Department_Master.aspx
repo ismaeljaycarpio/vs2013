@@ -1,9 +1,14 @@
-﻿<%@ Page Title="Agency" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Agency.aspx.cs" Inherits="AMS.MasterConfig.Agency" %>
+﻿<%@ Page Title="Department Master List" 
+    Language="C#" 
+    MasterPageFile="~/Site.Master" 
+    AutoEventWireup="true" 
+    CodeBehind="Department_Master.aspx.cs" 
+    Inherits="AMS.MasterConfig.Department_Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Add Modal -->
+     <!-- Add Modal -->
     <div id="addModal" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" role="dialog">
         <div class="modal-dialog">
 
@@ -13,23 +18,22 @@
                     <ContentTemplate>
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Add Agency</h4>
+                            <h4 class="modal-title">Add Department</h4>
                         </div>
                         <div class="modal-body">
                             <div class="form">
                                 <div class="form-group">
-                                    <label for="txtAddAgency">Agency</label>
-                                    <asp:TextBox ID="txtAddAgency" runat="server" CssClass="form-control" placeholder="Agency"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
+                                    <label for="txtAddDepartment">Department Name:</label>
+                                    <asp:TextBox ID="txtAddDepartment" runat="server" CssClass="form-control" placeholder="Department"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
                                         runat="server"
                                         Display="Dynamic"
-                                        ControlToValidate="txtAddAgency"
+                                        ControlToValidate="txtAddDepartment"
                                         CssClass="label label-danger"
                                         ValidationGroup="vgAdd"
-                                        ErrorMessage="Agency is required"></asp:RequiredFieldValidator>
+                                        ErrorMessage="Department is required"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" Text="Save" ValidationGroup="vgAdd" OnClick="btnSave_Click" />
@@ -54,24 +58,25 @@
                     <ContentTemplate>
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Edit Agency</h4>
+                            <h4 class="modal-title">Edit Department</h4>
                         </div>
-
                         <div class="modal-body">
-                            <div class="form-group">
-                                <asp:Label ID="lblRowId" runat="server" Visible="false"></asp:Label>
-                            </div>
+                            <div class="form">
+                                <div class="form-group">
+                                    <asp:Label ID="lblRowId" runat="server" Visible="false"></asp:Label>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="txtEditAgency">Agency</label>
-                                <asp:TextBox ID="txtEditAgency" runat="server" CssClass="form-control" placeholder="Agency"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
-                                    runat="server"
-                                    Display="Dynamic"
-                                    ControlToValidate="txtEditAgency"
-                                    CssClass="label label-danger"
-                                    ValidationGroup="vsEdit"
-                                    ErrorMessage="Agency is required"></asp:RequiredFieldValidator>
+                                <div class="form-group">
+                                    <label for="txtEditDepartment">Department</label>
+                                    <asp:TextBox ID="txtEditDepartment" runat="server" CssClass="form-control" placeholder="Department"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
+                                        runat="server"
+                                        Display="Dynamic"
+                                        ControlToValidate="txtEditDepartment"
+                                        CssClass="label label-danger"
+                                        ValidationGroup="vsEdit"
+                                        ErrorMessage="Department is required"></asp:RequiredFieldValidator>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -80,7 +85,7 @@
                         </div>
                     </ContentTemplate>
                     <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="gvAgency" EventName="RowCommand" />
+                        <asp:AsyncPostBackTrigger ControlID="gvDepartment" EventName="RowCommand" />
                         <asp:AsyncPostBackTrigger ControlID="btnUpdate" EventName="Click" />
                     </Triggers>
                 </asp:UpdatePanel>
@@ -88,31 +93,28 @@
         </div>
     </div>
 
+
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addModal">Add</button>
-                    </div>
-                    <h5>Agencies</h5>
+                    <h5>Departments</h5>
                 </div>
 
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <asp:UpdatePanel ID="upRoles" runat="server">
+                        <asp:UpdatePanel ID="upDepartments" runat="server">
                             <ContentTemplate>
-                                <asp:GridView ID="gvAgency"
+                                <asp:GridView ID="gvDepartment"
                                     runat="server"
-                                    CssClass="table table-striped table-hover dataTable"
+                                    class="table table-striped table-hover"
                                     GridLines="None"
+                                    ShowHeaderWhenEmpty="true"
                                     AutoGenerateColumns="false"
                                     AllowPaging="true"
-                                    ShowHeaderWhenEmpty="true"
                                     DataKeyNames="Id"
-                                    OnRowCommand="gvAgency_RowCommand"
-                                    OnRowDeleting="gvAgency_RowDeleting"
-                                    PageSize="50">
+                                    OnRowDeleting="gvDepartment_RowDeleting"
+                                    OnRowCommand="gvDepartment_RowCommand">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Row Id" Visible="false">
                                             <ItemTemplate>
@@ -122,23 +124,31 @@
 
                                         <asp:ButtonField HeaderText="Action" ButtonType="Button" Text="Edit" CommandName="editRecord" />
 
-                                        <asp:TemplateField HeaderText="Agency">
+                                        <asp:TemplateField HeaderText="Department">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblAgency" runat="server" Text='<%# Eval("Agency") %>'></asp:Label>
+                                                <asp:Label ID="lblDepartment" runat="server" Text='<%# Eval("Department") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
                                         <asp:CommandField ShowDeleteButton="true" />
-
                                     </Columns>
-                                    <PagerStyle CssClass="pagination-ys" />
+                                    <PagerStyle CssClass="pagination" />
                                 </asp:GridView>
+                                <!-- Trigger the modal with a button -->
+                                <asp:Button ID="btnOpenModal" 
+                                    runat="server" 
+                                    CssClass="btn btn-info btn-sm" 
+                                    Text="Add Department"
+                                    OnClick="btnOpenModal_Click" 
+                                    CausesValidation="false" />
                             </ContentTemplate>
-                            <Triggers></Triggers>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="gvDepartment" />
+                            </Triggers>
                         </asp:UpdatePanel>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <asp:HiddenField ID="hfUserId" runat="server" />
 </asp:Content>

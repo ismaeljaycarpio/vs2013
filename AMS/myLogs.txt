@@ -41,3 +41,7 @@ AZ SIDE [!--ACTION REQURED--!]:
 	Change Password
 	Reset Password
 >Generate Report - [Individual Profile]
+
+
+IMPORTANT FIX/BUG
+>PositionManagement.cs ->auto update user roles when changing role of position

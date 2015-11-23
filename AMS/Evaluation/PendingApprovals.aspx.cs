@@ -58,9 +58,12 @@ namespace AMS.Evaluation
             gvPendingApprovals.DataSource = dt;
             gvPendingApprovals.DataBind();
 
-            if(dt.Rows.Count < 1)
+            if(dt != null)
             {
-                btnApprove.Visible = false;
+                if (dt.Rows.Count < 1)
+                {
+                    btnApprove.Visible = false;
+                }
             }
         }
 

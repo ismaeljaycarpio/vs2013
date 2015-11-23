@@ -113,7 +113,8 @@
         </div>
     </div>
 
-    <div class="row">
+    <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSearch">
+        <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -133,7 +134,7 @@
                                         <asp:Button ID="btnSearch"
                                             runat="server"
                                             CssClass="btn btn-primary"
-                                            Text="Go"
+                                            Text="Go"                                            
                                             OnClick="btnSearch_Click" />
                                     </span>
                                     <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
@@ -155,7 +156,7 @@
                                     DataKeyNames="Id"
                                     OnPageIndexChanging="gvRoles_PageIndexChanging"
                                     OnRowCommand="gvRoles_RowCommand"
-                                    PageSize="50">
+                                    PageSize="10">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Row Id" Visible="false">
                                             <ItemTemplate>
@@ -192,4 +193,5 @@
             </div>
         </div>
     </div>
+    </asp:Panel>
 </asp:Content>

@@ -92,8 +92,10 @@
                                         </li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Master Config <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/MasterConfig/RoleManager">Positions Management</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/Agency">Agency</a></li>
+                                                <li><a runat="server" href="~/MasterConfig/Department_Master.aspx">Department</a></li>
+                                                <li><a runat="server" href="~/MasterConfig/RoleManager">Positions Management</a></li>
+                                                
                                             </ul>
                                         </li>
                                     </ul>

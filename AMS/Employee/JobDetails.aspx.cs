@@ -128,7 +128,7 @@ namespace AMS.Employee
 
         public void fillAgency()
         {       
-            ddlAgency.DataSource = agency.displayAgency();
+            ddlAgency.DataSource = agency.DisplayAgency();
             ddlAgency.DataTextField = "Agency";
             ddlAgency.DataValueField = "Id";
             ddlAgency.DataBind();
@@ -145,7 +145,7 @@ namespace AMS.Employee
         protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblRole.Text = emp.GetRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
-            ddlDepartment.SelectedValue = pos.getDepartmentIdBypPosition(ddlPosition.SelectedValue.ToString());
+            ddlDepartment.SelectedValue = pos.GetDepartmentIdBypPosition(ddlPosition.SelectedValue.ToString());
             lblManager.Text = emp.GetManagerName(ddlDepartment.SelectedValue.ToString());
             lblSupervisor.Text = emp.GetSupervisorName(ddlDepartment.SelectedValue.ToString());
         }

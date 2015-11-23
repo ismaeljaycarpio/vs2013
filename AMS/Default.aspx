@@ -4,6 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        home page goes here..
+        Home Page Under construction...
     </div>
 </asp:Content>
