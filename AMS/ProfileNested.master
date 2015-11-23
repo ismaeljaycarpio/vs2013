@@ -39,7 +39,8 @@
                             <li id="viewemp"><a runat="server" href="~/Employee/ViewEmployee">Profile Overview</a></li>
                             <li id="profiledetails"><a runat="server" href="~/Employee/Profile">Personal Details</a></li>
                             <li id="jobDetails"><a runat="server" href="Employee/JobDetails">Job Details</a></li>
-                            <li id="jobexp"><a runat="server" href="Employee/JobExperience">Job Experiences</a></li>
+                            <li id="emovement"><a runat="server" href="~/Employee/EmployeeMovement.aspx">Employee Movement</a></li>
+                            <li id="jobexp"><a runat="server" href="~/Employee/JobExperience">Job Experiences</a></li>
                             <li id="edu"><a runat="server" href="~/Employee/Education">Education</a></li>
                             <li id="training"><a runat="server" href="~/Employee/Trainings">Trainings</a></li>
                             <li id="award"><a runat="server" href="~/Employee/Awards">Awards</a></li>

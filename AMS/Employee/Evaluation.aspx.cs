@@ -13,7 +13,7 @@ namespace AMS.Employee
     public partial class Evaluation : System.Web.UI.Page
     {
         DAL.Evaluation eval = new DAL.Evaluation();
-        DAL.Job job = new DAL.Job();
+        DAL.Employee emp = new DAL.Employee();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -27,67 +27,52 @@ namespace AMS.Employee
                 Guid UserId = Guid.Parse(hfUserId.Value);
                 BindGridView(UserId);
 
-                hfAgency.Value = job.getAgencyName(UserId);
+                hfAgency.Value = emp.GetAgencyName(UserId);
 
 
                 //check ids
                 MembershipUser loggedInUser = Membership.GetUser();
                 Guid loggedUserId = Guid.Parse(loggedInUser.ProviderUserKey.ToString());
 
-                //chk if user is evaluating itself
-                if (loggedUserId.Equals(UserId))
+                //disable controls
+                btnPerfEval.Enabled = false;
+                btnPerfEval.Visible = false;
+
+                //evaluator
+                if (!loggedUserId.Equals(UserId))
                 {
-                    if (hfAgency.Value.Equals("TOPLIS Solutions Inc.") ||
-                        hfAgency.Value.Equals("None"))
+                    //GM-> evaluate Managers and HR/Manager                   
+                    if (User.IsInRole("General Manager"))
                     {
-                        btnPerfEval.Visible = false;
-                        btnPerfEval.Enabled = false;
+                        //show managers/hr only
+                        if (emp.GetRoleName(UserId).Equals("Manager") ||
+                            emp.GetRoleName(UserId).Equals("HR"))
+                        {
+                            btnPerfEval.Enabled = true;
+                            btnPerfEval.Visible = true;
+                        }
+                    }
+                    //HR-> evaluate Managers only
+                    else if (User.IsInRole("HR"))
+                    {
+                        //show if managers only
+                        if (emp.GetRoleName(UserId).Equals("Manager"))
+                        {
+                            btnPerfEval.Enabled = true;
+                            btnPerfEval.Visible = true;
+                        }
                     }
                     else
                     {
-                        //show PrimePower evaluation
                         btnPerfEval.Visible = true;
                         btnPerfEval.Enabled = true;
                     }
-                    //show self evaluation
-                    btnSelfEval.Visible = true;
-                    btnSelfEval.Enabled = true;
                 }
                 else
                 {
-                    btnSelfEval.Enabled = false;
-                    btnSelfEval.Visible = false;
-                    btnPerfEval.Visible = false;
-                    btnPerfEval.Enabled = false;
-
-                    //GM-> evaluate Managers and HR/Manager
-                    //HR-> evaluate Managers only
-                    if (User.IsInRole("General Manager"))
-                    {
-                        if (hfAgency.Value.Equals("PrimePower"))
-                        {
-                            //show if managers only
-                            if (job.getRoleName(UserId).Equals("Manager") ||
-                                job.getRoleName(UserId).Equals("HR"))
-                            {
-                                btnPerfEval.Enabled = true;
-                                btnPerfEval.Visible = true;
-                            }
-                        }
-                    }
-                    else if(User.IsInRole("HR"))
-                    {
-                        if (hfAgency.Value.Equals("PrimePower"))
-                        {
-                            //show if managers only
-                            if (job.getRoleName(UserId).Equals("Manager"))
-                            {
-                                btnPerfEval.Enabled = true;
-                                btnPerfEval.Visible = true;
-                            }
-                        }
-                    }
-                }          
+                    btnPerfEval.Visible = true;
+                    btnPerfEval.Enabled = true;
+                }
             }
         }
 

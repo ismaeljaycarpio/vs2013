@@ -13,6 +13,9 @@ namespace AMS.Employee
 {
     public partial class pPrime_Performance_Evaluation : System.Web.UI.Page
     {
+        DAL.Employee emp = new DAL.Employee();
+        DAL.Evaluation eval = new DAL.Evaluation();
+
         SqlCommand comm;
         SqlDataAdapter adap;
         DataTable dt;
@@ -45,20 +48,16 @@ namespace AMS.Employee
             dt = new DataTable();
             DataTable dtEvaluation = new DataTable();
 
-            DAL.Profile profile = new DAL.Profile();
-            DAL.Job job = new DAL.Job();
-            DAL.Evaluation eval = new DAL.Evaluation();
-
-            dt = profile.getProfileById(UserId);
+            dt = emp.GetProfileById(UserId);
             dtEvaluation = eval.getEvaluated(evaluationId);
 
             //params
             ReportParameter[] param = new ReportParameter[30];
 
             //fill params
-            param[0] = new ReportParameter("lblName", dt.Rows[0]["LName"].ToString() + ", " + dt.Rows[0]["FName"].ToString() + " " + dt.Rows[0]["MName"].ToString());
-            param[1] = new ReportParameter("lblDepartment", job.getDepartment(UserId));
-            param[2] = new ReportParameter("lblDateHired", job.getHiredDate(UserId));
+            param[0] = new ReportParameter("lblName", emp.GetFullName(UserId));
+            param[1] = new ReportParameter("lblDepartment", emp.GetDepartment(UserId));
+            param[2] = new ReportParameter("lblDateHired", emp.GetHiredDate(UserId));
             param[3] = new ReportParameter("lblEvaluationDate", dtEvaluation.Rows[0]["DateEvaluated"].ToString());
             param[4] = new ReportParameter("lblDateLastEvaluation", dtEvaluation.Rows[0]["LastDateEvaluation"].ToString());
             param[5] = new ReportParameter("lblDateNextEvaluation", dtEvaluation.Rows[0]["DateNextEvaluation"].ToString());

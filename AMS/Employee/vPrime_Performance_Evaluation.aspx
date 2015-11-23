@@ -39,11 +39,10 @@
                             <td colspan="3">EMPLOYEE PERFORMANCE EVALUATION</td>
                         </tr>
                         <tr>
-                            <td><b>Employee Name:</b>
+                            <td colspan="2"><b>Employee Name:</b>
                                 <asp:Label ID="lblEmpName" runat="server"></asp:Label></td>
                             <td><b>Department:</b>
                                 <asp:Label ID="lblDepartment" runat="server"></asp:Label></td>
-                            <td></td>
                         </tr>
                         <tr>
                             <td><b>Date Hired:</b>
@@ -51,7 +50,14 @@
                             <td><b>Evaluation Date:</b>
                                 <asp:Label ID="lblEvalDate" runat="server"></asp:Label></td>
                             <td><b>Date of Last Evaluation:</b>
-                                <asp:TextBox ID="txtLastDateEval" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtLastDateEval" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" 
+                                    runat="server"
+                                    ForeColor="Red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtLastDateEval" 
+                                    ErrorMessage="* Required"></asp:RequiredFieldValidator>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="3"><b>Date of Next Evaluation: </b>
@@ -59,9 +65,10 @@
                                     runat="server"
                                     RepeatDirection="Horizontal"
                                     CellSpacing="15">
-                                    <asp:ListItem Value="Regularization">Regularization</asp:ListItem>
-                                    <asp:ListItem Value="Trimester">Trimester</asp:ListItem>
-                                    <asp:ListItem Value="Promotion">Promotion</asp:ListItem>
+                                    <asp:ListItem Value="Monthly">Monthly</asp:ListItem>
+                                    <asp:ListItem Value="Quarterly">Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="Semi-Annual">Semi-Annual</asp:ListItem>
+                                    <asp:ListItem Value="Annual">Annual</asp:ListItem>
                                 </asp:RadioButtonList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
                                     runat="server"
@@ -1168,14 +1175,33 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">Employees’ Signature:
-                                    <asp:Label ID="lblEvaluateeName" runat="server"></asp:Label>
+                                <td colspan="2">
+                                    <b>Evaluated By:</b>
+                                    <asp:Label ID="lblEvaluatedBy" runat="server"></asp:Label>                                    
                                 </td>
-                                <td></td>
                             </tr>
                             <tr>
-                                <td colspan="2">Supervisor’s Signature:
-                                    <asp:Label ID="lblSupName" runat="server"></asp:Label>
+                                <td colspan="2">
+                                    <b>Approved By Manager:</b>
+                                    <asp:Label ID="lblApprovedByManager" runat="server"></asp:Label>                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <b>Approved By HR:</b>
+                                    <asp:Label ID="lblApprovedByHR" runat="server"></asp:Label>                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <b>Acknowledged By:</b>
+                                    <asp:Label ID="lblAcknowledgeBy" runat="server"></asp:Label>                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <b>Date Evaulated:</b>
+                                    <asp:Label ID="lblDateEvaluated" runat="server"></asp:Label>                                    
                                 </td>
                             </tr>
                         </table>

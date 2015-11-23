@@ -14,7 +14,7 @@ namespace AMS.Evaluation
     public partial class PendingApprovals : System.Web.UI.Page
     {
         DAL.Evaluation eval = new DAL.Evaluation();
-        DAL.Profile profile = new DAL.Profile();
+        DAL.Employee emp = new DAL.Employee();
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -26,6 +26,10 @@ namespace AMS.Evaluation
 
         private void BindData()
         {
+            //get current user
+            MembershipUser _loggedUser = Membership.GetUser();
+            Guid loggedUserId = Guid.Parse(_loggedUser.ProviderUserKey.ToString());
+            string deptId = emp.GetDepartmentId(loggedUserId);
             dt = new DataTable();
 
             if(User.IsInRole("General Manager"))
@@ -39,7 +43,7 @@ namespace AMS.Evaluation
             }
             else if(User.IsInRole("Manager"))
             {
-                dt = eval.getPendingApprovalManager();
+                dt = eval.getPendingApprovalManager(deptId);
             }
             else if(User.IsInRole("Supervisor"))
             {
@@ -65,7 +69,7 @@ namespace AMS.Evaluation
             //get current user
             MembershipUser _loggedUser = Membership.GetUser();
             Guid loggedUserId = Guid.Parse(_loggedUser.ProviderUserKey.ToString());
-            string signatory = profile.getProfileName(loggedUserId);
+            string signatory = emp.GetFullName(loggedUserId);
 
             int count = 0;
             SetData();
@@ -84,7 +88,7 @@ namespace AMS.Evaluation
                     }
                     else if(User.IsInRole("Manager"))
                     {
-
+                        eval.ApprovePendingApprovalManager(gvPendingApprovals.DataKeys[i].Value.ToString(), signatory);
                     }
                 }
             }

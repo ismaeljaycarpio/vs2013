@@ -16,8 +16,7 @@ namespace AMS.Employee
     public partial class Prime_Performance_Evaluation : System.Web.UI.Page
     {
         DAL.Evaluation eval = new DAL.Evaluation();
-        DAL.Profile profile = new DAL.Profile();
-        DAL.Job job = new DAL.Job();
+        DAL.Employee emp = new DAL.Employee();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,16 +27,15 @@ namespace AMS.Employee
                     Response.Redirect("~/Employee/Employee");
                 }
                     
-
                 //get selected user
                 hfUserId.Value = Session["UserId"].ToString();
                 Guid UserId = Guid.Parse(hfUserId.Value);
 
-                lblEmpName.Text = profile.getProfileName(UserId);
-                lblDepartment.Text = job.getDepartment(UserId);
-                lblDateHired.Text = job.getHiredDate(UserId);
+                lblEmpName.Text = emp.GetFullName(UserId);
+                lblDepartment.Text = emp.GetDepartment(UserId);
+                lblDateHired.Text = emp.GetHiredDate(UserId);
                 lblEvalDate.Text = DateTime.Now.ToShortDateString();
-                lblAgency.Text = job.getAgencyName(UserId);
+                lblAgency.Text = emp.GetAgencyName(UserId);
 
                 gvCooperation.DataSource = eval.getCooperation();
                 gvCooperation.DataBind();
@@ -270,8 +268,10 @@ namespace AMS.Employee
 
             MembershipUser _evaluatedBy = Membership.GetUser();
             Guid evaluatedById = ((Guid)_evaluatedBy.ProviderUserKey);
-            string evaluatedBy = profile.getProfileName(evaluatedById);
-            string AcknowledgedBy = profile.getProfileName(UserId);
+            string evaluatedBy = emp.GetFullName(evaluatedById);
+            string AcknowledgedBy = emp.GetFullName(UserId);
+            string approveByHR = "";
+            string approveByManager = "";
 
             //chk if user is evaluating itself
             if (loggedUserId.Equals(UserId))
@@ -279,14 +279,28 @@ namespace AMS.Employee
                 evaluatedById = Guid.Empty;
                 evaluatedBy = "";
             }
+            else
+            {
+                //chk user role
+                if(User.IsInRole("HR"))
+                {
+                    //auto approve HR
+                    approveByHR = emp.GetFullName(loggedUserId);
+                }
+                else if(User.IsInRole("Manager"))
+                {
+                    //auto-approve Manager
+                    approveByManager = emp.GetFullName(loggedUserId);
+                }
+            }
 
             int evaluationId = eval.insertEvaluation_Prime(
                 UserId,
                 "Performance Evaluation",
                 evaluatedById,
                 evaluatedBy,
-                "",
-                "",
+                approveByManager, //manager
+                approveByHR, //HR
                 AcknowledgedBy,
                 lblAgency.Text,
                 txtCommentSection1A.Text,

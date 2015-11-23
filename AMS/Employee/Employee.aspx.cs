@@ -14,7 +14,6 @@ namespace AMS.Employee
     public partial class Employee : System.Web.UI.Page
     {
         DAL.Employee emp = new DAL.Employee();
-        DAL.Job job = new DAL.Job();
         DataTable dt;
         string dept = String.Empty;
         string position = String.Empty;
@@ -36,24 +35,25 @@ namespace AMS.Employee
             dt = new DataTable();
 
             //get departmentId
-            string deptId = job.getDepartmentId(Guid.Parse(_user.ProviderUserKey.ToString()));
+            //string deptId = job.getDepartmentId(Guid.Parse(_user.ProviderUserKey.ToString()));
+            string deptId = emp.GetDepartmentId(Guid.Parse(_user.ProviderUserKey.ToString()));
 
             //check logged-in user's role, position and dept
             if(User.IsInRole("Admin") || 
                 User.IsInRole("General Manager") ||
                 User.IsInRole("HR"))
             {
-                return dt = emp.displayEmployee(txtSearch.Text);
+                return dt = emp.DisplayEmployee(txtSearch.Text);
             }
             else if(User.IsInRole("Manager"))
             {
                 //display supervisors and staff by dept
-                return dt = emp.displayEmployeeOfManager(txtSearch.Text, deptId);
+                return dt = emp.DisplayEmployeeOfManager(txtSearch.Text, deptId);
             }
             else if(User.IsInRole("Supervisor"))
             {
                 //display staff by dept
-                return dt = emp.displayEmployeeOfSupervisor(txtSearch.Text, deptId);
+                return dt = emp.DisplayEmployeeOfSupervisor(txtSearch.Text, deptId);
             }
 
             return dt = null;

@@ -43,11 +43,19 @@
                         </tr>
                         <tr>
                             <td><b>Date Hired:</b>
-                                <asp:Label ID="lblDateHired" runat="server"></asp:Label></td>
+                                <asp:Label ID="lblDateHired" runat="server"></asp:Label>
+                            </td>
                             <td><b>Evaluation Date:</b>
                                 <asp:Label ID="lblEvalDate" runat="server"></asp:Label></td>
                             <td><b>Date of Last Evaluation:</b>
-                                <asp:TextBox ID="txtLastDateEval" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtLastDateEval" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" 
+                                    runat="server"
+                                    ForeColor="Red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtLastDateEval" 
+                                    ErrorMessage="* Required"></asp:RequiredFieldValidator>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="3"><b>Date of Next Evaluation: </b>
@@ -55,9 +63,10 @@
                                     runat="server"
                                     RepeatDirection="Horizontal"
                                     CellSpacing="15">
-                                    <asp:ListItem Value="Regularization">Regularization</asp:ListItem>
-                                    <asp:ListItem Value="Trimester">Trimester</asp:ListItem>
-                                    <asp:ListItem Value="Promotion">Promotion</asp:ListItem>
+                                    <asp:ListItem Value="Monthly">Monthly</asp:ListItem>
+                                    <asp:ListItem Value="Quarterly">Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="Semi-Annual">Semi-Annual</asp:ListItem>
+                                    <asp:ListItem Value="Annual">Annual</asp:ListItem>
                                 </asp:RadioButtonList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
                                     runat="server"

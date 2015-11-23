@@ -16,8 +16,7 @@ namespace AMS.Employee
     public partial class vPrime_Performance_Evaluation : System.Web.UI.Page
     {
         DAL.Evaluation eval = new DAL.Evaluation();
-        DAL.Profile profile = new DAL.Profile();
-        DAL.Job job = new DAL.Job();
+        DAL.Employee emp = new DAL.Employee();
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -40,12 +39,19 @@ namespace AMS.Employee
                 dt = new DataTable();
                 dt = eval.getEvaluated(evaluationId);
 
-                lblEmpName.Text = profile.getProfileName(UserId);
-                lblDepartment.Text = job.getDepartment(UserId);
-                lblDateHired.Text = job.getHiredDate(UserId);
+                lblEmpName.Text = emp.GetFullName(UserId);
+                lblDepartment.Text = emp.GetDepartment(UserId);
+                lblDateHired.Text = emp.GetHiredDate(UserId);
 
-                lblAgency.Text = job.getAgencyName(UserId);
-                lblEvaluateeName.Text = lblEmpName.Text;
+                lblAgency.Text = emp.GetAgencyName(UserId);
+
+                //fill approval
+                lblEvaluatedBy.Text = dt.Rows[0]["EvaluatedBy"].ToString();
+                lblApprovedByManager.Text = dt.Rows[0]["ApprovedByManager"].ToString();
+                lblApprovedByHR.Text = dt.Rows[0]["ApprovedByHR"].ToString();
+                lblAcknowledgeBy.Text = dt.Rows[0]["AcknowledgedBy"].ToString();
+                lblDateEvaluated.Text = dt.Rows[0]["DateEvaluated"].ToString();
+
 
                 lblEvalDate.Text = dt.Rows[0]["DateEvaluated"].ToString();
                 txtLastDateEval.Text = DateTime.Parse(dt.Rows[0]["LastDateEvaluation"].ToString()).ToShortDateString();
@@ -242,38 +248,37 @@ namespace AMS.Employee
                 else
                 {
                     //hide staff rating
-                    //gvCooperation.Columns[2].Visible = false;
-                    //gvAttendanceAndPunctuality.Columns[2].Visible = false;
-                    //gvInterpersonalRelationship.Columns[2].Visible = false;
-                    //gvAttitude.Columns[2].Visible = false;
-                    //gvInitiative.Columns[2].Visible = false;
-                    //gvJudgement.Columns[2].Visible = false;
-                    //gvCommunication.Columns[2].Visible = false;
-                    //gvSafety.Columns[2].Visible = false;
-                    //gvDependability.Columns[2].Visible = false;
-                    //gvSpecificJobSkills.Columns[2].Visible = false;
-                    //gvProductivity.Columns[2].Visible = false;
-                    //gvOrganizationalSkills.Columns[2].Visible = false;
+                    gvCooperation.Columns[2].Visible = false;
+                    gvAttendanceAndPunctuality.Columns[2].Visible = false;
+                    gvInterpersonalRelationship.Columns[2].Visible = false;
+                    gvAttitude.Columns[2].Visible = false;
+                    gvInitiative.Columns[2].Visible = false;
+                    gvJudgement.Columns[2].Visible = false;
+                    gvCommunication.Columns[2].Visible = false;
+                    gvSafety.Columns[2].Visible = false;
+                    gvDependability.Columns[2].Visible = false;
+                    gvSpecificJobSkills.Columns[2].Visible = false;
+                    gvProductivity.Columns[2].Visible = false;
+                    gvOrganizationalSkills.Columns[2].Visible = false;
 
-                    //gvCooperation.Columns[2].Visible = false;
-                    //gvAttendanceAndPunctuality.Columns[2].Visible = false;
-                    //gvInterpersonalRelationship.Columns[2].Visible = false;
-                    //gvAttitude.Columns[2].Visible = false;
-                    //gvInitiative.Columns[2].Visible = false;
-                    //gvJudgement.Columns[2].Visible = false;
-                    //gvCommunication.Columns[2].Visible = false;
-                    //gvSafety.Columns[2].Visible = false;
-                    //gvDependability.Columns[2].Visible = false;
-                    //gvSpecificJobSkills.Columns[2].Visible = false;
-                    //gvProductivity.Columns[2].Visible = false;
-                    //gvOrganizationalSkills.Columns[2].Visible = false;
+                    gvCooperation.Columns[2].Visible = false;
+                    gvAttendanceAndPunctuality.Columns[2].Visible = false;
+                    gvInterpersonalRelationship.Columns[2].Visible = false;
+                    gvAttitude.Columns[2].Visible = false;
+                    gvInitiative.Columns[2].Visible = false;
+                    gvJudgement.Columns[2].Visible = false;
+                    gvCommunication.Columns[2].Visible = false;
+                    gvSafety.Columns[2].Visible = false;
+                    gvDependability.Columns[2].Visible = false;
+                    gvSpecificJobSkills.Columns[2].Visible = false;
+                    gvProductivity.Columns[2].Visible = false;
+                    gvOrganizationalSkills.Columns[2].Visible = false;
                 }
 
                 if (!User.IsInRole("HR"))
                 {
                     pnlHROnly.Visible = false;
                 }
-
             }
         }
 
@@ -424,14 +429,30 @@ namespace AMS.Employee
 
             MembershipUser _evaluatedBy = Membership.GetUser();
             Guid evaluatedById = ((Guid)_evaluatedBy.ProviderUserKey);
-            string evaluatedBy = profile.getProfileName(evaluatedById);
-            string AcknowledgedBy = profile.getProfileName(UserId);
+            string evaluatedBy = emp.GetFullName(evaluatedById);
+            string AcknowledgedBy = emp.GetFullName(UserId);
+            string approveByHR = "";
+            string approveByManager = "";
 
             //chk if user is evaluating itself
             if (loggedUserId.Equals(UserId))
             {
                 evaluatedById = Guid.Empty;
                 evaluatedBy = "";
+            }
+            else
+            {
+                //chk user role
+                if (User.IsInRole("HR"))
+                {
+                    //auto approve HR
+                    approveByHR = emp.GetFullName(loggedUserId);
+                }
+                else if (User.IsInRole("Manager"))
+                {
+                    //auto-approve Manager
+                    approveByManager = emp.GetFullName(loggedUserId);
+                }
             }
 
             //Get selected evaluation id
@@ -441,6 +462,8 @@ namespace AMS.Employee
                 evaluatedById,
                 DateTime.Now.ToString(),
                 evaluatedBy,
+                approveByManager,
+                approveByHR,
                 txtCommentSection1A.Text,
                 txtCommentSection1B.Text,
                 txtCommentSection1C.Text,

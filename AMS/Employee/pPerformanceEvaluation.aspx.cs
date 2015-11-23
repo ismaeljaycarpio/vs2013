@@ -16,6 +16,8 @@ namespace AMS.Employee
         SqlCommand comm;
         SqlDataAdapter adap;
         DataTable dt;
+        DAL.Employee emp = new DAL.Employee();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -47,20 +49,18 @@ namespace AMS.Employee
             dt = new DataTable();
             DataTable dtEvaluation = new DataTable();
 
-            DAL.Profile profile = new DAL.Profile();
-            DAL.Job job = new DAL.Job();
             DAL.Evaluation eval = new DAL.Evaluation();
 
-            dt = profile.getProfileById(UserId);
+            dt = emp.GetProfileById(UserId);
             dtEvaluation = eval.getEvaluated(evaluationId);
 
             //params
             ReportParameter[] param = new ReportParameter[17];
 
             //fill params
-            param[0] = new ReportParameter("lblName", dt.Rows[0]["LName"].ToString() + ", " + dt.Rows[0]["FName"].ToString() + " " + dt.Rows[0]["MName"].ToString());
-            param[1] = new ReportParameter("lblDateHired", job.getHiredDate(UserId));
-            param[2] = new ReportParameter("lblPosition", job.getPosition(UserId));
+            param[0] = new ReportParameter("lblName", emp.GetFullName(UserId));
+            param[1] = new ReportParameter("lblDateHired", emp.GetHiredDate(UserId));
+            param[2] = new ReportParameter("lblPosition", emp.GetPosition(UserId));
             param[3] = new ReportParameter("lblRemarksName", dtEvaluation.Rows[0]["RemarksName"].ToString());
             param[4] = new ReportParameter("lblUnacceptable", dtEvaluation.Rows[0]["ImpUnacceptable"].ToString());
             param[5] = new ReportParameter("lblFallShort", dtEvaluation.Rows[0]["ImpFallShort"].ToString());
@@ -81,6 +81,7 @@ namespace AMS.Employee
             ReportDataSource datasource = new ReportDataSource("TSI_Performance_Evaluation", dsEvaluation.Tables[0]);
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource);
+            ReportViewer1.LocalReport.DisplayName = "TOPLIS_Performance_Evaluation";
             ReportViewer1.LocalReport.Refresh();
         }
 
@@ -94,7 +95,7 @@ namespace AMS.Employee
                 conn.Open();
                 comm = new SqlCommand();
                 string sqlStr = "SELECT Competence.Competence,CompetenceCat.CompetenceCat,CompetenceCat.Description,CompetenceCat.TSIRating, " +
-                    "Evaluation_Score.Rating,Evaluation_Score.Id " +
+                    "Evaluation_Score.StaffRating,Evaluation_Score.EvaluatorRating,Evaluation_Score.Id " +
                     "FROM Competence_Master, Competence, CompetenceCat, Evaluation, Evaluation_Score " +
                     "WHERE " +
                     "Competence_Master.Id = Competence.Competence_MasterId AND " +

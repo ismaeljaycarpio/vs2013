@@ -67,6 +67,15 @@ namespace AMS.Employee {
         protected global::System.Web.UI.WebControls.TextBox txtLastDateEval;
         
         /// <summary>
+        /// RequiredFieldValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        
+        /// <summary>
         /// rblNextEvaluation control.
         /// </summary>
         /// <remarks>
@@ -652,22 +661,49 @@ namespace AMS.Employee {
         protected global::System.Web.UI.WebControls.TextBox txtCommentsNNotes;
         
         /// <summary>
-        /// lblEvaluateeName control.
+        /// lblEvaluatedBy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEvaluateeName;
+        protected global::System.Web.UI.WebControls.Label lblEvaluatedBy;
         
         /// <summary>
-        /// lblSupName control.
+        /// lblApprovedByManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSupName;
+        protected global::System.Web.UI.WebControls.Label lblApprovedByManager;
+        
+        /// <summary>
+        /// lblApprovedByHR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblApprovedByHR;
+        
+        /// <summary>
+        /// lblAcknowledgeBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAcknowledgeBy;
+        
+        /// <summary>
+        /// lblDateEvaluated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDateEvaluated;
         
         /// <summary>
         /// btnUpdate control.

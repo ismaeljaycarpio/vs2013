@@ -140,10 +140,6 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Admin\PerformanceEvaluation.aspx" />
-    <Content Include="App_Data\dbAMS.mdf" />
-    <Content Include="App_Data\dbAMS_log.ldf">
-      <DependentUpon>dbAMS.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
@@ -388,6 +384,8 @@
       <DependentUpon>TSI_Performance_Evaluation.xsd</DependentUpon>
     </Content>
     <Content Include="EvaluationNested.master" />
+    <None Include="Properties\PublishProfiles\ams-test00 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ams-test00 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
@@ -611,11 +609,9 @@
     <Compile Include="DAL\Evaluation.cs" />
     <Compile Include="DAL\FileUpload.cs" />
     <Compile Include="DAL\Filler.cs" />
-    <Compile Include="DAL\Job.cs" />
     <Compile Include="DAL\Experience.cs" />
     <Compile Include="DAL\MembershipCard.cs" />
     <Compile Include="DAL\PositionManagement.cs" />
-    <Compile Include="DAL\Profile.cs" />
     <Compile Include="DAL\Training.cs" />
     <Compile Include="DAL\Violation.cs" />
     <Compile Include="Dashboard\Dashboard.aspx.cs">
@@ -882,7 +878,9 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
