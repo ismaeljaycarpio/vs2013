@@ -22,6 +22,16 @@ namespace AMS.Evaluation
             if(Page.IsPostBack)
                 GetData();  
                 BindData();
+            if(!Page.IsPostBack)
+            {
+                MembershipUser mu = Membership.GetUser();
+                Guid logged_UserId = Guid.Parse(mu.ProviderUserKey.ToString());
+
+                if(emp.GetPosition(logged_UserId) == "HR Assistant")
+                {
+                    Response.Redirect("~/UnauthorizedAccess");
+                }
+            }
         }
 
         private void BindData()

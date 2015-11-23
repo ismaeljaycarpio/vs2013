@@ -55,12 +55,21 @@ namespace AMS.Employee
                     //HR-> evaluate Managers only
                     else if (User.IsInRole("HR"))
                     {
-                        //show if managers only
-                        if (emp.GetRoleName(UserId).Equals("Manager"))
+                        //chk if HR Assistant
+                        if(emp.GetPosition(loggedUserId) == "HR Assistant")
                         {
-                            btnPerfEval.Enabled = true;
-                            btnPerfEval.Visible = true;
+                            btnPerfEval.Enabled = false;
+                            btnPerfEval.Visible = false;
                         }
+                        else
+                        {
+                            //show if managers only
+                            if (emp.GetRoleName(UserId).Equals("Manager"))
+                            {
+                                btnPerfEval.Enabled = true;
+                                btnPerfEval.Visible = true;
+                            }
+                        }                     
                     }
                     else
                     {

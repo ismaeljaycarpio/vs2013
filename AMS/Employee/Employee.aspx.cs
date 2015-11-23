@@ -32,7 +32,7 @@ namespace AMS.Employee
         {
             //get user from membership
             MembershipUser _user = Membership.GetUser();
-
+           
             //get departmentId
             string deptId = emp.GetDepartmentId(Guid.Parse(_user.ProviderUserKey.ToString()));
 

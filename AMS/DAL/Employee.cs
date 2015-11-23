@@ -695,6 +695,23 @@ namespace AMS.DAL
             comm.Dispose();
             conn.Dispose();
         }
+
+        public string GetGeneratedUserName()
+        {
+            strSql = "SELECT MAX(RowId) AS RowId FROM EMPLOYEE";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt.Rows[0]["RowId"].ToString();
+        }
         #endregion
     }
 }

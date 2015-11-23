@@ -13,6 +13,10 @@
                     <div class="page-header">
                         <h3>Register</h3>
                     </div>
+                    <asp:Panel ID="pnlSuccess" runat="server" CssClass="alert alert-success" Visible="false">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Success!</strong> User successfully created.
+                    </asp:Panel>
                     <div class="form-horizontal" role="form">
                         <div class="form-group">
                             <label for="txtEmpId" class="col-sm-2 control-label">ID</label>
@@ -20,6 +24,12 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                                     <asp:TextBox ID="txtEmpId" runat="server" CssClass="form-control" placeholder="Employee ID"></asp:TextBox>
+                                    <asp:Button ID="btnGenerateId"
+                                        runat="server"
+                                        Text="Generate"
+                                        CausesValidation="false"
+                                        OnClick="btnGenerateId_Click"
+                                        CssClass="btn btn-default" />
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
                                         runat="server"
                                         Display="Dynamic"
@@ -51,7 +61,7 @@
                             <div class="col-sm-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                    <asp:TextBox ID="txtMiddleName" runat="server" CssClass="form-control" placeholder="First Name"></asp:TextBox>
+                                    <asp:TextBox ID="txtMiddleName" runat="server" CssClass="form-control" placeholder="Middle Name"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
                                         runat="server"
                                         Display="Dynamic"
@@ -67,7 +77,7 @@
                             <div class="col-sm-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                    <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" placeholder="First Name"></asp:TextBox>
+                                    <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" placeholder="Last Name"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4"
                                         runat="server"
                                         Display="Dynamic"
@@ -101,6 +111,15 @@
                                             <asp:AsyncPostBackTrigger ControlID="ddlPosition" EventName="SelectedIndexChanged" />
                                         </Triggers>
                                     </asp:UpdatePanel>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lblError" class="col-sm-2 control-label">&nbsp;</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
                                 </div>
                             </div>
                         </div>
