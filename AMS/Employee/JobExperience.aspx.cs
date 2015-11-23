@@ -10,6 +10,10 @@ namespace AMS.Employee
 {
     public partial class JobExperience : System.Web.UI.Page
     {
+        DAL.Experience exp = new DAL.Experience();
+        DataTable dt;
+        System.Text.StringBuilder sb;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -34,9 +38,8 @@ namespace AMS.Employee
 
         private void BindData()
         {
-            DAL.Experience exp = new DAL.Experience();
-            DataTable dt = new DataTable();
             Guid UserId = Guid.Parse(hfUserId.Value);
+            dt = new DataTable();         
             dt = exp.getExperienceById(UserId);
 
             gvJobExp.DataSource = dt;
@@ -56,7 +59,7 @@ namespace AMS.Employee
 
             BindData();
 
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
             sb.Append("$('#addModal').modal('hide');");
             sb.Append(@"</script>");
@@ -65,7 +68,6 @@ namespace AMS.Employee
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            DAL.Experience exp = new DAL.Experience();
             exp.updateExperience(txtEditCompany.Text,
                 txtEditJob.Text,
                 txtEditFromDate.Text,
@@ -76,7 +78,7 @@ namespace AMS.Employee
 
             BindData();
 
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
             sb.Append("$('#updateModal').modal('hide');");
             sb.Append(@"</script>");
@@ -86,22 +88,19 @@ namespace AMS.Employee
         protected void gvJobExp_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string rowId = ((Label)gvJobExp.Rows[e.RowIndex].FindControl("lblRowId")).Text;
-            DAL.Experience exp = new DAL.Experience();
             exp.deleteJobExp(rowId);
-
             BindData();
         }
 
         protected void gvJobExp_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            DataTable dt = new DataTable();
-
+            dt = new DataTable();
             int index = Convert.ToInt32(e.CommandArgument);
+
             if (e.CommandName.Equals("editRecord"))
             {
-                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb = new System.Text.StringBuilder();
 
-                DAL.Experience exp = new DAL.Experience();
                 dt = exp.getExperienceByRowId((int)(gvJobExp.DataKeys[index].Value));
                 lblRowId.Text = dt.Rows[0]["Id"].ToString();
                 txtEditCompany.Text = dt.Rows[0]["Company"].ToString();
@@ -120,7 +119,7 @@ namespace AMS.Employee
 
         protected void btnOpenModal_Click(object sender, EventArgs e)
         {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
             sb.Append("$('#addModal').modal('show');");
             sb.Append(@"</script>");

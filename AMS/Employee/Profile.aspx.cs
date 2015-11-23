@@ -13,16 +13,18 @@ namespace AMS.Employee
     {
         DAL.Filler fill = new DAL.Filler();
         DAL.Employee emp = new DAL.Employee();
+        DataTable dt;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 if (Session["UserId"] == null)
+                {
                     Response.Redirect("~Employee/Employee");
-
-                fillNationality();
-
+                }
                 hfUserId.Value = Session["UserId"].ToString();
+ 
+                fillNationality();
 
                 //check image
                 if (!File.Exists(Server.MapPath("~/ProfileImages/") + hfUserId.Value + ".png"))
@@ -36,7 +38,7 @@ namespace AMS.Employee
                 }
 
                 //load personal details
-                DataTable dt = new DataTable();
+                dt = new DataTable();
                 Guid UserId = Guid.Parse(hfUserId.Value);
                 dt = emp.GetProfileById(UserId);
 
@@ -47,13 +49,12 @@ namespace AMS.Employee
                 rblStatus.SelectedValue = dt.Rows[0]["M_Status"].ToString();
                 rblGender.SelectedValue = dt.Rows[0]["Gender"].ToString();
                 ddlNationality.SelectedValue = dt.Rows[0]["NationalityId"].ToString();
-
                 txtDoB.Text = dt.Rows[0]["BirthDate"].ToString();
-
                 rblBloodType.SelectedValue = dt.Rows[0]["BloodType"].ToString();
                 txtLanguage.Text = dt.Rows[0]["Language"].ToString();
 
                 //hide/disable Controls
+                //admin and hr can edit
                 if(!User.IsInRole("Admin") && !User.IsInRole("HR"))
                 {
                     hideControls();
@@ -85,7 +86,7 @@ namespace AMS.Employee
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-                emp.UpdateProfile(
+            emp.UpdateProfile(
                     txtFirstName.Text,
                     txtMiddleName.Text,
                     txtLastName.Text,
@@ -95,8 +96,8 @@ namespace AMS.Employee
                     txtDoB.Text,
                     rblBloodType.SelectedValue.ToString(),
                      txtLanguage.Text,
-                    txtContactNo.Text,               
-                    Guid.Parse(hfUserId.Value));
+                    txtContactNo.Text,
+                    Guid.Parse(hfUserId.Value));   
         }
 
         public void fillNationality()

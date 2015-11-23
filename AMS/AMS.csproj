@@ -202,6 +202,7 @@
     <Content Include="HR\Register.aspx" />
     <Content Include="MasterConfig\Agency.aspx" />
     <Content Include="MasterConfig\RoleManager.aspx" />
+    <Content Include="myLogs.txt" />
     <Content Include="packages.config" />
     <Content Include="Employee\Web.config" />
     <Content Include="ProfileImages\378bcb0b-be04-4e83-9dc0-072f8106bbf6.png" />
@@ -603,6 +604,7 @@
     <Compile Include="DAL\Agency.cs" />
     <Compile Include="DAL\Award.cs" />
     <Compile Include="DAL\Contact.cs" />
+    <Compile Include="DAL\Department.cs" />
     <Compile Include="DAL\Education.cs" />
     <Compile Include="DAL\Employee.cs" />
     <Compile Include="DAL\EmployeeMovement.cs" />
@@ -888,7 +890,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Employee\Report2.rdlc" />
     <EmbeddedResource Include="Employee\Report3.rdlc" />
-    <EmbeddedResource Include="Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

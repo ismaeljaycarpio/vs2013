@@ -32,17 +32,18 @@ namespace AMS.Employee
         {
             //get user from membership
             MembershipUser _user = Membership.GetUser();
-            dt = new DataTable();
 
             //get departmentId
-            //string deptId = job.getDepartmentId(Guid.Parse(_user.ProviderUserKey.ToString()));
             string deptId = emp.GetDepartmentId(Guid.Parse(_user.ProviderUserKey.ToString()));
 
-            //check logged-in user's role, position and dept
+            dt = new DataTable();
+
+            //check logged-in user's role and dept
             if(User.IsInRole("Admin") || 
                 User.IsInRole("General Manager") ||
                 User.IsInRole("HR"))
             {
+                //display all employee
                 return dt = emp.DisplayEmployee(txtSearch.Text);
             }
             else if(User.IsInRole("Manager"))

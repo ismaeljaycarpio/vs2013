@@ -44,6 +44,43 @@
                                         ValidationGroup="vgAdd"
                                         ErrorMessage="Remarks is required"></asp:RequiredFieldValidator>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="txtAddFromDate">From:</label>
+                                    <asp:TextBox ID="txtAddFromDate" runat="server" CssClass="form-control" placeholder="Remarks" TextMode="MultiLine" data-provide="datepicker"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5"
+                                        runat="server"
+                                        Display="Dynamic"
+                                        ControlToValidate="txtAddFromDate"
+                                        CssClass="label label-danger"
+                                        ValidationGroup="vgAdd"
+                                        ErrorMessage="From Date is required"></asp:RequiredFieldValidator>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtAddToDate">To:</label>
+                                    <asp:TextBox ID="txtAddToDate" runat="server" CssClass="form-control" placeholder="Remarks" TextMode="MultiLine" data-provide="datepicker"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6"
+                                        runat="server"
+                                        Display="Dynamic"
+                                        ControlToValidate="txtAddToDate"
+                                        CssClass="label label-danger"
+                                        ValidationGroup="vgAdd"
+                                        ErrorMessage="To Date is required"></asp:RequiredFieldValidator>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtEffectivityDate">Effectivity Date:</label>
+                                    <asp:TextBox ID="txtEffectivityDate" runat="server" CssClass="form-control" placeholder="Remarks" TextMode="MultiLine" data-provide="datepicker"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7"
+                                        runat="server"
+                                        Display="Dynamic"
+                                        ControlToValidate="txtEffectivityDate"
+                                        CssClass="label label-danger"
+                                        ValidationGroup="vgAdd"
+                                        ErrorMessage="Effectivity Date is required"></asp:RequiredFieldValidator>
+                                </div>
+
                             </div>
 
                         </div>
@@ -99,6 +136,42 @@
                                         CssClass="label label-danger"
                                         ValidationGroup="vgEdit"
                                         ErrorMessage="Remarks is required"></asp:RequiredFieldValidator>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtEditFromDate">From:</label>
+                                    <asp:TextBox ID="txtEditFromDate" runat="server" CssClass="form-control" placeholder="Remarks" TextMode="MultiLine" data-provide="datepicker"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8"
+                                        runat="server"
+                                        Display="Dynamic"
+                                        ControlToValidate="txtEditFromDate"
+                                        CssClass="label label-danger"
+                                        ValidationGroup="vgAdd"
+                                        ErrorMessage="From Date is required"></asp:RequiredFieldValidator>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtEditToDate">To:</label>
+                                    <asp:TextBox ID="txtEditToDate" runat="server" CssClass="form-control" placeholder="Remarks" TextMode="MultiLine" data-provide="datepicker"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9"
+                                        runat="server"
+                                        Display="Dynamic"
+                                        ControlToValidate="txtEditToDate"
+                                        CssClass="label label-danger"
+                                        ValidationGroup="vgAdd"
+                                        ErrorMessage="To Date is required"></asp:RequiredFieldValidator>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtEditEffectivityDate">Effectivity Date:</label>
+                                    <asp:TextBox ID="txtEditEffectivityDate" runat="server" CssClass="form-control" placeholder="Remarks" TextMode="MultiLine" data-provide="datepicker"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10"
+                                        runat="server"
+                                        Display="Dynamic"
+                                        ControlToValidate="txtEditEffectivityDate"
+                                        CssClass="label label-danger"
+                                        ValidationGroup="vgAdd"
+                                        ErrorMessage="Effectivity Date is required"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
@@ -159,6 +232,13 @@
                                                 <asp:Label ID="lblRemarks" runat="server" Text='<%# Eval("Remarks") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Remarks">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblEffectivityDate" runat="server" Text='<%# Eval("EffectivityDate") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:CommandField ShowDeleteButton="true" />
                                     </Columns>
                                     <PagerStyle CssClass="pagination" />

@@ -1638,5 +1638,49 @@ namespace AMS.DAL
             conn.Dispose();
         }
         #endregion
+
+        #region CONFIG EVALUATION PERIOD
+
+        public DataTable DispalyEvaluationPeriod()
+        {
+            strSql = "SELECT * FROM EVALUATION_PERIOD";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public void SetEvaluationPeriod(string fromDate,
+            string toDate,
+            string Id)
+        {
+            strSql = "UPDATE EVALUATION_PERIOD SET FromDate=@FromDate, " +
+                "ToDate=@ToDate WHERE Id = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@FromDate", fromDate);
+                comm.Parameters.AddWithValue("@ToDate", toDate);
+                comm.Parameters.AddWithValue("@Id", Id);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+        #endregion
+
     }
 }

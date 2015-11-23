@@ -32,7 +32,7 @@ namespace AMS.Employee
                 {
                     btnOpenModal.Visible = false;
                     gvEMovement.Columns[1].Visible = false;
-                    gvEMovement.Columns[4].Visible = false;
+                    gvEMovement.Columns[5].Visible = false;
                 }
 
                 DataTable dtEmp = new DataTable();
@@ -54,18 +54,20 @@ namespace AMS.Employee
         {
             DataTable dt = new DataTable();
             Guid UserId = Guid.Parse(hfUserId.Value);
-            dt = emov.displayEMovement(UserId);
+            dt = emov.DisplayEMovement(UserId);
             gvEMovement.DataSource = dt;
             gvEMovement.DataBind();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            emov.addEMovement(
+            emov.AddEMovement(
                 ddlEMovement.SelectedValue.ToString(),
                 Guid.Parse(hfUserId.Value),
                 txtRemarks.Text,
-                DateTime.Now.ToShortDateString());
+                txtAddFromDate.Text,
+                txtAddToDate.Text,
+                txtEffectivityDate.Text);
 
             BindData();
 
@@ -78,10 +80,12 @@ namespace AMS.Employee
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            emov.updateEMovement(ddlEditMovement.SelectedValue.ToString(),
+            emov.UpdateEMovement(ddlEditMovement.SelectedValue.ToString(),
                 Guid.Parse(hfUserId.Value),
                 txtEditRemarks.Text,
-                DateTime.Now.ToShortDateString(),
+                txtEditFromDate.Text,
+                txtEditToDate.Text,
+                txtEditEffectivityDate.Text,
                 lblRowId.Text);
 
             BindData();
@@ -96,7 +100,7 @@ namespace AMS.Employee
         protected void gvEMovement_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string rowId = ((Label)gvEMovement.Rows[e.RowIndex].FindControl("lblRowId")).Text;
-            emov.deleteEMovement(rowId);
+            emov.DeleteEMovement(rowId);
 
             BindData();
         }
@@ -109,10 +113,13 @@ namespace AMS.Employee
             if (e.CommandName.Equals("editRecord"))
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                dt = emov.getEMovementById((int)(gvEMovement.DataKeys[index].Value));
+                dt = emov.GetEMovementById((int)(gvEMovement.DataKeys[index].Value));
                 lblRowId.Text = dt.Rows[0]["Id"].ToString();
                 ddlEditMovement.SelectedValue = dt.Rows[0]["EMovementId"].ToString();
                 txtEditRemarks.Text = dt.Rows[0]["Remarks"].ToString();
+                txtEditFromDate.Text = dt.Rows[0]["ToDate"].ToString();
+                txtEditToDate.Text = dt.Rows[0]["FromDate"].ToString();
+                txtEditEffectivityDate.Text = dt.Rows[0]["EffectivityDate"].ToString();
 
                 sb.Append(@"<script type='text/javascript'>");
                 sb.Append("$('#updateModal').modal('show');");

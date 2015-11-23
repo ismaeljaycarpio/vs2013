@@ -23,8 +23,7 @@ namespace AMS
 
             if(!Page.IsPostBack)
             {
-                Session["UserId"] = null;
-                Session["EvaluationId"] = null;
+                Session.RemoveAll();
                 FormsAuthentication.SignOut();
             }
         }

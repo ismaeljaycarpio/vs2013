@@ -1,0 +1,43 @@
+﻿2015-11-23
+	Update EMOVEMENT_EMPLOYEE ->add column FromDate, ToDate, EffectivityDate
+	Create EVALUATION_PERIOD ->Id, FromDate, ToDate
+	Account Management -> Change pass, reset pass(admin/hr)
+
+	
+
+	extra: 
+		db back-up
+		activity logging
+		error-logging ->must sent to specified email
+
+
+	Deployment:
+		*
+
+
+	List of Possible EMPLOYEE_ACTION
+		File Upload - ViewEmployee
+
+
+
+
+
+
+AZ SIDE [!--ACTION REQURED--!]:
+	Update browser (Chrome/Firefox/IE)
+	Install SQL Server
+	Install SQL Server Management Studio 2008
+	Install/Update IIS
+
+
+	Office Action Required
+		Class Clean-up
+
+
+!IMPORTANT
+>Account Management
+	Register
+	Update Account Details
+	Change Password
+	Reset Password
+>Generate Report - [Individual Profile]

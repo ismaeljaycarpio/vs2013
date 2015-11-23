@@ -12,6 +12,7 @@ namespace AMS.Employee
     public partial class ViewEmployee : System.Web.UI.Page
     {
         DAL.Employee emp = new DAL.Employee();
+        DAL.FileUpload fileUp = new DAL.FileUpload();
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -19,8 +20,10 @@ namespace AMS.Employee
             if (!Page.IsPostBack)
             {
                 if (Session["UserId"] == null)
+                {
                     Response.Redirect("~/Employee/Employee");
-
+                }
+                    
                 //bind userid to control
                 hfUserId.Value = Session["UserId"].ToString();
 
@@ -52,7 +55,7 @@ namespace AMS.Employee
                 //get grid emovement
                 dt = new DataTable();
                 DAL.EmployeeMovement emov = new DAL.EmployeeMovement();
-                gvEMovement.DataSource = emov.displayEMovement(UserId);
+                gvEMovement.DataSource = emov.DisplayEMovement(UserId);
                 gvEMovement.DataBind();
 
                 //get grid jobexp
@@ -117,15 +120,13 @@ namespace AMS.Employee
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
-            DAL.FileUpload fileUpload = new DAL.FileUpload();
-
             foreach(HttpPostedFile postedFile in FileUpload1.PostedFiles)
             {
                 string fileName = Path.GetFileName(postedFile.FileName);
                 postedFile.SaveAs(Server.MapPath("~/Documents/") + fileName);
                 
                 //log to db
-                fileUpload.addDocuments(
+                fileUp.addDocuments(
                     Guid.Parse(hfUserId.Value),
                     fileName,
                     "~/Documents/" + fileName);
@@ -151,44 +152,23 @@ namespace AMS.Employee
             string filePath = (sender as LinkButton).CommandArgument;
             File.Delete(Server.MapPath(filePath));
             
-
             //remove reference from db
-            DAL.FileUpload fileUpload = new DAL.FileUpload();
-            fileUpload.deleteDocuments(filePath);
-
+            fileUp.deleteDocuments(filePath);
             Response.Redirect(Request.Url.AbsoluteUri);
         }
 
         protected void BindDocuments(Guid UserId)
         {
             //get grid documents
-            DataTable dt = new DataTable();
-            DAL.FileUpload fileUp = new DAL.FileUpload();
+            dt = new DataTable();          
             gvDocuments.DataSource = fileUp.getDocumentsById(UserId);
             gvDocuments.DataBind();
 
+            //only admin and hr can use thsese feature
             if(!User.IsInRole("Admin") &&
                 !User.IsInRole("HR"))
             {
                 gvDocuments.Columns[2].Visible = false;
-            }
-        }
-
-        protected void lbEvaluate_Click(object sender, EventArgs e)
-        {
-            //get agency and redirects to appropriate form
-            string agencyName = lblAgency.Text;
-
-            if(agencyName.Equals("TOPLIS Solutions Inc."))
-            {
-                Response.Redirect("~/Employee/PerformanceEvaluation");
-            }
-            else if(agencyName.Equals("PrimePower"))
-            {
-                Response.Redirect("~/Employee/Prime_Performance_Evaluation");
-            }
-            else{
-
             }
         }
     }

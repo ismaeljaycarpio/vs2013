@@ -37,6 +37,7 @@ namespace AMS.Employee
 
                 dt = new DataTable();
                 dt = emp.GetEmployee(Guid.Parse(hfUserId.Value));
+
                 //load job details
                 txtEmpId.Text = dt.Rows[0]["Emp_ID"].ToString();
                 ddlPosition.SelectedValue = dt.Rows[0]["PositionId"].ToString();
@@ -51,6 +52,7 @@ namespace AMS.Employee
 
                 lblRole.Text = emp.GetRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
 
+                //get list of supervisor and manager
                 lblManager.Text = emp.GetManagerName(ddlDepartment.SelectedValue.ToString());
                 lblSupervisor.Text = emp.GetSupervisorName(ddlDepartment.SelectedValue.ToString());
 

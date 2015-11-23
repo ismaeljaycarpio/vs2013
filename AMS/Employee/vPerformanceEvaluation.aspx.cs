@@ -39,6 +39,7 @@ namespace AMS.Employee
                 dt = new DataTable();
                 dt = eval.getEvaluated(evaluationId);
 
+                //chk evaluation type
                 if(dt.Rows[0]["EvaluationType"].ToString().Equals("Self Evaluation"))
                 {
                     Response.Redirect("~/Employee/vSelf_Evaluation");
@@ -50,8 +51,7 @@ namespace AMS.Employee
                 }
 
                 lblEmpName.Text = emp.GetFullName(UserId);
-
-                lblAgency.Text = "TOPLIS Solutions Inc.";
+                lblAgency.Text = emp.GetAgencyName(UserId);
                 lblDateHired.Text = emp.GetHiredDate(UserId);
                 lblPosition.Text = emp.GetPosition(UserId);
 

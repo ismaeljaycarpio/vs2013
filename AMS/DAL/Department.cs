@@ -9,7 +9,7 @@ using System.Data;
 
 namespace AMS.DAL
 {
-    public class EmployeeMovement
+    public class Department
     {
         //init
         SqlConnection conn;
@@ -18,20 +18,13 @@ namespace AMS.DAL
         DataTable dt;
         string strSql = "";
 
-        public DataTable DisplayEMovement(Guid UserId)
+        public DataTable DisplayDepartment()
         {
-            strSql = "SELECT EMOVEMENT_EMPLOYEE.Id, " +
-                "EMOVEMENT.EMovement, " + 
-                "EMOVEMENT_EMPLOYEE.Remarks, " +
-                "EMOVEMENT_EMPLOYEE.EffectivityDate " +
-                "FROM EMOVEMENT, EMOVEMENT_EMPLOYEE " +
-                "WHERE EMOVEMENT.Id = EMOVEMENT_EMPLOYEE.EMovementId " +
-                "AND EMOVEMENT_EMPLOYEE.UserId = @UserId";
+            strSql = "SELECT * FROM DEPARTMENT";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
-            comm.Parameters.AddWithValue("@UserId", UserId);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 
@@ -42,9 +35,9 @@ namespace AMS.DAL
             return dt;
         }
 
-        public DataTable GetEMovementById(int rowId)
+        public DataTable GetDepartment(int rowId)
         {
-            strSql = "SELECT * FROM EMOVEMENT_EMPLOYEE WHERE Id = @Id";
+            strSql = "SELECT * FROM DEPARTMENT WHERE Id = @Id";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -60,16 +53,11 @@ namespace AMS.DAL
             return dt;
         }
 
-        public void AddEMovement(
-            string emovement_id,
-            Guid userId,
-            string remarks,
-            string fromDate,
-            string toDate,
-            string effectivityDate)
+        public void AddDepartment(
+            string departmentName)
         {
-            strSql = "INSERT INTO EMOVEMENT_EMPLOYEE(EMovementId, UserId, Remarks, FromDate, ToDate, EffectivityDate) " +
-                "VALUES(@EMovementId, @UserId, @Remarks, @FromDate, @ToDate, @EffectivityDate)";
+            strSql = "INSERT INTO DEPARTMENT(Department) " +
+                "VALUES(@Department)";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -77,12 +65,8 @@ namespace AMS.DAL
             using (comm = new SqlCommand(strSql, conn))
             {
                 conn.Open();
-                comm.Parameters.AddWithValue("@EMovementId", emovement_id);
-                comm.Parameters.AddWithValue("@UserId", userId);
-                comm.Parameters.AddWithValue("@Remarks", remarks);
-                comm.Parameters.AddWithValue("@FromDate", fromDate);
-                comm.Parameters.AddWithValue("@ToDate", toDate);
-                comm.Parameters.AddWithValue("@EffectivityDate", effectivityDate);
+                comm.Parameters.AddWithValue("@Department", departmentName);
+
                 comm.ExecuteNonQuery();
                 conn.Close();
             }
@@ -90,22 +74,12 @@ namespace AMS.DAL
             conn.Dispose();
         }
 
-        public void UpdateEMovement(
-            string emovement_id,
-            Guid userId,
-            string remarks,
-            string fromDate,
-            string toDate,
-            string effectivityDate,
+        public void UpdateDepartment(
+            string departmentName,
             string rowId)
         {
-            strSql = "UPDATE EMOVEMENT_EMPLOYEE SET " +
-                "EMovementId = @EMovementId, " +
-                "UserId = @UserId, " +
-                "Remarks = @Remarks, " +
-                "FromDate = @FromDate, " +
-                "ToDate = @ToDate, " +
-                "EffectivityDate = @EffectivityDate " +
+            strSql = "UPDATE DEPARTMENT SET " +
+                "Department = @Department, " +
                 "WHERE Id = @RowId";
 
             conn = new SqlConnection();
@@ -114,13 +88,9 @@ namespace AMS.DAL
             using (comm = new SqlCommand(strSql, conn))
             {
                 conn.Open();
-                comm.Parameters.AddWithValue("@EMovementId", emovement_id);
-                comm.Parameters.AddWithValue("@UserId", userId);
-                comm.Parameters.AddWithValue("@Remarks", remarks);
-                comm.Parameters.AddWithValue("@FromDate", fromDate);
-                comm.Parameters.AddWithValue("@ToDate", toDate);
-                comm.Parameters.AddWithValue("@MovementDate", effectivityDate);
+                comm.Parameters.AddWithValue("@Department", departmentName);
                 comm.Parameters.AddWithValue("@RowId", rowId);
+
                 comm.ExecuteNonQuery();
                 conn.Close();
             }
@@ -128,9 +98,9 @@ namespace AMS.DAL
             conn.Dispose();
         }
 
-        public void DeleteEMovement(string rowId)
+        public void deleteAgency(string rowId)
         {
-            strSql = "DELETE FROM EMOVEMENT_EMPLOYEE WHERE Id = @Id";
+            strSql = "DELETE FROM DEPARTMENT WHERE Id = @Id";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;

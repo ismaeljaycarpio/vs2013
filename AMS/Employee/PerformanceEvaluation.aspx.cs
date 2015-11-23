@@ -54,9 +54,9 @@ namespace AMS.Employee
                 }
                 else
                 {
-                    gvEvaluation.Columns[4].Visible = false;
                     //show evaluator panel
                     pnlEvaluatorOnly.Visible = true;
+                    gvEvaluation.Columns[4].Visible = false;                  
                 }
             }
         }
@@ -225,9 +225,7 @@ namespace AMS.Employee
                             rating);
                     }
                 }
-            }
-            
-            
+            }            
             Response.Redirect("~/Employee/Evaluation");
         }
     }
