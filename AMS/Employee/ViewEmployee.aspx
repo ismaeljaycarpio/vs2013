@@ -84,7 +84,7 @@
                     <Columns>
                         <asp:BoundField DataField="EMovement" HeaderText="Movement" />
                         <asp:BoundField DataField="Remarks" HeaderText="Remarks" />
-                        <asp:BoundField DataField="MovementDate" HeaderText="Date" />
+                        <asp:BoundField DataField="EffectivityDate" HeaderText="Effectivity Date" />
                     </Columns>
                 </asp:GridView>
             </div>

@@ -7,8 +7,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Add Modal -->
-    <div id="addModal" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" role="dialog">
-        <div class="modal-dialog">
+    <div id="addModal" class="modal">
+        <div class="modal-dialog" role="dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -22,15 +22,7 @@
                             <div class="form">
                                 <div class="form-group">
                                     <label for="ddlEMovement">Movement:</label>
-                                    <asp:DropDownList ID="ddlEMovement" runat="server" CssClass="form-control" placeholder="Description"></asp:DropDownList>
-                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
-                                        runat="server"
-                                        Display="Dynamic"
-                                        ControlToValidate="ddlEMovement"
-                                        CssClass="label label-danger"
-                                        ValidationGroup="vgAdd"
-                                        ErrorMessage="E-Movement is required"></asp:RequiredFieldValidator>
+                                    <asp:DropDownList ID="ddlEMovement" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
 
                                 <div class="form-group">
@@ -47,7 +39,7 @@
 
                                 <div class="form-group">
                                     <label for="txtAddFromDate">From:</label>
-                                    <asp:TextBox ID="txtAddFromDate" runat="server" CssClass="form-control" placeholder="Remarks" TextMode="MultiLine" data-provide="datepicker"></asp:TextBox>
+                                    <asp:TextBox ID="txtAddFromDate" runat="server" CssClass="form-control" data-provide="datepicker"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5"
                                         runat="server"
                                         Display="Dynamic"
@@ -59,7 +51,7 @@
 
                                 <div class="form-group">
                                     <label for="txtAddToDate">To:</label>
-                                    <asp:TextBox ID="txtAddToDate" runat="server" CssClass="form-control" placeholder="Remarks" TextMode="MultiLine" data-provide="datepicker"></asp:TextBox>
+                                    <asp:TextBox ID="txtAddToDate" runat="server" CssClass="form-control" data-provide="datepicker"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6"
                                         runat="server"
                                         Display="Dynamic"
@@ -71,7 +63,7 @@
 
                                 <div class="form-group">
                                     <label for="txtEffectivityDate">Effectivity Date:</label>
-                                    <asp:TextBox ID="txtEffectivityDate" runat="server" CssClass="form-control" placeholder="Remarks" TextMode="MultiLine" data-provide="datepicker"></asp:TextBox>
+                                    <asp:TextBox ID="txtEffectivityDate" runat="server" CssClass="form-control" data-provide="datepicker"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator7"
                                         runat="server"
                                         Display="Dynamic"
@@ -80,12 +72,10 @@
                                         ValidationGroup="vgAdd"
                                         ErrorMessage="Effectivity Date is required"></asp:RequiredFieldValidator>
                                 </div>
-
                             </div>
-
                         </div>
                         <div class="modal-footer">
-                            <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" Text="Save" ValidationGroup="vgAdd" OnClick="btnSave_Click" />
+                            <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-primary" />
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </ContentTemplate>
@@ -107,7 +97,7 @@
                     <ContentTemplate>
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Edit Training</h4>
+                            <h4 class="modal-title">Edit Employee Movement</h4>
                         </div>
                         <div class="modal-body">
                             <div class="form">
@@ -117,13 +107,6 @@
                                 <div class="form-group">
                                     <label for="ddlEditMovement">Movement:</label>
                                     <asp:DropDownList ID="ddlEditMovement" runat="server" CssClass="form-control" placeholder="Description"></asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
-                                        runat="server"
-                                        Display="Dynamic"
-                                        ControlToValidate="ddlEditMovement"
-                                        CssClass="label label-danger"
-                                        ValidationGroup="vgEdit"
-                                        ErrorMessage="E-Movement is required"></asp:RequiredFieldValidator>
                                 </div>
 
                                 <div class="form-group">
@@ -140,7 +123,7 @@
 
                                 <div class="form-group">
                                     <label for="txtEditFromDate">From:</label>
-                                    <asp:TextBox ID="txtEditFromDate" runat="server" CssClass="form-control" placeholder="Remarks" TextMode="MultiLine" data-provide="datepicker"></asp:TextBox>
+                                    <asp:TextBox ID="txtEditFromDate" runat="server" CssClass="form-control" data-provide="datepicker"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator8"
                                         runat="server"
                                         Display="Dynamic"
@@ -152,7 +135,7 @@
 
                                 <div class="form-group">
                                     <label for="txtEditToDate">To:</label>
-                                    <asp:TextBox ID="txtEditToDate" runat="server" CssClass="form-control" placeholder="Remarks" TextMode="MultiLine" data-provide="datepicker"></asp:TextBox>
+                                    <asp:TextBox ID="txtEditToDate" runat="server" CssClass="form-control" data-provide="datepicker"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator9"
                                         runat="server"
                                         Display="Dynamic"
@@ -164,7 +147,7 @@
 
                                 <div class="form-group">
                                     <label for="txtEditEffectivityDate">Effectivity Date:</label>
-                                    <asp:TextBox ID="txtEditEffectivityDate" runat="server" CssClass="form-control" placeholder="Remarks" TextMode="MultiLine" data-provide="datepicker"></asp:TextBox>
+                                    <asp:TextBox ID="txtEditEffectivityDate" runat="server" CssClass="form-control" data-provide="datepicker"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator10"
                                         runat="server"
                                         Display="Dynamic"
@@ -248,11 +231,9 @@
                                     runat="server"
                                     CssClass="btn btn-info btn-sm"
                                     Text="Add Movement"
-                                    OnClick="btnOpenModal_Click"
-                                    CausesValidation="false" />
+                                    OnClick="btnOpenModal_Click" />
                             </ContentTemplate>
                             <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="gvEMovement" />
                             </Triggers>
                         </asp:UpdatePanel>
                     </div>

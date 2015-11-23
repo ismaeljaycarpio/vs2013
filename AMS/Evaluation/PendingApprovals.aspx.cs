@@ -110,7 +110,7 @@ namespace AMS.Evaluation
             sb.Append(count.ToString());
             sb.Append(" records approved.');");
             sb.Append("</script>");
-            ClientScript.RegisterStartupScript(this.GetType(),
+            ClientScript.RegisterClientScriptBlock(this.GetType(),
                             "script", sb.ToString());
         }
 

@@ -202,6 +202,7 @@
     <Content Include="HR\Register.aspx" />
     <Content Include="MasterConfig\Agency.aspx" />
     <Content Include="MasterConfig\Department_Master.aspx" />
+    <Content Include="MasterConfig\Employee_Account_MasterList.aspx" />
     <Content Include="MasterConfig\RoleManager.aspx" />
     <Content Include="myLogs.txt" />
     <Content Include="packages.config" />
@@ -487,6 +488,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PerformanceEvaluation.xsd</DependentUpon>
     </Content>
+    <Compile Include="Account\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\PerformanceEvaluation.aspx.cs">
       <DependentUpon>PerformanceEvaluation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -572,13 +580,6 @@
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\Manage.aspx.cs">
-      <DependentUpon>Manage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Manage.aspx.designer.cs">
-      <DependentUpon>Manage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Account\OpenAuthProviders.ascx.cs">
       <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -602,6 +603,7 @@
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="DAL\Account.cs" />
     <Compile Include="DAL\Agency.cs" />
     <Compile Include="DAL\Award.cs" />
     <Compile Include="DAL\Contact.cs" />
@@ -843,6 +845,13 @@
     </Compile>
     <Compile Include="MasterConfig\Department_Master.aspx.designer.cs">
       <DependentUpon>Department_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterConfig\Employee_Account_MasterList.aspx.cs">
+      <DependentUpon>Employee_Account_MasterList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterConfig\Employee_Account_MasterList.aspx.designer.cs">
+      <DependentUpon>Employee_Account_MasterList.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterConfig\RoleManager.aspx.cs">
       <DependentUpon>RoleManager.aspx</DependentUpon>

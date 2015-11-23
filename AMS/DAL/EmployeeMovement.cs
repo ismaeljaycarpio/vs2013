@@ -119,7 +119,7 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@Remarks", remarks);
                 comm.Parameters.AddWithValue("@FromDate", fromDate);
                 comm.Parameters.AddWithValue("@ToDate", toDate);
-                comm.Parameters.AddWithValue("@MovementDate", effectivityDate);
+                comm.Parameters.AddWithValue("@EffectivityDate", effectivityDate);
                 comm.Parameters.AddWithValue("@RowId", rowId);
                 comm.ExecuteNonQuery();
                 conn.Close();

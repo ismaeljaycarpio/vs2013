@@ -63,10 +63,22 @@
                                 <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click">
+                                <li class="dropdown">
+                                    <a runat="server"
+                                        href="#"
+                                        class="dropdown-toggle"
+                                        data-toggle="dropdown"
+                                        role="button"
+                                        aria-haspopup="true"
+                                        aria-expanded="false">
                                         <asp:LoginName ID="LoginName1" runat="server" />
-                                    </asp:LinkButton>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                        <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
+                                    </ul>
                                 </li>
                                 <li>
                                     <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" CausesValidation="false" />
@@ -93,17 +105,30 @@
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Master Config <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a runat="server" href="~/MasterConfig/Agency">Agency</a></li>
-                                                <li><a runat="server" href="~/MasterConfig/Department_Master.aspx">Department</a></li>
+                                                <li><a runat="server" href="~/MasterConfig/Department_Master">Department</a></li>
+                                                <li><a runat="server" href="~/MasterConfig/Employee_Account_MasterList">Employee Account Management</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/RoleManager">Positions Management</a></li>
-                                                
+
                                             </ul>
                                         </li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li>
-                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">
+                                        <li class="dropdown">
+                                            <a runat="server"
+                                                href="#"
+                                                class="dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                role="button"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
-                                            </asp:LinkButton>
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
+                                            </ul>
                                         </li>
                                         <li>
                                             <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" />
@@ -130,10 +155,22 @@
                                         </li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li>
-                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">
+                                        <li class="dropdown">
+                                            <a runat="server"
+                                                href="#"
+                                                class="dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                role="button"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
-                                            </asp:LinkButton>
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
+                                            </ul>
                                         </li>
                                         <li>
                                             <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" />
@@ -155,10 +192,22 @@
                                         </li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li>
-                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">
+                                        <li class="dropdown">
+                                            <a runat="server"
+                                                href="#"
+                                                class="dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                role="button"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
-                                            </asp:LinkButton>
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
+                                            </ul>
                                         </li>
                                         <li>
                                             <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" />
@@ -180,10 +229,22 @@
                                         </li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li>
-                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">
+                                        <li class="dropdown">
+                                            <a runat="server"
+                                                href="#"
+                                                class="dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                role="button"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
-                                            </asp:LinkButton>
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
+                                            </ul>
                                         </li>
                                         <li>
                                             <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" />
@@ -200,10 +261,22 @@
                                         <li><a runat="server" href="~/Employee/Employee">Employee</a></li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li>
-                                            <asp:LinkButton ID="hlViewProfile" NavigateUrl="~/Employee/ViewEmployee.aspx" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">
+                                        <li class="dropdown">
+                                            <a runat="server"
+                                                href="#"
+                                                class="dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                role="button"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
-                                            </asp:LinkButton>
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
+                                            </ul>
                                         </li>
                                         <li>
                                             <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" />

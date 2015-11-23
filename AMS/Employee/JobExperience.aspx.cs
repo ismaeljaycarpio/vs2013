@@ -123,7 +123,7 @@ namespace AMS.Employee
             sb.Append(@"<script type='text/javascript'>");
             sb.Append("$('#addModal').modal('show');");
             sb.Append(@"</script>");
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "AddShowModalScript", sb.ToString(), false);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AddShowModalScript", sb.ToString(), false);
         }
     }
 }
