@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AMS.Dashboard {
+namespace AMS.Employee {
     
     
-    public partial class Dashboard {
+    public partial class ErrorPage {
         
         /// <summary>
-        /// lnkBdayCount control.
+        /// pnlNoAgency control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkBdayCount;
+        protected global::System.Web.UI.WebControls.Panel pnlNoAgency;
     }
 }

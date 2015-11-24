@@ -52,10 +52,18 @@ namespace AMS.DAL
             return dt;
         }
 
-        public DataTable fillPosition()
+        public DataTable fillPosition(bool withAdmin)
         {
             dt = new DataTable();
-            dt = getList("SELECT * FROM POSITION");
+            if(withAdmin)
+            {
+                dt = getList("SELECT * FROM POSITION");
+            }
+            else
+            {
+                dt = getList("SELECT * FROM POSITION WHERE Position != 'Admin'");
+            }
+            
             return dt;
         }
 

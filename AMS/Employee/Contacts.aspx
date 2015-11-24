@@ -375,6 +375,7 @@
                                     AutoGenerateColumns="false"
                                     AllowPaging="true"
                                     DataKeyNames="Id"
+                                    EmptyDataText="No Record(s) found"
                                     OnRowDeleting="gvContacts_RowDeleting"
                                     OnRowCommand="gvContacts_RowCommand">
                                     <Columns>

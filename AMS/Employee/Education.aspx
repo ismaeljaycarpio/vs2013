@@ -182,6 +182,7 @@
                                     AutoGenerateColumns="false"
                                     AllowPaging="true"
                                     DataKeyNames="Id"
+                                    EmptyDataText="No Record(s) found"
                                     OnRowDeleting="gvEducation_RowDeleting"
                                     OnRowCommand="gvEducation_RowCommand">
                                     <Columns>

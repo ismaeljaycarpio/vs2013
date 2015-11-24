@@ -20,15 +20,19 @@ namespace AMS.DAL
         #region NEW IMPLEMENTATION
         //active employees
         //display all employee->user by HR manager, HR staff, GM
+        //cant see admin 
         public DataTable DisplayEmployee(string strSearch)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
-                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT WHERE " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
                 "Memberships.UserId = EMPLOYEE.UserId AND " +
                 "EMPLOYEE.PositionId = POSITION.Id AND " +
                 "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "Roles.RoleName != 'Admin' AND " +
                 "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
                 "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
                 "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +

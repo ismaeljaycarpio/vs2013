@@ -28,7 +28,6 @@ namespace AMS.Employee
                 }
 
                 hfUserId.Value = Session["UserId"].ToString();
-
                 //load ddls
                 fillPosition();
                 fillDept();
@@ -112,10 +111,21 @@ namespace AMS.Employee
 
         public void fillPosition()
         {
-            ddlPosition.DataSource = fill.fillPosition();
-            ddlPosition.DataTextField = "Position";
-            ddlPosition.DataValueField = "Id";
-            ddlPosition.DataBind();           
+            if(User.IsInRole("Admin"))
+            {
+                //show admin value
+                ddlPosition.DataSource = fill.fillPosition(true);
+                ddlPosition.DataTextField = "Position";
+                ddlPosition.DataValueField = "Id";
+                ddlPosition.DataBind();
+            }
+            else
+            {
+                ddlPosition.DataSource = fill.fillPosition(false);
+                ddlPosition.DataTextField = "Position";
+                ddlPosition.DataValueField = "Id";
+                ddlPosition.DataBind();
+            }
         }
 
         public void fillDept()
@@ -149,6 +159,5 @@ namespace AMS.Employee
             lblManager.Text = emp.GetManagerName(ddlDepartment.SelectedValue.ToString());
             lblSupervisor.Text = emp.GetSupervisorName(ddlDepartment.SelectedValue.ToString());
         }
-
     }
 }

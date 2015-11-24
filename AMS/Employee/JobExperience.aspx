@@ -231,6 +231,7 @@
                                     AutoGenerateColumns="false"
                                     AllowPaging="true"
                                     DataKeyNames="Id"
+                                    EmptyDataText="No Record(s) found"
                                     OnRowDeleting="gvJobExp_RowDeleting"
                                     OnRowCommand="gvJobExp_RowCommand">
                                     <Columns>

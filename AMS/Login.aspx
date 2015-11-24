@@ -8,39 +8,39 @@
         <div class="col-lg-6 col-lg-offset-3 text-center">
             <div class="panel panel-default">
                 <div class="panel-body">
-                        <asp:Login runat="server" ViewStateMode="Disabled" RenderOuterTable="false" OnLoggedIn="Unnamed_LoggedIn">
-                            <LayoutTemplate>
-                                <p class="validation-summary-errors">
-                                    <asp:Literal runat="server" ID="FailureText" />
-                                    <div class="col-sm-10"></div>
-                                </p>
-                                <br />
-                                <div class="form">
-                                    <div class="form-group">
-                                        <asp:Label runat="server" AssociatedControlID="UserName">User name</asp:Label>
-                                        <asp:TextBox runat="server" ID="UserName" CssClass="form-control center-block" />
-                                        <asp:RequiredFieldValidator 
-                                            runat="server" 
-                                            ControlToValidate="UserName" 
-                                            CssClass="label label-danger" ErrorMessage="The user name field is required." />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <asp:Label runat="server" AssociatedControlID="Password">Password</asp:Label>
-                                        <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control center-block" />
-                                        <asp:RequiredFieldValidator runat="server" 
-                                            ControlToValidate="Password" 
-                                            CssClass="label label-danger" 
-                                            ErrorMessage="The password field is required." />
-                                    </div>
-                                    <div class="form-group">
-                                        <asp:CheckBox runat="server" ID="RememberMe" />
-                                        <asp:Label runat="server" AssociatedControlID="RememberMe" CssClass="checkbox">Remember me?</asp:Label>
-                                    </div>
-                                    <asp:Button runat="server" CommandName="Login" Text="Log in" CssClass="btn btn-primary" />
+                    <asp:Login runat="server" ViewStateMode="Disabled" RenderOuterTable="false" OnLoggedIn="Unnamed_LoggedIn">
+                        <LayoutTemplate>
+                            <p class="validation-summary-errors">
+                                <asp:Literal runat="server" ID="FailureText" />
+                                <div class="col-sm-10"></div>
+                            </p>
+                            <br />
+                            <div class="form">
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="UserName">Username</asp:Label>
+                                    <asp:TextBox runat="server" ID="UserName" CssClass="form-control center-block" />
+                                    <asp:RequiredFieldValidator
+                                        runat="server"
+                                        ControlToValidate="UserName"
+                                        CssClass="label label-danger" ErrorMessage="The user name field is required." />
                                 </div>
-                            </LayoutTemplate>
-                        </asp:Login>
+
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="Password">Password</asp:Label>
+                                    <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control center-block" />
+                                    <asp:RequiredFieldValidator runat="server"
+                                        ControlToValidate="Password"
+                                        CssClass="label label-danger"
+                                        ErrorMessage="The password field is required." />
+                                </div>
+                                <div class="form-group">
+                                    <asp:CheckBox runat="server" ID="RememberMe" />
+                                    <asp:Label runat="server" AssociatedControlID="RememberMe" CssClass="checkbox">Remember me?</asp:Label>
+                                </div>
+                                <asp:Button runat="server" CommandName="Login" Text="Log in" CssClass="btn btn-primary" />
+                            </div>
+                        </LayoutTemplate>
+                    </asp:Login>
                 </div>
             </div>
         </div>

@@ -162,6 +162,7 @@
     <Content Include="Employee\Education.aspx" />
     <Content Include="Employee\Employee.aspx" />
     <Content Include="Employee\EmployeeMovement.aspx" />
+    <Content Include="Employee\ErrorPage.aspx" />
     <Content Include="Employee\Evaluation.aspx" />
     <Content Include="Employee\JobDetails.aspx" />
     <Content Include="Employee\JobExperience.aspx" />
@@ -608,6 +609,7 @@
     <Compile Include="DAL\Agency.cs" />
     <Compile Include="DAL\Award.cs" />
     <Compile Include="DAL\Contact.cs" />
+    <Compile Include="DAL\Dashboard.cs" />
     <Compile Include="DAL\Department.cs" />
     <Compile Include="DAL\Education.cs" />
     <Compile Include="DAL\Employee.cs" />
@@ -675,6 +677,13 @@
     </Compile>
     <Compile Include="Employee\EmployeeMovement.aspx.designer.cs">
       <DependentUpon>EmployeeMovement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\Evaluation.aspx.cs">
       <DependentUpon>Evaluation.aspx</DependentUpon>

@@ -20,10 +20,21 @@ namespace AMS.HR
         {
             if(!Page.IsPostBack)
             {
-                ddlPosition.DataSource = filler.fillPosition();
-                ddlPosition.DataValueField = "Id";
-                ddlPosition.DataTextField = "Position";
-                ddlPosition.DataBind();
+                if(User.IsInRole("Admin"))
+                {
+                    ddlPosition.DataSource = filler.fillPosition(true);
+                    ddlPosition.DataValueField = "Id";
+                    ddlPosition.DataTextField = "Position";
+                    ddlPosition.DataBind();
+                }
+                else
+                {
+                    ddlPosition.DataSource = filler.fillPosition(false);
+                    ddlPosition.DataValueField = "Id";
+                    ddlPosition.DataTextField = "Position";
+                    ddlPosition.DataBind();
+                }
+                
 
                 ddlDepartment.DataSource = filler.fillDepartment();
                 ddlDepartment.DataValueField = "Id";

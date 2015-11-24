@@ -158,6 +158,7 @@
                                     AutoGenerateColumns="false"
                                     AllowPaging="true"
                                     DataKeyNames="Id"
+                                    EmptyDataText="No Record(s) found"
                                     OnRowDeleting="gvAwards_RowDeleting"
                                     OnRowCommand="gvAwards_RowCommand">
                                     <Columns>

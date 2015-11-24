@@ -216,7 +216,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Remarks">
+                                        <asp:TemplateField HeaderText="Effectivity Date">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblEffectivityDate" runat="server" Text='<%# Eval("EffectivityDate") %>'></asp:Label>
                                             </ItemTemplate>

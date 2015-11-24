@@ -181,6 +181,7 @@
                                     AutoGenerateColumns="false"
                                     AllowPaging="true"
                                     DataKeyNames="Id"
+                                    EmptyDataText="No Record(s) found"
                                     OnRowDeleting="gvViolations_RowDeleting"
                                     OnRowCommand="gvViolations_RowCommand">
                                     <Columns>

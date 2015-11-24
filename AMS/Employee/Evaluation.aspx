@@ -39,10 +39,12 @@
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>
-                        <asp:Button ID="btnPerfEval" runat="server" CssClass="btn btn-default"
-                            CausesValidation="false" Text="Performance Evaluation" OnClick="btnPerfEval_Click" />
-                        <%--<asp:Button ID="btnSelfEval" runat="server" CssClass="btn btn-default"
-                            CausesValidation="false" Text="Self Evaluation" OnClick="btnSelfEval_Click" />--%>
+                        <asp:Button ID="btnPerfEval" 
+                            runat="server" 
+                            CssClass="btn btn-primary"
+                            CausesValidation="false" 
+                            Text="Performance Evaluation" 
+                            OnClick="btnPerfEval_Click" />
                     </div>
                 </div>
             </div>

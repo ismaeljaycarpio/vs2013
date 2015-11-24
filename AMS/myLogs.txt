@@ -1,4 +1,8 @@
-﻿2015-11-23
+﻿2015-11-24
+	Create Profile Report
+	Report - Monthly Celebrant
+
+2015-11-23
 	Update EMOVEMENT_EMPLOYEE ->add column FromDate, ToDate, EffectivityDate
 	!Create EVALUATION_PERIOD ->Id, FromDate, ToDate
 	Account Management -> Change pass, reset pass(admin/hr)
@@ -20,9 +24,6 @@
 
 
 
-
-
-
 AZ SIDE [!--ACTION REQURED--!]:
 	Update browser (Chrome/Firefox/IE)
 	Install SQL Server
@@ -36,12 +37,15 @@ AZ SIDE [!--ACTION REQURED--!]:
 
 !IMPORTANT
 >Account Management
-	Register
-	Update Account Details
-	Change Password
-	Reset Password
+	Register - DONE
+	Update Account Details - DONE
+	Change Password - DONE
+	Reset Password - DONE
 >Generate Report - [Individual Profile]
 
 
 IMPORTANT FIX/BUG
 >PositionManagement.cs ->auto update user roles when changing role of position
+
+HR:
+>cant see admin in list

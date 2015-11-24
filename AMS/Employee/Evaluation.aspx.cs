@@ -114,7 +114,8 @@ namespace AMS.Employee
             }
             else
             {
-                Response.Redirect("~/Employee/No_Agency");
+                //no agency specified
+                Response.Redirect("~/Employee/ErrorPage");
             }
         }
 

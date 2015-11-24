@@ -9,9 +9,14 @@ namespace AMS.Dashboard
 {
     public partial class Dashboard : System.Web.UI.Page
     {
+        DAL.Dashboard dashb = new DAL.Dashboard();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!Page.IsPostBack)
+            {
+                lnkBdayCount.Text = dashb.CountBday().ToString();
+            }
         }
     }
 }
