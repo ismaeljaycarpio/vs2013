@@ -388,8 +388,6 @@
       <DependentUpon>TSI_Performance_Evaluation.xsd</DependentUpon>
     </Content>
     <Content Include="EvaluationNested.master" />
-    <None Include="Properties\PublishProfiles\ams-test00 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\ams-test00 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
