@@ -120,22 +120,25 @@ namespace AMS.Employee
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
-            foreach(HttpPostedFile postedFile in FileUpload1.PostedFiles)
+            if(FileUpload1.HasFile)
             {
-                string fileName = Path.GetFileName(postedFile.FileName);
-                postedFile.SaveAs(Server.MapPath("~/Documents/") + fileName);
-                
-                //log to db
-                fileUp.addDocuments(
-                    Guid.Parse(hfUserId.Value),
-                    fileName,
-                    "~/Documents/" + fileName);
-            }
+                foreach (HttpPostedFile postedFile in FileUpload1.PostedFiles)
+                {
+                    string fileName = Path.GetFileName(postedFile.FileName);
+                    postedFile.SaveAs(Server.MapPath("~/Documents/") + fileName);
 
-            Guid UserId = Guid.Parse(hfUserId.Value);
-            BindDocuments(UserId);
+                    //log to db
+                    fileUp.addDocuments(
+                        Guid.Parse(hfUserId.Value),
+                        fileName,
+                        "~/Documents/" + fileName);
+                }
 
-            lblFileStatus.Text = "File(s) uploaded successfully";
+                Guid UserId = Guid.Parse(hfUserId.Value);
+                BindDocuments(UserId);
+
+                lblFileStatus.Text = "File(s) uploaded successfully";
+            }         
         }
 
         protected void lnkDownload_Click(object sender, EventArgs e)
