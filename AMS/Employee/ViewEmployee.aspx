@@ -197,7 +197,7 @@
         <hr />
 
         <div class="panel-body">
-            <h5>Contacts</h5>
+            <h5>Emergency Contacts</h5>
             <div class="table table-responsive">
                 <asp:GridView ID="gvForEmergency"
                     runat="server"

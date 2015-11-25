@@ -3,8 +3,10 @@ PRODUCTION: -
 	error when uploading not selected document file Employee/ViewEmployee
 	validation in emp movement
 
+***NOT EDITABLE EMP_ID
 
-
+	IsActive -> can login
+	HasResigned -> 
 
 
 
@@ -66,3 +68,7 @@ IMPORTANT FIX/BUG
 
 HR:
 >cant see admin in list
+
+
+IMPROVEMENTS, PERFORMANCE
+- Profile Image Upload - (sizing)

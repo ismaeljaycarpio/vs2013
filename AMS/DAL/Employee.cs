@@ -39,7 +39,7 @@ namespace AMS.DAL
                 "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
                 "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
                 "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') " +
-                "AND Memberships.IsApproved = 'True' " + 
+                "AND EMPLOYEE.HasResigned = 0 " + 
                 "ORDER BY Employee.Emp_Id ASC";
 
             conn = new SqlConnection();
@@ -76,7 +76,7 @@ namespace AMS.DAL
                 "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
                 "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
                 "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%' ) " +
-                "AND Memberships.IsApproved = 'True' " +
+                "AND EMPLOYEE.HasResigned = 0 " + 
                 "ORDER BY Employee.Emp_Id ASC";
 
             conn = new SqlConnection();
@@ -114,7 +114,7 @@ namespace AMS.DAL
                 "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
                 "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
                 "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%' ) " +
-                "AND Memberships.IsApproved = 'True' " +
+                "AND EMPLOYEE.HasResigned = 0 " + 
                 "ORDER BY Employee.Emp_Id ASC";
 
             conn = new SqlConnection();

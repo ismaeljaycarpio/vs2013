@@ -3,12 +3,11 @@
   <siteMapNode url="~/Default.aspx" title="Home"  description="">
     
     <siteMapNode url="~/Login" title="Login"></siteMapNode>
-
+    <siteMapNode url="~/Account/Manage" title="Change Password"></siteMapNode>
     <siteMapNode url="~/Dashboard/Dashboard" title="Dashboard">
       <siteMapNode url="~/Dashboard/BirthDay_Celeb.aspx" title="Monthly BirthDay Celebrants"></siteMapNode>
     </siteMapNode>
-    
-    
+      
     <siteMapNode url="~/Employee/Employee" title="Employees"  description="" roles="Admin,HR,General Manager,Manager,Supervisor">
       <siteMapNode url="~/Employee/AddEmployee" title="Add Employee"  description="" />
       <siteMapNode url="~/Employee/ViewEmployee" title="View Employee"  description="" />
@@ -22,7 +21,24 @@
       <siteMapNode url="~/Employee/Profile" title="Personal Details"></siteMapNode>
       <siteMapNode url="~/Employee/JobDetails" title="Job Details"></siteMapNode>
       <siteMapNode url="~/Employee/EmployeeMovement" title="Employee Movement"></siteMapNode>
+      <siteMapNode url="~/Employee/Evaluation" title="Evaluation"></siteMapNode>
+      <siteMapNode url="~/Employee/ErrorPage" title="Error Page"></siteMapNode>
     </siteMapNode>
 
+    <siteMapNode url="~/Evaluation/PendingApprovals" title="Pending Approvals"></siteMapNode>
+    <siteMapNode url="~/Evaluation/ApprovedEvaluations" title="Approved Evaluations"></siteMapNode>
+
+    <siteMapNode title="HR Actions">
+      <siteMapNode url="~/HR/Register" title="Register"></siteMapNode>
+    </siteMapNode>
+
+    <siteMapNode title="Master Config">
+      <siteMapNode url="~/MasterConfig/Agency" title="Agency Master List"></siteMapNode>
+      <siteMapNode url="~/MasterConfig/Department_Master" title="Department Master List"></siteMapNode>
+      <siteMapNode url="~/MasterConfig/Employee_Account_MasterList" title="Account Master List"></siteMapNode>
+      <siteMapNode url="~/MasterConfig/RoleManager" title="Position Master List"></siteMapNode>
+    </siteMapNode>
+    
+    
   </siteMapNode>
 </siteMap>
