@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Add Modal -->
-    <div id="addModal" class="modal">
+    <div id="addModal" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" role="dialog">
         <div class="modal-dialog" role="dialog">
 
             <!-- Modal content-->
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-primary" />
+                            <asp:Button ID="btnSave" runat="server" ValidationGroup="vgAdd" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-primary" />
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </ContentTemplate>
@@ -129,7 +129,7 @@
                                         Display="Dynamic"
                                         ControlToValidate="txtEditFromDate"
                                         CssClass="label label-danger"
-                                        ValidationGroup="vgAdd"
+                                        ValidationGroup="vgEdit"
                                         ErrorMessage="From Date is required"></asp:RequiredFieldValidator>
                                 </div>
 
@@ -141,7 +141,7 @@
                                         Display="Dynamic"
                                         ControlToValidate="txtEditToDate"
                                         CssClass="label label-danger"
-                                        ValidationGroup="vgAdd"
+                                        ValidationGroup="vgEdit"
                                         ErrorMessage="To Date is required"></asp:RequiredFieldValidator>
                                 </div>
 
@@ -153,7 +153,7 @@
                                         Display="Dynamic"
                                         ControlToValidate="txtEditEffectivityDate"
                                         CssClass="label label-danger"
-                                        ValidationGroup="vgAdd"
+                                        ValidationGroup="vgEdit"
                                         ErrorMessage="Effectivity Date is required"></asp:RequiredFieldValidator>
                                 </div>
                             </div>

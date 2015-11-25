@@ -78,7 +78,7 @@ namespace AMS.DAL
         public DataTable fill_tmpEMPLOYEE()
         {
             dt = new DataTable();
-            dt = getList("SELECT * FROM tmpEMPLOYEE");
+            dt = getList("SELECT TOP 20 * FROM tmpEMPLOYEE");
             return dt;
         }
 

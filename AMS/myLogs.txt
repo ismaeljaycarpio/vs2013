@@ -1,4 +1,21 @@
-﻿2015-11-24
+﻿2015-11-25
+PRODUCTION: - 
+	error when uploading not selected document file Employee/ViewEmployee
+	validation in emp movement
+
+
+
+
+
+
+
+
+
+
+
+
+
+2015-11-24
 	Create Profile Report
 	Report - Monthly Celebrant
 
