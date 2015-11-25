@@ -165,6 +165,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Dashboard\BirthDay_Celeb.aspx" />
     <Content Include="Dashboard\Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Employee\ARBa_Score_Sheet.aspx" />
@@ -399,6 +400,8 @@
       <DependentUpon>TSI_Performance_Evaluation.xsd</DependentUpon>
     </Content>
     <Content Include="EvaluationNested.master" />
+    <None Include="Properties\PublishProfiles\ams-test00 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ams-test00 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\eHRIS.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -632,6 +635,13 @@
     <Compile Include="DAL\PositionManagement.cs" />
     <Compile Include="DAL\Training.cs" />
     <Compile Include="DAL\Violation.cs" />
+    <Compile Include="Dashboard\BirthDay_Celeb.aspx.cs">
+      <DependentUpon>BirthDay_Celeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BirthDay_Celeb.aspx.designer.cs">
+      <DependentUpon>BirthDay_Celeb.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

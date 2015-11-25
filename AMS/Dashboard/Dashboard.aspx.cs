@@ -18,5 +18,10 @@ namespace AMS.Dashboard
                 lnkBdayCount.Text = dashb.CountBday().ToString();
             }
         }
+
+        protected void lnkBdayCount_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Dashboard/BirthDay_Celeb.aspx?mm=" + DateTime.Now.Month);
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using System.Data;
 
 namespace AMS
 {
@@ -22,11 +23,34 @@ namespace AMS
 
         protected void btnSample_Click(object sender, EventArgs e)
         {
-            foreach(MembershipUser user in Membership.GetAllUsers())
+            DAL.Filler filler = new DAL.Filler();
+            DAL.Employee emp;
+            DataTable dt = new DataTable();
+            dt = filler.fill_tmpEMPLOYEE();
+
+            foreach (DataRow rw in dt.Rows)
             {
-                //Roles.AddUserToRole(user.UserName, "Staff");
-                Roles.RemoveUserFromRole(user.UserName, "Staff");
-            }
+                ////membership class
+                MembershipUser newUser = Membership.CreateUser(rw["Emp_Id"].ToString(), "pass123");
+
+                ////roles
+                Roles.AddUserToRole(newUser.UserName, "Admin");
+
+                ////emp
+                emp = new DAL.Employee();
+                emp.SeedUser((Guid)newUser.ProviderUserKey,
+                    rw["Emp_Id"].ToString(),
+                    rw["FirstName"].ToString(),
+                    rw["MiddleName"].ToString(),
+                    rw["LastName"].ToString(),
+                    rw["M_Status"].ToString(),
+                    rw["Gender"].ToString(),
+                    rw["NationalityId"].ToString(),
+                    rw["BirthDate"].ToString(),
+                    rw["Age"].ToString(),
+                    rw["BloodType"].ToString(),
+                    rw["Language"].ToString());
+            }  
         }
     }
 }

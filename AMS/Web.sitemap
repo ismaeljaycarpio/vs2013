@@ -5,7 +5,7 @@
     <siteMapNode url="~/Login" title="Login"></siteMapNode>
 
     <siteMapNode url="~/Dashboard/Dashboard" title="Dashboard">
-      
+      <siteMapNode url="~/Dashboard/BirthDay_Celeb.aspx" title="Monthly BirthDay Celebrants"></siteMapNode>
     </siteMapNode>
     
     
@@ -21,6 +21,7 @@
       <siteMapNode url="~/Employee/Violations" title="Violations"></siteMapNode>
       <siteMapNode url="~/Employee/Profile" title="Personal Details"></siteMapNode>
       <siteMapNode url="~/Employee/JobDetails" title="Job Details"></siteMapNode>
+      <siteMapNode url="~/Employee/EmployeeMovement" title="Employee Movement"></siteMapNode>
     </siteMapNode>
 
   </siteMapNode>

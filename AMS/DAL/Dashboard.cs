@@ -33,5 +33,35 @@ namespace AMS.DAL
 
             return _count;
         }
+        public DataTable DisplayBirthDayCeleb(string MonthNumber)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "EMPLOYEE.BirthDate, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "DATEPART(mm,EMPLOYEE.BirthDate) = @MonthNumber AND " +
+                "Memberships.IsApproved = 'True' " +
+                "ORDER BY Employee.Emp_Id ASC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@MonthNumber", MonthNumber);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
     }
 }
