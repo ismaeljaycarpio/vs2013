@@ -31,6 +31,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <PublishDatabaseSettings>
+      <Objects>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -231,9 +236,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Documents\countriesoftheworld.xlsx" />
-    <Content Include="Documents\EmployeeList %282%29.xls" />
-    <Content Include="Documents\EmployeeList.xls" />
     <Content Include="App_Code\PerformanceEvaluation.xsc">
       <DependentUpon>PerformanceEvaluation.xsd</DependentUpon>
     </Content>
@@ -400,10 +402,6 @@
       <DependentUpon>TSI_Performance_Evaluation.xsd</DependentUpon>
     </Content>
     <Content Include="EvaluationNested.master" />
-    <None Include="Properties\PublishProfiles\ams-test00 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\ams-test00 - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\eHRIS.pubxml" />
-    <None Include="Properties\PublishProfiles\smart.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
@@ -937,6 +935,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Documents\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />

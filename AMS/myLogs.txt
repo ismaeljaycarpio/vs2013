@@ -1,18 +1,27 @@
-﻿2015-11-25
+﻿///////////////////////////////////////////////////////////////
+////////////////////2015-11-26////////////////////////////////
+//////////////////////////////////////////////////////////////
+- code db back-up
+- database 
+- make sure all fields/tables are normalized
+- implement ajax in document file upload in ViewEmployee.aspx
+- preload application - https://msdn.microsoft.com/en-us/library/cc668225.aspx
+- configure <compilation debug="true"> to false when deploying to production
+
+PROD - save in excel file to restore table values
+Host to Azure						
+
+
+
+2015-11-25
 PRODUCTION: - 
 	error when uploading not selected document file Employee/ViewEmployee
 	validation in emp movement
 
+***NOT EDITABLE EMP_ID
 
-
-
-
-
-
-
-
-
-
+	IsActive -> can login
+	HasResigned -> will not show in 
 
 
 2015-11-24
@@ -52,6 +61,7 @@ AZ SIDE [!--ACTION REQURED--!]:
 		Class Clean-up
 
 
+	Allow Remote Connection from Dev Machine to Server(access db and commit changes)
 !IMPORTANT
 >Account Management
 	Register - DONE
@@ -66,3 +76,7 @@ IMPORTANT FIX/BUG
 
 HR:
 >cant see admin in list
+
+
+IMPROVEMENTS, PERFORMANCE
+- Profile Image Upload - (sizing)

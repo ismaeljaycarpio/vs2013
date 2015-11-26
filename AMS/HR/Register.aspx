@@ -9,10 +9,10 @@
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Register</h3>
+                </div>
                 <div class="panel-body">
-                    <div class="page-header">
-                        <h3>Register</h3>
-                    </div>
                     <asp:Panel ID="pnlSuccess" runat="server" CssClass="alert alert-success" Visible="false">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         <strong>Success!</strong> User successfully created.

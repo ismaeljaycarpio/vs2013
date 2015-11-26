@@ -26,7 +26,8 @@ namespace AMS.DAL
                 "EMOVEMENT_EMPLOYEE.EffectivityDate " +
                 "FROM EMOVEMENT, EMOVEMENT_EMPLOYEE " +
                 "WHERE EMOVEMENT.Id = EMOVEMENT_EMPLOYEE.EMovementId " +
-                "AND EMOVEMENT_EMPLOYEE.UserId = @UserId";
+                "AND EMOVEMENT_EMPLOYEE.UserId = @UserId " +
+                "ORDER BY EMOVEMENT_EMPLOYEE.EffectivityDate DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
