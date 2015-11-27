@@ -13,19 +13,45 @@
                 <div class="panel-body">
                     <table class="table table-responsive">
                         <tr class="text-center">
-                            <td colspan="2"><b>ARBa SCORE SHEET</b></td>
+                            <td colspan="3"><b>ARBa SCORE SHEET</b></td>
                         </tr>
                         <tr>
                             <td><b>Employee Name:</b>
                                 <asp:Label ID="lblEmpName" runat="server"></asp:Label></td>
-                            <td align="right"><b>Period Covered:</b>
-                                <asp:TextBox ID="txtPeriodCovered" runat="server"></asp:TextBox></td>
+                            <td><b>Department:</b>
+                                <asp:Label ID="lblDepartment" runat="server"></asp:Label></td>
+                            <td><b>Position:</b>
+                                <asp:Label ID="lblPosition" runat="server"></asp:Label>
+                            </td>
                         </tr>
                         <tr>
-                            <td><b>Designation</b>
-                                <asp:Label ID="lblDesignation" runat="server"></asp:Label></td>
-                            <td align="right"><b>Start Date of Employment</b>
-                                <asp:TextBox ID="txtHiredDate" runat="server"></asp:TextBox></td>
+                            <td><b>Date Hired:</b>
+                                <asp:Label ID="lblDateHired" runat="server"></asp:Label>
+                            </td>
+                            <td><b>Evaluation Date:</b>
+                                <asp:Label ID="lblEvalDate" runat="server"></asp:Label></td>
+                            <td><b>Date of Last Evaluation:</b>
+                                <asp:Label ID="lblDateLastEvaluation" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><b>Evaluation Period</b>
+                                <asp:RadioButtonList ID="rblNextEvaluation"
+                                    runat="server"
+                                    RepeatDirection="Horizontal"
+                                    CellSpacing="15">
+                                    <asp:ListItem Value="Monthly">Monthly</asp:ListItem>
+                                    <asp:ListItem Value="Quarterly">Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="Semi-Annual">Semi-Annual</asp:ListItem>
+                                    <asp:ListItem Value="Annual">Annual</asp:ListItem>
+                                </asp:RadioButtonList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
+                                    runat="server"
+                                    ControlToValidate="rblNextEvaluation"
+                                    ForeColor="Red"
+                                    Display="Dynamic"
+                                    ErrorMessage="Choose one"></asp:RequiredFieldValidator>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -91,6 +117,7 @@
                             GridLines="None"
                             ShowHeaderWhenEmpty="true"
                             AutoGenerateColumns="false"
+                            OnRowDataBound="gvCustomerService_RowDataBound"
                             DataKeyNames="Id">
                             <Columns>
                                 <asp:TemplateField HeaderText="" Visible="false">

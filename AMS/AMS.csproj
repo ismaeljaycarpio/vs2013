@@ -404,6 +404,7 @@
     <None Include="Properties\PublishProfiles\ams-dev00 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\ams-dev00 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="ReleaseResources.aspx" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -913,6 +914,13 @@
       <DependentUpon>ProfileNested.master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReleaseResources.aspx.cs">
+      <DependentUpon>ReleaseResources.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReleaseResources.aspx.designer.cs">
+      <DependentUpon>ReleaseResources.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

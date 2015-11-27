@@ -44,6 +44,33 @@ namespace AMS.Employee
                 //populate gridview
                 BindData();
 
+                //populate evaluation period
+                dt = new DataTable();
+                dt = eval.ChkEvaluationPeriod();
+                if(dt.Rows.Count > 0)
+                {
+                    foreach(DataRow rw in dt.Rows)
+                    {
+                        if(rw["EvaluationPeriod"].ToString().Contains("Monthly"))
+                        {
+                            ckblEvaluationPeriod.Items.FindByText("Monthly").Selected = true;
+                        }
+                        if(rw["EvaluationPeriod"].ToString().Contains("Quarter"))
+                        {
+                            ckblEvaluationPeriod.Items.FindByText("Quarterly").Selected = true;
+                        }
+                        if (rw["EvaluationPeriod"].ToString().Contains("Semi - Annual"))
+                        {
+                            ckblEvaluationPeriod.Items.FindByText("Semi-Annual").Selected = true;
+                        }
+                        if (rw["EvaluationPeriod"].ToString().Contains("Annual"))
+                        {
+                            ckblEvaluationPeriod.Items.FindByText("Annual").Selected = true;
+                        }
+                    }
+                }
+
+
                 //chk id
                 MembershipUser loggedInUser = Membership.GetUser();
                 Guid loggedUserId = Guid.Parse(loggedInUser.ProviderUserKey.ToString());

@@ -114,7 +114,7 @@ namespace AMS.HR
         protected void btnGenerateId_Click(object sender, EventArgs e)
         {
             string userName = emp.GetGeneratedUserName();
-            txtEmpId.Text = "AZB-2015-" + userName;
+            txtEmpId.Text = "ARBA-2015-" + userName;
             pnlSuccess.Visible = false;
             lblError.Text = "";
         }

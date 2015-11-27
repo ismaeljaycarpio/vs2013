@@ -43,21 +43,15 @@
                         </tr>
                         <tr>
                             <td colspan="3"><b>Evaluation Period</b>
-                                <asp:RadioButtonList ID="rblNextEvaluation"
+                                <asp:CheckBoxList ID="ckblEvaluationPeriod" 
                                     runat="server"
-                                    RepeatDirection="Horizontal"
-                                    CellSpacing="15">
+                                    Enabled="false"
+                                    CssClass="checkbox checkbox-inline">
                                     <asp:ListItem Value="Monthly">Monthly</asp:ListItem>
                                     <asp:ListItem Value="Quarterly">Quarterly</asp:ListItem>
                                     <asp:ListItem Value="Semi-Annual">Semi-Annual</asp:ListItem>
                                     <asp:ListItem Value="Annual">Annual</asp:ListItem>
-                                </asp:RadioButtonList>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
-                                    runat="server"
-                                    ControlToValidate="rblNextEvaluation"
-                                    ForeColor="Red"
-                                    Display="Dynamic"
-                                    ErrorMessage="Choose one"></asp:RequiredFieldValidator>
+                                </asp:CheckBoxList>
                             </td>
                         </tr>
                         <tr>
@@ -131,7 +125,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Evaluator Rating">
+                                        <asp:TemplateField HeaderText="Evaluator">
                                             <ItemTemplate>
                                                 <asp:TextBox runat="server" ID="txtEvaluatorRating" Width="50"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2"

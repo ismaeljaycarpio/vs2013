@@ -24,7 +24,7 @@ namespace AMS.EvaluationSelf
             {
                 if (Session["UserId"] == null)
                 {
-                    Response.Redirect("~/Employee/Employee");
+                    Response.Redirect("~/EvaluationSelf/Score_Sheet");
                 }
 
 
@@ -33,8 +33,10 @@ namespace AMS.EvaluationSelf
                 Guid UserId = Guid.Parse(hfUserId.Value);
 
                 lblEmpName.Text = emp.GetFullName(UserId);
-                lblDesignation.Text = emp.GetDepartment(UserId);
-                txtHiredDate.Text = emp.GetHiredDate(UserId);
+                lblDepartment.Text = emp.GetDepartment(UserId);
+                lblDateHired.Text = emp.GetHiredDate(UserId);
+                lblPosition.Text = emp.GetPosition(UserId);
+                lblEvalDate.Text = DateTime.Now.ToShortDateString();
 
                 gvSocialSkills.DataSource = eval.getSelf_SocialSkill();
                 gvSocialSkills.DataBind();
@@ -57,6 +59,39 @@ namespace AMS.EvaluationSelf
                     gvResponsibility.Visible = false;
                     gvExcellent.Visible = false;
                 }
+
+                if(User.IsInRole("Manager") || User.IsInRole("Staff"))
+                {
+                    //gvCus
+                    var list = new List<int> { 63, 64, 65, 66, 67 };
+                    foreach (GridViewRow row in gvCustomerService.Rows)
+                    {
+                        if (row.RowType == DataControlRowType.DataRow)
+                        {
+                            int Id = int.Parse((row.FindControl("lblId") as Label).Text);
+                            if (!list.Contains(Id))
+                            {
+                                row.Visible = false;
+                            }
+                        }
+                    }
+                }
+                else if(User.IsInRole("Supervisor"))
+                {
+                    //gvCus
+                    var list = new List<int> { 63, 64, 65, 66, 67 };
+                    foreach (GridViewRow row in gvCustomerService.Rows)
+                    {
+                        if (row.RowType == DataControlRowType.DataRow)
+                        {
+                            int Id = int.Parse((row.FindControl("lblId") as Label).Text);
+                            if (list.Contains(Id))
+                            {
+                                row.Visible = false;
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -73,7 +108,7 @@ namespace AMS.EvaluationSelf
                     UserId, 
                     "Self Evaluation", 
                     agency, 
-                    txtPeriodCovered.Text);
+                    "");
 
                 //get grid values
                 foreach(GridViewRow row in gvSocialSkills.Rows)
@@ -81,7 +116,7 @@ namespace AMS.EvaluationSelf
                     if(row.RowType == DataControlRowType.DataRow)
                     {
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
-                        int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
+                        string rating = (row.FindControl("txtRating") as TextBox).Text;
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
                         eval.addSelf_Evaluation_Rating(evaluationId, Id, rating, remarks);
@@ -93,7 +128,7 @@ namespace AMS.EvaluationSelf
                     if (row.RowType == DataControlRowType.DataRow)
                     {
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
-                        int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
+                        string rating = (row.FindControl("txtRating") as TextBox).Text;
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
                         eval.addSelf_Evaluation_Rating(evaluationId, Id, rating, remarks);
@@ -105,7 +140,7 @@ namespace AMS.EvaluationSelf
                     if (row.RowType == DataControlRowType.DataRow)
                     {
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
-                        int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
+                        string rating = (row.FindControl("txtRating") as TextBox).Text;
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
                         eval.addSelf_Evaluation_Rating(evaluationId, Id, rating, remarks);
@@ -117,7 +152,7 @@ namespace AMS.EvaluationSelf
                     if (row.RowType == DataControlRowType.DataRow)
                     {
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
-                        int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
+                        string rating = (row.FindControl("txtRating") as TextBox).Text;
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
                         eval.addSelf_Evaluation_Rating(evaluationId, Id, rating, remarks);
@@ -129,16 +164,31 @@ namespace AMS.EvaluationSelf
                     if (row.RowType == DataControlRowType.DataRow)
                     {
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
-                        int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
+                        string rating = (row.FindControl("txtRating") as TextBox).Text;
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
                         eval.addSelf_Evaluation_Rating(evaluationId, Id, rating, remarks);
                     }
                 }
                 Session["EvaluationId"] = evaluationId;
-                Response.Redirect("~/EvaluationSelf/vSelf_Evaluation");
+                Response.Redirect("~/EvaluationSelf/vEvaluation_Self");
+            }        
+        }
+
+        protected void gvCustomerService_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if(User.IsInRole("Manager") || User.IsInRole("Staff"))
+                {
+                    //show row
+
+                }
+                else
+                {
+                    //hide
+                }
             }
-        
         }
     }
 }

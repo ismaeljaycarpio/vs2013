@@ -1599,7 +1599,7 @@ namespace AMS.DAL
         public void addSelf_Evaluation_Rating(
             int evaluationId,
             int competencyCatQId,
-            int rating,
+            string rating,
             string remarks)
         {
             strSql = "INSERT INTO Evaluation_Self(EvaluationId, CompetenceCatQId, Rating,Remarks) " +
@@ -1803,5 +1803,24 @@ namespace AMS.DAL
         }
         #endregion
 
+        #region ChkEvaluationPeriod
+        public DataTable ChkEvaluationPeriod()
+        {
+            strSql = "SELECT EvaluationPeriod FROM EVALUATION_PERIOD_CONFIG WHERE GETDATE() BETWEEN StartEvaluation AND EndEvaluation";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+        
+        #endregion
     }
 }

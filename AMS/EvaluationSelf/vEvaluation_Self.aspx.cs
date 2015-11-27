@@ -26,7 +26,7 @@ namespace AMS.EvaluationSelf
             {
                 if (Session["UserId"] == null)
                 {
-                    Response.Redirect("~/Employee/Employee");
+                    Response.Redirect("~/EvaluationSelf/Score_Sheet");
                 }
 
                 //get selected user
