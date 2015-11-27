@@ -1,11 +1,8 @@
-﻿<%@ Page Title="View Self Evaluation"
-    Language="C#"
-    MasterPageFile="~/ProfileNested.master"
-    AutoEventWireup="true"
-    CodeBehind="vSelf_Evaluation.aspx.cs"
-    Inherits="AMS.Employee.vSelf_Evaluation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vEvaluation_Self.aspx.cs" Inherits="AMS.EvaluationSelf.vEvaluation_Self" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">

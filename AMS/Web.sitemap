@@ -21,13 +21,20 @@
       <siteMapNode url="~/Employee/Profile" title="Personal Details"></siteMapNode>
       <siteMapNode url="~/Employee/JobDetails" title="Job Details"></siteMapNode>
       <siteMapNode url="~/Employee/EmployeeMovement" title="Employee Movement"></siteMapNode>
-      <siteMapNode url="~/Employee/Evaluation" title="Evaluation"></siteMapNode>
       <siteMapNode url="~/Employee/ErrorPage" title="Error Page"></siteMapNode>
+
+      <siteMapNode url="~/Employee/Evaluation" title="Evaluation">
+        <siteMapNode url="~/Employee/PerformanceEvaluation" title="TOPLIS Performance Evaluation"></siteMapNode>
+      </siteMapNode>
     </siteMapNode>
 
     <siteMapNode url="~/Evaluation/PendingApprovals" title="Pending Approvals"></siteMapNode>
     <siteMapNode url="~/Evaluation/ApprovedEvaluations" title="Approved Evaluations"></siteMapNode>
 
+    <siteMapNode url="~/EvaluationSelf/Score_Sheet" title="Self Evaluation">
+      <siteMapNode url="~/EvaluationSelf/Evaluation_Self" title="Evaluation Sheet"></siteMapNode>
+    </siteMapNode>
+    
     <siteMapNode title="HR Actions">
       <siteMapNode url="~/HR/Register" title="Register"></siteMapNode>
     </siteMapNode>

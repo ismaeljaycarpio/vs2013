@@ -38,6 +38,8 @@ namespace AMS.Employee
                 lblAgency.Text = emp.GetAgencyName(UserId);
                 lblDateHired.Text = emp.GetHiredDate(UserId);
                 lblPosition.Text = emp.GetPosition(UserId);
+                lblDepartment.Text = emp.GetDepartment(UserId);
+                lblEvalDate.Text = DateTime.Now.ToShortDateString();
 
                 //populate gridview
                 BindData();

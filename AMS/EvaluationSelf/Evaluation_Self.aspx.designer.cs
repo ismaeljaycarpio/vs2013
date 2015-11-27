@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AMS.Employee {
+namespace AMS.EvaluationSelf {
     
     
-    public partial class vSelf_Evaluation {
+    public partial class Evaluation_Self {
         
         /// <summary>
         /// lblEmpName control.
@@ -94,13 +94,13 @@ namespace AMS.Employee {
         protected global::System.Web.UI.WebControls.GridView gvExcellent;
         
         /// <summary>
-        /// btnUpdate control.
+        /// btnSumbit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdate;
+        protected global::System.Web.UI.WebControls.Button btnSumbit;
         
         /// <summary>
         /// hfUserId control.

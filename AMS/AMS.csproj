@@ -190,14 +190,16 @@
     <Content Include="Employee\pPrime_Performance_Evaluation.aspx" />
     <Content Include="Employee\Prime_Performance_Evaluation.aspx" />
     <Content Include="Employee\Profile.aspx" />
-    <Content Include="Employee\Self_Evaluation.aspx" />
     <Content Include="Employee\Trainings.aspx" />
     <Content Include="Employee\ViewEmployee.aspx" />
     <Content Include="Employee\Violations.aspx" />
     <Content Include="Employee\vPerformanceEvaluation.aspx" />
     <Content Include="Employee\vPrime_Performance_Evaluation.aspx" />
-    <Content Include="Employee\vSelf_Evaluation.aspx" />
+    <Content Include="EvaluationSelf\Evaluation_Self.aspx" />
+    <Content Include="EvaluationSelf\Score_Sheet.aspx" />
+    <Content Include="EvaluationSelf\vEvaluation_Self.aspx" />
     <Content Include="Evaluation\ApprovedEvaluations.aspx" />
+    <Content Include="Evaluation\Config_Evaluation_Periond.aspx" />
     <Content Include="Evaluation\PendingApprovals.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\accent.png" />
@@ -225,9 +227,6 @@
     <Content Include="myLogs.txt" />
     <Content Include="packages.config" />
     <Content Include="Employee\Web.config" />
-    <Content Include="ProfileImages\378bcb0b-be04-4e83-9dc0-072f8106bbf6.png" />
-    <Content Include="ProfileImages\4c4a4fd3-cd25-448a-8633-44370de6e579.png" />
-    <Content Include="ProfileImages\fb2f4325-ed5c-4ccc-b4bd-6151ebd6c7e0.png" />
     <Content Include="ProfileImages\noImage.png" />
     <Content Include="ProfileNested.master" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -629,6 +628,7 @@
     <Compile Include="DAL\Employee.cs" />
     <Compile Include="DAL\EmployeeMovement.cs" />
     <Compile Include="DAL\Evaluation.cs" />
+    <Compile Include="DAL\Evaluation_Config.cs" />
     <Compile Include="DAL\FileUpload.cs" />
     <Compile Include="DAL\Filler.cs" />
     <Compile Include="DAL\Experience.cs" />
@@ -776,13 +776,6 @@
     <Compile Include="Employee\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Employee\Self_Evaluation.aspx.cs">
-      <DependentUpon>Self_Evaluation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Employee\Self_Evaluation.aspx.designer.cs">
-      <DependentUpon>Self_Evaluation.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Employee\Trainings.aspx.cs">
       <DependentUpon>Trainings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -818,13 +811,6 @@
     <Compile Include="Employee\vPrime_Performance_Evaluation.aspx.designer.cs">
       <DependentUpon>vPrime_Performance_Evaluation.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Employee\vSelf_Evaluation.aspx.cs">
-      <DependentUpon>vSelf_Evaluation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Employee\vSelf_Evaluation.aspx.designer.cs">
-      <DependentUpon>vSelf_Evaluation.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EvaluationNested.master.cs">
       <DependentUpon>EvaluationNested.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -832,12 +818,40 @@
     <Compile Include="EvaluationNested.master.designer.cs">
       <DependentUpon>EvaluationNested.master</DependentUpon>
     </Compile>
+    <Compile Include="EvaluationSelf\Evaluation_Self.aspx.cs">
+      <DependentUpon>Evaluation_Self.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EvaluationSelf\Evaluation_Self.aspx.designer.cs">
+      <DependentUpon>Evaluation_Self.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluationSelf\Score_Sheet.aspx.cs">
+      <DependentUpon>Score_Sheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EvaluationSelf\Score_Sheet.aspx.designer.cs">
+      <DependentUpon>Score_Sheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluationSelf\vEvaluation_Self.aspx.cs">
+      <DependentUpon>vEvaluation_Self.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EvaluationSelf\vEvaluation_Self.aspx.designer.cs">
+      <DependentUpon>vEvaluation_Self.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Evaluation\ApprovedEvaluations.aspx.cs">
       <DependentUpon>ApprovedEvaluations.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Evaluation\ApprovedEvaluations.aspx.designer.cs">
       <DependentUpon>ApprovedEvaluations.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluation\Config_Evaluation_Periond.aspx.cs">
+      <DependentUpon>Config_Evaluation_Periond.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluation\Config_Evaluation_Periond.aspx.designer.cs">
+      <DependentUpon>Config_Evaluation_Periond.aspx</DependentUpon>
     </Compile>
     <Compile Include="Evaluation\PendingApprovals.aspx.cs">
       <DependentUpon>PendingApprovals.aspx</DependentUpon>

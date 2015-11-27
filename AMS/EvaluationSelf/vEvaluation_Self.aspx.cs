@@ -11,23 +11,24 @@ using System.Web.Security;
 using System.Collections;
 using System.Text;
 
-namespace AMS.Employee
+namespace AMS.EvaluationSelf
 {
-    public partial class vSelf_Evaluation : System.Web.UI.Page
+    public partial class vEvaluation_Self : System.Web.UI.Page
     {
         DAL.Evaluation eval = new DAL.Evaluation();
         DAL.Employee emp = new DAL.Employee();
         DataTable dt;
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!Page.IsPostBack)
+            if (!Page.IsPostBack)
             {
                 if (Session["UserId"] == null)
                 {
                     Response.Redirect("~/Employee/Employee");
                 }
-                               
+
                 //get selected user
                 hfUserId.Value = Session["UserId"].ToString();
                 Guid UserId = Guid.Parse(hfUserId.Value);
@@ -65,7 +66,7 @@ namespace AMS.Employee
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             Page.Validate();
-            if(Page.IsValid)
+            if (Page.IsValid)
             {
                 //get selected user
                 Guid UserId = Guid.Parse(hfUserId.Value);
@@ -138,7 +139,7 @@ namespace AMS.Employee
                     }
                 }
 
-                Response.Redirect("~/Employee/vSelf_Evaluation");
+                Response.Redirect("~/EvaluationSelf/vSelf_Evaluation");
             }
         }
     }

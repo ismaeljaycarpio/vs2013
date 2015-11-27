@@ -13,7 +13,11 @@ namespace AMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!Page.IsPostBack)
+            {
+                FormsAuthentication.SignOut();
+                Session.RemoveAll();
+            }
         }
 
         protected void Unnamed_Click(object sender, EventArgs e)
@@ -34,7 +38,7 @@ namespace AMS
                 MembershipUser newUser = Membership.CreateUser(rw["Emp_Id"].ToString(), "pass123");
 
                 ////roles
-                Roles.AddUserToRole(newUser.UserName, "Admin");
+                Roles.AddUserToRole(newUser.UserName, "Staff");
 
                 ////emp
                 emp = new DAL.Employee();
@@ -49,7 +53,9 @@ namespace AMS
                     rw["BirthDate"].ToString(),
                     rw["Age"].ToString(),
                     rw["BloodType"].ToString(),
-                    rw["Language"].ToString());
+                    rw["Language"].ToString(),
+                    "1",
+                    "3");
             }  
         }
     }

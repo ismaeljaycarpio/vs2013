@@ -330,7 +330,7 @@ namespace AMS.Employee
                 txtDaysSick.Text,
                 txtDaysTardy.Text,
                 txtCommentsNNotes.Text,
-                txtLastDateEval.Text,
+                "",
                 rblNextEvaluation.SelectedValue.ToString(),
                 txtCreativeContribution.Text,
                 txtNewSkill.Text,

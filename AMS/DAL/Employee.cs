@@ -233,11 +233,13 @@ namespace AMS.DAL
             string birthdate,
             string age,
             string bloodtype,
-            string language)
+            string language,
+            string positionId,
+            string agencyId)
         {
             strSql = "INSERT INTO [EMPLOYEE] " +
-                "(UserId, Emp_Id,FirstName, MiddleName, LastName, M_Status, Gender, NationalityId, BirthDate, Age, BloodType, Language) " +
-                "VALUES(@UserId,@Emp_Id,@FirstName,@MiddleName,@LastName,@M_Status,@Gender,@NationalityId,@BirthDate,@Age,@BloodType,@Language)";
+                "(UserId, Emp_Id,FirstName, MiddleName, LastName, M_Status, Gender, NationalityId, BirthDate, Age, BloodType, Language, PositionId, AgencyId) " +
+                "VALUES(@UserId,@Emp_Id,@FirstName,@MiddleName,@LastName,@M_Status,@Gender,@NationalityId,@BirthDate,@Age,@BloodType,@Language, @PositionId, @AgencyId)";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -257,6 +259,8 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@Age", age);
                 comm.Parameters.AddWithValue("@BloodType", bloodtype);
                 comm.Parameters.AddWithValue("@Language", language);
+                comm.Parameters.AddWithValue("@PositionId", positionId);
+                comm.Parameters.AddWithValue("@AgencyId", agencyId);
                 comm.ExecuteNonQuery();
                 conn.Close();
             }
@@ -540,6 +544,24 @@ namespace AMS.DAL
             conn.Close();
 
             return dt.Rows[0]["Position"].ToString();
+        }
+
+        public string GetPositionId(Guid UserId)
+        {
+            strSql = "SELECT PositionId FROM EMPLOYEE WHERE UserId = @UserId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt.Rows[0]["PositionId"].ToString();
         }
 
         public string GetAgencyName(Guid UserId)

@@ -1328,6 +1328,127 @@ namespace AMS.DAL
         ////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////// SELF EVALUATION ////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////
+
+        //can self evaluate by manager -> supervisor and staff, same dept
+        public DataTable DisplaySelfEvaluation_Manager(string strSearch, string deptId, Guid UserId)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "DEPARTMENT.Id = @DepartmentId AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "(Roles.RoleName = 'Staff' OR Roles.RoleName = 'Supervisor') AND " +
+                "EMPLOYEE.UserId != @UserId AND " +
+                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%' ) " +
+                "AND EMPLOYEE.HasResigned = 0 " +
+                "ORDER BY Employee.Emp_Id ASC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@searchKeyWord", strSearch);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable DisplaySelfEvaluation_Supervisor(string strSearch, string deptId, Guid UserId)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "DEPARTMENT.Id = @DepartmentId AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "(Roles.RoleName = 'Staff') AND " +
+                "EMPLOYEE.UserId != @UserId AND " +
+                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%' ) " +
+                "AND EMPLOYEE.HasResigned = 0 " +
+                "ORDER BY Employee.Emp_Id ASC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@searchKeyWord", strSearch);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        //display can self evaulautby staff
+        public DataTable DisplaySelfEvaluation_Staff(string positionId, string strSearch, Guid UserId)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.PositionId = @PositionId AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "(Roles.RoleName = 'Staff') AND " +
+                "EMPLOYEE.UserId != @UserId AND " + 
+                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%' ) " +
+                "AND EMPLOYEE.HasResigned = 0 " +
+                "ORDER BY Employee.Emp_Id ASC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@searchKeyWord", strSearch);
+            comm.Parameters.AddWithValue("@PositionId", positionId);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+
         public DataTable getSelf_SocialSkill()
         {
             //11 -> Initiative

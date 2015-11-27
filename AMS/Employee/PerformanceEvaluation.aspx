@@ -16,25 +16,52 @@
                 <div class="panel-body">
                     <table class="table">
                         <tr class="text-center">
-                            <td colspan="2">
+                            <td colspan="3">
                                 <asp:Label ID="lblAgency" runat="server" Font-Bold="true">Sample</asp:Label></td>
                         </tr>
                         <tr class="text-center">
-                            <td colspan="2"><b>EMPLOYEE PERFORMANCE EVALUATION</b></td>
+                            <td colspan="3"><b>EMPLOYEE PERFORMANCE EVALUATION</b></td>
                         </tr>
                         <tr>
                             <td><b>Employee Name:</b>
                                 <asp:Label ID="lblEmpName" runat="server"></asp:Label></td>
+                            <td><b>Department:</b>
+                                <asp:Label ID="lblDepartment" runat="server"></asp:Label></td>
                             <td><b>Position:</b>
-                                <asp:Label ID="lblPosition" runat="server"></asp:Label></td>
+                                <asp:Label ID="lblPosition" runat="server"></asp:Label>
+                            </td>
                         </tr>
                         <tr>
                             <td><b>Date Hired:</b>
-                                <asp:Label ID="lblDateHired" runat="server"></asp:Label></td>
-                            <td><b>Client Assigned:</b> Azalea Hotels and Residences Baguio</td>
+                                <asp:Label ID="lblDateHired" runat="server"></asp:Label>
+                            </td>
+                            <td><b>Evaluation Date:</b>
+                                <asp:Label ID="lblEvalDate" runat="server"></asp:Label></td>
+                            <td><b>Date of Last Evaluation:</b>
+                                <asp:Label ID="lblDateLastEvaluation" runat="server"></asp:Label>
+                            </td>
                         </tr>
                         <tr>
-                            <td colspan="2">Carefully read each Job Factor and its definitions prior to evaluation. Then indicate employee's rating scale below. Briefly explain the reason for each rating in the space provided for the Critical incidents.
+                            <td colspan="3"><b>Evaluation Period</b>
+                                <asp:RadioButtonList ID="rblNextEvaluation"
+                                    runat="server"
+                                    RepeatDirection="Horizontal"
+                                    CellSpacing="15">
+                                    <asp:ListItem Value="Monthly">Monthly</asp:ListItem>
+                                    <asp:ListItem Value="Quarterly">Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="Semi-Annual">Semi-Annual</asp:ListItem>
+                                    <asp:ListItem Value="Annual">Annual</asp:ListItem>
+                                </asp:RadioButtonList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
+                                    runat="server"
+                                    ControlToValidate="rblNextEvaluation"
+                                    ForeColor="Red"
+                                    Display="Dynamic"
+                                    ErrorMessage="Choose one"></asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Carefully read each Job Factor and its definitions prior to evaluation. Then indicate employee's rating scale below. Briefly explain the reason for each rating in the space provided for the Critical incidents.
                             </td>
                         </tr>
                     </table>
@@ -138,56 +165,56 @@
 
                 <asp:Panel ID="pnlEvaluatorOnly" runat="server" Visible="false">
                     <div class="panel-body">
-                    <table class="table">
-                        <tr>
-                            <td>REMARKS:
-                            </td>
-                            <td>Other Areas of Improvement:
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>(1 ) Unacceptable</td>
-                            <td>
-                                <asp:TextBox ID="txtUnacceptable" runat="server"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td>(2 ) Fall Short of Objectives</td>
-                            <td>
-                                <asp:TextBox ID="txtFallShort" runat="server"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td>(3 ) Effective</td>
-                            <td>
-                                <asp:TextBox ID="txtEffective" runat="server"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td>(4 ) Highly Effective</td>
-                            <td>
-                                <asp:TextBox ID="txtHighlyEffective" runat="server"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td>(5 ) Exceptional</td>
-                            <td>
-                                <asp:TextBox ID="txtExceptional" runat="server"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td>Remarks/Recommendation</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <asp:TextBox ID="txtRecommendation" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Need Improvement</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <asp:TextBox ID="txtNeedImpro" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                        <table class="table">
+                            <tr>
+                                <td>REMARKS:
+                                </td>
+                                <td>Other Areas of Improvement:
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>(1 ) Unacceptable</td>
+                                <td>
+                                    <asp:TextBox ID="txtUnacceptable" runat="server"></asp:TextBox></td>
+                            </tr>
+                            <tr>
+                                <td>(2 ) Fall Short of Objectives</td>
+                                <td>
+                                    <asp:TextBox ID="txtFallShort" runat="server"></asp:TextBox></td>
+                            </tr>
+                            <tr>
+                                <td>(3 ) Effective</td>
+                                <td>
+                                    <asp:TextBox ID="txtEffective" runat="server"></asp:TextBox></td>
+                            </tr>
+                            <tr>
+                                <td>(4 ) Highly Effective</td>
+                                <td>
+                                    <asp:TextBox ID="txtHighlyEffective" runat="server"></asp:TextBox></td>
+                            </tr>
+                            <tr>
+                                <td>(5 ) Exceptional</td>
+                                <td>
+                                    <asp:TextBox ID="txtExceptional" runat="server"></asp:TextBox></td>
+                            </tr>
+                            <tr>
+                                <td>Remarks/Recommendation</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:TextBox ID="txtRecommendation" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Need Improvement</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:TextBox ID="txtNeedImpro" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </asp:Panel>
                 <div class="panel-footer text-center">
                     <asp:Button ID="btnSumbit" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="btnSumbit_Click" />

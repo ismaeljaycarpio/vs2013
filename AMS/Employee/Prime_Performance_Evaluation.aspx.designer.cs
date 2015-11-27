@@ -40,6 +40,15 @@ namespace AMS.Employee {
         protected global::System.Web.UI.WebControls.Label lblDepartment;
         
         /// <summary>
+        /// lblPosition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPosition;
+        
+        /// <summary>
         /// lblDateHired control.
         /// </summary>
         /// <remarks>
@@ -58,22 +67,13 @@ namespace AMS.Employee {
         protected global::System.Web.UI.WebControls.Label lblEvalDate;
         
         /// <summary>
-        /// txtLastDateEval control.
+        /// lblDateLastEvaluation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLastDateEval;
-        
-        /// <summary>
-        /// RequiredFieldValidator4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.Label lblDateLastEvaluation;
         
         /// <summary>
         /// rblNextEvaluation control.

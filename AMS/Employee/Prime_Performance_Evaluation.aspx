@@ -6,13 +6,6 @@
     Inherits="AMS.Employee.Prime_Performance_Evaluation" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <script>
-        $(function () {
-            $('#<%: txtLastDateEval.ClientID%>').datepicker();
-        });
-    </script>
-
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -39,7 +32,9 @@
                                 <asp:Label ID="lblEmpName" runat="server"></asp:Label></td>
                             <td><b>Department:</b>
                                 <asp:Label ID="lblDepartment" runat="server"></asp:Label></td>
-                            <td></td>
+                            <td><b>Position:</b>
+                                <asp:Label ID="lblPosition" runat="server"></asp:Label>
+                            </td>
                         </tr>
                         <tr>
                             <td><b>Date Hired:</b>
@@ -48,13 +43,7 @@
                             <td><b>Evaluation Date:</b>
                                 <asp:Label ID="lblEvalDate" runat="server"></asp:Label></td>
                             <td><b>Date of Last Evaluation:</b>
-                                <asp:TextBox ID="txtLastDateEval" runat="server"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" 
-                                    runat="server"
-                                    ForeColor="Red"
-                                    Display="Dynamic"
-                                    ControlToValidate="txtLastDateEval" 
-                                    ErrorMessage="* Required"></asp:RequiredFieldValidator>
+                                <asp:Label ID="lblDateLastEvaluation" runat="server"></asp:Label>
                             </td>
                         </tr>
                         <tr>

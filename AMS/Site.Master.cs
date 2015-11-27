@@ -73,10 +73,10 @@ namespace AMS
                 if (Page.User.Identity.IsAuthenticated)
                 {
                     //get current userid
-                    MembershipUser _user = Membership.GetUser();
-                    Guid UserId = (Guid)_user.ProviderUserKey;
-                    if (Session["UserId"] == null)
-                        Session["UserId"] = UserId;
+                    //MembershipUser _user = Membership.GetUser();
+                    //Guid UserId = (Guid)_user.ProviderUserKey;
+                    //if (Session["UserId"] == null)
+                    //    Session["UserId"] = UserId;
                 }
             }
         }

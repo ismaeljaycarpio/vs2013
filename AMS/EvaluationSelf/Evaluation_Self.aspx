@@ -1,6 +1,8 @@
-﻿<%@ Page Title="Self Evaluation" Language="C#" MasterPageFile="~/ProfileNested.master" AutoEventWireup="true" CodeBehind="Self_Evaluation.aspx.cs" Inherits="AMS.Employee.Self_Evaluation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Evaluation_Self.aspx.cs" Inherits="AMS.EvaluationSelf.Evaluation_Self" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -9,20 +11,20 @@
                 </div>
 
                 <div class="panel-body">
-                    <table class="table">
+                    <table class="table table-responsive">
                         <tr class="text-center">
                             <td colspan="2"><b>ARBa SCORE SHEET</b></td>
                         </tr>
                         <tr>
                             <td><b>Employee Name:</b>
                                 <asp:Label ID="lblEmpName" runat="server"></asp:Label></td>
-                            <td><b>Period Covered:</b>
+                            <td align="right"><b>Period Covered:</b>
                                 <asp:TextBox ID="txtPeriodCovered" runat="server"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td><b>Designation</b>
                                 <asp:Label ID="lblDesignation" runat="server"></asp:Label></td>
-                            <td><b>Start Date of Employment</b>
+                            <td align="right"><b>Start Date of Employment</b>
                                 <asp:TextBox ID="txtHiredDate" runat="server"></asp:TextBox></td>
                         </tr>
                     </table>
@@ -59,9 +61,9 @@
                                             ControlToValidate="txtRating"
                                             ForeColor="Red"
                                             ErrorMessage="*"></asp:RequiredFieldValidator>
-                                        <asp:RangeValidator 
-                                            ID="RangeValidator1" 
-                                            runat="server" 
+                                        <asp:RangeValidator
+                                            ID="RangeValidator1"
+                                            runat="server"
                                             ForeColor="Red"
                                             MinimumValue="1"
                                             MaximumValue="3"
@@ -112,9 +114,9 @@
                                             ControlToValidate="txtRating"
                                             ForeColor="Red"
                                             ErrorMessage="*"></asp:RequiredFieldValidator>
-                                        <asp:RangeValidator 
-                                            ID="RangeValidator1" 
-                                            runat="server" 
+                                        <asp:RangeValidator
+                                            ID="RangeValidator1"
+                                            runat="server"
                                             ForeColor="Red"
                                             MinimumValue="1"
                                             MaximumValue="3"
@@ -166,9 +168,9 @@
                                             ControlToValidate="txtRating"
                                             ForeColor="Red"
                                             ErrorMessage="*"></asp:RequiredFieldValidator>
-                                        <asp:RangeValidator 
-                                            ID="RangeValidator1" 
-                                            runat="server" 
+                                        <asp:RangeValidator
+                                            ID="RangeValidator1"
+                                            runat="server"
                                             ForeColor="Red"
                                             MinimumValue="1"
                                             MaximumValue="3"
@@ -220,9 +222,9 @@
                                             ControlToValidate="txtRating"
                                             ForeColor="Red"
                                             ErrorMessage="*"></asp:RequiredFieldValidator>
-                                        <asp:RangeValidator 
-                                            ID="RangeValidator1" 
-                                            runat="server" 
+                                        <asp:RangeValidator
+                                            ID="RangeValidator1"
+                                            runat="server"
                                             ForeColor="Red"
                                             MinimumValue="1"
                                             MaximumValue="3"
@@ -273,9 +275,9 @@
                                             ControlToValidate="txtRating"
                                             ForeColor="Red"
                                             ErrorMessage="*"></asp:RequiredFieldValidator>
-                                        <asp:RangeValidator 
-                                            ID="RangeValidator1" 
-                                            runat="server" 
+                                        <asp:RangeValidator
+                                            ID="RangeValidator1"
+                                            runat="server"
                                             ForeColor="Red"
                                             MinimumValue="1"
                                             MaximumValue="3"
