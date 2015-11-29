@@ -95,5 +95,12 @@ namespace AMS.DAL
             dt = getList("SELECT * FROM EMPLOYMENT_STATUS");
             return dt;
         }
+
+        public DataTable fillAccountStatus()
+        {
+            dt = new DataTable();
+            dt = getList("SELECT * FROM ACCOUNT_STATUS");
+            return dt;
+        }
     }
 }

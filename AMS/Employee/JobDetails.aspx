@@ -57,7 +57,7 @@
                                 <asp:AsyncPostBackTrigger ControlID="ddlPosition" EventName="SelectedIndexChanged" />
                             </Triggers>
                         </asp:UpdatePanel>
-                        
+
 
                         <div class="form-group">
                             <label for="txtSubUnit" class="col-sm-3 control-label">Sub-Unit</label>
@@ -75,16 +75,16 @@
                         <asp:UpdatePanel ID="upRank" runat="server">
                             <ContentTemplate>
                                 <div class="form-group">
-                                    <label for="txtManager" class="col-sm-3 control-label">Manager</label>
+                                    <label for="lblManager" class="col-sm-3 control-label">Manager</label>
                                     <div class="col-sm-8">
-                                        <asp:Label ID="lblManager" runat="server" ></asp:Label>
+                                        <asp:Label ID="lblManager" runat="server"></asp:Label>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="lblSupervisor" class="col-sm-3 control-label">Supervisor</label>
                                     <div class="col-sm-6">
-                                        <asp:Label ID="lblSupervisor" runat="server"  ></asp:Label>
+                                        <asp:Label ID="lblSupervisor" runat="server"></asp:Label>
                                     </div>
                                 </div>
                             </ContentTemplate>
@@ -92,7 +92,7 @@
                                 <asp:AsyncPostBackTrigger ControlID="ddlPosition" EventName="SelectedIndexChanged" />
                             </Triggers>
                         </asp:UpdatePanel>
-                        
+
 
                         <div class="form-group">
                             <label for="ddlAgency" class="col-sm-3 control-label">Agency</label>
@@ -102,12 +102,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="txtEmpStatus" class="col-sm-3 control-label">Employment Status</label>
+                            <label for="ddlEmpStatus" class="col-sm-3 control-label">Employment Status</label>
                             <div class="col-sm-6">
                                 <asp:DropDownList ID="ddlEmpStatus" runat="server" CssClass="form-control"></asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5"
                                     runat="server"
-                                    Display="Static"
+                                    Display="Dynamic"
                                     ControlToValidate="ddlEmpStatus"
                                     InitialValue="1"
                                     CssClass="label label-danger"
@@ -169,6 +169,17 @@
                                     ErrorMessage="Contract Ending Date is required"></asp:RequiredFieldValidator>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="ddlAccountStatus" class="col-sm-3 control-label">Account Status</label>
+                            <div class="col-sm-6">
+                                <asp:DropDownList ID="ddlAccountStatus" runat="server" CssClass="form-control"></asp:DropDownList>
+                            </div>
+                        </div>
+
+                        <asp:Panel ID="pnlAccountStatus" runat="server" CssClass="alert alert-warning" Visible="false">
+                            <strong>Warning!</strong> Account Status is automatically selected <b>Expired</b> when user is past Contract Ending Date
+                        </asp:Panel>
 
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-10">

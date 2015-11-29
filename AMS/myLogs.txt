@@ -28,7 +28,7 @@ PRODUCTION: -
 ***NOT EDITABLE EMP_ID
 
 	IsActive -> can login
-	HasResigned -> will not show in 
+	HasResigned -> will not show in **edit: removed
 
 
 2015-11-24

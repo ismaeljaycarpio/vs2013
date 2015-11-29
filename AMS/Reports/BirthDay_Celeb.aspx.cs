@@ -19,6 +19,8 @@ namespace AMS.Dashboard
         {
             if (!Page.IsPostBack)
             {
+                ddlMonth.SelectedValue = DateTime.Now.Month.ToString();
+
                 gvEmployee.DataSource = BindGridView();
                 gvEmployee.DataBind();
             }
@@ -26,9 +28,8 @@ namespace AMS.Dashboard
 
         private DataTable BindGridView()
         {
-            string mm = Request.QueryString["mm"];
             dt = new DataTable();
-            dt = dashb.DisplayBirthDayCeleb(mm);
+            dt = dashb.DisplayBirthDayCeleb(txtSearch.Text, ddlMonth.SelectedValue);
             return dt;
         }
 
@@ -142,6 +143,12 @@ namespace AMS.Dashboard
             {
                 ViewState["directionState"] = value;
             }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            gvEmployee.DataSource = BindGridView();
+            gvEmployee.DataBind();
         }
     }
 }

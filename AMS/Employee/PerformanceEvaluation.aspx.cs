@@ -40,36 +40,10 @@ namespace AMS.Employee
                 lblPosition.Text = emp.GetPosition(UserId);
                 lblDepartment.Text = emp.GetDepartment(UserId);
                 lblEvalDate.Text = DateTime.Now.ToShortDateString();
+                lblDateLastEvaluation.Text = emp.GetLastEvaluationDate(UserId);
 
                 //populate gridview
                 BindData();
-
-                //populate evaluation period
-                dt = new DataTable();
-                dt = eval.ChkEvaluationPeriod();
-                if(dt.Rows.Count > 0)
-                {
-                    foreach(DataRow rw in dt.Rows)
-                    {
-                        if(rw["EvaluationPeriod"].ToString().Contains("Monthly"))
-                        {
-                            ckblEvaluationPeriod.Items.FindByText("Monthly").Selected = true;
-                        }
-                        if(rw["EvaluationPeriod"].ToString().Contains("Quarter"))
-                        {
-                            ckblEvaluationPeriod.Items.FindByText("Quarterly").Selected = true;
-                        }
-                        if (rw["EvaluationPeriod"].ToString().Contains("Semi - Annual"))
-                        {
-                            ckblEvaluationPeriod.Items.FindByText("Semi-Annual").Selected = true;
-                        }
-                        if (rw["EvaluationPeriod"].ToString().Contains("Annual"))
-                        {
-                            ckblEvaluationPeriod.Items.FindByText("Annual").Selected = true;
-                        }
-                    }
-                }
-
 
                 //chk id
                 MembershipUser loggedInUser = Membership.GetUser();
@@ -92,20 +66,10 @@ namespace AMS.Employee
 
         private void BindData()
         {
-            dt = new DataTable();
-
-            dt = eval.displayTSIQuestions();
-            gvEvaluation.DataSource = dt;
+            gvEvaluation.DataSource = eval.displayTSIQuestions();
             gvEvaluation.DataBind();
         }
 
-        protected void gvEvaluation_DataBound(object sender, EventArgs e)
-        {
-        }
-
-        protected void gvEvaluation_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-        }
 
         protected void btnSumbit_Click(object sender, EventArgs e)
         {
@@ -126,13 +90,9 @@ namespace AMS.Employee
             string impExceptional = txtExceptional.Text;
             string reccomendation = txtRecommendation.Text;
             string needImprovement = txtNeedImpro.Text;
-            string evaluatedBy = ""; //get who
-            string approvedByManager = ""; //get who
-            string approvedByHR = ""; //get who
-            string AcknowledgedBy = ""; //get who
+            string ApprovedByManager = "";
+            string ApprovedByHR = "";
 
-            evaluatedBy = emp.GetFullName(evaluatedById);
-            AcknowledgedBy = emp.GetFullName(UserId);
 
             //check ids
             MembershipUser loggedInUser = Membership.GetUser();
@@ -180,28 +140,27 @@ namespace AMS.Employee
                 if(User.IsInRole("HR"))
                 {
                     //auto-approve HR
-                    approvedByHR = emp.GetFullName(loggedUserId);
+                    ApprovedByHR = emp.GetFullName(loggedUserId);
                 }
                 else if(User.IsInRole("Manager"))
                 {
                     //auto-approve Manager
-                    approvedByManager = emp.GetFullName(loggedUserId);
+                    ApprovedByManager = emp.GetFullName(loggedUserId);
                 }
-                else if(User.IsInRole("Supervisor"))
+                else if(User.IsInRole("General Manager"))
                 {
-                    //auto-approve supervisor
-                    
+                    ApprovedByManager = emp.GetFullName(loggedUserId);
+                    ApprovedByHR = ApprovedByManager;
                 }
             }
                 //self
             else
             {
                 evaluatedById = Guid.Empty;
-                evaluatedBy = "";
             }
 
             
-            int evaluationId = eval.insertEvaluation(
+            int evaluationId = eval.InsertEvaluation(
                 UserId,
                 "Performance Evaluation",
                 evaluatedById,
@@ -214,11 +173,10 @@ namespace AMS.Employee
                 impExceptional,
                 reccomendation,
                 needImprovement,
-                evaluatedBy,
-                approvedByManager,
-                approvedByHR,
-                AcknowledgedBy,
-                lblAgency.Text);
+                ApprovedByManager,
+                ApprovedByHR,
+                lblAgency.Text,
+                txtNextEvaluationDate.Text);
 
             //get grid values
             //evaluators

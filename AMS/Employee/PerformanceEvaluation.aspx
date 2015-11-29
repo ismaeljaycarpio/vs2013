@@ -42,16 +42,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3"><b>Evaluation Period</b>
-                                <asp:CheckBoxList ID="ckblEvaluationPeriod" 
+                            <td colspan="3"><b>Next Evaluation Date:</b>
+                                <asp:TextBox ID="txtNextEvaluationDate" runat="server" data-provide="datepicker" placeholder="Next Evaluation Date" CssClass="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" 
                                     runat="server"
-                                    Enabled="false"
-                                    CssClass="checkbox checkbox-inline">
-                                    <asp:ListItem Value="Monthly">Monthly</asp:ListItem>
-                                    <asp:ListItem Value="Quarterly">Quarterly</asp:ListItem>
-                                    <asp:ListItem Value="Semi-Annual">Semi-Annual</asp:ListItem>
-                                    <asp:ListItem Value="Annual">Annual</asp:ListItem>
-                                </asp:CheckBoxList>
+                                    Display="Dynamic"
+                                    ForeColor="Red"
+                                    ControlToValidate="txtNextEvaluationDate" 
+                                    ErrorMessage="Next Evaluation Date is Required"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -72,8 +70,6 @@
                                     ShowHeaderWhenEmpty="true"
                                     AutoGenerateColumns="false"
                                     AllowPaging="true"
-                                    OnDataBound="gvEvaluation_DataBound"
-                                    OnRowDataBound="gvEvaluation_RowDataBound"
                                     ShowFooter="true"
                                     DataKeyNames="Id">
                                     <Columns>

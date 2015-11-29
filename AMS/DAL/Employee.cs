@@ -505,6 +505,24 @@ namespace AMS.DAL
             return dt.Rows[0]["JoinDate"].ToString();
         }
 
+        public string GetLastEvaluationDate(Guid UserId)
+        {
+            strSql = "SELECT MAX(Evaluation.DateEvaluated) AS [LastEvaluationDate] FROM Evaluation WHERE Evaluation.UserId = @UserId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt.Rows[0]["LastEvaluationDate"].ToString();
+        }
+
         public string GetRoleName(Guid UserId)
         {
             strSql = "SELECT Roles.RoleName FROM Roles, UsersInRoles,Users " +
@@ -620,6 +638,7 @@ namespace AMS.DAL
             string contract_sd,
             string contract_ed,
             string agencyId,
+            string account_status_id,
             Guid UserId)
         {
             strSql = "UPDATE EMPLOYEE SET " +
@@ -630,7 +649,9 @@ namespace AMS.DAL
                 "JoinDate = @JoinDate, " +
                 "Contract_SD = @Contract_SD, " +
                 "Contract_ED = @Contract_ED, " +
-                "AgencyId = @AgencyId " +
+                "AgencyId = @AgencyId, " +
+                "AccountStatusId = @AccountStatusId, " +
+                "DateAccountStatusModified = @DateAccountStatusModified " +
                 "WHERE " +
                 "UserId = @UserId";
 
@@ -648,6 +669,8 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@Contract_SD", contract_sd);
                 comm.Parameters.AddWithValue("@Contract_ED", contract_ed);
                 comm.Parameters.AddWithValue("@AgencyId", agencyId);
+                comm.Parameters.AddWithValue("@AccountStatusId", account_status_id);
+                comm.Parameters.AddWithValue("@DateAccountStatusModified", DateTime.Now.ToShortDateString());
                 comm.Parameters.AddWithValue("@UserId", UserId);
 
                 comm.ExecuteNonQuery();

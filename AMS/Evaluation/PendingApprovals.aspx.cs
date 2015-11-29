@@ -99,9 +99,10 @@ namespace AMS.Evaluation
                         eval.ApprovePendingApprovalHR(gvPendingApprovals.DataKeys[i].Value.ToString(), signatory);
                         arr.Remove(gvPendingApprovals.DataKeys[i].Value);
                     }
-                    else if(User.IsInRole("Manager"))
+                    else if(User.IsInRole("Manager") || User.IsInRole("General Manager"))
                     {
                         eval.ApprovePendingApprovalManager(gvPendingApprovals.DataKeys[i].Value.ToString(), signatory);
+                        arr.Remove(gvPendingApprovals.DataKeys[i].Value);
                     }
                 }
             }

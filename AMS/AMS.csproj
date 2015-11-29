@@ -170,7 +170,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Dashboard\BirthDay_Celeb.aspx" />
     <Content Include="Dashboard\Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Employee\ARBa_Score_Sheet.aspx" />
@@ -199,7 +198,6 @@
     <Content Include="EvaluationSelf\Score_Sheet.aspx" />
     <Content Include="EvaluationSelf\vEvaluation_Self.aspx" />
     <Content Include="Evaluation\ApprovedEvaluations.aspx" />
-    <Content Include="Evaluation\Config_Evaluation_Periond.aspx" />
     <Content Include="Evaluation\PendingApprovals.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\accent.png" />
@@ -405,7 +403,9 @@
     <None Include="Properties\PublishProfiles\ams-dev00 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="ReleaseResources.aspx" />
+    <Content Include="Reports\BirthDay_Celeb.aspx" />
     <Content Include="Reports\Employee_MasterList.aspx" />
+    <Content Include="Reports\NewlyHired.aspx" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -638,13 +638,6 @@
     <Compile Include="DAL\PositionManagement.cs" />
     <Compile Include="DAL\Training.cs" />
     <Compile Include="DAL\Violation.cs" />
-    <Compile Include="Dashboard\BirthDay_Celeb.aspx.cs">
-      <DependentUpon>BirthDay_Celeb.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Dashboard\BirthDay_Celeb.aspx.designer.cs">
-      <DependentUpon>BirthDay_Celeb.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Dashboard\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -848,13 +841,6 @@
     <Compile Include="Evaluation\ApprovedEvaluations.aspx.designer.cs">
       <DependentUpon>ApprovedEvaluations.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Evaluation\Config_Evaluation_Periond.aspx.cs">
-      <DependentUpon>Config_Evaluation_Periond.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Evaluation\Config_Evaluation_Periond.aspx.designer.cs">
-      <DependentUpon>Config_Evaluation_Periond.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Evaluation\PendingApprovals.aspx.cs">
       <DependentUpon>PendingApprovals.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -922,12 +908,26 @@
     <Compile Include="ReleaseResources.aspx.designer.cs">
       <DependentUpon>ReleaseResources.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\BirthDay_Celeb.aspx.cs">
+      <DependentUpon>BirthDay_Celeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\BirthDay_Celeb.aspx.designer.cs">
+      <DependentUpon>BirthDay_Celeb.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Employee_MasterList.aspx.cs">
       <DependentUpon>Employee_MasterList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Reports\Employee_MasterList.aspx.designer.cs">
       <DependentUpon>Employee_MasterList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\NewlyHired.aspx.cs">
+      <DependentUpon>NewlyHired.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\NewlyHired.aspx.designer.cs">
+      <DependentUpon>NewlyHired.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

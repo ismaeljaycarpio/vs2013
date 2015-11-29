@@ -33,6 +33,7 @@ namespace AMS.Employee
                 fillDept();
                 fillAgency();
                 fillEmpStatus();
+                fillAccountStatus();
 
                 dt = new DataTable();
                 dt = emp.GetEmployee(Guid.Parse(hfUserId.Value));
@@ -41,6 +42,7 @@ namespace AMS.Employee
                 txtEmpId.Text = dt.Rows[0]["Emp_ID"].ToString();
                 ddlPosition.SelectedValue = dt.Rows[0]["PositionId"].ToString();
                 ddlDepartment.SelectedValue = emp.GetDepartmentId(Guid.Parse(hfUserId.Value));
+                ddlAccountStatus.SelectedValue = dt.Rows[0]["AccountStatusId"].ToString();
                 txtSubUnit.Text = dt.Rows[0]["SubUnit"].ToString();
 
                 ddlAgency.SelectedValue = dt.Rows[0]["AgencyId"].ToString();
@@ -55,7 +57,21 @@ namespace AMS.Employee
                 lblManager.Text = emp.GetManagerName(ddlDepartment.SelectedValue.ToString());
                 lblSupervisor.Text = emp.GetSupervisorName(ddlDepartment.SelectedValue.ToString());
 
-                if(!User.IsInRole("Admin") && !User.IsInRole("HR"))
+                //chk user account
+                if (dt.Rows[0]["Contract_ED"].ToString() != String.Empty)
+                {
+                    DateTime contract_end_date = Convert.ToDateTime(dt.Rows[0]["Contract_ED"].ToString());
+
+                    if (contract_end_date < DateTime.Now)
+                    {
+                        pnlAccountStatus.Visible = true;
+                        ddlAccountStatus.ClearSelection();
+                        ddlAccountStatus.Items.FindByText("Expired").Selected = true;
+                    }
+                    
+                }
+
+                if (!User.IsInRole("Admin") && !User.IsInRole("HR"))
                 {
                     disableControls();
                     hideControls();
@@ -91,6 +107,7 @@ namespace AMS.Employee
                     txtContractStartingDate.Text,
                     txtContractEndingDate.Text,
                     ddlAgency.SelectedValue,
+                    ddlAccountStatus.SelectedValue,
                     Guid.Parse(hfUserId.Value));
 
             //get user
@@ -107,6 +124,7 @@ namespace AMS.Employee
             {
                 Roles.AddUserToRole(_user.UserName, lblRole.Text);
             }
+            Response.Redirect(Request.Url.AbsoluteUri);
         }
 
         public void fillPosition()
@@ -150,6 +168,14 @@ namespace AMS.Employee
             ddlEmpStatus.DataTextField = "Status";
             ddlEmpStatus.DataValueField = "Id";
             ddlEmpStatus.DataBind();
+        }
+
+        public void fillAccountStatus()
+        {
+            ddlAccountStatus.DataSource = fill.fillAccountStatus();
+            ddlAccountStatus.DataTextField = "AccountStatus";
+            ddlAccountStatus.DataValueField = "Id";
+            ddlAccountStatus.DataBind();
         }
 
         protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)

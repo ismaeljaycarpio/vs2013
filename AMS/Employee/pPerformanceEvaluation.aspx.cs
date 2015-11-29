@@ -73,7 +73,7 @@ namespace AMS.Employee
             param[12] = new ReportParameter("lblHighlyEffective", dtEvaluation.Rows[0]["ImpHighlyEffective"].ToString());
             param[13] = new ReportParameter("lblEvaluatedBy", dtEvaluation.Rows[0]["EvaluatedBy"].ToString());
             param[14] = new ReportParameter("lblApprovedByManager", dtEvaluation.Rows[0]["ApprovedByManager"].ToString());
-            param[15] = new ReportParameter("lblAcknowledgedBy", dtEvaluation.Rows[0]["AcknowledgedBy"].ToString());
+            param[15] = new ReportParameter("lblAcknowledgedBy", emp.GetFullName(Guid.Parse(hfUserId.Value)));
             param[16] = new ReportParameter("lblApprovedByHR", dtEvaluation.Rows[0]["ApprovedByHR"].ToString());
             ReportViewer1.LocalReport.SetParameters(param);
 

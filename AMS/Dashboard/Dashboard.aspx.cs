@@ -16,12 +16,17 @@ namespace AMS.Dashboard
             if(!Page.IsPostBack)
             {
                 lnkBdayCount.Text = dashb.CountBday().ToString();
+
+                gvEmployeeMasterList.DataSource = dashb.DisplayMasterList();
+                gvEmployeeMasterList.DataBind();
+
+                lblCountNewlyHired.Text = dashb.CountNewlyHired().ToString();
             }
         }
 
         protected void lnkBdayCount_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Dashboard/BirthDay_Celeb.aspx?mm=" + DateTime.Now.Month);
+            Response.Redirect("~/Reports/BirthDay_Celeb");
         }
     }
 }

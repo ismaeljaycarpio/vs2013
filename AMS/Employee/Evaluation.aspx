@@ -33,7 +33,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField DataField="DateEvaluated" HeaderText="Evaluation Date" />
-                                <asp:BoundField DataField="EvaluatedBy" HeaderText="Evaluated By" />
+                                <asp:BoundField DataField="Evaluator" HeaderText="Evaluator" />
                                 <asp:BoundField DataField="ApprovedByManager" HeaderText="Manager Approval" />
                                 <asp:BoundField DataField="ApprovedByHR" HeaderText="HR Approval" />         
                             </Columns>

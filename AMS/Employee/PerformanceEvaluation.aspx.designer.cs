@@ -76,13 +76,22 @@ namespace AMS.Employee {
         protected global::System.Web.UI.WebControls.Label lblDateLastEvaluation;
         
         /// <summary>
-        /// ckblEvaluationPeriod control.
+        /// txtNextEvaluationDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList ckblEvaluationPeriod;
+        protected global::System.Web.UI.WebControls.TextBox txtNextEvaluationDate;
+        
+        /// <summary>
+        /// RequiredFieldValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
         /// upEvaluation control.

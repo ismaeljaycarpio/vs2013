@@ -88,7 +88,7 @@ namespace AMS.Employee
 
         protected void BindGridView(Guid UserId)
         {
-            gvEvaluation.DataSource = eval.displayMyEvaluation(UserId);
+            gvEvaluation.DataSource = eval.DisplayMyEvaluation(UserId);
             gvEvaluation.DataBind();
         }
 

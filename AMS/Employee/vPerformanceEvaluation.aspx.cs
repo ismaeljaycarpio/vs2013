@@ -54,7 +54,9 @@ namespace AMS.Employee
                 lblAgency.Text = emp.GetAgencyName(UserId);
                 lblDateHired.Text = emp.GetHiredDate(UserId);
                 lblPosition.Text = emp.GetPosition(UserId);
-
+                lblDepartment.Text = emp.GetDepartment(UserId);
+                lblDateLastEvaluation.Text = emp.GetLastEvaluationDate(UserId);
+                txtNextEvaluationDate.Text = dt.Rows[0]["NextEvaluationDate"].ToString();
 
                 hfEvaluationId.Value = dt.Rows[0]["Id"].ToString();
                 lblRemarksName.Text = dt.Rows[0]["RemarksName"].ToString();
@@ -66,12 +68,15 @@ namespace AMS.Employee
                 txtRecommendation.Text = dt.Rows[0]["Recommendation"].ToString();
                 txtNeedImpro.Text = dt.Rows[0]["NeedImprovement"].ToString();
                 lblDateEvaluated.Text = dt.Rows[0]["DateEvaluated"].ToString();
+                lblEvalDate.Text = dt.Rows[0]["DateEvaluated"].ToString();
 
                 //approvals
-                lblEvaluatedBy.Text = dt.Rows[0]["EvaluatedBy"].ToString();
+                lblEvaluatedBy.Text = emp.GetFullName(Guid.Parse(dt.Rows[0]["EvaluatedById"].ToString()));
                 lblApprovedByManager.Text = dt.Rows[0]["ApprovedByManager"].ToString();
                 lblApprovedByHRManager.Text = dt.Rows[0]["ApprovedByHR"].ToString();
-                lblAckBy.Text = dt.Rows[0]["AcknowledgedBy"].ToString();
+                lblAckBy.Text = lblEmpName.Text;
+                lblDateEvaluated.Text = dt.Rows[0]["DateEvaluated"].ToString();
+                
 
                 //populate gridview
                 BindData();
@@ -128,13 +133,11 @@ namespace AMS.Employee
             string impExceptional = txtExceptional.Text;
             string reccomendation = txtRecommendation.Text;
             string needImprovement = txtNeedImpro.Text;
-            string evaluatedBy = ""; //get who
-            string approvedByManager = ""; //get who
-            string approvedByHR = ""; //get who
+            string ApprovedByHR = ""; //get who
             string AcknowledgedBy = ""; //get who
+            string ApprovedByManager = "";
 
             //get approvals
-            evaluatedBy = emp.GetFullName(evaluatedById);
             AcknowledgedBy = emp.GetFullName(UserId);
 
             //check ids
@@ -180,32 +183,29 @@ namespace AMS.Employee
                 }
 
                 //chk evaluator's role ->auto-approve
-                if (User.IsInRole("HR"))
+                if(User.IsInRole("HR"))
                 {
                     //auto-approve HR
-                    approvedByHR = emp.GetFullName(loggedUserId);
+                    ApprovedByHR = loggedUserId.ToString();
                 }
-                else if (User.IsInRole("Manager"))
+                else if(User.IsInRole("Manager"))
                 {
                     //auto-approve Manager
-                    approvedByManager = emp.GetFullName(loggedUserId);
+                    ApprovedByManager = loggedUserId.ToString();
                 }
-                else if (User.IsInRole("Supervisor"))
+                else if(User.IsInRole("General Manager"))
                 {
-                    //auto-approve supervisor
-
+                    ApprovedByManager = loggedUserId.ToString();
+                    ApprovedByHR = loggedUserId.ToString();
                 }
             }
             else
             {
                 evaluatedById = Guid.Empty;
-                evaluatedBy = "";
             }
 
             
-
-
-            eval.updateEvaluation(
+            eval.UpdateEvaluation(
                 evaluatedById,
                 formattedScores, //gets ceiling
                 remarksName,
@@ -216,10 +216,8 @@ namespace AMS.Employee
                 impExceptional,
                 reccomendation,
                 needImprovement,
-                evaluatedBy,
-                approvedByManager,
-                approvedByHR,
-                AcknowledgedBy,
+                ApprovedByManager,
+                ApprovedByHR,
                 hfEvaluationId.Value.ToString());
 
             //get grid values

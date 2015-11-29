@@ -15,26 +15,44 @@
                 <div class="panel-body">
                     <table class="table">
                         <tr class="text-center">
-                            <td colspan="2">
+                            <td colspan="3">
                                 <asp:Label ID="lblAgency" runat="server" Font-Bold="true">Sample</asp:Label></td>
                         </tr>
                         <tr class="text-center">
-                            <td colspan="2"><b>EMPLOYEE PERFORMANCE EVALUATION</b></td>
+                            <td colspan="3"><b>EMPLOYEE PERFORMANCE EVALUATION</b></td>
                         </tr>
                         <tr>
                             <td><b>Employee Name:</b>
                                 <asp:Label ID="lblEmpName" runat="server"></asp:Label></td>
+                            <td><b>Department:</b>
+                                <asp:Label ID="lblDepartment" runat="server"></asp:Label></td>
                             <td><b>Position:</b>
-                                <asp:Label ID="lblPosition" runat="server"></asp:Label></td>
+                                <asp:Label ID="lblPosition" runat="server"></asp:Label>
+                            </td>
                         </tr>
                         <tr>
                             <td><b>Date Hired:</b>
-                                <asp:Label ID="lblDateHired" runat="server"></asp:Label></td>
-                            <td><b>Client Assigned:</b> Azalea Hotels and Residences Baguio</td>
+                                <asp:Label ID="lblDateHired" runat="server"></asp:Label>
+                            </td>
+                            <td><b>Evaluation Date:</b>
+                                <asp:Label ID="lblEvalDate" runat="server"></asp:Label></td>
+                            <td><b>Date of Last Evaluation:</b>
+                                <asp:Label ID="lblDateLastEvaluation" runat="server"></asp:Label>
+                            </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
-                                <p>Carefully read each Job Factor and its definitions prior to evaluation. Then indicate employee's rating scale below. Briefly explain the reason for each rating in the space provided for the Critical incidents.</p>
+                            <td colspan="3"><b>Next Evaluation Date:</b>
+                                <asp:TextBox ID="txtNextEvaluationDate" runat="server" data-provide="datepicker" placeholder="Next Evaluation Date" CssClass="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" 
+                                    runat="server"
+                                    Display="Dynamic"
+                                    ForeColor="Red"
+                                    ControlToValidate="txtNextEvaluationDate" 
+                                    ErrorMessage="Next Evaluation Date is Required"></asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Carefully read each Job Factor and its definitions prior to evaluation. Then indicate employee's rating scale below. Briefly explain the reason for each rating in the space provided for the Critical incidents.
                             </td>
                         </tr>
                     </table>
