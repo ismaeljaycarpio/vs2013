@@ -257,6 +257,8 @@ namespace AMS.Employee
                     gvOrganizationalSkills.Columns[3].Visible = false;
 
                     pnlEvaluatorsOnly.Visible = false;
+                    txtNextEvaluationDate.Enabled = false;
+                    RequiredFieldValidator3.Enabled = false;
                 }
                 else
                 {
@@ -445,10 +447,13 @@ namespace AMS.Employee
             Guid ApprovedByManagerId = Guid.Empty;
             Guid ApprovedByHRId = Guid.Empty;
 
+            //Get selected evaluation id
+            int evaluationId = Convert.ToInt32(Session["EvaluationId"]);
+
             //chk if user is evaluating itself
             if (loggedUserId.Equals(UserId))
             {
-                evaluatedById = Guid.Empty;
+
             }
             else
             {
@@ -468,51 +473,51 @@ namespace AMS.Employee
                     ApprovedByManagerId = loggedUserId;
                     ApprovedByHRId = ApprovedByManagerId;
                 }
+                eval.UpdateEvaluation_Prime(
+                    evaluatedById,
+                    ApprovedByManagerId,
+                    ApprovedByHRId,
+                    txtCommentSection1A.Text,
+                    txtCommentSection1B.Text,
+                    txtCommentSection1C.Text,
+                    txtCommentSection2A.Text,
+                    txtCommentSection2B.Text,
+                    txtCommentSection2C.Text,
+                    txtCommentSection3A.Text,
+                    txtCommentSection3B.Text,
+                    txtCommentSection3C.Text,
+                    txtCommentSection3D.Text,
+                    txtCommentSection3E.Text,
+                    txtCommentSection3F.Text,
+                    section1a,
+                    section1b,
+                    section1c,
+                    section2a,
+                    section2b,
+                    section2c,
+                    section3a,
+                    section3b,
+                    section3c,
+                    section3d,
+                    section3e,
+                    section3f,
+                    txtDaysSick.Text,
+                    txtDaysTardy.Text,
+                    txtCommentsNNotes.Text,
+                    txtNextEvaluationDate.Text,
+                    txtCreativeContribution.Text,
+                    txtNewSkill.Text,
+                    txtEmployeesStrength.Text,
+                    txtImprovement.Text,
+                    txtChanges.Text,
+                    txtPersonalGoals.Text,
+                    txtRecommendation.Text,
+                    evaluationId);
             }
 
-            //Get selected evaluation id
-            int evaluationId = Convert.ToInt32(Session["EvaluationId"]);
+            
 
-            eval.UpdateEvaluation_Prime(
-                evaluatedById,
-                ApprovedByManagerId,
-                ApprovedByHRId,
-                txtCommentSection1A.Text,
-                txtCommentSection1B.Text,
-                txtCommentSection1C.Text,
-                txtCommentSection2A.Text,
-                txtCommentSection2B.Text,
-                txtCommentSection2C.Text,
-                txtCommentSection3A.Text,
-                txtCommentSection3B.Text,
-                txtCommentSection3C.Text,
-                txtCommentSection3D.Text,
-                txtCommentSection3E.Text,
-                txtCommentSection3F.Text,
-                section1a,
-                section1b,
-                section1c,
-                section2a,
-                section2b,
-                section2c,
-                section3a,
-                section3b,
-                section3c,
-                section3d,
-                section3e,
-                section3f,
-                txtDaysSick.Text,
-                txtDaysTardy.Text,
-                txtCommentsNNotes.Text,
-                txtNextEvaluationDate.Text,
-                txtCreativeContribution.Text,
-                txtNewSkill.Text,
-                txtEmployeesStrength.Text,
-                txtImprovement.Text,
-                txtChanges.Text,
-                txtPersonalGoals.Text,
-                txtRecommendation.Text,
-                evaluationId);
+            
 
 
             //Evaluators

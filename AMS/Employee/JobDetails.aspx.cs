@@ -94,6 +94,7 @@ namespace AMS.Employee
             txtJoinDate.Enabled = false;
             txtContractStartingDate.Enabled = false;
             txtContractEndingDate.Enabled = false;
+            ddlAccountStatus.Enabled = false;
         }
 
         protected void btnUpdateJob_Click(object sender, EventArgs e)

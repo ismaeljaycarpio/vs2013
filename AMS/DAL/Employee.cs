@@ -217,7 +217,15 @@ namespace AMS.DAL
             adp.Fill(dt);
             conn.Close();
 
-            return dt.Rows[0]["FullName"].ToString();
+            if(dt.Rows.Count > 0)
+            {
+                return dt.Rows[0]["FullName"].ToString();
+            }
+            else
+            {
+                return "";
+            }
+            
         }
 
         //use only for sampling
@@ -521,6 +529,24 @@ namespace AMS.DAL
             conn.Close();
 
             return dt.Rows[0]["LastEvaluationDate"].ToString();
+        }
+
+        public string GetNextEvaluationDate(Guid UserId)
+        {
+            //strSql = "SELECT MAX(Evaluation.NextEvaluationDate) AS [NextEvaluationDate] FROM Evaluation WHERE Evaluation.UserId = @UserId";
+            strSql = "SELECT MAX(CAST(NextEvaluationDate as Date)) AS [NextEvaluationDate] FROM Evaluation WHERE Evaluation.UserId = @UserId";
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt.Rows[0]["NextEvaluationDate"].ToString();
         }
 
         public string GetRoleName(Guid UserId)

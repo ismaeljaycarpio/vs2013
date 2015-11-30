@@ -52,15 +52,15 @@ namespace AMS.Employee
             dtEvaluation = eval.getEvaluated(evaluationId);
 
             //params
-            ReportParameter[] param = new ReportParameter[30];
+            ReportParameter[] param = new ReportParameter[32];
 
             //fill params
             param[0] = new ReportParameter("lblName", emp.GetFullName(UserId));
             param[1] = new ReportParameter("lblDepartment", emp.GetDepartment(UserId));
             param[2] = new ReportParameter("lblDateHired", emp.GetHiredDate(UserId));
             param[3] = new ReportParameter("lblEvaluationDate", dtEvaluation.Rows[0]["DateEvaluated"].ToString());
-            param[4] = new ReportParameter("lblDateLastEvaluation", dtEvaluation.Rows[0]["LastDateEvaluation"].ToString());
-            param[5] = new ReportParameter("lblDateNextEvaluation", dtEvaluation.Rows[0]["DateNextEvaluation"].ToString());
+            param[4] = new ReportParameter("lblDateLastEvaluation", emp.GetLastEvaluationDate(UserId));
+            param[5] = new ReportParameter("lblDateNextEvaluation", dtEvaluation.Rows[0]["NextEvaluationDate"].ToString());
             param[6] = new ReportParameter("CommentSection1A", dtEvaluation.Rows[0]["CommentSection1A"].ToString());
             param[7] = new ReportParameter("CommentSection1B", dtEvaluation.Rows[0]["CommentSection1B"].ToString());
             param[8] = new ReportParameter("CommentSection1C", dtEvaluation.Rows[0]["CommentSection1C"].ToString());
@@ -83,8 +83,26 @@ namespace AMS.Employee
             param[25] = new ReportParameter("lblDaysSick", dtEvaluation.Rows[0]["DaysSick"].ToString());
             param[26] = new ReportParameter("lblDaysTardy", dtEvaluation.Rows[0]["DaysTardy"].ToString());
             param[27] = new ReportParameter("lblPersonalComments", dtEvaluation.Rows[0]["primeComments"].ToString());
-            param[28] = new ReportParameter("EmployeeName", dtEvaluation.Rows[0]["AcknowledgedBy"].ToString());
-            param[29] = new ReportParameter("SupervisorName", dtEvaluation.Rows[0]["EvaluatedBy"].ToString());
+            param[28] = new ReportParameter("EmployeeName", emp.GetFullName(UserId));
+            param[29] = new ReportParameter("lblEvaluatedBy", emp.GetFullName(Guid.Parse(dtEvaluation.Rows[0]["EvaluatedById"].ToString())));
+
+            if (Guid.Parse(dtEvaluation.Rows[0]["ApprovedByManagerId"].ToString()).Equals(Guid.Empty))
+            {
+                param[30] = new ReportParameter("lblApprovedByManager", "");
+            }
+            else
+            {
+                param[30] = new ReportParameter("lblApprovedByManager", emp.GetFullName(Guid.Parse(dtEvaluation.Rows[0]["ApprovedByManagerId"].ToString())));
+            }
+            if (Guid.Parse(dtEvaluation.Rows[0]["ApprovedByHRId"].ToString()).Equals(Guid.Empty))
+            {
+                param[31] = new ReportParameter("lblApprovedByHR", "");
+            }
+            else
+            {
+                param[31] = new ReportParameter("lblApprovedByHR", emp.GetFullName(Guid.Parse(dtEvaluation.Rows[0]["ApprovedByHRId"].ToString())));
+            }
+
             ReportViewer1.LocalReport.SetParameters(param);
 
             DataSet dsCooperation = getCooperation(evaluationId);

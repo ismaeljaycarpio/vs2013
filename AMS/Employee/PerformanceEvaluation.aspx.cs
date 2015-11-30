@@ -56,9 +56,11 @@ namespace AMS.Employee
                 {
                     //hide evaluator rating
                     gvEvaluation.Columns[5].Visible = false;
+                    txtNextEvaluationDate.Enabled = false;
+                    RequiredFieldValidator3.Enabled = false;
                 }
                 else
-                {
+                {                
                     //show evaluator panel
                     pnlEvaluatorOnly.Visible = true;
                     gvEvaluation.Columns[4].Visible = false;                  
@@ -94,7 +96,7 @@ namespace AMS.Employee
             string needImprovement = txtNeedImpro.Text;
             Guid ApprovedByManagerId = Guid.Empty;
             Guid ApprovedByHRId = Guid.Empty;
-
+            int evaluationId = 0;
 
             //check ids
             MembershipUser loggedInUser = Membership.GetUser();
@@ -154,31 +156,33 @@ namespace AMS.Employee
                     ApprovedByManagerId = loggedUserId;
                     ApprovedByHRId = ApprovedByManagerId;
                 }
+
+                evaluationId = eval.InsertEvaluation(
+                            UserId,
+                            "Performance Evaluation",
+                            evaluatedById,
+                            formattedScores, //gets ceiling
+                            remarksName,
+                            impUnacceptable,
+                            impFallShort,
+                            impEffective,
+                            impHighlyEffective,
+                            impExceptional,
+                            reccomendation,
+                            needImprovement,
+                            ApprovedByManagerId,
+                            ApprovedByHRId,
+                            lblAgency.Text,
+                            txtNextEvaluationDate.Text);
             }
                 //self
             else
             {
-                evaluatedById = Guid.Empty;
+                evaluationId = eval.InsertEvaluation(UserId, "Performance Evaluation", lblAgency.Text);
             }
 
             
-            int evaluationId = eval.InsertEvaluation(
-                UserId,
-                "Performance Evaluation",
-                evaluatedById,
-                formattedScores, //gets ceiling
-                remarksName,
-                impUnacceptable,
-                impFallShort,
-                impEffective,
-                impHighlyEffective,
-                impExceptional,
-                reccomendation,
-                needImprovement,
-                ApprovedByManagerId,
-                ApprovedByHRId,
-                lblAgency.Text,
-                txtNextEvaluationDate.Text);
+            
 
             //get grid values
             //evaluators

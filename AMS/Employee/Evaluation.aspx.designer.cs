@@ -13,6 +13,24 @@ namespace AMS.Employee {
     public partial class Evaluation {
         
         /// <summary>
+        /// lblLastEvaluationDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLastEvaluationDate;
+        
+        /// <summary>
+        /// lblNextEvaluationDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNextEvaluationDate;
+        
+        /// <summary>
         /// gvEvaluation control.
         /// </summary>
         /// <remarks>

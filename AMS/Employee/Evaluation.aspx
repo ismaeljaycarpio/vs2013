@@ -13,6 +13,12 @@
                     <h5>Evaluations</h5>
                 </div>
                 <div class="panel-body">
+                    <p>
+                        <b>Last Evaluation Date:</b> <asp:Label ID="lblLastEvaluationDate" runat="server" CssClass="label label-info"></asp:Label>
+                    </p>
+                    <p>
+                        <b>Next Evaluation Date:</b> <asp:Label ID="lblNextEvaluationDate" runat="server" CssClass="label label-info"></asp:Label>
+                    </p>
                     <div class="table-responsive">
                         <asp:GridView ID="gvEvaluation"
                             runat="server"
@@ -41,6 +47,11 @@
                                 <asp:TemplateField HeaderText="HR Approval">
                                     <ItemTemplate>
                                         <asp:Label ID="lblHRApproval" runat="server" Text='<%# Guid.Parse(Eval("ApprovedByHRId").ToString()) == Guid.Empty ? "Pending" : "Approved" %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Is Evaluated ?">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblIsEvaluated" runat="server" Text='<%# Guid.Parse(Eval("EvaluatedById").ToString()) == Guid.Empty ? "Not Yet" : "Evaluated" %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

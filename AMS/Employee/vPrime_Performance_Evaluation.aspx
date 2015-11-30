@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h5>Performance Evaluation Form<
+                    <h5>Performance Evaluation Form
                     <a href="pPrime_Performance_Evaluation">
                         <span class="glyphicon glyphicon-print pull-right"></span>
                     </a>

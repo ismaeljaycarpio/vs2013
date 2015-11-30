@@ -114,11 +114,10 @@
 
                                 <asp:TemplateField HeaderText="Name">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lblName" runat="server" Text='<%# Eval("AcknowledgedBy") %>' CommandName="Select"></asp:LinkButton>
+                                        <asp:LinkButton ID="lblName" runat="server" Text='<%# Eval("EvaluationType") %>' CommandName="Select"></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="RemarksName" HeaderText="Rating" />
-                                <asp:BoundField DataField="EvaluatedBy" HeaderText="Evaluated By" />
+                                <asp:BoundField DataField="DateEvaluated" HeaderText="DateEvaluated" />
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

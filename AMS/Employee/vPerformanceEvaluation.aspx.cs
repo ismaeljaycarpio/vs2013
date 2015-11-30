@@ -104,6 +104,8 @@ namespace AMS.Employee
                 {
                     pnlEvaluator.Visible = false;
                     gvEvaluation.Columns[5].Visible = false;
+                    txtNextEvaluationDate.Enabled = false;
+                    RequiredFieldValidator3.Enabled = false;
                 }
                 else
                 {
@@ -209,29 +211,25 @@ namespace AMS.Employee
                     ApprovedByManagerId = loggedUserId;
                     ApprovedByHRId = ApprovedByManagerId;
                 }
+                eval.UpdateEvaluation(
+                        evaluatedById,
+                        formattedScores, //gets ceiling
+                        remarksName,
+                        impUnacceptable,
+                        impFallShort,
+                        impEffective,
+                        impHighlyEffective,
+                        impExceptional,
+                        reccomendation,
+                        needImprovement,
+                        ApprovedByManagerId,
+                        ApprovedByHRId,
+                        txtNextEvaluationDate.Text,
+                        hfEvaluationId.Value.ToString());
             }
-            else
-            {
-                evaluatedById = Guid.Empty;
-            }
+
 
             
-            eval.UpdateEvaluation(
-                evaluatedById,
-                formattedScores, //gets ceiling
-                remarksName,
-                impUnacceptable,
-                impFallShort,
-                impEffective,
-                impHighlyEffective,
-                impExceptional,
-                reccomendation,
-                needImprovement,
-                ApprovedByManagerId,
-                ApprovedByHRId,
-                txtNextEvaluationDate.Text,
-                hfEvaluationId.Value.ToString());
-
             //get grid values
             //evaluator
             if(!loggedUserId.Equals(UserId))
