@@ -404,6 +404,7 @@
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="ReleaseResources.aspx" />
     <Content Include="Reports\BirthDay_Celeb.aspx" />
+    <Content Include="Reports\Duration_of_Contracts.aspx" />
     <Content Include="Reports\Employee_MasterList.aspx" />
     <Content Include="Reports\NewlyHired.aspx" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -914,6 +915,13 @@
     </Compile>
     <Compile Include="Reports\BirthDay_Celeb.aspx.designer.cs">
       <DependentUpon>BirthDay_Celeb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Duration_of_Contracts.aspx.cs">
+      <DependentUpon>Duration_of_Contracts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Duration_of_Contracts.aspx.designer.cs">
+      <DependentUpon>Duration_of_Contracts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Employee_MasterList.aspx.cs">
       <DependentUpon>Employee_MasterList.aspx</DependentUpon>

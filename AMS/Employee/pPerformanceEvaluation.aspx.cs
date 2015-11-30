@@ -33,18 +33,18 @@ namespace AMS.Employee
 
         protected void GenerateReport()
         {
-
             ReportViewer1.ProcessingMode = ProcessingMode.Local;
             ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Employee/Report2.rdlc");
-
-            DataSet dsEvaluation = TSI_PerformanceEval();
-
-            //get selected user
-            Guid UserId = Guid.Parse(hfUserId.Value);
 
             //Get selected evaluation id
             int evaluationId = Convert.ToInt32(Session["EvaluationId"]);
 
+            DataSet dsEvaluation = TSI_PerformanceEval(evaluationId);
+
+            //get selected user
+            Guid UserId = Guid.Parse(hfUserId.Value);
+
+           
             //get user details
             dt = new DataTable();
             DataTable dtEvaluation = new DataTable();
@@ -55,7 +55,7 @@ namespace AMS.Employee
             dtEvaluation = eval.getEvaluated(evaluationId);
 
             //params
-            ReportParameter[] param = new ReportParameter[17];
+            ReportParameter[] param = new ReportParameter[21];
 
             //fill params
             param[0] = new ReportParameter("lblName", emp.GetFullName(UserId));
@@ -71,12 +71,31 @@ namespace AMS.Employee
             param[10] = new ReportParameter("lblDateEvaluated", dtEvaluation.Rows[0]["DateEvaluated"].ToString());
             param[11] = new ReportParameter("TotalScore", dtEvaluation.Rows[0]["TotalScore"].ToString());
             param[12] = new ReportParameter("lblHighlyEffective", dtEvaluation.Rows[0]["ImpHighlyEffective"].ToString());
-            param[13] = new ReportParameter("lblEvaluatedBy", dtEvaluation.Rows[0]["EvaluatedBy"].ToString());
-            param[14] = new ReportParameter("lblApprovedByManager", dtEvaluation.Rows[0]["ApprovedByManager"].ToString());
-            param[15] = new ReportParameter("lblAcknowledgedBy", emp.GetFullName(Guid.Parse(hfUserId.Value)));
-            param[16] = new ReportParameter("lblApprovedByHR", dtEvaluation.Rows[0]["ApprovedByHR"].ToString());
-            ReportViewer1.LocalReport.SetParameters(param);
+            param[13] = new ReportParameter("lblEvaluatedBy", emp.GetFullName(Guid.Parse(dtEvaluation.Rows[0]["EvaluatedById"].ToString())));
 
+            if (Guid.Parse(dtEvaluation.Rows[0]["ApprovedByManagerId"].ToString()).Equals(Guid.Empty))
+            {
+                param[14] = new ReportParameter("lblApprovedByManager", "");
+            }
+            else
+            {
+                param[14] = new ReportParameter("lblApprovedByManager", emp.GetFullName(Guid.Parse(dtEvaluation.Rows[0]["ApprovedByManagerId"].ToString())));
+            }
+            if (Guid.Parse(dtEvaluation.Rows[0]["ApprovedByHRId"].ToString()).Equals(Guid.Empty))
+            {
+                param[16] = new ReportParameter("lblApprovedByHR", "");
+            }
+            else
+            {
+                param[16] = new ReportParameter("lblApprovedByHR", emp.GetFullName(Guid.Parse(dtEvaluation.Rows[0]["ApprovedByHRId"].ToString())));
+            }
+            param[15] = new ReportParameter("lblAcknowledgedBy", emp.GetFullName(Guid.Parse(hfUserId.Value)));
+            param[17] = new ReportParameter("lblDepartment", emp.GetDepartment(Guid.Parse(hfUserId.Value)));
+            param[18] = new ReportParameter("lblEvaluationDate", dtEvaluation.Rows[0]["DateEvaluated"].ToString());
+            param[19] = new ReportParameter("lblLastEvaluationDate", emp.GetLastEvaluationDate(UserId));
+            param[20] = new ReportParameter("lblNextEvaluationDate", dtEvaluation.Rows[0]["NextEvaluationDate"].ToString());
+
+            ReportViewer1.LocalReport.SetParameters(param);
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportDataSource datasource = new ReportDataSource("TSI_Performance_Evaluation", dsEvaluation.Tables[0]);
             ReportViewer1.LocalReport.DataSources.Clear();
@@ -85,7 +104,7 @@ namespace AMS.Employee
             ReportViewer1.LocalReport.Refresh();
         }
 
-        private DataSet TSI_PerformanceEval()
+        private DataSet TSI_PerformanceEval(int evaluationId)
         {
             using (SqlConnection conn = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString))
             {
@@ -104,11 +123,13 @@ namespace AMS.Employee
                     "Evaluation_Score.CompetenceCatId = CompetenceCat.Id AND " +
                     "Competence_Master.Id = 1 AND " +
                     "Evaluation.UserId = @UserId " +
+                    "AND Evaluation.Id = @EvaluationId " +
                     "ORDER BY Competence.Id, CompetenceCat.Id";
 
                 comm.Connection = conn;
                 comm.CommandText = sqlStr;
                 comm.Parameters.AddWithValue("@UserId", UserId);
+                comm.Parameters.AddWithValue("@EvaluationId", evaluationId);
                 try
                 {
                     adap = new SqlDataAdapter(comm);

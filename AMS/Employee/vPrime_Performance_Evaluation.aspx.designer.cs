@@ -40,6 +40,15 @@ namespace AMS.Employee {
         protected global::System.Web.UI.WebControls.Label lblDepartment;
         
         /// <summary>
+        /// lblPosition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPosition;
+        
+        /// <summary>
         /// lblDateHired control.
         /// </summary>
         /// <remarks>
@@ -58,31 +67,22 @@ namespace AMS.Employee {
         protected global::System.Web.UI.WebControls.Label lblEvalDate;
         
         /// <summary>
-        /// txtLastDateEval control.
+        /// lblDateLastEvaluation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLastDateEval;
+        protected global::System.Web.UI.WebControls.Label lblDateLastEvaluation;
         
         /// <summary>
-        /// RequiredFieldValidator4 control.
+        /// txtNextEvaluationDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-        
-        /// <summary>
-        /// rblNextEvaluation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblNextEvaluation;
+        protected global::System.Web.UI.WebControls.TextBox txtNextEvaluationDate;
         
         /// <summary>
         /// RequiredFieldValidator3 control.

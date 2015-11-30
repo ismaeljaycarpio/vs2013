@@ -6,13 +6,6 @@
     Inherits="AMS.Employee.vPrime_Performance_Evaluation" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <script>
-        $(function () {
-            $('#<%: txtLastDateEval.ClientID%>').datepicker();
-        });
-    </script>
-
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -39,43 +32,33 @@
                             <td colspan="3">EMPLOYEE PERFORMANCE EVALUATION</td>
                         </tr>
                         <tr>
-                            <td colspan="2"><b>Employee Name:</b>
+                            <td><b>Employee Name:</b>
                                 <asp:Label ID="lblEmpName" runat="server"></asp:Label></td>
                             <td><b>Department:</b>
                                 <asp:Label ID="lblDepartment" runat="server"></asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td><b>Date Hired:</b>
-                                <asp:Label ID="lblDateHired" runat="server"></asp:Label></td>
-                            <td><b>Evaluation Date:</b>
-                                <asp:Label ID="lblEvalDate" runat="server"></asp:Label></td>
-                            <td><b>Date of Last Evaluation:</b>
-                                <asp:TextBox ID="txtLastDateEval" runat="server"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" 
-                                    runat="server"
-                                    ForeColor="Red"
-                                    Display="Dynamic"
-                                    ControlToValidate="txtLastDateEval" 
-                                    ErrorMessage="* Required"></asp:RequiredFieldValidator>
+                            <td><b>Position:</b>
+                                <asp:Label ID="lblPosition" runat="server"></asp:Label>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3"><b>Date of Next Evaluation: </b>
-                                <asp:RadioButtonList ID="rblNextEvaluation"
-                                    runat="server"
-                                    RepeatDirection="Horizontal"
-                                    CellSpacing="15">
-                                    <asp:ListItem Value="Monthly">Monthly</asp:ListItem>
-                                    <asp:ListItem Value="Quarterly">Quarterly</asp:ListItem>
-                                    <asp:ListItem Value="Semi-Annual">Semi-Annual</asp:ListItem>
-                                    <asp:ListItem Value="Annual">Annual</asp:ListItem>
-                                </asp:RadioButtonList>
+                            <td><b>Date Hired:</b>
+                                <asp:Label ID="lblDateHired" runat="server"></asp:Label>
+                            </td>
+                            <td><b>Evaluation Date:</b>
+                                <asp:Label ID="lblEvalDate" runat="server"></asp:Label></td>
+                            <td><b>Date of Last Evaluation:</b>
+                                <asp:Label ID="lblDateLastEvaluation" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><b>Next Evaluation Date:</b>
+                                <asp:TextBox ID="txtNextEvaluationDate" runat="server" data-provide="datepicker" placeholder="Next Evaluation Date" CssClass="form-control"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
                                     runat="server"
-                                    ControlToValidate="rblNextEvaluation"
-                                    ForeColor="Red"
                                     Display="Dynamic"
-                                    ErrorMessage="Choose one"></asp:RequiredFieldValidator>
+                                    ForeColor="Red"
+                                    ControlToValidate="txtNextEvaluationDate"
+                                    ErrorMessage="Next Evaluation Date is Required"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>

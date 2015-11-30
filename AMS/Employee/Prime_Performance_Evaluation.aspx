@@ -47,22 +47,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3"><b>Date of Next Evaluation: </b>
-                                <asp:RadioButtonList ID="rblNextEvaluation"
-                                    runat="server"
-                                    RepeatDirection="Horizontal"
-                                    CellSpacing="15">
-                                    <asp:ListItem Value="Monthly">Monthly</asp:ListItem>
-                                    <asp:ListItem Value="Quarterly">Quarterly</asp:ListItem>
-                                    <asp:ListItem Value="Semi-Annual">Semi-Annual</asp:ListItem>
-                                    <asp:ListItem Value="Annual">Annual</asp:ListItem>
-                                </asp:RadioButtonList>
+                            <td colspan="3"><b>Next Evaluation Date:</b>
+                                <asp:TextBox ID="txtNextEvaluationDate" runat="server" data-provide="datepicker" placeholder="Next Evaluation Date" CssClass="form-control"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
                                     runat="server"
-                                    ControlToValidate="rblNextEvaluation"
-                                    ForeColor="Red"
                                     Display="Dynamic"
-                                    ErrorMessage="Choose one"></asp:RequiredFieldValidator>
+                                    ForeColor="Red"
+                                    ControlToValidate="txtNextEvaluationDate"
+                                    ErrorMessage="Next Evaluation Date is Required"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -927,83 +919,83 @@
                 <div class="panel-body">
                     <asp:Panel ID="pnlEvaluatorsOnly" runat="server">
                         <table class="table">
-                        <tr>
-                            <td colspan="2"><b>SECTION IV: (FOR EVALUATOR ONLY)</b></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">1. What creative contribution   (new ideas, procedures, etc.) has the employee made to the company?
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <asp:TextBox ID="txtCreativeContribution" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
-                        </tr>
+                            <tr>
+                                <td colspan="2"><b>SECTION IV: (FOR EVALUATOR ONLY)</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">1. What creative contribution   (new ideas, procedures, etc.) has the employee made to the company?
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:TextBox ID="txtCreativeContribution" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
+                            </tr>
 
-                        <tr>
-                            <td colspan="2">2. What new skills have the employee learned or shown improvement?
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <asp:TextBox ID="txtNewSkill" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
-                        </tr>
+                            <tr>
+                                <td colspan="2">2. What new skills have the employee learned or shown improvement?
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:TextBox ID="txtNewSkill" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
+                            </tr>
 
-                        <tr>
-                            <td colspan="2">3. What is the employee’s greatest strength or area of contribution to the company?
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <asp:TextBox ID="txtEmployeesStrength" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
-                        </tr>
+                            <tr>
+                                <td colspan="2">3. What is the employee’s greatest strength or area of contribution to the company?
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:TextBox ID="txtEmployeesStrength" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
+                            </tr>
 
-                        <tr>
-                            <td colspan="2">4. Where could there be improvement in the employee; what specific training should be considered?
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <asp:TextBox ID="txtImprovement" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
-                        </tr>
+                            <tr>
+                                <td colspan="2">4. Where could there be improvement in the employee; what specific training should be considered?
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:TextBox ID="txtImprovement" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
+                            </tr>
 
-                        <tr>
-                            <td colspan="2">5. What changes would the employee like to see in the company operations?
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <asp:TextBox ID="txtChanges" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
-                        </tr>
+                            <tr>
+                                <td colspan="2">5. What changes would the employee like to see in the company operations?
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:TextBox ID="txtChanges" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
+                            </tr>
 
-                        <tr>
-                            <td colspan="2">6. What are the employee’s personal goals?
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <asp:TextBox ID="txtPersonalGoals" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
-                        </tr>
+                            <tr>
+                                <td colspan="2">6. What are the employee’s personal goals?
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:TextBox ID="txtPersonalGoals" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
+                            </tr>
 
-                        <tr>
-                            <td colspan="2">7. Recommendation
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <asp:TextBox ID="txtRecommendation" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
-                        </tr>
+                            <tr>
+                                <td colspan="2">7. Recommendation
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:TextBox ID="txtRecommendation" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
+                            </tr>
 
-                    </table>
+                        </table>
                     </asp:Panel>
                 </div>
 
                 <div class="panel-body">
                     <asp:Panel ID="pnlHROnly" runat="server">
                         <table class="table">
-                        <tr>
-                            <td colspan="2"><b>EVALUATION: (HR USE ONLY)</b></td>
-                        </tr>
-                        <%--<tr>
+                            <tr>
+                                <td colspan="2"><b>EVALUATION: (HR USE ONLY)</b></td>
+                            </tr>
+                            <%--<tr>
                             <td>A. Total Grade
                                 <asp:TextBox ID="txtTotalGrade" runat="server"></asp:TextBox></td>
                             <td>SECTION III A:
@@ -1032,7 +1024,7 @@
                             <td>E:
                                 <asp:TextBox ID="txtSection3E" runat="server"></asp:TextBox></td>
                         </tr>--%>
-                        <%--<tr>
+                            <%--<tr>
                             <td>TOTAL : ___________÷3 = _________        </td>
                             <td>TOTAL  :  ____ ÷6 = _____</td>
                         </tr>
@@ -1067,26 +1059,26 @@
                             <td>TOTAL: ______________
                             </td>
                         </tr>--%>
-                        <tr>
-                            <td><b>B.	Days Sick :</b>
-                                <asp:TextBox ID="txtDaysSick" runat="server"></asp:TextBox>
-                            </td>
-                            <td><b>Days Tardy :</b>
-                                <asp:TextBox ID="txtDaysTardy" runat="server"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><b>C.	Comments / Notes :</b>
-                                <asp:TextBox ID="txtCommentsNNotes" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <%--<tr>
+                            <tr>
+                                <td><b>B.	Days Sick :</b>
+                                    <asp:TextBox ID="txtDaysSick" runat="server"></asp:TextBox>
+                                </td>
+                                <td><b>Days Tardy :</b>
+                                    <asp:TextBox ID="txtDaysTardy" runat="server"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><b>C.	Comments / Notes :</b>
+                                    <asp:TextBox ID="txtCommentsNNotes" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <%--<tr>
                             <td>Employees’ Signature: __________________________
                             </td>
                             <td>Supervisor’s Signature: ___________________________    
                             </td>
                         </tr>--%>
-                    </table>
+                        </table>
                     </asp:Panel>
                 </div>
 

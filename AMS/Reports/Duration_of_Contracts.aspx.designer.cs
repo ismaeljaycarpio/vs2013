@@ -10,7 +10,7 @@
 namespace AMS.Reports {
     
     
-    public partial class NewlyHired {
+    public partial class Duration_of_Contracts {
         
         /// <summary>
         /// txtSearch control.

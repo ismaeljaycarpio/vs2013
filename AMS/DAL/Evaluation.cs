@@ -42,7 +42,7 @@ namespace AMS.DAL
             return dt;
         }
 
-        public DataTable display_filled_TSIQuestions(Guid UserId)
+        public DataTable display_filled_TSIQuestions(Guid UserId, int evaluationId)
         {
             strSql = "SELECT Competence.Competence,CompetenceCat.CompetenceCat,CompetenceCat.Description,CompetenceCat.TSIRating, " +
                 "Evaluation_Score.StaffRating,Evaluation_Score.EvaluatorRating, Evaluation_Score.Id " +
@@ -54,12 +54,14 @@ namespace AMS.DAL
                     "Evaluation_Score.CompetenceCatId = CompetenceCat.Id AND " +
                     "Competence_Master.Id = 1 AND " +
                     "Evaluation.UserId = @UserId " +
+                    "AND Evaluation.Id = @EvaluationId " +
                     "ORDER BY Competence.Id, CompetenceCat.Id";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
             comm.Parameters.AddWithValue("@UserId", UserId);
+            comm.Parameters.AddWithValue("@EvaluationId", evaluationId);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 
@@ -83,8 +85,8 @@ namespace AMS.DAL
             string ImpExceptional,
             string Recommendation,
             string NeedImprovement,
-            string ApprovedByManager,
-            string ApprovedByHR,
+            Guid ApprovedByManagerId,
+            Guid ApprovedByHRId,
             string agency,
             string next_eval_date
             )
@@ -93,12 +95,12 @@ namespace AMS.DAL
 
             strSql = "INSERT INTO Evaluation(UserId,EvaluationType,EvaluatedById,DateEvaluated,TotalScore,RemarksName," +
                 "ImpUnacceptable,ImpFallShort,ImpEffective,ImpHighlyEffective, " +
-                "ImpExceptional, Recommendation, NeedImprovement, ApprovedByManager, " +
-                "ApprovedByHR,Agency, NextEvaluationDate)" +
+                "ImpExceptional, Recommendation, NeedImprovement, ApprovedByManagerId, " +
+                "ApprovedByHRId,Agency, NextEvaluationDate)" +
                 "VALUES(@UserId, @EvaluationType, @EvaluatedById, @DateEvaluated, @TotalScore,@RemarksName, " +
                 "@ImpUnacceptable, @ImpFallShort, @ImpEffective, @ImpHighlyEffective, " +
                 "@ImpExceptional, @Recommendation, @NeedImprovement, " +
-                "@ApprovedByManager, @ApprovedByHR,@Agency,@NextEvaluationDate);" +
+                "@ApprovedByManagerId, @ApprovedByHRId,@Agency,@NextEvaluationDate);" +
                 "SELECT SCOPE_IDENTITY()";
 
             conn = new SqlConnection();
@@ -120,8 +122,8 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@ImpExceptional", ImpExceptional);
                 comm.Parameters.AddWithValue("@Recommendation", Recommendation);
                 comm.Parameters.AddWithValue("@NeedImprovement", NeedImprovement);
-                comm.Parameters.AddWithValue("@ApprovedByManager", ApprovedByManager);
-                comm.Parameters.AddWithValue("@ApprovedByHR", ApprovedByHR);
+                comm.Parameters.AddWithValue("@ApprovedByManagerId", ApprovedByManagerId);
+                comm.Parameters.AddWithValue("@ApprovedByHRId", ApprovedByHRId);
                 comm.Parameters.AddWithValue("@NextEvaluationDate", next_eval_date);
                 comm.Parameters.AddWithValue("@Agency", agency);
 
@@ -146,8 +148,9 @@ namespace AMS.DAL
             string ImpExceptional,
             string Recommendation,
             string NeedImprovement,
-            string ApprovedByManager,
-            string ApprovedByHR,
+            Guid ApprovedByManagerId,
+            Guid ApprovedByHRId,
+            string next_eval_date,
             string evaluationId)
         {
             strSql = "UPDATE Evaluation SET " +
@@ -161,8 +164,9 @@ namespace AMS.DAL
                 "ImpExceptional = @ImpExceptional, " +
                 "Recommendation = @Recommendation, " +
                 "NeedImprovement = @NeedImprovement, " +
-                "ApprovedByManager = @ApprovedByManager, " +
-                "ApprovedByHR = @ApprovedByHR " +
+                "ApprovedByManagerId = @ApprovedByManagerId, " +
+                "ApprovedByHRId = @ApprovedByHRId, " +
+                "NextEvaluationDate = @NextEvaluationDate " +
                 "WHERE Id = @Id";
 
             conn = new SqlConnection();
@@ -181,8 +185,9 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@ImpExceptional", ImpExceptional);
                 comm.Parameters.AddWithValue("@Recommendation", Recommendation);
                 comm.Parameters.AddWithValue("@NeedImprovement", NeedImprovement);
-                comm.Parameters.AddWithValue("@ApprovedByManager", ApprovedByManager);
-                comm.Parameters.AddWithValue("@ApprovedByHR", ApprovedByHR);
+                comm.Parameters.AddWithValue("@ApprovedByManagerId", ApprovedByManagerId);
+                comm.Parameters.AddWithValue("@ApprovedByHRId", ApprovedByHRId);
+                comm.Parameters.AddWithValue("@NextEvaluationDate", next_eval_date);
                 comm.Parameters.AddWithValue("@Id", evaluationId);
                 comm.ExecuteNonQuery();
                 conn.Close();
@@ -509,16 +514,8 @@ namespace AMS.DAL
 
         public DataTable DisplayMyEvaluation(Guid UserId)
         {
-            strSql = "SELECT Evaluation.Id, Evaluation.EvaluationType, " +
-                "Evaluation.DateEvaluated, " +
-                "Evaluation.ApprovedByManager, " +
-                "Evaluation.ApprovedByHR, " +
-                "(SELECT EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName FROM EMPLOYEE,Evaluation WHERE EMPLOYEE.UserId = Evaluation.EvaluatedById) AS [Evaluator] " +
-                "FROM Evaluation, EMPLOYEE " +
-                "WHERE " +
-                "Evaluation.UserId = EMPLOYEE.UserId " +
-                "AND Evaluation.UserId = @UserId " +
-                "ORDER BY Evaluation.DateEvaluated DESC";
+            strSql = "SELECT Id, EvaluationType, DateEvaluated, ApprovedByManagerId, ApprovedByHRId FROM Evaluation WHERE UserId = @UserId " +
+                "ORDER BY DateEvaluated DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -535,14 +532,12 @@ namespace AMS.DAL
         }
 
         //Prime only
-        public int insertEvaluation_Prime(
+        public int InsertEvaluation_Prime(
             Guid UserId,
             string EvaluationType,
-            Guid EvaludatedById,
-            string EvaluatedBy,
-            string ApprovedByManager,
-            string ApprovedByHR,
-            string AcknowledgedBy,
+            Guid EvaluatedById,
+            Guid ApprovedByManagerId,
+            Guid ApprovedByHRId,
             string agency,
             string commentSection1A,
             string commentSection1B,
@@ -571,8 +566,7 @@ namespace AMS.DAL
             string daysSick,
             string daysTardy,
             string primeComment,
-            string last_date_of_eval,
-            string next_date_eval,
+            string next_eval_date,
             string employeescreativeContribution,
             string employeesnewSkills,
             string empployeesStrength,
@@ -584,27 +578,27 @@ namespace AMS.DAL
         {
             int _newlyInsertedId = 0;
 
-            strSql = "INSERT INTO Evaluation(UserId,EvaluationType,EvaluatedById, EvaluatedBy, ApprovedByManager, " +
-                "ApprovedByHR, AcknowledgedBy,Agency, " +
+            strSql = "INSERT INTO Evaluation(UserId,EvaluationType,EvaluatedById, DateEvaluated, ApprovedByManagerId, " +
+                "ApprovedByHRId,Agency, " +
                 "Section1A, Section1B, Section1C, " +
                 "Section2A, Section2B, Section2C, " +
                 "Section3A, Section3B, Section3C, Section3D, Section3E, Section3F," +
                 "CommentSection1A, CommentSection1B, CommentSection1C, " +
                 "CommentSection2A, CommentSection2B, CommentSection2C, " +
                 "CommentSection3A, CommentSection3B, CommentSection3C,CommentSection3D,CommentSection3E,CommentSection3F, " +
-                "DaysSick, DaysTardy, primeComments, LastDateEvaluation, DateNextEvaluation, " +
+                "DaysSick, DaysTardy, primeComments, NextEvaluationDate, " +
                 "EmployeesCreativeContribution, EmployeesNewSkills, EmployeesStrength, " +
                 "EmployeesImprovement, EmployeesChanges, EmployeesPersonalGoals, " +
                 "EmployeesRecommendation) " +
-                "VALUES(@UserId, @EvaluationType, @EvaluatedById,  @EvaluatedBy, " +
-                "@ApprovedByManager, @ApprovedByHR, @AcknowledgedBy,@Agency, " +
+                "VALUES(@UserId, @EvaluationType, @EvaluatedById, @DateEvaluated, " +
+                "@ApprovedByManagerId, @ApprovedByHRId,@Agency, " +
                 "@Section1A, @Section1B, @Section1C, " +
                 "@Section2A, @Section2B, @Section2C, " +
                 "@Section3A, @Section3B, @Section3C, @Section3D, @Section3E, @Section3F, " +
                 "@CommentSection1A, @CommentSection1B, @CommentSection1C, " +
                 "@CommentSection2A, @CommentSection2B, @CommentSection2C, " +
                 "@CommentSection3A, @CommentSection3B, @CommentSection3C, @CommentSection3D, @CommentSection3E,@CommentSection3F, " +
-                "@DaysSick, @DaysTardy, @primeComments, @LastDateEvaluation, @DateNextEvaluation, " +
+                "@DaysSick, @DaysTardy, @primeComments, @NextEvaluationDate, " +
                 "@EmployeesCreativeContribution, @EmployeesNewSkills, @EmployeesStrength, " +
                 "@EmployeesImprovement, @EmployeesChanges, @EmployeesPersonalGoals, " +
                 "@EmployeesRecommendation);" +
@@ -618,11 +612,10 @@ namespace AMS.DAL
                 conn.Open();
                 comm.Parameters.AddWithValue("@UserId", UserId);
                 comm.Parameters.AddWithValue("@EvaluationType", EvaluationType);
-                comm.Parameters.AddWithValue("@EvaluatedById", EvaludatedById);
-                comm.Parameters.AddWithValue("@EvaluatedBy", EvaluatedBy);
-                comm.Parameters.AddWithValue("@ApprovedByManager", ApprovedByManager);
-                comm.Parameters.AddWithValue("@ApprovedByHR", ApprovedByHR);
-                comm.Parameters.AddWithValue("@AcknowledgedBy", AcknowledgedBy);
+                comm.Parameters.AddWithValue("@EvaluatedById", EvaluatedById);
+                comm.Parameters.AddWithValue("@DateEvaluated", DateTime.Now.ToShortDateString());
+                comm.Parameters.AddWithValue("@ApprovedByManagerId", ApprovedByManagerId);
+                comm.Parameters.AddWithValue("@ApprovedByHRId", ApprovedByHRId);
                 comm.Parameters.AddWithValue("@Agency", agency);
                 comm.Parameters.AddWithValue("@Section1A", section1A);
                 comm.Parameters.AddWithValue("@Section1B", section1B);
@@ -651,8 +644,7 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@DaysSick", daysSick);
                 comm.Parameters.AddWithValue("@DaysTardy", daysTardy);
                 comm.Parameters.AddWithValue("@primeComments", primeComment);
-                comm.Parameters.AddWithValue("@LastDateEvaluation", last_date_of_eval);
-                comm.Parameters.AddWithValue("@DateNextEvaluation", next_date_eval);
+                comm.Parameters.AddWithValue("@NextEvaluationDate", next_eval_date);
                 comm.Parameters.AddWithValue("@EmployeesCreativeContribution", employeescreativeContribution);
                 comm.Parameters.AddWithValue("@EmployeesNewSkills", employeesnewSkills);
                 comm.Parameters.AddWithValue("@EmployeesStrength", empployeesStrength);
@@ -671,12 +663,10 @@ namespace AMS.DAL
             return _newlyInsertedId;
         }
 
-        public void updateEvaluation_Prime(
+        public void UpdateEvaluation_Prime(
             Guid EvaluatedById,
-            string dateEvaluated,
-            string EvaluatedBy,
-            string approvedByManager,
-            string ApprovedByHR,
+            Guid ApprovedByManagerId,
+            Guid ApprovedByHRId,
             string commentSection1A,
             string commentSection1B,
             string commentSection1C,
@@ -704,8 +694,7 @@ namespace AMS.DAL
             string daysSick,
             string daysTardy,
             string primeComment,
-            string last_date_of_eval,
-            string next_date_eval,
+            string next_eval_date,
             string employeescreativeContribution,
             string employeesnewSkills,
             string empployeesStrength,
@@ -718,10 +707,8 @@ namespace AMS.DAL
         {
             strSql = "UPDATE Evaluation SET " +
                 "EvaluatedById = @EvaluatedById, " +
-                "DateEvaluated=@DateEvaluated, " +
-                "EvaluatedBy=@EvaluatedBy, " +
-                "ApprovedByManager=@ApprovedByManager, " +
-                "ApprovedByHR=@ApprovedByHR, " +
+                "ApprovedByManagerId=@ApprovedByManagerId, " +
+                "ApprovedByHRId=@ApprovedByHRId, " +
                 "EmployeesCreativeContribution=@EmployeesCreativeContribution, " +
                 "EmployeesNewSkills=@EmployeesNewSkills, " +
                 "EmployeesStrength=@EmployeesStrength, " +
@@ -740,8 +727,8 @@ namespace AMS.DAL
                 "CommentSection2C=@CommentSection2C, " +
                 "CommentSection3A=@CommentSection3A, CommentSection3B=@CommentSection3B, CommentSection3C=@CommentSection3C, " +
                 "CommentSection3D=@CommentSection3D, CommentSection3E=@CommentSection3E, CommentSection3F=@CommentSection3F, " +
-                "DaysSick=@DaysSick, DaysTardy=@DaysTardy, primeComments=@primeComments, LastDateEvaluation=@LastDateEvaluation, " +
-                "DateNextEvaluation=@DateNextEvaluation " +
+                "DaysSick=@DaysSick, DaysTardy=@DaysTardy, primeComments=@primeComments, " +
+                "NextDateEvaluation=@NextDateEvaluation " +
                 "WHERE Id = @Id";
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -750,10 +737,8 @@ namespace AMS.DAL
             {
                 conn.Open();
                 comm.Parameters.AddWithValue("@EvaluatedById", EvaluatedById);
-                comm.Parameters.AddWithValue("@DateEvaluated", dateEvaluated);
-                comm.Parameters.AddWithValue("@EvaluatedBy", EvaluatedBy);
-                comm.Parameters.AddWithValue("@ApprovedByManager", approvedByManager);
-                comm.Parameters.AddWithValue("@ApprovedByHR", ApprovedByHR);
+                comm.Parameters.AddWithValue("@ApprovedByManagerId", ApprovedByManagerId);
+                comm.Parameters.AddWithValue("@ApprovedByHRId", ApprovedByHRId);
                 comm.Parameters.AddWithValue("@Section1A", section1A);
                 comm.Parameters.AddWithValue("@Section1B", section1B);
                 comm.Parameters.AddWithValue("@Section1C", section1C);
@@ -781,8 +766,7 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@DaysSick", daysSick);
                 comm.Parameters.AddWithValue("@DaysTardy", daysTardy);
                 comm.Parameters.AddWithValue("@primeComments", primeComment);
-                comm.Parameters.AddWithValue("@LastDateEvaluation", last_date_of_eval);
-                comm.Parameters.AddWithValue("@DateNextEvaluation", next_date_eval);
+                comm.Parameters.AddWithValue("@DateNextEvaluation", next_eval_date);
                 comm.Parameters.AddWithValue("@EmployeesCreativeContribution", employeescreativeContribution);
                 comm.Parameters.AddWithValue("@EmployeesNewSkills", employeesnewSkills);
                 comm.Parameters.AddWithValue("@EmployeesStrength", empployeesStrength);
@@ -1207,7 +1191,7 @@ namespace AMS.DAL
         public DataTable getPendingApprovalHR()
         {
             strSql = "SELECT Id,RemarksName,EvaluatedBy,AcknowledgedBy FROM Evaluation WHERE " +
-                    "(ApprovedByHR = '')";
+                    "(ApprovedByHRId = '')";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -1259,7 +1243,7 @@ namespace AMS.DAL
                 "UsersInRoles.RoleId = Roles.RoleId AND " +
                 "POSITION.DepartmentId = @DepartmentId AND " +
                 "((Roles.RoleName = 'Supervisor') OR (Roles.RoleName = 'Staff')) AND " +
-                "Evaluation.ApprovedByManager = ''";
+                "Evaluation.ApprovedByManagerId = ''";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -1279,7 +1263,7 @@ namespace AMS.DAL
         public DataTable getPendingApprovalSupervisor()
         {
             strSql = "SELECT Id,RemarksName,EvaluatedBy,AcknowledgedBy FROM Evaluation WHERE " +
-                    "(ApprovedByManager = '')";
+                    "(ApprovedByManagerId = '')";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -1297,12 +1281,12 @@ namespace AMS.DAL
         //Approval by HR
         public void ApprovePendingApprovalHR(string evaluationId, string signatory)
         {
-            strSql = "UPDATE Evaluation SET ApprovedByHR = @ApprovedByHR WHERE Id = @Id";
+            strSql = "UPDATE Evaluation SET ApprovedByHRId = @ApprovedByHRId WHERE Id = @Id";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
-            comm.Parameters.AddWithValue("@ApprovedByHR", signatory);
+            comm.Parameters.AddWithValue("@ApprovedByHRId", signatory);
             comm.Parameters.AddWithValue("@Id", evaluationId);
             conn.Open();
             comm.ExecuteNonQuery();
@@ -1311,12 +1295,12 @@ namespace AMS.DAL
         }
         public void ApprovePendingApprovalManager(string evaluationId, string signatory)
         {
-            strSql = "UPDATE Evaluation SET ApprovedByManager = @ApprovedByManager WHERE Id = @Id";
+            strSql = "UPDATE Evaluation SET ApprovedByManagerId = @ApprovedByManagerId WHERE Id = @Id";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
-            comm.Parameters.AddWithValue("@ApprovedByManager", signatory);
+            comm.Parameters.AddWithValue("@ApprovedByManagerId", signatory);
             comm.Parameters.AddWithValue("@Id", evaluationId);
             conn.Open();
             comm.ExecuteNonQuery();

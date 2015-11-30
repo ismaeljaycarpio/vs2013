@@ -72,14 +72,28 @@ namespace AMS.Employee
 
                 //approvals
                 lblEvaluatedBy.Text = emp.GetFullName(Guid.Parse(dt.Rows[0]["EvaluatedById"].ToString()));
-                lblApprovedByManager.Text = dt.Rows[0]["ApprovedByManager"].ToString();
-                lblApprovedByHRManager.Text = dt.Rows[0]["ApprovedByHR"].ToString();
+                if (Guid.Parse(dt.Rows[0]["ApprovedByManagerId"].ToString()).Equals(Guid.Empty))
+                {
+                    lblApprovedByManager.Text = "";
+                }
+                else
+                {
+                    lblApprovedByManager.Text = emp.GetFullName(Guid.Parse(dt.Rows[0]["ApprovedByManagerId"].ToString()));
+                }
+                if(Guid.Parse(dt.Rows[0]["ApprovedByHRId"].ToString()).Equals(Guid.Empty))
+                {
+                    lblApprovedByHRManager.Text = "";
+                }
+                else
+                {
+                    lblApprovedByHRManager.Text = emp.GetFullName(Guid.Parse(dt.Rows[0]["ApprovedByHRId"].ToString()));
+                }
+                              
                 lblAckBy.Text = lblEmpName.Text;
                 lblDateEvaluated.Text = dt.Rows[0]["DateEvaluated"].ToString();
                 
-
                 //populate gridview
-                BindData();
+                BindData(evaluationId);
 
                 //check ids
                 MembershipUser loggedInUser = Membership.GetUser();
@@ -98,18 +112,18 @@ namespace AMS.Employee
             }
         }
 
-        private void BindData()
+        private void BindData(int evaluationId)
         {
             //get selected user
             Guid UserId = Guid.Parse(hfUserId.Value);
 
             dt = new DataTable();
-            dt = eval.display_filled_TSIQuestions(UserId);
+            dt = eval.display_filled_TSIQuestions(UserId, evaluationId);
             gvEvaluation.DataSource = dt;
             gvEvaluation.DataBind();
 
-            decimal total_staff = eval.display_filled_TSIQuestions(UserId).AsEnumerable().Sum(row => row.Field<decimal?>("StaffRating") == null ? 0 : row.Field<decimal>("StaffRating"));
-            decimal total_evaluator = eval.display_filled_TSIQuestions(UserId).AsEnumerable().Sum(row => row.Field<decimal?>("EvaluatorRating") == null ? 0 : row.Field<decimal>("EvaluatorRating"));
+            decimal total_staff = eval.display_filled_TSIQuestions(UserId, evaluationId).AsEnumerable().Sum(row => row.Field<decimal?>("StaffRating") == null ? 0 : row.Field<decimal>("StaffRating"));
+            decimal total_evaluator = eval.display_filled_TSIQuestions(UserId, evaluationId).AsEnumerable().Sum(row => row.Field<decimal?>("EvaluatorRating") == null ? 0 : row.Field<decimal>("EvaluatorRating"));
             gvEvaluation.FooterRow.Cells[4].Text = total_staff.ToString();
             gvEvaluation.FooterRow.Cells[5].Text = total_evaluator.ToString();
         }
@@ -133,12 +147,9 @@ namespace AMS.Employee
             string impExceptional = txtExceptional.Text;
             string reccomendation = txtRecommendation.Text;
             string needImprovement = txtNeedImpro.Text;
-            string ApprovedByHR = ""; //get who
-            string AcknowledgedBy = ""; //get who
-            string ApprovedByManager = "";
+            Guid ApprovedByManagerId = Guid.Empty;
+            Guid ApprovedByHRId = Guid.Empty;
 
-            //get approvals
-            AcknowledgedBy = emp.GetFullName(UserId);
 
             //check ids
             MembershipUser loggedInUser = Membership.GetUser();
@@ -183,20 +194,20 @@ namespace AMS.Employee
                 }
 
                 //chk evaluator's role ->auto-approve
-                if(User.IsInRole("HR"))
+                if (User.IsInRole("HR"))
                 {
                     //auto-approve HR
-                    ApprovedByHR = loggedUserId.ToString();
+                    ApprovedByHRId = loggedUserId;
                 }
-                else if(User.IsInRole("Manager"))
+                else if (User.IsInRole("Manager"))
                 {
                     //auto-approve Manager
-                    ApprovedByManager = loggedUserId.ToString();
+                    ApprovedByManagerId = loggedUserId;
                 }
-                else if(User.IsInRole("General Manager"))
+                else if (User.IsInRole("General Manager"))
                 {
-                    ApprovedByManager = loggedUserId.ToString();
-                    ApprovedByHR = loggedUserId.ToString();
+                    ApprovedByManagerId = loggedUserId;
+                    ApprovedByHRId = ApprovedByManagerId;
                 }
             }
             else
@@ -216,8 +227,9 @@ namespace AMS.Employee
                 impExceptional,
                 reccomendation,
                 needImprovement,
-                ApprovedByManager,
-                ApprovedByHR,
+                ApprovedByManagerId,
+                ApprovedByHRId,
+                txtNextEvaluationDate.Text,
                 hfEvaluationId.Value.ToString());
 
             //get grid values
@@ -256,31 +268,6 @@ namespace AMS.Employee
             }
             
             Response.Redirect("~/Employee/vPerformanceEvaluation");
-        }
-
-        protected void gvEvaluation_DataBound(object sender, EventArgs e)
-        {
-
-        }
-
-        //decimal _score = 0;
-        //decimal _score_staff = 0;
-        protected void gvEvaluation_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    _score += decimal.Parse((e.Row.FindControl("txtEvaluatorRating") as TextBox).Text);
-            //    _score_staff += decimal.Parse((e.Row.FindControl("txtStaffRating") as TextBox).Text);
-            //}
-
-            //if (e.Row.RowType == DataControlRowType.Footer)
-            //{
-            //    Label lblTotalRating = (Label)e.Row.FindControl("lblRating");
-            //    lblTotalRating.Text = _score.ToString();
-
-            //    Label lblRatingStaff = (Label)e.Row.FindControl("lblRatingStaff");
-            //    lblRatingStaff.Text = _score_staff.ToString();
-            //}
         }
     }
 }

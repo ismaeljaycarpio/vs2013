@@ -10,7 +10,7 @@ using System.IO;
 
 namespace AMS.Reports
 {
-    public partial class NewlyHired : System.Web.UI.Page
+    public partial class Duration_of_Contracts : System.Web.UI.Page
     {
         DataTable dt;
         DAL.Dashboard dashb = new DAL.Dashboard();
@@ -27,10 +27,16 @@ namespace AMS.Reports
         private DataTable BindGridView()
         {
             dt = new DataTable();
-            dt = dashb.DisplayNewlyHired(txtSearch.Text,
+            dt = dashb.DisplayDurationOfContract(txtSearch.Text,
                 txtStartDate.Text,
                 txtEndDate.Text);
             return dt;
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            gvEmployee.DataSource = BindGridView();
+            gvEmployee.DataBind();
         }
 
         protected void btnExportToPDF_Click(object sender, EventArgs e)
@@ -100,32 +106,6 @@ namespace AMS.Reports
                 gvEmployee.DataSource = BindGridView();
                 gvEmployee.DataBind();
             }
-        }
-
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            gvEmployee.DataSource = BindGridView();
-            gvEmployee.DataBind();
-        }
-
-        protected void gvEmployee_Sorting(object sender, GridViewSortEventArgs e)
-        {
-
-        }
-
-        protected void gvEmployee_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-        }
-
-        protected void gvEmployee_PageIndexChanging1(object sender, GridViewPageEventArgs e)
-        {
-
-        }
-
-        protected void gvEmployee_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-
         }
     }
 }

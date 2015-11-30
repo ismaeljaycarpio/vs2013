@@ -40,6 +40,8 @@ namespace AMS.Employee
                 lblPosition.Text = emp.GetPosition(UserId);
                 lblDepartment.Text = emp.GetDepartment(UserId);
                 lblEvalDate.Text = DateTime.Now.ToShortDateString();
+
+                //get last eval date
                 lblDateLastEvaluation.Text = emp.GetLastEvaluationDate(UserId);
 
                 //populate gridview
@@ -90,8 +92,8 @@ namespace AMS.Employee
             string impExceptional = txtExceptional.Text;
             string reccomendation = txtRecommendation.Text;
             string needImprovement = txtNeedImpro.Text;
-            string ApprovedByManager = "";
-            string ApprovedByHR = "";
+            Guid ApprovedByManagerId = Guid.Empty;
+            Guid ApprovedByHRId = Guid.Empty;
 
 
             //check ids
@@ -140,17 +142,17 @@ namespace AMS.Employee
                 if(User.IsInRole("HR"))
                 {
                     //auto-approve HR
-                    ApprovedByHR = emp.GetFullName(loggedUserId);
+                    ApprovedByHRId = loggedUserId;
                 }
                 else if(User.IsInRole("Manager"))
                 {
                     //auto-approve Manager
-                    ApprovedByManager = emp.GetFullName(loggedUserId);
+                    ApprovedByManagerId = loggedUserId;
                 }
                 else if(User.IsInRole("General Manager"))
                 {
-                    ApprovedByManager = emp.GetFullName(loggedUserId);
-                    ApprovedByHR = ApprovedByManager;
+                    ApprovedByManagerId = loggedUserId;
+                    ApprovedByHRId = ApprovedByManagerId;
                 }
             }
                 //self
@@ -173,8 +175,8 @@ namespace AMS.Employee
                 impExceptional,
                 reccomendation,
                 needImprovement,
-                ApprovedByManager,
-                ApprovedByHR,
+                ApprovedByManagerId,
+                ApprovedByHRId,
                 lblAgency.Text,
                 txtNextEvaluationDate.Text);
 

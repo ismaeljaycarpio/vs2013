@@ -33,23 +33,30 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField DataField="DateEvaluated" HeaderText="Evaluation Date" />
-                                <asp:BoundField DataField="Evaluator" HeaderText="Evaluator" />
-                                <asp:BoundField DataField="ApprovedByManager" HeaderText="Manager Approval" />
-                                <asp:BoundField DataField="ApprovedByHR" HeaderText="HR Approval" />         
+                                <asp:TemplateField HeaderText="Manager Approval">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblApprovalManager" runat="server" Text='<%# Guid.Parse(Eval("ApprovedByManagerId").ToString()) == Guid.Empty ? "Pending" : "Approved" %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="HR Approval">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblHRApproval" runat="server" Text='<%# Guid.Parse(Eval("ApprovedByHRId").ToString()) == Guid.Empty ? "Pending" : "Approved" %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>
-                        <asp:Button ID="btnPerfEval" 
-                            runat="server" 
+                        <asp:Button ID="btnPerfEval"
+                            runat="server"
                             CssClass="btn btn-primary"
-                            CausesValidation="false" 
-                            Text="Performance Evaluation" 
+                            CausesValidation="false"
+                            Text="Performance Evaluation"
                             OnClick="btnPerfEval_Click" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <asp:HiddenField ID="hfAgency" runat="server"  Visible="true"/>
+    <asp:HiddenField ID="hfAgency" runat="server" Visible="true" />
     <asp:HiddenField ID="hfUserId" runat="server" />
 </asp:Content>

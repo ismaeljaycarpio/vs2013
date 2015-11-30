@@ -69,8 +69,6 @@
                                     ShowHeaderWhenEmpty="true"
                                     AutoGenerateColumns="false"
                                     AllowPaging="true"
-                                    OnDataBound="gvEvaluation_DataBound"
-                                    OnRowDataBound="gvEvaluation_RowDataBound"
                                     ShowFooter="true"
                                     DataKeyNames="Id">
                                     <Columns>

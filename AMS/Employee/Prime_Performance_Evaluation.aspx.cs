@@ -36,6 +36,8 @@ namespace AMS.Employee
                 lblDateHired.Text = emp.GetHiredDate(UserId);
                 lblEvalDate.Text = DateTime.Now.ToShortDateString();
                 lblAgency.Text = emp.GetAgencyName(UserId);
+                lblPosition.Text = emp.GetPosition(UserId);
+                lblDateLastEvaluation.Text = emp.GetLastEvaluationDate(UserId);
 
                 gvCooperation.DataSource = eval.getCooperation();
                 gvCooperation.DataBind();
@@ -268,40 +270,41 @@ namespace AMS.Employee
 
             MembershipUser _evaluatedBy = Membership.GetUser();
             Guid evaluatedById = ((Guid)_evaluatedBy.ProviderUserKey);
-            string evaluatedBy = emp.GetFullName(evaluatedById);
             string AcknowledgedBy = emp.GetFullName(UserId);
-            string approveByHR = "";
-            string approveByManager = "";
+            Guid ApprovedByManagerId = Guid.Empty;
+            Guid ApprovedByHRId = Guid.Empty;
 
             //chk if user is evaluating itself
             if (loggedUserId.Equals(UserId))
             {
                 evaluatedById = Guid.Empty;
-                evaluatedBy = "";
             }
             else
             {
-                //chk user role
-                if(User.IsInRole("HR"))
+                //chk evaluator's role ->auto-approve
+                if (User.IsInRole("HR"))
                 {
-                    //auto approve HR
-                    approveByHR = emp.GetFullName(loggedUserId);
+                    //auto-approve HR
+                    ApprovedByHRId = loggedUserId;
                 }
-                else if(User.IsInRole("Manager"))
+                else if (User.IsInRole("Manager"))
                 {
                     //auto-approve Manager
-                    approveByManager = emp.GetFullName(loggedUserId);
+                    ApprovedByManagerId = loggedUserId;
+                }
+                else if (User.IsInRole("General Manager"))
+                {
+                    ApprovedByManagerId = loggedUserId;
+                    ApprovedByHRId = ApprovedByManagerId;
                 }
             }
 
-            int evaluationId = eval.insertEvaluation_Prime(
+            int evaluationId = eval.InsertEvaluation_Prime(
                 UserId,
                 "Performance Evaluation",
                 evaluatedById,
-                evaluatedBy,
-                approveByManager, //manager
-                approveByHR, //HR
-                AcknowledgedBy,
+                ApprovedByManagerId,
+                ApprovedByHRId,
                 lblAgency.Text,
                 txtCommentSection1A.Text,
                 txtCommentSection1B.Text,
@@ -330,8 +333,7 @@ namespace AMS.Employee
                 txtDaysSick.Text,
                 txtDaysTardy.Text,
                 txtCommentsNNotes.Text,
-                "",
-                rblNextEvaluation.SelectedValue.ToString(),
+                txtNextEvaluationDate.Text,
                 txtCreativeContribution.Text,
                 txtNewSkill.Text,
                 txtEmployeesStrength.Text,

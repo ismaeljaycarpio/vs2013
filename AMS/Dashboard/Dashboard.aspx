@@ -34,6 +34,7 @@
                     </Columns>
                     <PagerStyle CssClass="pagination-ys" />
                 </asp:GridView>
+                <p>Expiring Contract in 2 weeks: <asp:Label ID="lblCountExpiringContracts" runat="server"></asp:Label></p>
             </div>
         </div>
 

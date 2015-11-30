@@ -35,27 +35,39 @@ namespace AMS.Employee
                 //Get selected evaluation id
                 int evaluationId = Convert.ToInt32(Session["EvaluationId"]);
 
-                //get evaluation details
-                dt = new DataTable();
-                dt = eval.getEvaluated(evaluationId);
-
                 lblEmpName.Text = emp.GetFullName(UserId);
                 lblDepartment.Text = emp.GetDepartment(UserId);
                 lblDateHired.Text = emp.GetHiredDate(UserId);
-
                 lblAgency.Text = emp.GetAgencyName(UserId);
+                lblPosition.Text = emp.GetPosition(UserId);
+                lblDateLastEvaluation.Text = emp.GetLastEvaluationDate(UserId);
 
+                //get evaluation details
+                dt = new DataTable();
+                dt = eval.getEvaluated(evaluationId);
+        
                 //fill approval
-                lblEvaluatedBy.Text = dt.Rows[0]["EvaluatedBy"].ToString();
-                lblApprovedByManager.Text = dt.Rows[0]["ApprovedByManager"].ToString();
-                lblApprovedByHR.Text = dt.Rows[0]["ApprovedByHR"].ToString();
-                lblAcknowledgeBy.Text = dt.Rows[0]["AcknowledgedBy"].ToString();
+                //approvals
+                lblEvaluatedBy.Text = emp.GetFullName(Guid.Parse(dt.Rows[0]["EvaluatedById"].ToString()));
+                if (Guid.Parse(dt.Rows[0]["ApprovedByManagerId"].ToString()).Equals(Guid.Empty))
+                {
+                    lblApprovedByManager.Text = "";
+                }
+                else
+                {
+                    lblApprovedByManager.Text = emp.GetFullName(Guid.Parse(dt.Rows[0]["ApprovedByManagerId"].ToString()));
+                }
+                if (Guid.Parse(dt.Rows[0]["ApprovedByHRId"].ToString()).Equals(Guid.Empty))
+                {
+                    lblApprovedByHR.Text = "";
+                }
+                else
+                {
+                    lblApprovedByHR.Text = emp.GetFullName(Guid.Parse(dt.Rows[0]["ApprovedByHRId"].ToString()));
+                }
+                lblAcknowledgeBy.Text = lblEmpName.Text;
                 lblDateEvaluated.Text = dt.Rows[0]["DateEvaluated"].ToString();
-
-
                 lblEvalDate.Text = dt.Rows[0]["DateEvaluated"].ToString();
-                txtLastDateEval.Text = DateTime.Parse(dt.Rows[0]["LastDateEvaluation"].ToString()).ToShortDateString();
-                rblNextEvaluation.SelectedValue = dt.Rows[0]["DateNextEvaluation"].ToString();
 
                 txtCommentSection1A.Text = dt.Rows[0]["CommentSection1A"].ToString();
                 txtCommentSection1B.Text = dt.Rows[0]["CommentSection1B"].ToString();
@@ -84,6 +96,7 @@ namespace AMS.Employee
                 txtDaysTardy.Text = dt.Rows[0]["DaysTardy"].ToString();
 
                 txtCommentsNNotes.Text = dt.Rows[0]["primeComments"].ToString();
+                txtNextEvaluationDate.Text = dt.Rows[0]["NextEvaluationDate"].ToString();
 
                 //display filled scores
                 gvCooperation.DataSource = eval.getCooperation_filled(evaluationId);
@@ -429,41 +442,41 @@ namespace AMS.Employee
 
             MembershipUser _evaluatedBy = Membership.GetUser();
             Guid evaluatedById = ((Guid)_evaluatedBy.ProviderUserKey);
-            string evaluatedBy = emp.GetFullName(evaluatedById);
-            string AcknowledgedBy = emp.GetFullName(UserId);
-            string approveByHR = "";
-            string approveByManager = "";
+            Guid ApprovedByManagerId = Guid.Empty;
+            Guid ApprovedByHRId = Guid.Empty;
 
             //chk if user is evaluating itself
             if (loggedUserId.Equals(UserId))
             {
                 evaluatedById = Guid.Empty;
-                evaluatedBy = "";
             }
             else
             {
-                //chk user role
+                //chk evaluator's role ->auto-approve
                 if (User.IsInRole("HR"))
                 {
-                    //auto approve HR
-                    approveByHR = emp.GetFullName(loggedUserId);
+                    //auto-approve HR
+                    ApprovedByHRId = loggedUserId;
                 }
                 else if (User.IsInRole("Manager"))
                 {
                     //auto-approve Manager
-                    approveByManager = emp.GetFullName(loggedUserId);
+                    ApprovedByManagerId = loggedUserId;
+                }
+                else if (User.IsInRole("General Manager"))
+                {
+                    ApprovedByManagerId = loggedUserId;
+                    ApprovedByHRId = ApprovedByManagerId;
                 }
             }
 
             //Get selected evaluation id
             int evaluationId = Convert.ToInt32(Session["EvaluationId"]);
 
-            eval.updateEvaluation_Prime(
+            eval.UpdateEvaluation_Prime(
                 evaluatedById,
-                DateTime.Now.ToString(),
-                evaluatedBy,
-                approveByManager,
-                approveByHR,
+                ApprovedByManagerId,
+                ApprovedByHRId,
                 txtCommentSection1A.Text,
                 txtCommentSection1B.Text,
                 txtCommentSection1C.Text,
@@ -491,8 +504,7 @@ namespace AMS.Employee
                 txtDaysSick.Text,
                 txtDaysTardy.Text,
                 txtCommentsNNotes.Text,
-                txtLastDateEval.Text,
-                rblNextEvaluation.SelectedValue.ToString(),
+                txtNextEvaluationDate.Text,
                 txtCreativeContribution.Text,
                 txtNewSkill.Text,
                 txtEmployeesStrength.Text,

@@ -47,6 +47,7 @@
                             AutoGenerateColumns="false"
                             AllowPaging="true"
                             AllowSorting="true"
+                            ShowHeaderWhenEmpty="true"
                             DataKeyNames="UserId"
                             EmptyDataText="No Record(s) found"
                             OnSorting="gvEmployee_Sorting"
