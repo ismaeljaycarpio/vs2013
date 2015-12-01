@@ -120,10 +120,13 @@ namespace AMS.DAL
         {
             strSql = "SELECT ACCOUNT_STATUS.Id, ACCOUNT_STATUS.AccountStatus," +
                 "COUNT(EMPLOYEE.UserId) AS [MasterListCount]" +
-                "FROM ACCOUNT_STATUS LEFT JOIN EMPLOYEE " +
+                "FROM EMPLOYEE " +
+                "INNER JOIN POSITION " +
+                "ON POSITION.Id = EMPLOYEE.PositionId " +
+                "INNER JOIN DEPARTMENT " +
+                "ON DEPARTMENT.Id  = POSITION.DepartmentId " +
+                "RIGHT JOIN ACCOUNT_STATUS " +
                 "ON ACCOUNT_STATUS.Id = EMPLOYEE.AccountStatusId " +
-                "INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
-                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
                 "WHERE DEPARTMENT.Id = @DepartmentId " +
                 "GROUP BY ACCOUNT_STATUS.Id, " +
                 "ACCOUNT_STATUS.AccountStatus";

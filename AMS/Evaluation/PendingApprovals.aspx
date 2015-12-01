@@ -114,18 +114,28 @@
 
                                 <asp:TemplateField HeaderText="Name">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lblName" runat="server" Text='<%# Eval("EvaluationType") %>' CommandName="Select"></asp:LinkButton>
+                                        <asp:LinkButton ID="lblFullName" runat="server" Text='<%# Eval("FullName") %>' CommandName="Select"></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField DataField="DateEvaluated" HeaderText="DateEvaluated" />
+                                <asp:TemplateField HeaderText="Manager Approval">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblApprovalManager" runat="server" Text='<%# Guid.Parse(Eval("ApprovedByManagerId").ToString()) == Guid.Empty ? "Pending" : "Approved" %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="HR Approval">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblHRApproval" runat="server" Text='<%# Guid.Parse(Eval("ApprovedByHRId").ToString()) == Guid.Empty ? "Pending" : "Approved" %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>
-                        <asp:Button ID="btnApprove" 
+                        <asp:Button ID="btnApprove"
                             runat="server"
                             CssClass="btn btn-default"
-                            OnClientClick="return confirmApprove();" 
-                            Text="Approve" 
+                            OnClientClick="return confirmApprove();"
+                            Text="Approve"
                             OnClick="btnApprove_Click" />
                     </div>
                 </div>

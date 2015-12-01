@@ -1360,14 +1360,20 @@ namespace AMS.DAL
         }
 
         //Pending Approval List by HR
-        public DataTable getPendingApprovalHR()
+        public DataTable GetPendingApprovalHR()
         {
-            strSql = "SELECT Id,RemarksName,EvaluatedBy,AcknowledgedBy FROM Evaluation WHERE " +
-                    "(ApprovedByHRId = '')";
+            strSql = "SELECT Evaluation.Id,EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName], " +
+                "Evaluation.DateEvaluated, " +
+                "Evaluation.ApprovedByHRId, " +
+                "Evaluation.ApprovedByManagerId " +
+                "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
+                "WHERE " +
+                "Evaluation.ApprovedByHRId = @HRId";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@HRId", Guid.Empty);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 
@@ -1380,18 +1386,29 @@ namespace AMS.DAL
 
         //Pending Approval List by GM ->only managers
         //GM the signatory of Managers
-        public DataTable getPendingApprovalGM()
+        public DataTable GetPendingApprovalGM()
         {
-            strSql = "SELECT Evaluation.Id,Evaluation.RemarksName,Evaluation.EvaluatedBy, " +
-                "Evaluation.AcknowledgedBy, Evaluation.UserId " +
-                "FROM Evaluation, UsersInRoles, Roles WHERE " +
-                "Evaluation.UserId = UsersInRoles.UserId AND " +
-                "UsersInRoles.RoleId = Roles.RoleId AND " +
-                "(Roles.RoleName = 'Manager' OR Roles.RoleName = 'HR')";
+            //strSql = "SELECT Evaluation.Id,Evaluation.RemarksName,Evaluation.EvaluatedBy, " +
+            //    "Evaluation.AcknowledgedBy, Evaluation.UserId " +
+            //    "FROM Evaluation, UsersInRoles, Roles WHERE " +
+            //    "Evaluation.UserId = UsersInRoles.UserId AND " +
+            //    "UsersInRoles.RoleId = Roles.RoleId AND " +
+            //    "(Roles.RoleName = 'Manager' OR Roles.RoleName = 'HR')";
 
+            strSql = "SELECT Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+                "Evaluation.DateEvaluated, " +
+                "Evaluation.ApprovedByHRId, " +
+                "Evaluation.ApprovedByManagerId " +
+                "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
+                "INNER JOIN UsersInRoles ON Evaluation.UserId = UsersInRoles.UserId " +
+                "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
+                "WHERE " +
+                "(Roles.RoleName = 'Manager' OR Roles.RoleName = 'HR') AND " +
+                "Evaluation.ApprovedByManagerId = @ManagerId";
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@ManagerId", Guid.Empty);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 
@@ -1403,25 +1420,24 @@ namespace AMS.DAL
         }
 
         //Pending Approval List by Manager ->
-        public DataTable getPendingApprovalManager(string deptId)
+        public DataTable GetPendingApprovalManager(string deptId)
         {
-            strSql = "SELECT Evaluation.Id,Evaluation.EvaluationType,Evaluation.DateEvaluated, " +
-                "Evaluation.UserId " +
-                "FROM EMPLOYEE, POSITION, DEPARTMENT, Evaluation, UsersInRoles, Roles WHERE " +
-                "EMPLOYEE.UserId = Evaluation.UserId AND " +
-                "EMPLOYEE.PositionId = POSITION.Id AND " +
-                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
-                "Evaluation.UserId = UsersInRoles.UserId AND " +
-                "UsersInRoles.RoleId = Roles.RoleId AND " +
-                "POSITION.DepartmentId = @DepartmentId AND " +
-                "((Roles.RoleName = 'Supervisor') OR (Roles.RoleName = 'Staff')) AND " +
-                "Evaluation.ApprovedByManagerId = @ApprovedByManagerId";
+            strSql = strSql = "SELECT Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+                "Evaluation.DateEvaluated, " +
+                "Evaluation.ApprovedByHRId, " +
+                "Evaluation.ApprovedByManagerId " +
+                "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
+                "INNER JOIN UsersInRoles ON Evaluation.UserId = UsersInRoles.UserId " +
+                "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
+                "WHERE " +
+                "(Roles.RoleName = 'Supervisor' OR Roles.RoleName = 'Staff') AND " +
+                "Evaluation.ApprovedByManagerId = @ManagerId";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
             comm.Parameters.AddWithValue("@DepartmentId", deptId);
-            comm.Parameters.AddWithValue("@ApprovedByManagerId", Guid.Empty);
+            comm.Parameters.AddWithValue("@ManagerId", Guid.Empty);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 
@@ -1432,6 +1448,7 @@ namespace AMS.DAL
             return dt;
         }
 
+        //not implemented
         //Pending Approval List by Manager
         public DataTable getPendingApprovalSupervisor()
         {
@@ -1452,7 +1469,7 @@ namespace AMS.DAL
         }
 
         //Approval by HR
-        public void ApprovePendingApprovalHR(string evaluationId, string signatory)
+        public void ApprovePendingApprovalHR(string evaluationId, Guid signatory)
         {
             strSql = "UPDATE Evaluation SET ApprovedByHRId = @ApprovedByHRId WHERE Id = @Id";
 
@@ -1466,7 +1483,7 @@ namespace AMS.DAL
             comm.Dispose();
             conn.Close();
         }
-        public void ApprovePendingApprovalManager(string evaluationId, string signatory)
+        public void ApprovePendingApprovalManager(string evaluationId, Guid signatory)
         {
             strSql = "UPDATE Evaluation SET ApprovedByManagerId = @ApprovedByManagerId WHERE Id = @Id";
 

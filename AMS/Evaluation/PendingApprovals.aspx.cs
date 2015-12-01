@@ -45,15 +45,15 @@ namespace AMS.Evaluation
             if(User.IsInRole("General Manager"))
             {
                 //display approval for managers only
-                dt = eval.getPendingApprovalGM();
+                dt = eval.GetPendingApprovalGM();
             }
             else if(User.IsInRole("HR"))
             {
-                dt = eval.getPendingApprovalHR();
+                dt = eval.GetPendingApprovalHR();
             }
             else if(User.IsInRole("Manager"))
             {
-                dt = eval.getPendingApprovalManager(deptId);
+                dt = eval.GetPendingApprovalManager(deptId);
             }
             else
             {
@@ -78,7 +78,6 @@ namespace AMS.Evaluation
             //get current user
             MembershipUser _loggedUser = Membership.GetUser();
             Guid loggedUserId = Guid.Parse(_loggedUser.ProviderUserKey.ToString());
-            string signatory = emp.GetFullName(loggedUserId);
 
             int count = 0;
             SetData();
@@ -92,12 +91,12 @@ namespace AMS.Evaluation
                 {
                     if(User.IsInRole("HR"))
                     {
-                        eval.ApprovePendingApprovalHR(gvPendingApprovals.DataKeys[i].Value.ToString(), signatory);
+                        eval.ApprovePendingApprovalHR(gvPendingApprovals.DataKeys[i].Value.ToString(), loggedUserId);
                         arr.Remove(gvPendingApprovals.DataKeys[i].Value);
                     }
                     else if(User.IsInRole("Manager") || User.IsInRole("General Manager"))
                     {
-                        eval.ApprovePendingApprovalManager(gvPendingApprovals.DataKeys[i].Value.ToString(), signatory);
+                        eval.ApprovePendingApprovalManager(gvPendingApprovals.DataKeys[i].Value.ToString(), loggedUserId);
                         arr.Remove(gvPendingApprovals.DataKeys[i].Value);
                     }
                 }

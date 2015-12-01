@@ -22,7 +22,8 @@
             <div class="table table-responsive">
                 <asp:GridView ID="gvEmployeeMasterList"
                     runat="server"
-                    GridLines="None"
+                    GridLines="Horizontal"
+                    CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     DataKeyNames="Id">
                     <Columns>
