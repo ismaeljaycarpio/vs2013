@@ -14,6 +14,7 @@ namespace AMS.Employee
         //init
         DAL.EmployeeMovement emov = new DAL.EmployeeMovement();
         DAL.Filler filler = new DAL.Filler();
+        DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,15 +36,12 @@ namespace AMS.Employee
                     gvEMovement.Columns[5].Visible = false;
                 }
 
-                DataTable dtEmp = new DataTable();
-                dtEmp = filler.fillEmployeeMovement();
-
-                ddlEMovement.DataSource = dtEmp;
+                ddlEMovement.DataSource = filler.fillEmployeeMovement();
                 ddlEMovement.DataTextField = "EMovement";
                 ddlEMovement.DataValueField = "Id";
                 ddlEMovement.DataBind();
 
-                ddlEditMovement.DataSource = dtEmp;
+                ddlEditMovement.DataSource = filler.fillEmployeeMovement();
                 ddlEditMovement.DataTextField = "EMovement";
                 ddlEditMovement.DataValueField = "Id";
                 ddlEditMovement.DataBind();
@@ -52,10 +50,8 @@ namespace AMS.Employee
 
         private void BindData()
         {
-            DataTable dt = new DataTable();
             Guid UserId = Guid.Parse(hfUserId.Value);
-            dt = emov.DisplayEMovement(UserId);
-            gvEMovement.DataSource = dt;
+            gvEMovement.DataSource = emov.DisplayEMovement(UserId);
             gvEMovement.DataBind();
         }
 
@@ -107,7 +103,7 @@ namespace AMS.Employee
 
         protected void gvEMovement_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            DataTable dt = new DataTable();
+            dt = new DataTable();
 
             int index = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("editRecord"))
@@ -135,16 +131,6 @@ namespace AMS.Employee
             sb.Append("$('#addModal').modal('show');");
             sb.Append(@"</script>");
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AddShowModalScript", sb.ToString(), false);
-        }
-
-        protected void btnSave_Click1(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnSave_Click2(object sender, EventArgs e)
-        {
-
         }
     }
 }

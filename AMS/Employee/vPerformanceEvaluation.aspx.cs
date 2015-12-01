@@ -119,9 +119,7 @@ namespace AMS.Employee
             //get selected user
             Guid UserId = Guid.Parse(hfUserId.Value);
 
-            dt = new DataTable();
-            dt = eval.display_filled_TSIQuestions(UserId, evaluationId);
-            gvEvaluation.DataSource = dt;
+            gvEvaluation.DataSource = eval.display_filled_TSIQuestions(UserId, evaluationId);
             gvEvaluation.DataBind();
 
             decimal total_staff = eval.display_filled_TSIQuestions(UserId, evaluationId).AsEnumerable().Sum(row => row.Field<decimal?>("StaffRating") == null ? 0 : row.Field<decimal>("StaffRating"));

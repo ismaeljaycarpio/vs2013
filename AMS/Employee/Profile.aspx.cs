@@ -14,6 +14,7 @@ namespace AMS.Employee
         DAL.Filler fill = new DAL.Filler();
         DAL.Employee emp = new DAL.Employee();
         DataTable dt;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)

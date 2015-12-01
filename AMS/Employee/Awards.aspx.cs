@@ -38,10 +38,7 @@ namespace AMS.Employee
         private void BindData()
         {        
             Guid UserId = Guid.Parse(hfUserId.Value);
-            dt = new DataTable();
-            dt = awards.getAwardsById(UserId);
-
-            gvAwards.DataSource = dt;
+            gvAwards.DataSource = awards.getAwardsById(UserId);
             gvAwards.DataBind();
         }
 

@@ -10,6 +10,9 @@ namespace AMS.Employee
 {
     public partial class PersonalCards : System.Web.UI.Page
     {
+        DAL.MembershipCard memCard = new DAL.MembershipCard();
+        DataTable dt;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -35,18 +38,13 @@ namespace AMS.Employee
 
         private void BindData()
         {
-            DAL.MembershipCard memCard = new DAL.MembershipCard();
-            DataTable dt = new DataTable();
             Guid UserId = Guid.Parse(hfUserId.Value);
-            dt = memCard.getPersonalCardsById(UserId);
-
-            gvMembership.DataSource = dt;
+            gvMembership.DataSource = memCard.getPersonalCardsById(UserId);
             gvMembership.DataBind();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            DAL.MembershipCard memCard = new DAL.MembershipCard();
             memCard.addMembershipCard(Guid.Parse(hfUserId.Value),
                 txtAddType.Text,
                 txtAddNumber.Text,
@@ -64,7 +62,6 @@ namespace AMS.Employee
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            DAL.MembershipCard memCard = new DAL.MembershipCard();
             memCard.updateMembershipCard(
                 txtEditType.Text,
                 txtEditNumber.Text,
@@ -84,7 +81,6 @@ namespace AMS.Employee
         protected void gvMembership_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string rowId = ((Label)gvMembership.Rows[e.RowIndex].FindControl("lblRowId")).Text;
-            DAL.MembershipCard memCard = new DAL.MembershipCard();
             memCard.deletePersonalCard(rowId);
 
             BindData();
@@ -92,14 +88,13 @@ namespace AMS.Employee
 
         protected void gvMembership_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            DataTable dt = new DataTable();
+            dt = new DataTable();
 
             int index = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("editRecord"))
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-                DAL.MembershipCard memCard = new DAL.MembershipCard();
                 dt = memCard.getPersonalCardByRowId((int)(gvMembership.DataKeys[index].Value));
                 lblRowId.Text = dt.Rows[0]["Id"].ToString();
                 txtEditType.Text = dt.Rows[0]["TYPE"].ToString();

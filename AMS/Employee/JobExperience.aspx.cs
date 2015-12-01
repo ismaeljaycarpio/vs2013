@@ -39,16 +39,12 @@ namespace AMS.Employee
         private void BindData()
         {
             Guid UserId = Guid.Parse(hfUserId.Value);
-            dt = new DataTable();         
-            dt = exp.getExperienceById(UserId);
-
-            gvJobExp.DataSource = dt;
+            gvJobExp.DataSource = exp.getExperienceById(UserId);
             gvJobExp.DataBind();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            DAL.Experience exp = new DAL.Experience();
             exp.addExperience(Guid.Parse(hfUserId.Value),
                 txtAddCompany.Text,
                 txtAddJob.Text,

@@ -26,7 +26,7 @@ namespace AMS.Employee
 
                 hfUserId.Value = Session["UserId"].ToString();
                 Guid UserId = Guid.Parse(hfUserId.Value);
-                BindGridView(UserId);
+                BindGridView();
 
                 hfAgency.Value = emp.GetAgencyName(UserId);
                 lblLastEvaluationDate.Text = emp.GetLastEvaluationDate(UserId);
@@ -87,21 +87,17 @@ namespace AMS.Employee
             }
         }
 
-        protected void BindGridView(Guid UserId)
+        protected void BindGridView()
         {
+            Guid UserId = Guid.Parse(hfUserId.Value);
             gvEvaluation.DataSource = eval.DisplayMyEvaluation(UserId);
             gvEvaluation.DataBind();
         }
 
         protected void gvEvaluation_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
-        }
-
-        protected void gvEvaluation_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-            //Session["EvaluationId"] = gvEvaluation.SelectedValue.ToString();
-            //Response.Redirect("~/Employee/vPerformanceEvaluation");
+            gvEvaluation.PageIndex = e.NewPageIndex;
+            BindGridView();
         }
 
         protected void btnPerfEval_Click(object sender, EventArgs e)

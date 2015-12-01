@@ -515,11 +515,6 @@ namespace AMS.Employee
                     evaluationId);
             }
 
-            
-
-            
-
-
             //Evaluators
             if (!loggedUserId.Equals(UserId))
             {

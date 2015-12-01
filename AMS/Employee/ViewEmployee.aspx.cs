@@ -117,7 +117,7 @@ namespace AMS.Employee
                 divDocs.Visible = false;
             }
         }
-
+        
         protected void btnUpload_Click(object sender, EventArgs e)
         {
             if(FileUpload1.HasFile)

@@ -30,8 +30,7 @@
                             ShowHeaderWhenEmpty="true"
                             EmptyDataText="No record(s) found"
                             OnPageIndexChanging="gvEvaluation_PageIndexChanging"
-                            OnSelectedIndexChanged="gvEvaluation_SelectedIndexChanged"
-                            OnSelectedIndexChanging="gvEvaluation_SelectedIndexChanging">
+                            OnSelectedIndexChanged="gvEvaluation_SelectedIndexChanged">
                             <Columns>
                                 <asp:TemplateField HeaderText="Type">
                                     <ItemTemplate>

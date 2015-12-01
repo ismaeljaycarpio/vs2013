@@ -44,7 +44,6 @@
                                     </span>
                                     <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
                                 </div>
-
                             </div>
                         </div>
                     </div>

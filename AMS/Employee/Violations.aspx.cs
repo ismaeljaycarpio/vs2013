@@ -9,6 +9,9 @@ namespace AMS.Employee
 {
     public partial class Violations : System.Web.UI.Page
     {
+        DAL.Violation violation = new DAL.Violation();
+        DataTable dt;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -33,18 +36,13 @@ namespace AMS.Employee
 
         private void BindData()
         {
-            DAL.Violation violation = new DAL.Violation();
-            DataTable dt = new DataTable();
             Guid UserId = Guid.Parse(hfUserId.Value);
-            dt = violation.getViolationsById(UserId);
-
-            gvViolations.DataSource = dt;
+            gvViolations.DataSource = violation.getViolationsById(UserId);
             gvViolations.DataBind();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            DAL.Violation violation = new DAL.Violation();
             violation.addViolation(
                 Guid.Parse(hfUserId.Value),
                 txtAddViolation.Text,
@@ -63,7 +61,6 @@ namespace AMS.Employee
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            DAL.Violation violation = new DAL.Violation();
             violation.updateViolation(
                 txtEditViolation.Text,
                 txtEditCode.Text,
@@ -83,7 +80,6 @@ namespace AMS.Employee
         protected void gvViolations_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string rowId = ((Label)gvViolations.Rows[e.RowIndex].FindControl("lblRowId")).Text;
-            DAL.Violation violation = new DAL.Violation();
             violation.deleteViolation(rowId);
 
             BindData();
@@ -91,14 +87,13 @@ namespace AMS.Employee
 
         protected void gvViolations_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            DataTable dt = new DataTable();
+            dt = new DataTable();
 
             int index = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("editRecord"))
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-                DAL.Violation violation = new DAL.Violation();
                 dt = violation.getViolationByRowId((int)(gvViolations.DataKeys[index].Value));
                 lblRowId.Text = dt.Rows[0]["Id"].ToString();
                 txtEditViolation.Text = dt.Rows[0]["VIOLATION"].ToString();

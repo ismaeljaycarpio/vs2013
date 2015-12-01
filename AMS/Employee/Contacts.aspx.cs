@@ -10,6 +10,9 @@ namespace AMS.Employee
 {
     public partial class Contacts : System.Web.UI.Page
     {
+        DAL.Contact contact = new DAL.Contact();
+        DataTable dt;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -33,18 +36,13 @@ namespace AMS.Employee
 
         private void BindData()
         {
-            DAL.Contact contact = new DAL.Contact();
-            DataTable dt = new DataTable();
             Guid UserId = Guid.Parse(hfUserId.Value);
-            dt = contact.getContactById(UserId);
-
-            gvContacts.DataSource = dt;
+            gvContacts.DataSource = contact.getContactById(UserId);
             gvContacts.DataBind();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            DAL.Contact contact = new DAL.Contact();
             contact.addContact(
                 Guid.Parse(hfUserId.Value),
                 txtAddAddress.Text,
@@ -71,7 +69,6 @@ namespace AMS.Employee
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            DAL.Contact contact = new DAL.Contact();
             contact.updateContact(
                 txtEditAddress.Text,
                 txtEditHomeAddress.Text,
@@ -99,7 +96,6 @@ namespace AMS.Employee
         protected void gvContacts_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string rowId = ((Label)gvContacts.Rows[e.RowIndex].FindControl("lblRowId")).Text;
-            DAL.Contact contact = new DAL.Contact();
             contact.deleteContact(rowId);
 
             BindData();
@@ -107,14 +103,13 @@ namespace AMS.Employee
 
         protected void gvContacts_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            DataTable dt = new DataTable();
-
             int index = Convert.ToInt32(e.CommandArgument);
+            dt = new DataTable();
+
             if (e.CommandName.Equals("editRecord"))
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-                DAL.Contact contact = new DAL.Contact();
                 dt = contact.getContactByRowId((int)(gvContacts.DataKeys[index].Value));
                 lblRowId.Text = dt.Rows[0]["Id"].ToString();
 

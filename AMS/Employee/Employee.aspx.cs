@@ -88,10 +88,6 @@ namespace AMS.Employee
             Response.Redirect("~/Employee/ViewEmployee");
         }
 
-        protected void btnAddEmployee_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/MasterConfig/Register");
-        }
 
         public SortDirection direction
         {

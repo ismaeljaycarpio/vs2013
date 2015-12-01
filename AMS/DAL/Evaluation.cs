@@ -138,6 +138,7 @@ namespace AMS.DAL
         }
 
         //for self evaluating
+        //dont include dateevaluated
         public int InsertEvaluation(
             Guid UserId,
             string EvaluationType,

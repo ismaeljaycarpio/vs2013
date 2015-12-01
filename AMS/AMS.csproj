@@ -155,7 +155,6 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
-    <Content Include="Admin\PerformanceEvaluation.aspx" />
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
@@ -514,13 +513,6 @@
     </Compile>
     <Compile Include="Account\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\PerformanceEvaluation.aspx.cs">
-      <DependentUpon>PerformanceEvaluation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\PerformanceEvaluation.aspx.designer.cs">
-      <DependentUpon>PerformanceEvaluation.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\TSI_Performance_Evaluation.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -983,6 +975,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admin\" />
     <Folder Include="App_Data\" />
     <Folder Include="Documents\" />
   </ItemGroup>

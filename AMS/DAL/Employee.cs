@@ -18,7 +18,7 @@ namespace AMS.DAL
         string strSql = "";
 
         #region NEW IMPLEMENTATION
-        //active employees
+        //display active employees
         //display all employee->user by HR manager, HR staff, GM
         //cant see admin 
         public DataTable DisplayEmployee(string strSearch)
@@ -515,7 +515,8 @@ namespace AMS.DAL
 
         public string GetLastEvaluationDate(Guid UserId)
         {
-            strSql = "SELECT MAX(Evaluation.DateEvaluated) AS [LastEvaluationDate] FROM Evaluation WHERE Evaluation.UserId = @UserId";
+            //strSql = "SELECT MAX(Evaluation.DateEvaluated) AS [LastEvaluationDate] FROM Evaluation WHERE Evaluation.UserId = @UserId";
+            strSql = "SELECT MAX(CAST(DateEvaluated as Date)) AS [LastEvaluationDate] FROM Evaluation WHERE Evaluation.UserId = @UserId";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -760,8 +761,7 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@LastName", lastName);
                 comm.Parameters.AddWithValue("@M_Status", "Single");
                 comm.Parameters.AddWithValue("@Gender", "MALE");
-                //67 -> Filipino
-                comm.Parameters.AddWithValue("@NationalityId", 67);
+                comm.Parameters.AddWithValue("@NationalityId", 67); //67 -> Filipino
                 comm.Parameters.AddWithValue("@PositionId", positionId);
                 comm.Parameters.AddWithValue("@AgencyId", 3);
                 comm.ExecuteNonQuery();

@@ -10,6 +10,9 @@ namespace AMS.Employee
 {
     public partial class Education : System.Web.UI.Page
     {
+        DAL.Education edu = new DAL.Education();
+        DataTable dt;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -33,18 +36,13 @@ namespace AMS.Employee
 
         private void BindData()
         {
-            DAL.Education edu = new DAL.Education();
-            DataTable dt = new DataTable();
             Guid UserId = Guid.Parse(hfUserId.Value);
-            dt = edu.getEducationById(UserId);
-
-            gvEducation.DataSource = dt;
+            gvEducation.DataSource = edu.getEducationById(UserId);
             gvEducation.DataBind();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            DAL.Education edu = new DAL.Education();
             edu.addEducation(Guid.Parse(hfUserId.Value),
                 txtAddYear.Text,
                 txtAddAchievement.Text,
@@ -62,7 +60,6 @@ namespace AMS.Employee
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            DAL.Education edu = new DAL.Education();
             edu.updateEducation(txtEditYear.Text,
                 txtEditAchievement.Text,
                 txtEditSchool.Text,
@@ -90,7 +87,6 @@ namespace AMS.Employee
         protected void gvEducation_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string rowId = ((Label)gvEducation.Rows[e.RowIndex].FindControl("lblRowId")).Text;
-            DAL.Education edu = new DAL.Education();
             edu.deleteEducation(rowId);
 
             BindData();
@@ -98,14 +94,12 @@ namespace AMS.Employee
 
         protected void gvEducation_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            DataTable dt = new DataTable();
+            dt = new DataTable();
 
             int index = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("editRecord"))
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
-
-                DAL.Education edu = new DAL.Education();
                 dt = edu.getEducationByRowId((int)(gvEducation.DataKeys[index].Value));
                 lblRowId.Text = dt.Rows[0]["Id"].ToString();
                 txtEditYear.Text = dt.Rows[0]["YEAR"].ToString();

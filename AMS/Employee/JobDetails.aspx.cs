@@ -67,8 +67,7 @@ namespace AMS.Employee
                         pnlAccountStatus.Visible = true;
                         ddlAccountStatus.ClearSelection();
                         ddlAccountStatus.Items.FindByText("Expired").Selected = true;
-                    }
-                    
+                    }                    
                 }
 
                 if (!User.IsInRole("Admin") && !User.IsInRole("HR"))

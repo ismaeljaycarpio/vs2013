@@ -33,6 +33,29 @@ namespace AMS.DAL
 
             return _count;
         }
+
+        public int CountBday(string deptId)
+        {
+            strSql = "SELECT COUNT(EMPLOYEE.Emp_Id) AS BdayCeleb FROM " +
+                "EMPLOYEE INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
+                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
+                "WHERE DEPARTMENT.Id = @DepartmentId " +
+                "AND DATEPART(mm,BirthDate) = @MonthNumber";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            int monthNumber = DateTime.Now.Month;
+            comm.Parameters.AddWithValue("@MonthNumber", monthNumber);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            conn.Open();
+            int _count = (int)comm.ExecuteScalar();
+            conn.Close();
+
+            return _count;
+        }
+
+        //active accounts only
         public DataTable DisplayBirthDayCeleb(string searchkeyWord, string MonthNumber)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
@@ -93,11 +116,57 @@ namespace AMS.DAL
             return dt;
         }
 
+        public DataTable DisplayMasterList(string deptId)
+        {
+            strSql = "SELECT ACCOUNT_STATUS.Id, ACCOUNT_STATUS.AccountStatus," +
+                "COUNT(EMPLOYEE.UserId) AS [MasterListCount]" +
+                "FROM ACCOUNT_STATUS LEFT JOIN EMPLOYEE " +
+                "ON ACCOUNT_STATUS.Id = EMPLOYEE.AccountStatusId " +
+                "INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
+                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
+                "WHERE DEPARTMENT.Id = @DepartmentId " +
+                "GROUP BY ACCOUNT_STATUS.Id, " +
+                "ACCOUNT_STATUS.AccountStatus";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        //expiring contracts in 2 weeks
         public int CountExpiringContracts()
         {
             strSql = "SELECT COUNT(EMPLOYEE.Emp_Id) " +
                     "FROM EMPLOYEE " +
-                    "where DATEDIFF(day,GETDATE(),Contract_ED) < 14 " +
+                    "where ((DATEDIFF(day,GETDATE(),Contract_ED) <= 14) AND (DATEDIFF(day,GETDATE(),Contract_ED) >= 0))" +
+                    "AND EMPLOYEE.AccountStatusId = 1";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            int monthNumber = DateTime.Now.Month;
+            conn.Open();
+            int _count = (int)comm.ExecuteScalar();
+            conn.Close();
+
+            return _count;
+        }
+
+        //employee who can evaluate
+        public int CountCanEvaluate()
+        {
+            strSql = "SELECT COUNT(EMPLOYEE.Emp_Id) " +
+                    "FROM EMPLOYEE " +
+                    "where ((DATEDIFF(day,GETDATE(),Contract_ED) <= 14) AND (DATEDIFF(day,GETDATE(),Contract_ED) >= 0))" +
                     "AND EMPLOYEE.AccountStatusId = 1";
 
             conn = new SqlConnection();
@@ -159,6 +228,27 @@ namespace AMS.DAL
             comm = new SqlCommand(strSql, conn);
             int monthNumber = DateTime.Now.Month;
             comm.Parameters.AddWithValue("@MonthNumber", monthNumber);
+            conn.Open();
+            int _count = (int)comm.ExecuteScalar();
+            conn.Close();
+
+            return _count;
+        }
+
+        public int CountNewlyHired(string deptId)
+        {
+            strSql = "SELECT COUNT(Emp_Id) AS NewlyHired " +
+                "FROM EMPLOYEE INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
+                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
+                "WHERE DEPARTMENT.Id = @DepartmentId AND " +
+                "DATEPART(mm,JoinDate) = @MonthNumber";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            int monthNumber = DateTime.Now.Month;
+            comm.Parameters.AddWithValue("@MonthNumber", monthNumber);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
             conn.Open();
             int _count = (int)comm.ExecuteScalar();
             conn.Close();

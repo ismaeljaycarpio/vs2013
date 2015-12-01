@@ -4,24 +4,45 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace AMS.Dashboard
 {
     public partial class Dashboard : System.Web.UI.Page
     {
         DAL.Dashboard dashb = new DAL.Dashboard();
+        DAL.Employee emp = new DAL.Employee();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!Page.IsPostBack)
             {
-                lnkBdayCount.Text = dashb.CountBday().ToString();
+                //get deptId
+                Guid UserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
+                string deptId = emp.GetDepartmentId(UserId);
 
-                gvEmployeeMasterList.DataSource = dashb.DisplayMasterList();
-                gvEmployeeMasterList.DataBind();
-                lblCountExpiringContracts.Text = dashb.CountExpiringContracts().ToString();
+                if(!User.IsInRole("Admin") && 
+                    !User.IsInRole("HR") && 
+                    !User.IsInRole("General Manager"))
+                {
+                    //display dept based emp
+                    lnkBdayCount.Text = dashb.CountBday(deptId).ToString();
+                    gvEmployeeMasterList.DataSource = dashb.DisplayMasterList(deptId);
+                    gvEmployeeMasterList.DataBind();
 
-                lblCountNewlyHired.Text = dashb.CountNewlyHired().ToString();
+                    lblCountNewlyHired.Text = dashb.CountNewlyHired(deptId).ToString();
+                }
+                else
+                {
+                    lnkBdayCount.Text = dashb.CountBday().ToString();
+
+                    gvEmployeeMasterList.DataSource = dashb.DisplayMasterList();
+                    gvEmployeeMasterList.DataBind();
+                    lblCountExpiringContracts.Text = dashb.CountExpiringContracts().ToString();
+
+                    lblCountNewlyHired.Text = dashb.CountNewlyHired().ToString();
+                }
+                
             }
         }
 
