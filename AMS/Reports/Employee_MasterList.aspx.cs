@@ -14,27 +14,51 @@ namespace AMS.Reports
     public partial class Employee_MasterList : System.Web.UI.Page
     {
         DAL.Filler filler = new DAL.Filler();
-        DataTable dt;
         DAL.Dashboard dashb = new DAL.Dashboard();
+        DAL.Employee emp = new DAL.Employee();
+        DataTable dt;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!Page.IsPostBack)
             {
-                ddlStatus.DataSource = filler.fillAccountStatus();
+                ddlStatus.DataSource = filler.fillAccountStatus(true);
                 ddlStatus.DataValueField = "Id";
                 ddlStatus.DataTextField = "AccountStatus";
                 ddlStatus.DataBind();
 
+                //chk if expiring contract is selected
+                if (Request.QueryString["Exp"] != null)
+                {
+                    ddlStatus.SelectedValue = "5";
+                }
+
                 gvEmployee.DataSource = BindGridView();               
                 gvEmployee.DataBind();
-
             }
         }
 
         private DataTable BindGridView()
         {
             dt = new DataTable();
-            dt = dashb.DisplayMasterList(txtSearch.Text, ddlStatus.SelectedValue);
+
+            //get deptId
+            Guid UserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
+            string deptId = emp.GetDepartmentId(UserId);
+
+            if(!User.IsInRole("Admin") &&
+                !User.IsInRole("General Manager") &&
+                !User.IsInRole("HR"))
+            {
+                dt = dashb.DisplayMasterList(txtSearch.Text,
+                    ddlStatus.SelectedValue,
+                    deptId);
+            }
+            else
+            {
+                dt = dashb.DisplayMasterList(txtSearch.Text, ddlStatus.SelectedValue);
+            }
+            
             return dt;
         }
 

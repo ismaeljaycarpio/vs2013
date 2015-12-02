@@ -43,25 +43,11 @@
                                 <div class="form-group">
                                     <label for="txtAddIssuedDate">Issued Date</label>
                                     <asp:TextBox ID="txtAddIssuedDate" runat="server" CssClass="form-control" placeholder="Issued Date" data-provide="datepicker"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5"
-                                        runat="server"
-                                        Display="Dynamic"
-                                        ControlToValidate="txtAddIssuedDate"
-                                        CssClass="label label-danger"
-                                        ValidationGroup="vgAdd"
-                                        ErrorMessage="Issued Date is required"></asp:RequiredFieldValidator>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="txtAddExpirationDate">Expiration Date</label>
                                     <asp:TextBox ID="txtAddExpirationDate" runat="server" CssClass="form-control" placeholder="Expiration Date" data-provide="datepicker"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6"
-                                        runat="server"
-                                        Display="Dynamic"
-                                        ControlToValidate="txtAddExpirationDate"
-                                        CssClass="label label-danger"
-                                        ValidationGroup="vgAdd"
-                                        ErrorMessage="Expiration Date is required"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -125,28 +111,12 @@
                                 <div class="form-group">
                                     <label for="txtEditIssuedDate">Issued Date</label>
                                     <asp:TextBox ID="txtEditIssuedDate" runat="server" CssClass="form-control" placeholder="Issued Date" data-provide="datepicker"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7"
-                                        runat="server"
-                                        Display="Dynamic"
-                                        ControlToValidate="txtEditIssuedDate"
-                                        CssClass="label label-danger"
-                                        ValidationGroup="vsEdit"
-                                        ErrorMessage="Issued Date is required"></asp:RequiredFieldValidator>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="txtEditExpirationDate">Expiration Date</label>
                                     <asp:TextBox ID="txtEditExpirationDate" runat="server" CssClass="form-control" placeholder="Expiration Date" data-provide="datepicker"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8"
-                                        runat="server"
-                                        Display="Dynamic"
-                                        ControlToValidate="txtEditExpirationDate"
-                                        CssClass="label label-danger"
-                                        ValidationGroup="vsEdit"
-                                        ErrorMessage="Expiration Date is required"></asp:RequiredFieldValidator>
                                 </div>
-
-
                             </div>
                         </div>
                         <div class="modal-footer">

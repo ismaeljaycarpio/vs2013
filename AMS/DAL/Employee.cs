@@ -515,8 +515,7 @@ namespace AMS.DAL
 
         public string GetLastEvaluationDate(Guid UserId)
         {
-            //strSql = "SELECT MAX(Evaluation.DateEvaluated) AS [LastEvaluationDate] FROM Evaluation WHERE Evaluation.UserId = @UserId";
-            strSql = "SELECT MAX(CAST(DateEvaluated as Date)) AS [LastEvaluationDate] FROM Evaluation WHERE Evaluation.UserId = @UserId";
+            strSql = "SELECT MAX(CONVERT(DATE,DateEvaluated,101)) AS [LastEvaluationDate] FROM Evaluation WHERE Evaluation.UserId = @UserId";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -534,8 +533,7 @@ namespace AMS.DAL
 
         public string GetNextEvaluationDate(Guid UserId)
         {
-            //strSql = "SELECT MAX(Evaluation.NextEvaluationDate) AS [NextEvaluationDate] FROM Evaluation WHERE Evaluation.UserId = @UserId";
-            strSql = "SELECT MAX(CAST(NextEvaluationDate as Date)) AS [NextEvaluationDate] FROM Evaluation WHERE Evaluation.UserId = @UserId";
+            strSql = "SELECT MAX(CONVERT(DATE,NextEvaluationDate,101)) AS [NextEvaluationDate] FROM Evaluation WHERE Evaluation.UserId = @UserId";
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);

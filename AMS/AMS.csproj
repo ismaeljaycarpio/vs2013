@@ -407,6 +407,7 @@
     <Content Include="Reports\BirthDay_Celeb.aspx" />
     <Content Include="Reports\Duration_of_Contracts.aspx" />
     <Content Include="Reports\Employee_MasterList.aspx" />
+    <Content Include="Reports\Employee_Tenure.aspx" />
     <Content Include="Reports\NewlyHired.aspx" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
@@ -930,6 +931,13 @@
     </Compile>
     <Compile Include="Reports\Employee_MasterList.aspx.designer.cs">
       <DependentUpon>Employee_MasterList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Employee_Tenure.aspx.cs">
+      <DependentUpon>Employee_Tenure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Employee_Tenure.aspx.designer.cs">
+      <DependentUpon>Employee_Tenure.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\NewlyHired.aspx.cs">
       <DependentUpon>NewlyHired.aspx</DependentUpon>

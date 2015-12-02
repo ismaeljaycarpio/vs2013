@@ -29,8 +29,8 @@ namespace AMS.Employee
                 BindGridView();
 
                 hfAgency.Value = emp.GetAgencyName(UserId);
-                lblLastEvaluationDate.Text = emp.GetLastEvaluationDate(UserId);
-                lblNextEvaluationDate.Text = emp.GetNextEvaluationDate(UserId);
+                lblLastEvaluationDate.Text = emp.GetLastEvaluationDate(UserId).ToString();
+                lblNextEvaluationDate.Text = emp.GetNextEvaluationDate(UserId).ToString();
 
                 //check ids
                 MembershipUser loggedInUser = Membership.GetUser();

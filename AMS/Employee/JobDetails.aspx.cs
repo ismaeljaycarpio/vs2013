@@ -172,7 +172,7 @@ namespace AMS.Employee
 
         public void fillAccountStatus()
         {
-            ddlAccountStatus.DataSource = fill.fillAccountStatus();
+            ddlAccountStatus.DataSource = fill.fillAccountStatus(false);
             ddlAccountStatus.DataTextField = "AccountStatus";
             ddlAccountStatus.DataValueField = "Id";
             ddlAccountStatus.DataBind();

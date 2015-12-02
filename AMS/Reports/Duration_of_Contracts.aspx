@@ -61,6 +61,12 @@
                                 <asp:BoundField DataField="Position" HeaderText="Position" />
                                 <asp:BoundField DataField="Contract_SD" HeaderText="Starting Date" />
                                 <asp:BoundField DataField="Contract_ED" HeaderText="Ending Date" />
+                                <asp:TemplateField HeaderText="Duration">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblYears" runat="server" Text='<%# Eval("Years") + " Years " %>'></asp:Label>
+                                        <asp:Label ID="lblMonths" runat="server" Text='<%# Eval("Months") + " Months" %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

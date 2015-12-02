@@ -96,10 +96,17 @@ namespace AMS.DAL
             return dt;
         }
 
-        public DataTable fillAccountStatus()
+        public DataTable fillAccountStatus(bool include_expiring)
         {
             dt = new DataTable();
-            dt = getList("SELECT * FROM ACCOUNT_STATUS");
+            if(include_expiring)
+            {
+                dt = getList("SELECT * FROM ACCOUNT_STATUS");
+            }
+            else
+            {
+                dt = getList("SELECT * FROM ACCOUNT_STATUS WHERE Id != 5");
+            }
             return dt;
         }
     }

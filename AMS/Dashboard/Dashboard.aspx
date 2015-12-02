@@ -34,7 +34,7 @@
                 </asp:GridView>
                 <p>
                     Expiring Contract in 2 weeks (<%=DateTime.Now.ToString("MM/dd/yyyy") %>) - (<%=DateTime.Now.AddDays(14).ToString("MM/dd/yyyy") %>):
-                    <asp:LinkButton ID="lnkCountExpiringContracts" runat="server" PostBackUrl="~/Reports/Employee_MasterList.aspx"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkCountExpiringContracts" runat="server" PostBackUrl="~/Reports/Employee_MasterList.aspx?Exp=5"></asp:LinkButton>
                 </p>
             </div>
         </div>
