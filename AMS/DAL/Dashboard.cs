@@ -202,7 +202,29 @@ namespace AMS.DAL
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
-            int monthNumber = DateTime.Now.Month;
+
+            conn.Open();
+            int _count = (int)comm.ExecuteScalar();
+            conn.Close();
+
+            return _count;
+        }
+
+        public int CountExpiringContracts(string deptId)
+        {
+            strSql = "SELECT COUNT(EMPLOYEE.Emp_Id) " +
+                    "FROM EMPLOYEE, POSITION, DEPARTMENT " +
+                    "WHERE " +
+                    "EMPLOYEE.PositionId = POSITION.Id " +
+                    "AND POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                    "((DATEDIFF(day,GETDATE(),Contract_ED) <= 14) AND (DATEDIFF(day,GETDATE(),Contract_ED) >= 0)) " +
+                    "AND DEPARTMENT.Id = @DepartmentId " +
+                    "AND EMPLOYEE.AccountStatusId = 1";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
             conn.Open();
             int _count = (int)comm.ExecuteScalar();
             conn.Close();
@@ -242,9 +264,8 @@ namespace AMS.DAL
                 strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                     "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
                     "EMPLOYEE.BirthDate, " +
-                    "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
-                    "ACCOUNT_STATUS.AccountStatus " +
-                    "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, ACCOUNT_STATUS " +
+                    "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
+                    "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
                     "WHERE " +
                     "Memberships.UserId = EMPLOYEE.UserId AND " +
                     "EMPLOYEE.PositionId = POSITION.Id AND " +
@@ -252,7 +273,6 @@ namespace AMS.DAL
                     "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
                     "UsersInRoles.RoleId = Roles.RoleId AND " +
                     "Roles.RoleName != 'Admin' AND " +
-                    "ACCOUNT_STATUS.Id = EMPLOYEE.AccountStatusId AND " +
                     "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
                     "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
                     "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
@@ -374,6 +394,81 @@ namespace AMS.DAL
 
             return dt;
         }
+
+        public DataTable DisplayExpiringContract()
+        {
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand();
+            comm.Connection = conn;
+
+                //get expiring contracts w/in 2 weeks
+                strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                    "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                    "EMPLOYEE.BirthDate, " +
+                    "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                    "EMPLOYEE.Contract_SD, EMPLOYEE.CONTRACT_ED " +
+                    "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
+                    "WHERE " +
+                    "Memberships.UserId = EMPLOYEE.UserId AND " +
+                    "EMPLOYEE.PositionId = POSITION.Id AND " +
+                    "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                    "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                    "UsersInRoles.RoleId = Roles.RoleId AND " +
+                    "Roles.RoleName != 'Admin' AND " +
+                    "((DATEDIFF(day,GETDATE(),Contract_ED) <= 14) AND (DATEDIFF(day,GETDATE(),Contract_ED) >= 0)) " +
+                    "AND EMPLOYEE.AccountStatusId = 1 " +
+                    "ORDER BY Employee.Emp_Id ASC";
+
+            comm.CommandText = strSql;
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable DisplayExpiringContract(string deptId)
+        {
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand();
+            comm.Connection = conn;
+
+            //get expiring contracts w/in 2 weeks
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "EMPLOYEE.BirthDate, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                "EMPLOYEE.Contract_SD, EMPLOYEE.CONTRACT_ED " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
+                "WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "DEPARTMENT.Id = @DepartmentId AND " +
+                "((DATEDIFF(day,GETDATE(),Contract_ED) <= 14) AND (DATEDIFF(day,GETDATE(),Contract_ED) >= 0)) " +
+                "AND EMPLOYEE.AccountStatusId = 1 " +
+                "ORDER BY Employee.Emp_Id ASC";
+
+            comm.CommandText = strSql;
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
 
         public int CountNewlyHired()
         {

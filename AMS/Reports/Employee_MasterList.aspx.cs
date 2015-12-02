@@ -35,7 +35,32 @@ namespace AMS.Reports
 
                 gvEmployee.DataSource = BindGridView();               
                 gvEmployee.DataBind();
+
+                gvExpiringContract.DataSource = BindExpiringContracts();
+                gvExpiringContract.DataBind();
             }
+        }
+
+        private object BindExpiringContracts()
+        {
+            dt = new DataTable();
+
+            //get deptId
+            Guid UserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
+            string deptId = emp.GetDepartmentId(UserId);
+
+            if (!User.IsInRole("Admin") &&
+                !User.IsInRole("General Manager") &&
+                !User.IsInRole("HR"))
+            {
+                dt = dashb.DisplayExpiringContract(deptId);
+            }
+            else
+            {
+                dt = dashb.DisplayExpiringContract();
+            }
+
+            return dt;
         }
 
         private DataTable BindGridView()
@@ -150,6 +175,16 @@ namespace AMS.Reports
             Response.Output.Write(sw.ToString());
             Response.Flush();
             Response.End();
+        }
+
+        protected void btnExpiraingContract_Word_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnExpiringContract_Excel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <%--<div class="row">
         <div class="col-lg-4">
             <h4><a href="~/Reports/BirthDay_Celeb.aspx" runat="server"><span class="glyphicon glyphicon-cutlery"></span><b><%= DateTime.Now.ToString("MMMMM") %></b> Birthday Celebrants</a></h4>
             <p>
@@ -83,5 +83,5 @@
                 <asp:Label ID="Label2" runat="server" CssClass="label label-info"></asp:Label>
             </p>
         </div>
-    </div>
+    </div>--%>
 </asp:Content>

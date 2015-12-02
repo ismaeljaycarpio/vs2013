@@ -27,9 +27,11 @@ namespace AMS.Dashboard
                 {
                     //display dept based emp
                     lnkBdayCount.Text = dashb.CountBday(deptId).ToString();
+
                     gvEmployeeMasterList.DataSource = dashb.DisplayMasterList(deptId);
                     gvEmployeeMasterList.DataBind();
 
+                    lnkCountExpiringContracts.Text = dashb.CountExpiringContracts(deptId).ToString();
                     lblCountNewlyHired.Text = dashb.CountNewlyHired(deptId).ToString();
                 }
                 else
@@ -38,6 +40,7 @@ namespace AMS.Dashboard
 
                     gvEmployeeMasterList.DataSource = dashb.DisplayMasterList();
                     gvEmployeeMasterList.DataBind();
+
                     lnkCountExpiringContracts.Text = dashb.CountExpiringContracts().ToString();
                     lblCountNewlyHired.Text = dashb.CountNewlyHired().ToString();
                 }

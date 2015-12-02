@@ -222,6 +222,7 @@
     <Content Include="MasterConfig\Employee_Account_MasterList.aspx" />
     <Content Include="MasterConfig\RoleManager.aspx" />
     <Content Include="myLogs.txt" />
+    <Content Include="NotYetImplemented.aspx" />
     <Content Include="packages.config" />
     <Content Include="Employee\Web.config" />
     <Content Include="ProfileImages\noImage.png" />
@@ -888,6 +889,13 @@
     </Compile>
     <Compile Include="MasterConfig\RoleManager.aspx.designer.cs">
       <DependentUpon>RoleManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NotYetImplemented.aspx.cs">
+      <DependentUpon>NotYetImplemented.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NotYetImplemented.aspx.designer.cs">
+      <DependentUpon>NotYetImplemented.aspx</DependentUpon>
     </Compile>
     <Compile Include="ProfileNested.master.cs">
       <DependentUpon>ProfileNested.master</DependentUpon>
