@@ -18,7 +18,7 @@
         </div>
 
         <div class="col-lg-4">
-            <h4><a href="~/Reports/Employee_MasterList.aspx" runat="server">Employee Master List</a></h4>
+            <h4><b><a href="~/Reports/Employee_MasterList.aspx" runat="server">Employee Master List</a></b></h4>
             <div class="table table-responsive">
                 <asp:GridView ID="gvEmployeeMasterList"
                     runat="server"
@@ -33,8 +33,8 @@
                     <PagerStyle CssClass="pagination-ys" />
                 </asp:GridView>
                 <p>
-                    Expiring Contract in 2 weeks:
-                    <asp:Label ID="lblCountExpiringContracts" runat="server"></asp:Label>
+                    Expiring Contract in 2 weeks (<%=DateTime.Now.ToString("MM/dd/yyyy") %>) - (<%=DateTime.Now.AddDays(14).ToString("MM/dd/yyyy") %>):
+                    <asp:LinkButton ID="lnkCountExpiringContracts" runat="server" PostBackUrl="~/Reports/Employee_MasterList.aspx"></asp:LinkButton>
                 </p>
             </div>
         </div>

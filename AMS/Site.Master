@@ -51,8 +51,7 @@
                 <div class="navbar-collapse collapse">
                     <asp:LoginView ID="LoginView1"
                         runat="server"
-                        ViewStateMode="Disabled"
-                        OnPreRender="LoginView1_PreRender">
+                        ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Login">Log in</a></li>

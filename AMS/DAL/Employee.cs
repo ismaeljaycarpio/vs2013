@@ -732,6 +732,28 @@ namespace AMS.DAL
             comm.Dispose();
             conn.Dispose();
         }
+
+        public int UpdateStatusExpiredContracts()
+        {
+            int affectedRows = 0;
+
+            strSql = "UPDATE EMPLOYEE SET AccountStatusId = 4 " +
+                        "WHERE UserId IN (SELECT UserId FROM EMPLOYEE WHERE Contract_ED = CONVERT(DATE,GETDATE(),101) AND AccountStatusId != 4)";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            dt = new DataTable();
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                affectedRows = comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+
+            return affectedRows;
+        }
         #endregion
 
         #region User Membership

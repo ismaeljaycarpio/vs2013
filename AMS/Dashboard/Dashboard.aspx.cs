@@ -38,8 +38,7 @@ namespace AMS.Dashboard
 
                     gvEmployeeMasterList.DataSource = dashb.DisplayMasterList();
                     gvEmployeeMasterList.DataBind();
-                    lblCountExpiringContracts.Text = dashb.CountExpiringContracts().ToString();
-
+                    lnkCountExpiringContracts.Text = dashb.CountExpiringContracts().ToString();
                     lblCountNewlyHired.Text = dashb.CountNewlyHired().ToString();
                 }
                 

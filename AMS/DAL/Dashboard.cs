@@ -94,6 +94,47 @@ namespace AMS.DAL
             return dt;
         }
 
+        public DataTable DisplayBirthDayCeleb(string searchkeyWord, string MonthNumber, string deptId)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "EMPLOYEE.BirthDate, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
+                "WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "DEPARTMENT.Id = @DepartmentId AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') AND " +
+                "DATEPART(mm,EMPLOYEE.BirthDate) = @MonthNumber AND " +
+                "EMPLOYEE.AccountStatusId = 1 " +
+                "ORDER BY Employee.Emp_Id ASC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@MonthNumber", MonthNumber);
+            comm.Parameters.AddWithValue("@searchKeyWord", searchkeyWord);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         public DataTable DisplayMasterList()
         {
             strSql = "SELECT ACCOUNT_STATUS.Id, ACCOUNT_STATUS.AccountStatus," +
@@ -118,13 +159,26 @@ namespace AMS.DAL
 
         public DataTable DisplayMasterList(string deptId)
         {
+            //strSql = "SELECT ACCOUNT_STATUS.Id, ACCOUNT_STATUS.AccountStatus," +
+            //    "COUNT(EMPLOYEE.UserId) AS [MasterListCount]" +
+            //    "FROM EMPLOYEE " +
+            //    "INNER JOIN POSITION " +
+            //    "ON POSITION.Id = EMPLOYEE.PositionId " +
+            //    "INNER JOIN DEPARTMENT " +
+            //    "ON DEPARTMENT.Id  = POSITION.DepartmentId " +
+            //    "RIGHT OUTER JOIN ACCOUNT_STATUS " +
+            //    "ON ACCOUNT_STATUS.Id = EMPLOYEE.AccountStatusId " +
+            //    "WHERE DEPARTMENT.Id = @DepartmentId " +
+            //    "GROUP BY ACCOUNT_STATUS.Id, " +
+            //    "ACCOUNT_STATUS.AccountStatus";
+
             strSql = "SELECT ACCOUNT_STATUS.Id, ACCOUNT_STATUS.AccountStatus," +
                 "COUNT(EMPLOYEE.UserId) AS [MasterListCount]" +
-                "FROM EMPLOYEE " +
+                "FROM DEPARTMENT " +
                 "INNER JOIN POSITION " +
-                "ON POSITION.Id = EMPLOYEE.PositionId " +
-                "INNER JOIN DEPARTMENT " +
-                "ON DEPARTMENT.Id  = POSITION.DepartmentId " +
+                "ON POSITION.DepartmentId = DEPARTMENT.Id " +
+                "INNER JOIN EMPLOYEE " +
+                "ON EMPLOYEE.PositionId  = POSITION.Id " +
                 "RIGHT JOIN ACCOUNT_STATUS " +
                 "ON ACCOUNT_STATUS.Id = EMPLOYEE.AccountStatusId " +
                 "WHERE DEPARTMENT.Id = @DepartmentId " +

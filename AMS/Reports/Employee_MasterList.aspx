@@ -10,7 +10,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h5>Employee Master List</h5>
                 </div>
@@ -59,7 +59,7 @@
                                 <asp:BoundField DataField="FullName" HeaderText="Full Name" SortExpression="FullName" />
                                 <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
                                 <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
-                                <asp:BoundField DataField="AccountStatus" HeaderText="Status" SortExpression="Position" />
+                                <asp:BoundField DataField="AccountStatus" HeaderText="Contract Status" SortExpression="Position" />
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

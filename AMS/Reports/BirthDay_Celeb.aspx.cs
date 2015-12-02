@@ -13,6 +13,7 @@ namespace AMS.Dashboard
     public partial class BirthDay_Celeb : System.Web.UI.Page
     {
         DAL.Dashboard dashb = new DAL.Dashboard();
+        DAL.Employee emp = new DAL.Employee();
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -28,8 +29,23 @@ namespace AMS.Dashboard
 
         private DataTable BindGridView()
         {
+            //get deptId
+            Guid UserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
+            string deptId = emp.GetDepartmentId(UserId);
             dt = new DataTable();
-            dt = dashb.DisplayBirthDayCeleb(txtSearch.Text, ddlMonth.SelectedValue);
+
+            if(!User.IsInRole("Admin") &&
+                !User.IsInRole("HR") &&
+                !User.IsInRole("General Manager"))
+            {
+                //display dept based record
+                dt = dashb.DisplayBirthDayCeleb(txtSearch.Text, ddlMonth.SelectedValue, deptId);
+            }
+            else
+            {
+                dt = dashb.DisplayBirthDayCeleb(txtSearch.Text, ddlMonth.SelectedValue);
+            }
+            
             return dt;
         }
 

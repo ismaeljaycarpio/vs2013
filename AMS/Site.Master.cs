@@ -14,6 +14,7 @@ namespace AMS
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
+        DAL.Employee emp = new DAL.Employee();
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -78,6 +79,9 @@ namespace AMS
                     //if (Session["UserId"] == null)
                     //    Session["UserId"] = UserId;
                 }
+
+                ////update account status
+                //emp.UpdateStatusExpiredContracts();
             }
         }
 

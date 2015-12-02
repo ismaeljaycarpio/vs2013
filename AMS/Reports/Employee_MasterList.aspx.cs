@@ -25,8 +25,9 @@ namespace AMS.Reports
                 ddlStatus.DataTextField = "AccountStatus";
                 ddlStatus.DataBind();
 
-                gvEmployee.DataSource = BindGridView();
+                gvEmployee.DataSource = BindGridView();               
                 gvEmployee.DataBind();
+
             }
         }
 
