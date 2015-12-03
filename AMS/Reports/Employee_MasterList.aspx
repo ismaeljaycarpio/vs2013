@@ -53,7 +53,8 @@
                             OnSorting="gvEmployee_Sorting"
                             OnRowDataBound="gvEmployee_RowDataBound"
                             OnPageIndexChanging="gvEmployee_PageIndexChanging"
-                            OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging">
+                            OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging" 
+                            PageSize="7">
                             <Columns>
                                 <asp:BoundField DataField="Emp_Id" HeaderText="ID" SortExpression="Emp_Id" />
                                 <asp:BoundField DataField="FullName" HeaderText="Full Name" SortExpression="FullName" />

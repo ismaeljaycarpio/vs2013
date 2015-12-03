@@ -51,13 +51,7 @@
                                 <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
                                 <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
                                 <asp:BoundField DataField="BirthDate" HeaderText="Birth Date" SortExpression="BirthDate" />
-                                <asp:TemplateField HeaderText="Age" SortExpression="Age" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblYears" runat="server" Text='<%# Eval("Years") + " Years " %>'></asp:Label>
-                                        <asp:Label ID="lblMonths" runat="server" Text='<%# Eval("Months") + " Months " %>'></asp:Label>
-                                        <asp:Label ID="lblDays" runat="server" Text='<%# Eval("Days") + " Days" %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                <asp:BoundField DataField="Age" HeaderText="Current Age" SortExpression="Age" />
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

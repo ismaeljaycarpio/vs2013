@@ -45,7 +45,15 @@
       <siteMapNode url="~/MasterConfig/Employee_Account_MasterList" title="Account Master List"></siteMapNode>
       <siteMapNode url="~/MasterConfig/RoleManager" title="Position Master List"></siteMapNode>
     </siteMapNode>
-    
+
+    <siteMapNode title="Reports">
+      <siteMapNode url="~/Reports/BirthDay_Celeb.aspx" title="Birthday Celebrants"></siteMapNode>
+      <siteMapNode url="~/Reports/Employee_MasterList.aspx" title="Employee Masterlist"></siteMapNode>
+      <siteMapNode url="~/Reports/Employee_Age.aspx" title="Employee Age"></siteMapNode>
+      <siteMapNode url="~/Reports/Employee_Tenure.aspx" title="Employee Tenure"></siteMapNode>
+      <siteMapNode url="~/Reports/NewlyHired.aspx" title="Newly Hired"></siteMapNode>
+      <siteMapNode url="~/Reports/Duration_of_Contracts.aspx" title="Duration of Contracts"></siteMapNode>
+    </siteMapNode>
     
   </siteMapNode>
 </siteMap>

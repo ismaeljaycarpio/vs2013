@@ -153,6 +153,8 @@
                                             <ul class="dropdown-menu">
                                                 <li><a runat="server" href="~/Reports/BirthDay_Celeb.aspx">Birthday Celebrants</a></li>
                                                 <li><a runat="server" href="~/Reports/Employee_MasterList.aspx">Employee Master List</a></li>
+                                                <li><a runat="server" href="~/Reports/Employee_Age.aspx">Employee Age</a></li>
+                                                <li><a runat="server" href="~/Reports/Employee_Tenure.aspx">Employee Tenure</a></li>
                                                 <li><a runat="server" href="~/Reports/NewlyHired.aspx">Newly Hired</a></li>
                                                 <li><a runat="server" href="~/Reports/Duration_of_Contracts.aspx">Duration of Contracts</a></li>
                                             </ul>

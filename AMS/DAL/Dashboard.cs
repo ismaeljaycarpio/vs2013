@@ -647,8 +647,13 @@ namespace AMS.DAL
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
                 "EMPLOYEE.BirthDate, " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
-                "EMPLOYEE.BirthDate, " +
-                "" +
+                "GETDATE() AS [TODAY] " +
+	                ",DATEDIFF (YY,BirthDate,GETDATE()) - " +
+	                "CASE " +
+		                "WHEN DATEADD(YY,DATEDIFF(YY,BirthDate,GETDATE()),BirthDate) " +
+		                "> GETDATE() THEN 1 " +
+		                "ELSE 0 " +
+	                "END AS [Age] " +
                 "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
                 "WHERE " +
                 "Memberships.UserId = EMPLOYEE.UserId AND " +
@@ -662,8 +667,7 @@ namespace AMS.DAL
                 "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
                 "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
                 "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
-                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') AND " +
-                "EMPLOYEE.AccountStatusId = @AccountStatusId " +
+                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') " +
                 "ORDER BY Employee.Emp_Id ASC";
 
             comm.Parameters.AddWithValue("@searchKeyWord", searchkeyWord);
