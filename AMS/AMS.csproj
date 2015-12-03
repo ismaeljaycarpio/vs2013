@@ -407,6 +407,7 @@
     <Content Include="release_resources.aspx" />
     <Content Include="Reports\BirthDay_Celeb.aspx" />
     <Content Include="Reports\Duration_of_Contracts.aspx" />
+    <Content Include="Reports\Employee_Age.aspx" />
     <Content Include="Reports\Employee_MasterList.aspx" />
     <Content Include="Reports\Employee_Tenure.aspx" />
     <Content Include="Reports\NewlyHired.aspx" />
@@ -932,6 +933,13 @@
     </Compile>
     <Compile Include="Reports\Duration_of_Contracts.aspx.designer.cs">
       <DependentUpon>Duration_of_Contracts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Employee_Age.aspx.cs">
+      <DependentUpon>Employee_Age.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Employee_Age.aspx.designer.cs">
+      <DependentUpon>Employee_Age.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Employee_MasterList.aspx.cs">
       <DependentUpon>Employee_MasterList.aspx</DependentUpon>
