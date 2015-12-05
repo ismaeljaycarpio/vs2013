@@ -28,8 +28,7 @@ namespace AMS.Reports
         {
             dt = new DataTable();
             dt = dashb.DisplayNewlyHired(txtSearch.Text,
-                txtStartDate.Text,
-                txtEndDate.Text);
+                txtStartDate.Text);
             return dt;
         }
 
@@ -90,9 +89,9 @@ namespace AMS.Reports
         protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvEmployee.PageIndex = e.NewPageIndex;
-            if (Session["SortedView"] != null)
+            if (Session["SortedView_nh"] != null)
             {
-                gvEmployee.DataSource = Session["SortedView"];
+                gvEmployee.DataSource = Session["SortedView_nh"];
                 gvEmployee.DataBind();
             }
             else
@@ -110,22 +109,40 @@ namespace AMS.Reports
 
         protected void gvEmployee_Sorting(object sender, GridViewSortEventArgs e)
         {
+            string sortingDirection = string.Empty;
+            if (direction == SortDirection.Ascending)
+            {
+                direction = SortDirection.Descending;
+                sortingDirection = "Desc";
+            }
+            else
+            {
+                direction = SortDirection.Ascending;
+                sortingDirection = "Asc";
+            }
 
+            DataView sortedView = new DataView(BindGridView());
+            sortedView.Sort = e.SortExpression + " " + sortingDirection;
+            Session["SortedView_nh"] = sortedView;
+            gvEmployee.DataSource = sortedView;
+            gvEmployee.DataBind();
         }
 
-        protected void gvEmployee_RowDataBound(object sender, GridViewRowEventArgs e)
+        public SortDirection direction
         {
+            get
+            {
+                if (ViewState["directionState"] == null)
+                {
+                    ViewState["directionState"] = SortDirection.Ascending;
+                }
+                return (SortDirection)ViewState["directionState"];
+            }
 
-        }
-
-        protected void gvEmployee_PageIndexChanging1(object sender, GridViewPageEventArgs e)
-        {
-
-        }
-
-        protected void gvEmployee_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-
+            set
+            {
+                ViewState["directionState"] = value;
+            }
         }
     }
 }

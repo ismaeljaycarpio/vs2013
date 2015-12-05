@@ -51,13 +51,16 @@
                             DataKeyNames="UserId"
                             EmptyDataText="No Record(s) found"
                             OnSorting="gvEmployee_Sorting"
-                            OnRowDataBound="gvEmployee_RowDataBound"
+                            OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging"
                             OnPageIndexChanging="gvEmployee_PageIndexChanging"
-                            OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging" 
                             PageSize="7">
                             <Columns>
                                 <asp:BoundField DataField="Emp_Id" HeaderText="ID" SortExpression="Emp_Id" />
-                                <asp:BoundField DataField="FullName" HeaderText="Full Name" SortExpression="FullName" />
+                                <asp:TemplateField HeaderText="Full Name" SortExpression="FullName">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lnkFNAME" runat="server" Text='<%# Eval("FullName") %>' CommandName="Select"></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
                                 <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
                                 <asp:BoundField DataField="AccountStatus" HeaderText="Contract Status" SortExpression="AccountStatus" />
@@ -70,11 +73,11 @@
 
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <h5><span class="glyphicon glyphicon-alert"></span>  Expiring Contracts <b> <%= DateTime.Now.ToShortDateString() %> - <%= DateTime.Now.AddDays(14).ToShortDateString() %></b></h5>
+                    <h5><span class="glyphicon glyphicon-alert"></span>Expiring Contracts <b><%= DateTime.Now.ToShortDateString() %> - <%= DateTime.Now.AddDays(14).ToShortDateString() %></b></h5>
                 </div>
                 <div class="panel-body">
                     <asp:Button runat="server" Text="Word" ID="btnExpiringContract_Word" OnClick="btnExpiraingContract_Word_Click" />
-                    <asp:Button runat="server" Text="Excel" ID="btnExpiringContract_Excel" OnClick="btnExpiringContract_Excel_Click"  />
+                    <asp:Button runat="server" Text="Excel" ID="btnExpiringContract_Excel" OnClick="btnExpiringContract_Excel_Click" />
                     <div class="table-responsive">
                         <asp:GridView ID="gvExpiringContract"
                             runat="server"
@@ -83,10 +86,15 @@
                             AutoGenerateColumns="false"
                             ShowHeaderWhenEmpty="true"
                             DataKeyNames="UserId"
-                            EmptyDataText="No Record(s) found">
+                            EmptyDataText="No Record(s) found"
+                            OnSelectedIndexChanging="gvExpiringContract_SelectedIndexChanging">
                             <Columns>
                                 <asp:BoundField DataField="Emp_Id" HeaderText="ID" SortExpression="Emp_Id" />
-                                <asp:BoundField DataField="FullName" HeaderText="Full Name" SortExpression="FullName" />
+                                <asp:TemplateField HeaderText="Full Name" SortExpression="FullName">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lnkFNAME" runat="server" Text='<%# Eval("FullName") %>' CommandName="Select"></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
                                 <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
                                 <asp:BoundField DataField="Contract_SD" HeaderText="Contract Start Date" SortExpression="Contract_SD" />

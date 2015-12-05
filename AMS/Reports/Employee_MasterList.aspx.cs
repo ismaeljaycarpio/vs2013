@@ -95,7 +95,23 @@ namespace AMS.Reports
 
         protected void gvEmployee_Sorting(object sender, GridViewSortEventArgs e)
         {
+            string sortingDirection = string.Empty;
+            if (direction == SortDirection.Ascending)
+            {
+                direction = SortDirection.Descending;
+                sortingDirection = "Desc";
+            }
+            else
+            {
+                direction = SortDirection.Ascending;
+                sortingDirection = "Asc";
+            }
 
+            DataView sortedView = new DataView(BindGridView());
+            sortedView.Sort = e.SortExpression + " " + sortingDirection;
+            Session["SortedView_ml"] = sortedView;
+            gvEmployee.DataSource = sortedView;
+            gvEmployee.DataBind();
         }
 
         protected void gvEmployee_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -106,9 +122,9 @@ namespace AMS.Reports
         protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvEmployee.PageIndex = e.NewPageIndex;
-            if (Session["SortedView"] != null)
+            if (Session["SortedView_ml"] != null)
             {
-                gvEmployee.DataSource = Session["SortedView"];
+                gvEmployee.DataSource = Session["SortedView_ml"];
                 gvEmployee.DataBind();
             }
             else
@@ -116,11 +132,6 @@ namespace AMS.Reports
                 gvEmployee.DataSource = BindGridView();
                 gvEmployee.DataBind();
             }
-        }
-
-        protected void gvEmployee_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-
         }
 
         protected void btnExportToPDF_Click(object sender, EventArgs e)
@@ -179,12 +190,87 @@ namespace AMS.Reports
 
         protected void btnExpiraingContract_Word_Click(object sender, EventArgs e)
         {
+            //Create a dummy GridView
+            GridView GridView1 = new GridView();
+            GridView1.AllowPaging = false;
+            GridView1.DataSource = BindExpiringContracts();
+            GridView1.DataBind();
 
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition",
+                "attachment;filename=" + DateTime.Now.Year + "Employee_MasterList_Expiring_Contracts" + ".doc");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-word ";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            GridView1.RenderControl(hw);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
         }
 
         protected void btnExpiringContract_Excel_Click(object sender, EventArgs e)
         {
+            //Create a dummy GridView
+            GridView GridView1 = new GridView();
+            GridView1.AllowPaging = false;
+            GridView1.DataSource = BindExpiringContracts();
+            GridView1.DataBind();
 
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition",
+             "attachment;filename=EmployeeList.xls");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-excel";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            for (int i = 0; i < GridView1.Rows.Count; i++)
+            {
+                //Apply text style to each Row
+                GridView1.Rows[i].Attributes.Add("class", "textmode");
+            }
+            GridView1.RenderControl(hw);
+
+            //style to format numbers to string
+            string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+            Response.Write(style);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+        }
+
+        public SortDirection direction
+        {
+            get
+            {
+                if (ViewState["directionState"] == null)
+                {
+                    ViewState["directionState"] = SortDirection.Ascending;
+                }
+                return (SortDirection)ViewState["directionState"];
+            }
+
+            set
+            {
+                ViewState["directionState"] = value;
+            }
+        }
+
+        protected void gvExpiringContract_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            gvExpiringContract.SelectedIndex = Convert.ToInt32(e.NewSelectedIndex);
+            Session["UserId"] = gvExpiringContract.SelectedDataKey.Value;
+            Response.Redirect("~/Employee/JobDetails");
+        }
+
+        protected void gvEmployee_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            gvEmployee.SelectedIndex = Convert.ToInt32(e.NewSelectedIndex);
+            Session["UserId"] = gvEmployee.SelectedDataKey.Value;
+            Response.Redirect("~/Employee/JobDetails");
         }
     }
 }

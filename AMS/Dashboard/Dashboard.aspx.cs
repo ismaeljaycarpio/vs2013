@@ -25,6 +25,10 @@ namespace AMS.Dashboard
                     !User.IsInRole("HR") && 
                     !User.IsInRole("General Manager"))
                 {
+                    string deptName = emp.GetDepartment(UserId);
+                    lblDepartment.Text = deptName;
+                    pnlNotification.Visible = true;
+
                     //display dept based emp
                     lnkBdayCount.Text = dashb.CountBday(deptId).ToString();
 
@@ -32,7 +36,7 @@ namespace AMS.Dashboard
                     gvEmployeeMasterList.DataBind();
 
                     lnkCountExpiringContracts.Text = dashb.CountExpiringContracts(deptId).ToString();
-                    lblCountNewlyHired.Text = dashb.CountNewlyHired(deptId).ToString();
+                    //lblCountNewlyHired.Text = dashb.CountNewlyHired(deptId).ToString();
                 }
                 else
                 {
@@ -42,7 +46,8 @@ namespace AMS.Dashboard
                     gvEmployeeMasterList.DataBind();
 
                     lnkCountExpiringContracts.Text = dashb.CountExpiringContracts().ToString();
-                    lblCountNewlyHired.Text = dashb.CountNewlyHired().ToString();
+                    //lblCountNewlyHired.Text = dashb.CountNewlyHired().ToString();
+                    lblCountPendingEvaluation.Text = dashb.CountPendingEvaluate().ToString();
                 }
                 
             }
@@ -50,7 +55,7 @@ namespace AMS.Dashboard
 
         protected void lnkBdayCount_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Reports/BirthDay_Celeb");
+            Response.Redirect("~/Reports/BirthDay_Celeb.aspx");
         }
     }
 }

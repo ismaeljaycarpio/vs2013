@@ -13,6 +13,24 @@ namespace AMS.Dashboard {
     public partial class Dashboard {
         
         /// <summary>
+        /// pnlNotification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlNotification;
+        
+        /// <summary>
+        /// lblDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDepartment;
+        
+        /// <summary>
         /// lnkBdayCount control.
         /// </summary>
         /// <remarks>
@@ -40,12 +58,12 @@ namespace AMS.Dashboard {
         protected global::System.Web.UI.WebControls.LinkButton lnkCountExpiringContracts;
         
         /// <summary>
-        /// lblCountNewlyHired control.
+        /// lblCountPendingEvaluation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCountNewlyHired;
+        protected global::System.Web.UI.WebControls.Label lblCountPendingEvaluation;
     }
 }

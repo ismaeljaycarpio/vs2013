@@ -27,12 +27,12 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-10">
+                            <div class="col-sm-6">
                                 <div class="input-daterange">
                                     <div class="input-group">
-                                        <asp:TextBox ID="txtStartDate" runat="server" data-provide="datepicker" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtStartDate" runat="server" data-provide="datepicker" CssClass="form-control" placeholder="Start Date"></asp:TextBox>
                                         <span class="input-group-addon">to</span>
-                                        <asp:TextBox ID="txtEndDate" runat="server" data-provide="datepicker" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtEndDate" runat="server" data-provide="datepicker" CssClass="form-control" placeholder="End Date"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -53,20 +53,30 @@
                             AllowSorting="true"
                             DataKeyNames="UserId"
                             EmptyDataText="No Record(s) found"
+                            OnSorting="gvEmployee_Sorting"
                             OnPageIndexChanging="gvEmployee_PageIndexChanging">
                             <Columns>
-                                <asp:BoundField DataField="Emp_Id" HeaderText="ID" />
-                                <asp:BoundField DataField="FullName" HeaderText="Full Name" />
-                                <asp:BoundField DataField="Department" HeaderText="Department" />
-                                <asp:BoundField DataField="Position" HeaderText="Position" />
-                                <asp:BoundField DataField="Contract_SD" HeaderText="Starting Date" />
-                                <asp:BoundField DataField="Contract_ED" HeaderText="Ending Date" />
-                                <asp:TemplateField HeaderText="Duration">
+                                <asp:BoundField DataField="Emp_Id" HeaderText="ID"  SortExpression="Emp_Id" />
+                                <asp:BoundField DataField="FullName" HeaderText="Full Name" SortExpression="FullName" />
+                                <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
+                                <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
+                                <asp:TemplateField HeaderText="Starting Date" SortExpression="Contract_SD">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lblStartingDate" Text='<%# Eval("Contract_SD", "{0:d}") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="End Date" SortExpression="Contract_ED">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lblEndDate" Text='<%# Eval("Contract_ED", "{0:d}") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Duration" SortExpression="Years">
                                     <ItemTemplate>
                                         <asp:Label ID="lblYears" runat="server" Text='<%# Eval("Years") + " Years " %>'></asp:Label>
                                         <asp:Label ID="lblMonths" runat="server" Text='<%# Eval("Months") + " Months" %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
+
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

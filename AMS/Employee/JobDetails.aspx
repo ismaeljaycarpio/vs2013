@@ -120,7 +120,7 @@
                             <label for="txtJoinDate" class="col-sm-3 control-label">Join Date</label>
                             <div class="col-sm-4">
                                 <div class="input-group date" id="joinDate">
-                                    <asp:TextBox ID="txtJoinDate" runat="server" CssClass="form-control" placeholder="Join Date"></asp:TextBox>
+                                    <asp:TextBox ID="txtJoinDate" runat="server" CssClass="form-control" placeholder="Join Date" ReadOnly="true"></asp:TextBox>
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -138,7 +138,7 @@
                             <label for="txtContractStartingDate" class="col-sm-3 control-label">Contract Starting Date</label>
                             <div class="col-sm-4">
                                 <div class="input-group date" id="cStartingDate">
-                                    <asp:TextBox ID="txtContractStartingDate" runat="server" CssClass="form-control" placeholder="Contract Starting Date"></asp:TextBox>
+                                    <asp:TextBox ID="txtContractStartingDate" runat="server" CssClass="form-control" placeholder="Contract Starting Date" ReadOnly="true"></asp:TextBox>
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -156,7 +156,7 @@
                             <label for="txtContractEndingDate" class="col-sm-3 control-label">Contract Ending Date</label>
                             <div class="col-sm-4">
                                 <div class="input-group date" id="cEndingDate">
-                                    <asp:TextBox ID="txtContractEndingDate" runat="server" CssClass="form-control" placeholder="Contract Ending Date"></asp:TextBox>
+                                    <asp:TextBox ID="txtContractEndingDate" runat="server" CssClass="form-control" placeholder="Contract Ending Date" ReadOnly="true"></asp:TextBox>
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>

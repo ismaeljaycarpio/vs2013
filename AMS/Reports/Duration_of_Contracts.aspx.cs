@@ -96,15 +96,53 @@ namespace AMS.Reports
         protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvEmployee.PageIndex = e.NewPageIndex;
-            if (Session["SortedView"] != null)
+            if (Session["SortedView_doc"] != null)
             {
-                gvEmployee.DataSource = Session["SortedView"];
+                gvEmployee.DataSource = Session["SortedView_doc"];
                 gvEmployee.DataBind();
             }
             else
             {
                 gvEmployee.DataSource = BindGridView();
                 gvEmployee.DataBind();
+            }
+        }
+
+        protected void gvEmployee_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            string sortingDirection = string.Empty;
+            if (direction == SortDirection.Ascending)
+            {
+                direction = SortDirection.Descending;
+                sortingDirection = "Desc";
+            }
+            else
+            {
+                direction = SortDirection.Ascending;
+                sortingDirection = "Asc";
+            }
+
+            DataView sortedView = new DataView(BindGridView());
+            sortedView.Sort = e.SortExpression + " " + sortingDirection;
+            Session["SortedView_doc"] = sortedView;
+            gvEmployee.DataSource = sortedView;
+            gvEmployee.DataBind();
+        }
+
+        public SortDirection direction
+        {
+            get
+            {
+                if (ViewState["directionState"] == null)
+                {
+                    ViewState["directionState"] = SortDirection.Ascending;
+                }
+                return (SortDirection)ViewState["directionState"];
+            }
+
+            set
+            {
+                ViewState["directionState"] = value;
             }
         }
     }

@@ -20,7 +20,7 @@ namespace AMS.DAL
 
         public int CountBday()
         {
-            strSql = "SELECT COUNT(Emp_Id) AS BdayCeleb FROM EMPLOYEE WHERE DATEPART(mm,BirthDate) = @MonthNumber";
+            strSql = "SELECT COUNT(Emp_Id) AS BdayCeleb FROM EMPLOYEE WHERE DATEPART(mm,BirthDate) = @MonthNumber AND AccountStatusId = 1";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -40,6 +40,7 @@ namespace AMS.DAL
                 "EMPLOYEE INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
                 "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
                 "WHERE DEPARTMENT.Id = @DepartmentId " +
+                "AND AccountStatusId = 1 " +
                 "AND DATEPART(mm,BirthDate) = @MonthNumber";
 
             conn = new SqlConnection();
@@ -60,7 +61,7 @@ namespace AMS.DAL
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
-                "EMPLOYEE.BirthDate, " +
+                "CAST(EMPLOYEE.BirthDate AS DATE) AS [BirthDate], " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
                 "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
                 "Memberships.UserId = EMPLOYEE.UserId AND " +
@@ -98,7 +99,7 @@ namespace AMS.DAL
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
-                "EMPLOYEE.BirthDate, " +
+                "CAST(EMPLOYEE.BirthDate AS DATE) AS [BirthDate], " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
                 "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
                 "WHERE " +
@@ -262,7 +263,6 @@ namespace AMS.DAL
                 "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') AND " +
                 "EMPLOYEE.AccountStatusId = @AccountStatusId " +
                 "ORDER BY Employee.Emp_Id ASC";
-            comm.Parameters.AddWithValue("@AccountStatusId", accountStatusId);
 
             comm.Parameters.AddWithValue("@AccountStatusId", accountStatusId);
             comm.Parameters.AddWithValue("@DepartmentId", deptId);
@@ -337,8 +337,7 @@ namespace AMS.DAL
 
             return _count;
         }
-
-        
+    
         public DataTable DisplayExpiringContract()
         {
             conn = new SqlConnection();
@@ -415,7 +414,7 @@ namespace AMS.DAL
 
         public int CountNewlyHired()
         {
-            strSql = "SELECT COUNT(Emp_Id) AS NewlyHired FROM EMPLOYEE WHERE DATEPART(mm,JoinDate) = @MonthNumber";
+            strSql = "SELECT COUNT(Emp_Id) AS NewlyHired FROM EMPLOYEE WHERE DATEPART(mm,JoinDate) = @MonthNumber AND AccountStatusId = 1";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -437,7 +436,8 @@ namespace AMS.DAL
                 "ON EMPLOYEE.PositionId = POSITION.Id " +
                 "INNER JOIN DEPARTMENT " +
                 "ON POSITION.DepartmentId = DEPARTMENT.Id " +
-                "WHERE DEPARTMENT.Id = @DepartmentId AND " +
+                "WHERE DEPARTMENT.Id = @DepartmentId " +
+                "AND AccountStatusId = 1 AND " +
                 "DATEPART(mm,JoinDate) = @MonthNumber";
 
             conn = new SqlConnection();
@@ -453,6 +453,116 @@ namespace AMS.DAL
             return _count;
         }
 
+        public DataTable DisplayNewlyHired(string searchkeyWord, string startdate)
+        {
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand();
+            comm.Connection = conn;
+            if (startdate == String.Empty)
+            {
+                strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                                "CAST(EMPLOYEE.JoinDate AS DATE) AS [JoinDate], " +
+                                "POSITION.Position AS [POSITION], " +
+                                "DEPARTMENT.Department AS [DEPARTMENT] " +
+                                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                                "EMPLOYEE.AccountStatusId = 1 AND " +
+                                "Roles.RoleName != 'Admin' AND " +
+                                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') " +
+                                "ORDER BY Employee.Emp_Id ASC";
+            }
+            else if (startdate != String.Empty)
+            {
+                strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                                "CAST(EMPLOYEE.JoinDate AS DATE) AS [JoinDate], " +
+                                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
+                                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                                "EMPLOYEE.AccountStatusId = 1 AND " +
+                                "Roles.RoleName != 'Admin' AND " +
+                                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') " +
+                                "AND EMPLOYEE.JoinDate = @StartDate " +
+                                "ORDER BY Employee.Emp_Id ASC";
+
+                comm.Parameters.AddWithValue("@StartDate", startdate);
+            }
+
+            comm.Parameters.AddWithValue("@searchKeyWord", searchkeyWord);
+            comm.CommandText = strSql;
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable DisplayNewlyHired(string searchkeyWord, int month)
+        {
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand();
+            comm.Connection = conn;
+
+                strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                                "CAST(EMPLOYEE.JoinDate AS DATE) AS [JoinDate], " +
+                                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
+                                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                                "EMPLOYEE.AccountStatusId = 1 AND " +
+                                "Roles.RoleName != 'Admin' AND " +
+                                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') " +
+                                "AND DATEPART(mm,EMPLOYEE.JoinDate) = @month" +
+                                "ORDER BY Employee.Emp_Id ASC";
+
+
+
+            comm.Parameters.AddWithValue("@searchKeyWord", searchkeyWord);
+            comm.Parameters.AddWithValue("@month", month);
+            comm.CommandText = strSql;
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         public DataTable DisplayNewlyHired(string searchkeyWord, string startdate, string enddate)
         {
             conn = new SqlConnection();
@@ -463,7 +573,7 @@ namespace AMS.DAL
             {
                 strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
-                                "EMPLOYEE.JoinDate, " +
+                                "CAST(EMPLOYEE.JoinDate AS DATE) AS [JoinDate], " +
                                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
                                 "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
                                 "Memberships.UserId = EMPLOYEE.UserId AND " +
@@ -484,7 +594,7 @@ namespace AMS.DAL
             {
                 strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
-                                "EMPLOYEE.JoinDate, " +
+                                "CAST(EMPLOYEE.JoinDate AS DATE) AS [JoinDate], " +
                                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
                                 "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
                                 "Memberships.UserId = EMPLOYEE.UserId AND " +
@@ -508,7 +618,7 @@ namespace AMS.DAL
             {
                 strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
-                                "EMPLOYEE.JoinDate, " +
+                                "CAST(EMPLOYEE.JoinDate AS DATE) AS [JoinDate], " +
                                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
                                 "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
                                 "Memberships.UserId = EMPLOYEE.UserId AND " +
@@ -547,11 +657,12 @@ namespace AMS.DAL
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand();
             comm.Connection = conn;
-            if (startdate == String.Empty)
+            if (startdate == String.Empty && enddate == String.Empty)
             {
                 strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
-                                "EMPLOYEE.Contract_SD, EMPLOYEE.Contract_ED," +
+                                "CAST(EMPLOYEE.Contract_SD AS DATE) AS [Contract_SD], " +
+                                "CAST(EMPLOYEE.Contract_ED AS DATE) AS [Contract_ED], " +
                                 "DATEDIFF(MM,Contract_SD,Contract_ED)/12 AS [Years]," +
                                 "DATEDIFF(MM,Contract_SD,Contract_ED)%12 AS [Months]," +
                                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
@@ -562,6 +673,7 @@ namespace AMS.DAL
                                 "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
                                 "UsersInRoles.RoleId = Roles.RoleId AND " +
                                 "Roles.RoleName != 'Admin' AND " +
+                                "EMPLOYEE.AccountStatusId = 1 AND " +
                                 "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
                                 "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
                                 "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
@@ -574,7 +686,8 @@ namespace AMS.DAL
             {
                 strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
-                                "EMPLOYEE.Contract_SD, EMPLOYEE.Contract_ED," +
+                                "CAST(EMPLOYEE.Contract_SD AS DATE) AS [Contract_SD], " +
+                                "CAST(EMPLOYEE.Contract_ED AS DATE) AS [Contract_ED], " +
                                 "DATEDIFF(MM,Contract_SD,Contract_ED)/12 AS [Years]," +
                                 "DATEDIFF(MM,Contract_SD,Contract_ED)%12 AS [Months]," +
                                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
@@ -585,6 +698,7 @@ namespace AMS.DAL
                                 "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
                                 "UsersInRoles.RoleId = Roles.RoleId AND " +
                                 "Roles.RoleName != 'Admin' AND " +
+                                "EMPLOYEE.AccountStatusId = 1 AND " +
                                 "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
                                 "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
                                 "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
@@ -596,11 +710,12 @@ namespace AMS.DAL
 
                 comm.Parameters.AddWithValue("@StartDate", startdate);
             }
-            else if (startdate != String.Empty && enddate != String.Empty)
+            else if(startdate == String.Empty && enddate != String.Empty)
             {
                 strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
-                                "EMPLOYEE.Contract_SD, EMPLOYEE.Contract_ED," +
+                                "CAST(EMPLOYEE.Contract_SD AS DATE) AS [Contract_SD], " +
+                                "CAST(EMPLOYEE.Contract_ED AS DATE) AS [Contract_ED], " +
                                 "DATEDIFF(MM,Contract_SD,Contract_ED)/12 AS [Years]," +
                                 "DATEDIFF(MM,Contract_SD,Contract_ED)%12 AS [Months]," +
                                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
@@ -611,6 +726,36 @@ namespace AMS.DAL
                                 "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
                                 "UsersInRoles.RoleId = Roles.RoleId AND " +
                                 "Roles.RoleName != 'Admin' AND " +
+                                "EMPLOYEE.AccountStatusId = 1 AND " +
+                                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') " +
+                                "AND EMPLOYEE.Contract_ED = @EndDate " +
+                                "ORDER BY Employee.Emp_Id ASC";
+
+                comm.Parameters.AddWithValue("@EndDate", enddate);
+            }
+
+            else if (startdate != String.Empty && enddate != String.Empty)
+            {
+                strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                                "CAST(EMPLOYEE.Contract_SD AS DATE) AS [Contract_SD], " +
+                                "CAST(EMPLOYEE.Contract_ED AS DATE) AS [Contract_ED], " +
+                                "DATEDIFF(MM,Contract_SD,Contract_ED)/12 AS [Years]," +
+                                "DATEDIFF(MM,Contract_SD,Contract_ED)%12 AS [Months]," +
+                                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
+                                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                                "Roles.RoleName != 'Admin' AND " +
+                                "EMPLOYEE.AccountStatusId = 1 AND " +
                                 "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
                                 "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
                                 "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
@@ -634,7 +779,7 @@ namespace AMS.DAL
 
             return dt;
         }
-
+        
         //employee age -> active only
         public DataTable DisplayAge(string searchkeyWord)
         {
@@ -645,9 +790,8 @@ namespace AMS.DAL
 
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
-                "EMPLOYEE.BirthDate, " +
-                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
-                "GETDATE() AS [TODAY] " +
+                "CAST(EMPLOYEE.BirthDate AS DATE) AS [BirthDate] , " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
 	                ",DATEDIFF (YY,BirthDate,GETDATE()) - " +
 	                "CASE " +
 		                "WHEN DATEADD(YY,DATEDIFF(YY,BirthDate,GETDATE()),BirthDate) " +
@@ -668,6 +812,7 @@ namespace AMS.DAL
                 "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
                 "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
                 "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') " +
+                "AND EMPLOYEE.AccountStatusId = 1 " +
                 "ORDER BY Employee.Emp_Id ASC";
 
             comm.Parameters.AddWithValue("@searchKeyWord", searchkeyWord);
@@ -680,6 +825,67 @@ namespace AMS.DAL
             conn.Close();
 
             return dt;
+        }
+
+        public DataTable DisplayTenure(string searchkeyWord)
+        {
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand();
+            comm.Connection = conn;
+
+                strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                                "CAST(EMPLOYEE.Contract_SD AS DATE) AS [Contract_SD], " +
+                                "CAST(EMPLOYEE.Contract_ED AS DATE) AS [Contract_ED]," +
+                                "DATEDIFF(MM,Contract_SD,GETDATE())/12 AS [Years]," +
+                                "DATEDIFF(MM,Contract_SD,GETDATE())%12 AS [Months]," +
+                                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
+                                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                                "Roles.RoleName != 'Admin' AND " +
+                                "EMPLOYEE.AccountStatusId = 1 AND " +
+                                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') " +
+                                "ORDER BY Employee.Emp_Id ASC";
+
+            comm.Parameters.AddWithValue("@searchKeyWord", searchkeyWord);
+            comm.CommandText = strSql;
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public int CountPendingEvaluate()
+        {
+            strSql = "SELECT COUNT(DISTINCT Evaluation.UserId) FROM Evaluation " +
+                        "WHERE " +
+                        "DATEDIFF(day, getdate(), (SELECT(MAX(CAST(NextEvaluationDate as Date))) AS [NextEvalDate] FROM Evaluation)) <= 14 " +
+                        "AND " +
+                        "DATEDIFF(day, getdate(), (SELECT(MAX(CAST(NextEvaluationDate as Date))) AS [NextEvalDate] FROM Evaluation)) >= 0";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            int monthNumber = DateTime.Now.Month;
+            conn.Open();
+            int _count = (int)comm.ExecuteScalar();
+            conn.Close();
+
+            return _count;
         }
     }
 }

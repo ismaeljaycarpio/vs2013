@@ -44,13 +44,18 @@
                             AllowSorting="true"
                             DataKeyNames="UserId"
                             EmptyDataText="No Record(s) found"
-                            OnPageIndexChanging="gvEmployee_PageIndexChanging">
+                            OnPageIndexChanging="gvEmployee_PageIndexChanging"
+                            OnSorting="gvEmployee_Sorting">
                             <Columns>
                                 <asp:BoundField DataField="Emp_Id" HeaderText="ID" SortExpression="Emp_Id" />
                                 <asp:BoundField DataField="FullName" HeaderText="Full Name"  SortExpression="FullName" />
                                 <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
                                 <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
-                                <asp:BoundField DataField="BirthDate" HeaderText="Birth Date" SortExpression="BirthDate" />
+                                <asp:TemplateField HeaderText="Birth Date" SortExpression="BirthDate">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lblBirthDate" Text='<%# Eval("BirthDate", "{0:d}") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:BoundField DataField="Age" HeaderText="Current Age" SortExpression="Age" />
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />

@@ -9,6 +9,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
+        <div class="col-md-12">
+            <asp:Panel ID="pnlNotification" runat="server" CssClass="alert alert-info" Visible="false">
+                <strong><asp:Label ID="lblDepartment" runat="server"></asp:Label></strong>
+                <p>                  
+                    Displaying Dashboard for Department specific only.
+                </p>
+            </asp:Panel>
+        </div>
+
+    </div>
+    <div class="row">
+
         <div class="col-lg-4">
             <h4><a href="~/Reports/BirthDay_Celeb.aspx" runat="server"><span class="glyphicon glyphicon-cutlery"></span><b><%= DateTime.Now.ToString("MMMMM") %></b> Birthday Celebrants</a></h4>
             <p>
@@ -39,13 +51,22 @@
             </div>
         </div>
 
-        <div class="col-lg-4">
-            <h4><a href="~/Reports/NewlyHired.aspx" runat="server"><b>Newly Hired - <%= DateTime.Now.ToString("MMMMM") %></b></a></h4>
+        <%--<div class="col-lg-4">
+            <h4><a href="~/Reports/NewlyHired.aspx?mm=n" runat="server"><b>Newly Hired - <%= DateTime.Now.ToString("MMMMM") %></b></a></h4>
             <p>
                 Number of newly Hired Employees for these Month :
                 <asp:Label ID="lblCountNewlyHired" runat="server" CssClass="label label-info"></asp:Label>
             </p>
+        </div>--%>
+
+        <div class="col-lg-4">
+            <h4><a href="~/Evaluation/PendingEvaluation.aspx" runat="server"><b>Pending Evaluation </b>(<%=DateTime.Now.ToString("MM/dd/yyyy") %>) - (<%=DateTime.Now.AddDays(14).ToString("MM/dd/yyyy") %>)</a></h4>
+            <p>
+                Number of Employees that are to be evaluated:
+                <asp:Label ID="lblCountPendingEvaluation" runat="server" CssClass="label label-info"></asp:Label>
+            </p>
         </div>
+
     </div>
 
     <%--<div class="row">

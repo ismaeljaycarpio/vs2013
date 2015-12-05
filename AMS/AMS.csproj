@@ -198,6 +198,7 @@
     <Content Include="EvaluationSelf\vEvaluation_Self.aspx" />
     <Content Include="Evaluation\ApprovedEvaluations.aspx" />
     <Content Include="Evaluation\PendingApprovals.aspx" />
+    <Content Include="Evaluation\PendingEvaluation.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
@@ -845,6 +846,13 @@
     </Compile>
     <Compile Include="Evaluation\PendingApprovals.aspx.designer.cs">
       <DependentUpon>PendingApprovals.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluation\PendingEvaluation.aspx.cs">
+      <DependentUpon>PendingEvaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluation\PendingEvaluation.aspx.designer.cs">
+      <DependentUpon>PendingEvaluation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -40,15 +40,6 @@ namespace AMS.Reports {
         protected global::System.Web.UI.WebControls.TextBox txtStartDate;
         
         /// <summary>
-        /// txtEndDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEndDate;
-        
-        /// <summary>
         /// btnExportToPDF control.
         /// </summary>
         /// <remarks>

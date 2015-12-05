@@ -29,8 +29,8 @@ namespace AMS.Employee
                 BindGridView();
 
                 hfAgency.Value = emp.GetAgencyName(UserId);
-                lblLastEvaluationDate.Text = emp.GetLastEvaluationDate(UserId).ToString();
-                lblNextEvaluationDate.Text = emp.GetNextEvaluationDate(UserId).ToString();
+                lblLastEvaluationDate.Text = emp.GetLastEvaluationDate(UserId);
+                lblNextEvaluationDate.Text = emp.GetNextEvaluationDate(UserId);
 
                 //check ids
                 MembershipUser loggedInUser = Membership.GetUser();
@@ -65,8 +65,10 @@ namespace AMS.Employee
                         }
                         else
                         {
-                            //show if managers only
-                            if (emp.GetRoleName(UserId).Equals("Manager"))
+                            //show if managers/supervisor/staff only
+                            if (emp.GetRoleName(UserId).Equals("Manager") ||
+                                emp.GetRoleName(UserId).Equals("Supervisor") ||
+                                emp.GetRoleName(UserId).Equals("Staff"))
                             {
                                 btnPerfEval.Enabled = true;
                                 btnPerfEval.Visible = true;
@@ -79,10 +81,11 @@ namespace AMS.Employee
                         btnPerfEval.Enabled = true;
                     }
                 }
+                    //self eval
                 else
                 {
-                    btnPerfEval.Visible = true;
-                    btnPerfEval.Enabled = true;
+                    //btnPerfEval.Visible = true;
+                    //btnPerfEval.Enabled = true;
                 }
             }
         }

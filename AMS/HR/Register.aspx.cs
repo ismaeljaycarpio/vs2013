@@ -14,7 +14,6 @@ namespace AMS.HR
         DAL.Employee emp = new DAL.Employee();
         DAL.PositionManagement position = new DAL.PositionManagement();
         DAL.Filler filler = new DAL.Filler();
-        DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -85,8 +84,7 @@ namespace AMS.HR
             {
                 Response.Write(exc.ToString());
                 pnlSuccess.Visible = false;
-            }
-                 
+            }               
         }
 
         public void ClearControls()
@@ -105,8 +103,6 @@ namespace AMS.HR
 
         protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DAL.PositionManagement pos = new DAL.PositionManagement();
-
             //load dept based on pos
             ddlDepartment.SelectedValue = position.GetDepartmentIdBypPosition(ddlPosition.SelectedValue.ToString());
         }
@@ -114,7 +110,7 @@ namespace AMS.HR
         protected void btnGenerateId_Click(object sender, EventArgs e)
         {
             string userName = emp.GetGeneratedUserName();
-            txtEmpId.Text = "AZ2600-2015-" + userName;
+            txtEmpId.Text = DateTime.Now.Year + "-" + userName;
             pnlSuccess.Visible = false;
             lblError.Text = "";
         }

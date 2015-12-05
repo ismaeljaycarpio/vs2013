@@ -119,7 +119,7 @@ namespace AMS.Dashboard
 
             DataView sortedView = new DataView(BindGridView());
             sortedView.Sort = e.SortExpression + " " + sortingDirection;
-            Session["SortedView"] = sortedView;
+            Session["SortedView_bday"] = sortedView;
             gvEmployee.DataSource = sortedView;
             gvEmployee.DataBind();
         }
@@ -127,9 +127,9 @@ namespace AMS.Dashboard
         protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvEmployee.PageIndex = e.NewPageIndex;
-            if (Session["SortedView"] != null)
+            if (Session["SortedView_bday"] != null)
             {
-                gvEmployee.DataSource = Session["SortedView"];
+                gvEmployee.DataSource = Session["SortedView_bday"];
                 gvEmployee.DataBind();
             }
             else

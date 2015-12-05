@@ -49,7 +49,7 @@ namespace AMS.Reports
             Response.Clear();
             Response.Buffer = true;
             Response.AddHeader("content-disposition",
-                "attachment;filename=" + DateTime.Now.Year + "Employee_MasterList" + ".doc");
+                "attachment;filename=" + DateTime.Now.Year + "Employee_Age" + ".doc");
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-word ";
             StringWriter sw = new StringWriter();
@@ -71,7 +71,7 @@ namespace AMS.Reports
             Response.Clear();
             Response.Buffer = true;
             Response.AddHeader("content-disposition",
-             "attachment;filename=EmployeeList.xls");
+             "attachment;filename=" + DateTime.Now.Year + "Employee_Age" + ".xls");
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-excel";
             StringWriter sw = new StringWriter();
@@ -95,15 +95,52 @@ namespace AMS.Reports
         protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvEmployee.PageIndex = e.NewPageIndex;
-            if (Session["SortedView"] != null)
+            if (Session["SortedView_age"] != null)
             {
-                gvEmployee.DataSource = Session["SortedView"];
+                gvEmployee.DataSource = Session["SortedView_age"];
                 gvEmployee.DataBind();
             }
             else
             {
                 gvEmployee.DataSource = BindGridView();
                 gvEmployee.DataBind();
+            }
+        }
+
+        protected void gvEmployee_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            string sortingDirection = string.Empty;
+            if (direction == SortDirection.Ascending)
+            {
+                direction = SortDirection.Descending;
+                sortingDirection = "Desc";
+            }
+            else
+            {
+                direction = SortDirection.Ascending;
+                sortingDirection = "Asc";
+            }
+
+            DataView sortedView = new DataView(BindGridView());
+            sortedView.Sort = e.SortExpression + " " + sortingDirection;
+            Session["SortedView_age"] = sortedView;
+            gvEmployee.DataSource = sortedView;
+            gvEmployee.DataBind();
+        }
+        public SortDirection direction
+        {
+            get
+            {
+                if (ViewState["directionState"] == null)
+                {
+                    ViewState["directionState"] = SortDirection.Ascending;
+                }
+                return (SortDirection)ViewState["directionState"];
+            }
+
+            set
+            {
+                ViewState["directionState"] = value;
             }
         }
     }

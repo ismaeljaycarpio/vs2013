@@ -66,9 +66,13 @@
                             <Columns>
                                 <asp:BoundField DataField="Emp_Id" HeaderText="ID" SortExpression="Emp_Id" />
                                 <asp:BoundField DataField="FullName" HeaderText="Full Name" SortExpression="FullName" />
-                                <asp:BoundField DataField="BirthDate" HeaderText="BirthDate" SortExpression="BirthDate" />
                                 <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
                                 <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
+                                <asp:TemplateField HeaderText="Birth Date" SortExpression="BirthDate">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" ID="lblBirthDate" Text='<%# Eval("BirthDate", "{0:d}") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

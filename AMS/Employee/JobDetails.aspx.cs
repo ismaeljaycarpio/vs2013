@@ -103,9 +103,9 @@ namespace AMS.Employee
                     ddlPosition.SelectedValue.ToString(),
                     ddlEmpStatus.SelectedValue.ToString(),
                     txtSubUnit.Text,
-                    txtJoinDate.Text,
-                    txtContractStartingDate.Text,
-                    txtContractEndingDate.Text,
+                    Request.Form[txtJoinDate.UniqueID],
+                    Request.Form[txtContractStartingDate.UniqueID],
+                    Request.Form[txtContractEndingDate.UniqueID],
                     ddlAgency.SelectedValue,
                     ddlAccountStatus.SelectedValue,
                     Guid.Parse(hfUserId.Value));
