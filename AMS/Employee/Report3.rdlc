@@ -5973,13 +5973,13 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Right</TextAlign>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox201</rd:DefaultName>
         <Top>31.64868in</Top>
-        <Left>0.13708in</Left>
+        <Left>0.15097in</Left>
         <Height>0.25in</Height>
         <Width>1.4375in</Width>
         <ZIndex>64</ZIndex>
