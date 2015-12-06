@@ -91,10 +91,20 @@
                                     <ul class="nav navbar-nav">
                                         <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee">Employee</a></li>
-                                        <li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Self Evaluation</a></li>
+                                        <%--<li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Self Evaluation</a></li>--%>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Evaluation Approval<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Approvals</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a runat="server" href="~/Reports/BirthDay_Celeb.aspx">Birthday Celebrants</a></li>
+                                                <li><a runat="server" href="~/Reports/Employee_MasterList.aspx">Employee Master List</a></li>
+                                                <li><a runat="server" href="~/Reports/Employee_Age.aspx">Employee Age</a></li>
+                                                <li><a runat="server" href="~/Reports/Employee_Tenure.aspx">Employee Tenure</a></li>
+                                                <li><a runat="server" href="~/Reports/NewlyHired.aspx">Newly Hired</a></li>
+                                                <li><a runat="server" href="~/Reports/Duration_of_Contracts.aspx">Duration of Contracts</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HR<span class="caret"></span></a>
@@ -125,8 +135,8 @@
                                                 <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu">
-                                                <li>
-                                                    <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li><asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li><asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
                                                 <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -180,6 +190,7 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li><asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
                                                 <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -218,6 +229,7 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li><asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
                                                 <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -256,6 +268,7 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li><asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
                                                 <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -289,6 +302,7 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li><asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
                                                 <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -321,6 +335,7 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li><asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
                                                 <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
                                             </ul>
                                         </li>

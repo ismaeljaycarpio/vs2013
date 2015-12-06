@@ -97,5 +97,14 @@ namespace AMS
                 Response.Redirect("~/Employee/ViewEmployee");
             }
         }
+
+        protected void hlViewEvaluation_Click(object sender, EventArgs e)
+        {
+            if (Page.User.Identity.IsAuthenticated)
+            {
+                Session["UserId"] = Membership.GetUser().ProviderUserKey;
+                Response.Redirect("~/Employee/Evaluation");
+            }
+        }
     }
 }

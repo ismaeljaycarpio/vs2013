@@ -152,10 +152,12 @@
                                     GridLines="None"
                                     AutoGenerateColumns="false"
                                     AllowPaging="true"
+                                    AllowSorting="true"
                                     ShowHeaderWhenEmpty="true"
                                     DataKeyNames="Id"
                                     OnPageIndexChanging="gvRoles_PageIndexChanging"
                                     OnRowCommand="gvRoles_RowCommand"
+                                    OnSorting="gvRoles_Sorting"
                                     PageSize="10">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Row Id" Visible="false">
@@ -166,18 +168,18 @@
 
                                         <asp:ButtonField HeaderText="Action" ButtonType="Button" Text="Edit" CommandName="editRecord" />
 
-                                        <asp:TemplateField HeaderText="Positions">
+                                        <asp:TemplateField HeaderText="Positions" SortExpression="Position">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblPosition" runat="server" Text='<%# Eval("Position") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Department">
+                                        <asp:TemplateField HeaderText="Department" SortExpression="Department">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblDepartment" runat="server" Text='<%# Eval("Department") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Role">
+                                        <asp:TemplateField HeaderText="Role" SortExpression="RoleName">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblRole" runat="server" Text='<%# Eval("RoleName") %>'></asp:Label>
                                             </ItemTemplate>

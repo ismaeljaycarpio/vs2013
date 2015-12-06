@@ -24,7 +24,15 @@
       <siteMapNode url="~/Employee/ErrorPage" title="Error Page"></siteMapNode>
 
       <siteMapNode url="~/Employee/Evaluation" title="Evaluation">
-        <siteMapNode url="~/Employee/PerformanceEvaluation" title="TOPLIS Performance Evaluation"></siteMapNode>
+        <siteMapNode url="~/Employee/PerformanceEvaluation" title="TOPLIS Performance Evaluation" />
+          <siteMapNode url="~/Employee/vPerformanceEvaluation" title="Update TOPLIS Performance Evaluation" >
+            <siteMapNode url="~/Employee/pPerformanceEvaluation.aspx" title="Print TOPLIS Performance Evaluation" />
+          </siteMapNode>
+
+        <siteMapNode url="~/Employee/Prime_Performance_Evaluation" title="Prime Performance Evaluation" />
+        <siteMapNode url="~/Employee/vPrime_Performance_Evaluation" title="Update Prime Performance Evaluation">
+          <siteMapNode url="~/Employee/pPrime_Performance_Evaluation" title="Print Prime Performance Evaluation"/>
+        </siteMapNode>
       </siteMapNode>
     </siteMapNode>
 

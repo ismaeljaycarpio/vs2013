@@ -55,7 +55,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Account Status">
+                                <asp:TemplateField HeaderText="Account Status" SortExpression="IsApproved">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lblStatus"
                                             runat="server"

@@ -84,8 +84,8 @@ namespace AMS.Employee
                     //self eval
                 else
                 {
-                    //btnPerfEval.Visible = true;
-                    //btnPerfEval.Enabled = true;
+                    btnPerfEval.Visible = false;
+                    btnPerfEval.Enabled = false;
                 }
             }
         }

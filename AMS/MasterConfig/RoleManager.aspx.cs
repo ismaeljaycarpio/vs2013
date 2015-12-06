@@ -19,15 +19,15 @@ namespace AMS.MasterConfig
         {
             if (!Page.IsPostBack)
             {
-                BindData();
+                gvRoles.DataSource = BindGridView();
+                gvRoles.DataBind();
                 fillAddDropDowns();
             }
         }
 
-        private void BindData()
+        private DataTable BindGridView()
         {
-            gvRoles.DataSource = position.DisplayPositions(txtSearch.Text);
-            gvRoles.DataBind();
+            return position.DisplayPositions(txtSearch.Text);
         }
 
         protected void btnAddRole_Click(object sender, EventArgs e)
@@ -36,13 +36,23 @@ namespace AMS.MasterConfig
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindData();
+            gvRoles.DataSource = BindGridView();
+            gvRoles.DataBind();
         }
 
         protected void gvRoles_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvRoles.PageIndex = e.NewPageIndex;
-            BindData();
+            if (Session["SortedView_roles"] != null)
+            {
+                gvRoles.DataSource = Session["SortedView_roles"];
+                gvRoles.DataBind();
+            }
+            else
+            {
+                gvRoles.DataSource = BindGridView();
+                gvRoles.DataBind();
+            }
         }
 
 
@@ -59,8 +69,9 @@ namespace AMS.MasterConfig
                 ddlAddDepartment.SelectedValue.ToString());
             }
 
-            
-            BindData();
+
+            gvRoles.DataSource = BindGridView();
+            gvRoles.DataBind();
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
@@ -71,21 +82,21 @@ namespace AMS.MasterConfig
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (!position.CheckIfDuplicate(txtEditPosition.Text))
-            {
+
                 position.UpdatePosition(
                     txtEditPosition.Text,
                     Guid.Parse(ddlEditRole.SelectedValue.ToString()),
                     ddlEditDepartment.SelectedValue.ToString(),
                     lblRowId.Text);
-            }
+
          
             //!IMPORTANT -> should update users roles
             //not yet implemented
             //update users ->update roleId whose userId->@UserId
 
 
-            BindData();
+            gvRoles.DataSource = BindGridView();
+            gvRoles.DataBind();
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
@@ -96,14 +107,15 @@ namespace AMS.MasterConfig
 
         protected void gvRoles_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            dt = new DataTable();
-
-            //load ddl
-            fillEditDropDowns();
-
-            int index = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("editRecord"))
             {
+                dt = new DataTable();
+
+                //load ddl
+                fillEditDropDowns();
+
+                int index = Convert.ToInt32(e.CommandArgument);
+
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
                 DAL.PositionManagement position = new DAL.PositionManagement();
@@ -149,6 +161,44 @@ namespace AMS.MasterConfig
             ddlEditDepartment.DataTextField = "Department";
             ddlEditDepartment.DataValueField = "Id";
             ddlEditDepartment.DataBind();
+        }
+
+        protected void gvRoles_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            string sortingDirection = string.Empty;
+            if (direction == SortDirection.Ascending)
+            {
+                direction = SortDirection.Descending;
+                sortingDirection = "Desc";
+            }
+            else
+            {
+                direction = SortDirection.Ascending;
+                sortingDirection = "Asc";
+            }
+
+            DataView sortedView = new DataView(BindGridView());
+            sortedView.Sort = e.SortExpression + " " + sortingDirection;
+            Session["SortedView_roles"] = sortedView;
+            gvRoles.DataSource = sortedView;
+            gvRoles.DataBind();
+        }
+
+        public SortDirection direction
+        {
+            get
+            {
+                if (ViewState["directionState"] == null)
+                {
+                    ViewState["directionState"] = SortDirection.Ascending;
+                }
+                return (SortDirection)ViewState["directionState"];
+            }
+
+            set
+            {
+                ViewState["directionState"] = value;
+            }
         }
     }
 }
