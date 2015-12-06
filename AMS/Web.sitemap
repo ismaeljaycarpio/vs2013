@@ -28,8 +28,11 @@
       </siteMapNode>
     </siteMapNode>
 
-    <siteMapNode url="~/Evaluation/PendingApprovals" title="Pending Approvals"></siteMapNode>
-    <siteMapNode url="~/Evaluation/ApprovedEvaluations" title="Approved Evaluations"></siteMapNode>
+    <siteMapNode title="Evaluation">
+      <siteMapNode url="~/Evaluation/PendingApprovals" title="Pending Approvals"></siteMapNode>
+      <siteMapNode url="~/Evaluation/ApprovedEvaluations" title="Approved Evaluations"></siteMapNode>
+      <siteMapNode url="~/Evaluation/PendingEvaluation.aspx" title="Pending Evaluation"></siteMapNode>
+    </siteMapNode>
 
     <siteMapNode url="~/EvaluationSelf/Score_Sheet" title="Self Evaluation">
       <siteMapNode url="~/EvaluationSelf/Evaluation_Self" title="Evaluation Sheet"></siteMapNode>

@@ -871,21 +871,63 @@ namespace AMS.DAL
 
         public int CountPendingEvaluate()
         {
-            strSql = "SELECT COUNT(DISTINCT Evaluation.UserId) FROM Evaluation " +
-                        "WHERE " +
-                        "DATEDIFF(day, getdate(), (SELECT(MAX(CAST(NextEvaluationDate as Date))) AS [NextEvalDate] FROM Evaluation)) <= 14 " +
+            strSql = "SELECT DISTINCT UserId, MAX(CAST(NextEvaluationDate as DATE)) FROM Evaluation " +
+                        "GROUP by UserId " +
+                        "HAVING " +
+                        "DATEDIFF(DAY, GETDATE(), max(cast(NextEvaluationDate as date))) <= 14 " +
                         "AND " +
-                        "DATEDIFF(day, getdate(), (SELECT(MAX(CAST(NextEvaluationDate as Date))) AS [NextEvalDate] FROM Evaluation)) >= 0";
+                        "DATEDIFF(DAY, GETDATE(), max(cast(NextEvaluationDate as date))) >= 0";
+
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
-            int monthNumber = DateTime.Now.Month;
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
             conn.Open();
-            int _count = (int)comm.ExecuteScalar();
+            adp.Fill(dt);
             conn.Close();
 
-            return _count;
+            return dt.Rows.Count;
+        }
+
+        public DataTable DisplayPendingEvaluation()
+        {
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand();
+            comm.Connection = conn;
+
+            strSql = "SELECT DISTINCT Evaluation.UserId, EMPLOYEE.Emp_Id, " +
+                            "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                            "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                            "MAX(CAST(DateEvaluated as Date)) AS [LastEvaluationDate], " +
+                            "MAX(CAST(Evaluation.NextEvaluationDate as Date)) as [NextEvaluationDate] " +
+                            "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Evaluation WHERE " +
+                            "Memberships.UserId = EMPLOYEE.UserId AND " +
+                            "EMPLOYEE.PositionId = POSITION.Id AND " +
+                            "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                           "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                           "UsersInRoles.RoleId = Roles.RoleId AND " +
+                           "EMPLOYEE.UserId = Evaluation.UserId AND " +
+                            "Roles.RoleName != 'Admin' AND " +
+                            "EMPLOYEE.AccountStatusId = 1 " +
+                            "GROUP BY Evaluation.UserId, EMPLOYEE.Emp_Id, EMPLOYEE.LastName, EMPLOYEE.FirstName, Email,EMPLOYEE.MiddleName, " +
+                            "POSITION.Position, DEPARTMENT.Department " +
+                            "HAVING " +
+                            "DATEDIFF(DAY, GETDATE(), max(cast(NextEvaluationDate as date))) <= 14 " +
+                            "AND " +
+                            "DATEDIFF(DAY, GETDATE(), max(cast(NextEvaluationDate as date))) >= 0";
+
+            comm.CommandText = strSql;
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
         }
     }
 }
