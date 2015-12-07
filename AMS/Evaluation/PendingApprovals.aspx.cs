@@ -55,6 +55,10 @@ namespace AMS.Evaluation
             {
                 dt = eval.GetPendingApprovalManager(deptId);
             }
+            else if(User.IsInRole("Supervisor"))
+            {
+                dt = eval.GetPendingApprovalSupervisor(deptId);
+            }
             else
             {
                 dt = null;
