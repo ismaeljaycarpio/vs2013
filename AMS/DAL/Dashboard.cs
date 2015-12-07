@@ -891,7 +891,7 @@ namespace AMS.DAL
             return dt.Rows.Count;
         }
 
-        public int CountPendingEvaluate(string deptId)
+        public int CountPendingEvaluation(string deptId)
         {
             strSql = "SELECT DISTINCT Evaluation.UserId, MAX(CAST(Evaluation.NextEvaluationDate as DATE)) " +
                 "FROM Evaluation, EMPLOYEE, POSITION, DEPARTMENT " +
