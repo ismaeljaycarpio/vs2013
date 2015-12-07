@@ -891,6 +891,33 @@ namespace AMS.DAL
             return dt.Rows.Count;
         }
 
+        public int CountPendingEvaluate(string deptId)
+        {
+            strSql = "SELECT DISTINCT Evaluation.UserId, MAX(CAST(Evaluation.NextEvaluationDate as DATE)) " +
+                "FROM Evaluation, EMPLOYEE, POSITION, DEPARTMENT " +
+                "WHERE EMPLOYEE.PositionId = POSITION.Id " +
+                "AND POSITION.DepartmentId = DEPARTMENT.Id " +
+                "AND DEPARTMENT.Id = @DepartmentId " +
+                        "GROUP by UserId " +
+                        "HAVING " +
+                        "DATEDIFF(DAY, GETDATE(), max(cast(NextEvaluationDate as date))) <= 14 " +
+                        "AND " +
+                        "DATEDIFF(DAY, GETDATE(), max(cast(NextEvaluationDate as date))) >= 0";
+
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt.Rows.Count;
+        }
+
         public DataTable DisplayPendingEvaluation()
         {
             conn = new SqlConnection();
