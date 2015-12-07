@@ -13,6 +13,7 @@ namespace AMS.Evaluation
     public partial class PendingEvaluation : System.Web.UI.Page
     {       
         DAL.Dashboard dashb = new DAL.Dashboard();
+        DAL.Employee emp = new DAL.Employee();
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -26,9 +27,21 @@ namespace AMS.Evaluation
 
         private DataTable BindGridView()
         {
-            dt = new DataTable();
-            dt = dashb.DisplayPendingEvaluation();
-            return dt;
+            //get deptId
+                Guid UserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
+                string deptId = emp.GetDepartmentId(UserId);
+
+            if(User.IsInRole("Admin") ||
+                User.IsInRole("HR") ||
+                User.IsInRole("General Manager"))
+            {
+                return dashb.DisplayPendingEvaluation();
+            }
+            else
+            {
+                return dashb.DisplayPendingEvaluation(deptId);
+            }
+            
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
