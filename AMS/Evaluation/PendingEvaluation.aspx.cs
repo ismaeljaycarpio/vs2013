@@ -28,8 +28,8 @@ namespace AMS.Evaluation
         private DataTable BindGridView()
         {
             //get deptId
-                Guid UserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
-                string deptId = emp.GetDepartmentId(UserId);
+            Guid UserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
+            string deptId = emp.GetDepartmentId(UserId);
 
             if(User.IsInRole("Admin") ||
                 User.IsInRole("HR") ||
