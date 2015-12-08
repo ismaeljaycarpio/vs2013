@@ -41,7 +41,7 @@ namespace AMS.Reports
             }
         }
 
-        private object BindExpiringContracts()
+        private DataTable BindExpiringContracts()
         {
             dt = new DataTable();
 

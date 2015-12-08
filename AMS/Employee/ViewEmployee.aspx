@@ -187,8 +187,8 @@
                     GridLines="None">
                     <Columns>
                         <asp:BoundField DataField="Violation" HeaderText="Description" />
-                        <asp:BoundField DataField="Code" HeaderText="Venue" />
-                        <asp:BoundField DataField="Remarks" HeaderText="Detail" />
+                        <asp:BoundField DataField="Code" HeaderText="Code" />
+                        <asp:BoundField DataField="Remarks" HeaderText="Remarks" />
                         <asp:BoundField DataField="Date" HeaderText="Date" />
                     </Columns>
                 </asp:GridView>
