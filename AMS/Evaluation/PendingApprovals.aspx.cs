@@ -55,6 +55,10 @@ namespace AMS.Evaluation
             {
                 dt = eval.GetPendingApprovalManager(deptId);
             }
+            else if(User.IsInRole("Supervisor"))
+            {
+                dt = eval.GetPendingApprovalSupervisor(deptId);
+            }
             else
             {
                 dt = null;
@@ -95,6 +99,11 @@ namespace AMS.Evaluation
                         arr.Remove(gvPendingApprovals.DataKeys[i].Value);
                     }
                     else if(User.IsInRole("Manager") || User.IsInRole("General Manager"))
+                    {
+                        eval.ApprovePendingApprovalManager(gvPendingApprovals.DataKeys[i].Value.ToString(), loggedUserId);
+                        arr.Remove(gvPendingApprovals.DataKeys[i].Value);
+                    }
+                    else if(User.IsInRole("Supervisor"))
                     {
                         eval.ApprovePendingApprovalManager(gvPendingApprovals.DataKeys[i].Value.ToString(), loggedUserId);
                         arr.Remove(gvPendingApprovals.DataKeys[i].Value);

@@ -1388,13 +1388,6 @@ namespace AMS.DAL
         //GM the signatory of Managers
         public DataTable GetPendingApprovalGM()
         {
-            //strSql = "SELECT Evaluation.Id,Evaluation.RemarksName,Evaluation.EvaluatedBy, " +
-            //    "Evaluation.AcknowledgedBy, Evaluation.UserId " +
-            //    "FROM Evaluation, UsersInRoles, Roles WHERE " +
-            //    "Evaluation.UserId = UsersInRoles.UserId AND " +
-            //    "UsersInRoles.RoleId = Roles.RoleId AND " +
-            //    "(Roles.RoleName = 'Manager' OR Roles.RoleName = 'HR')";
-
             strSql = "SELECT Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
                 "Evaluation.DateEvaluated, " +
                 "Evaluation.ApprovedByHRId, " +
@@ -1429,8 +1422,11 @@ namespace AMS.DAL
                 "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
                 "INNER JOIN UsersInRoles ON Evaluation.UserId = UsersInRoles.UserId " +
                 "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
+                "INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
+                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
                 "WHERE " +
                 "(Roles.RoleName = 'Supervisor' OR Roles.RoleName = 'Staff') AND " +
+                "DEPARTMENT.Id = @DepartmentId AND " +
                 "Evaluation.ApprovedByManagerId = @ManagerId";
 
             conn = new SqlConnection();
@@ -1449,15 +1445,28 @@ namespace AMS.DAL
         }
 
         //not implemented
-        //Pending Approval List by Manager
-        public DataTable getPendingApprovalSupervisor()
+        //Pending Approval List by Supervisor
+        public DataTable GetPendingApprovalSupervisor(string deptId)
         {
-            strSql = "SELECT Id,RemarksName,EvaluatedBy,AcknowledgedBy FROM Evaluation WHERE " +
-                    "(ApprovedByManagerId = '')";
+            strSql = strSql = "SELECT Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+                "Evaluation.DateEvaluated, " +
+                "Evaluation.ApprovedByHRId, " +
+                "Evaluation.ApprovedByManagerId " +
+                "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
+                "INNER JOIN UsersInRoles ON Evaluation.UserId = UsersInRoles.UserId " +
+                "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
+                "INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
+                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
+                "WHERE " +
+                "(Roles.RoleName = 'Staff') AND " +
+                "DEPARTMENT.Id = @DepartmentId AND " +
+                "Evaluation.ApprovedByManagerId = @ManagerId";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            comm.Parameters.AddWithValue("@ManagerId", Guid.Empty);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 
