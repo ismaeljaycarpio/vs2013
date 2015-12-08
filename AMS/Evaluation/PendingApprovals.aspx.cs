@@ -103,6 +103,11 @@ namespace AMS.Evaluation
                         eval.ApprovePendingApprovalManager(gvPendingApprovals.DataKeys[i].Value.ToString(), loggedUserId);
                         arr.Remove(gvPendingApprovals.DataKeys[i].Value);
                     }
+                    else if(User.IsInRole("Supervisor"))
+                    {
+                        eval.ApprovePendingApprovalManager(gvPendingApprovals.DataKeys[i].Value.ToString(), loggedUserId);
+                        arr.Remove(gvPendingApprovals.DataKeys[i].Value);
+                    }
                 }
             }
             ViewState["SelectedRecords"] = arr;
