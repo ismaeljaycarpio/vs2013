@@ -104,7 +104,9 @@ namespace AMS.MasterConfig
 
         protected void gvEmployee_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-
+            gvEmployee.SelectedIndex = Convert.ToInt32(e.NewSelectedIndex);
+            Session["UserId"] = gvEmployee.SelectedDataKey.Value;
+            Response.Redirect("~/Employee/ViewEmployee");
         }
 
         protected void lblStatus_Click(object sender, EventArgs e)
