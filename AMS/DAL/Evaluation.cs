@@ -1341,7 +1341,7 @@ namespace AMS.DAL
         #endregion
 
         #region Approval
-        public DataTable getEvaluated(int evaluationId)
+        public DataTable GetEvaluated(int evaluationId)
         {
             strSql = "SELECT * FROM Evaluation WHERE Id = @Id";
 
@@ -1360,13 +1360,16 @@ namespace AMS.DAL
         }
 
         //Pending Approval List by HR
+        //all roles -> approvals
         public DataTable GetPendingApprovalHR()
         {
             strSql = "SELECT Evaluation.Id,EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName], " +
                 "Evaluation.DateEvaluated, " +
                 "Evaluation.ApprovedByHRId, " +
                 "Evaluation.ApprovedByManagerId " +
-                "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
+                "FROM EMPLOYEE " +
+                "INNER JOIN Evaluation " +
+                "ON EMPLOYEE.UserId = Evaluation.UserId " +
                 "WHERE " +
                 "Evaluation.ApprovedByHRId = @HRId";
 
@@ -1384,8 +1387,9 @@ namespace AMS.DAL
             return dt;
         }
 
-        //Pending Approval List by GM ->only managers
-        //GM the signatory of Managers
+        //Pending Approval List by GM ->only managers and HR
+        //GM the signatory of Managers/HR only
+        //disregard HR assistant since it has a role of HR but limited
         public DataTable GetPendingApprovalGM()
         {
             strSql = "SELECT Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
@@ -1397,6 +1401,7 @@ namespace AMS.DAL
                 "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
                 "WHERE " +
                 "(Roles.RoleName = 'Manager' OR Roles.RoleName = 'HR') AND " +
+                "POSITION.Position != 'HR Assistant' AND " +
                 "Evaluation.ApprovedByManagerId = @ManagerId";
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -1444,7 +1449,6 @@ namespace AMS.DAL
             return dt;
         }
 
-        //not implemented
         //Pending Approval List by Supervisor
         public DataTable GetPendingApprovalSupervisor(string deptId)
         {

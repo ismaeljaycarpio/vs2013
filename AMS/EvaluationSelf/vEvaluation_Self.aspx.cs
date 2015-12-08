@@ -42,7 +42,7 @@ namespace AMS.EvaluationSelf
 
                 //get evaluation details
                 dt = new DataTable();
-                dt = eval.getEvaluated(evaluationId);
+                dt = eval.GetEvaluated(evaluationId);
                 txtPeriodCovered.Text = dt.Rows[0]["PeriodCovered"].ToString();
 
                 //load grids values

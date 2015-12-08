@@ -65,7 +65,7 @@ namespace AMS.DAL
             string emovement_id,
             Guid userId,
             string remarks,
-            string fromDate,
+            string fromDate, //position base
             string toDate,
             string effectivityDate)
         {

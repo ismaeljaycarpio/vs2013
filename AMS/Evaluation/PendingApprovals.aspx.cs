@@ -22,6 +22,7 @@ namespace AMS.Evaluation
             if(Page.IsPostBack)
                 GetData();  
                 BindData();
+
             if(!Page.IsPostBack)
             {
                 MembershipUser mu = Membership.GetUser();
@@ -98,7 +99,8 @@ namespace AMS.Evaluation
                         eval.ApprovePendingApprovalHR(gvPendingApprovals.DataKeys[i].Value.ToString(), loggedUserId);
                         arr.Remove(gvPendingApprovals.DataKeys[i].Value);
                     }
-                    else if(User.IsInRole("Manager") || User.IsInRole("General Manager"))
+                    else if(User.IsInRole("Manager") || 
+                        User.IsInRole("General Manager"))
                     {
                         eval.ApprovePendingApprovalManager(gvPendingApprovals.DataKeys[i].Value.ToString(), loggedUserId);
                         arr.Remove(gvPendingApprovals.DataKeys[i].Value);
@@ -199,6 +201,13 @@ namespace AMS.Evaluation
                 }
             }
             ViewState["SelectedRecords"] = arr;
+        }
+
+        protected void gvPendingApprovals_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            gvPendingApprovals.SelectedIndex = Convert.ToInt32(e.NewSelectedIndex);
+            Session["EvaluationId"] = gvPendingApprovals.SelectedDataKey.Value;
+            Response.Redirect("~/Employee/vPerformanceEvaluation");
         }
     }
 }

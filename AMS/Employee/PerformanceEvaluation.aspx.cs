@@ -19,7 +19,6 @@ namespace AMS.Employee
     {
         DAL.Evaluation eval = new DAL.Evaluation();
         DAL.Employee emp = new DAL.Employee();
-        DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
         {
