@@ -94,11 +94,13 @@ namespace AMS.Employee
                     rblStatus.SelectedValue.ToString(),
                     rblGender.SelectedValue.ToString(),
                     ddlNationality.SelectedValue.ToString(),
-                    txtDoB.Text,
+                    Request.Form[txtDoB.UniqueID],
                     rblBloodType.SelectedValue.ToString(),
-                     txtLanguage.Text,
+                    txtLanguage.Text,
                     txtContactNo.Text,
-                    Guid.Parse(hfUserId.Value));   
+                    Guid.Parse(hfUserId.Value));
+
+            Response.Redirect(Request.Url.AbsoluteUri);
         }
 
         public void fillNationality()

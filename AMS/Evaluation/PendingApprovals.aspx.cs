@@ -45,7 +45,6 @@ namespace AMS.Evaluation
 
             if(User.IsInRole("General Manager"))
             {
-                //display approval for managers only
                 dt = eval.GetPendingApprovalGM();
             }
             else if(User.IsInRole("HR"))
@@ -206,8 +205,13 @@ namespace AMS.Evaluation
         protected void gvPendingApprovals_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             gvPendingApprovals.SelectedIndex = Convert.ToInt32(e.NewSelectedIndex);
-            Session["EvaluationId"] = gvPendingApprovals.SelectedDataKey.Value;
+            Session["EvaluationId"] = Convert.ToInt32(gvPendingApprovals.SelectedDataKey.Values["Id"]);
+            Session["UserId"] = gvPendingApprovals.SelectedDataKey.Values["UserId"];
             Response.Redirect("~/Employee/vPerformanceEvaluation");
+        }
+
+        protected void gvPendingApprovals_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }

@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label for="txtEmpId" class="col-sm-3 control-label">Employee ID</label>
                             <div class="col-sm-6">
-                                <asp:TextBox ID="txtEmpId" runat="server" CssClass="form-control" placeholder="Employee ID" Enabled="false"></asp:TextBox>
+                                <asp:TextBox ID="txtEmpId" runat="server" CssClass="form-control" placeholder="Employee ID"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator9"
                                     runat="server"
                                     Display="Dynamic"

@@ -413,7 +413,7 @@ namespace AMS.DAL
 
         public string GetManagerName(string deptId)
         {
-            strSql = "SELECT EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName] " +
+            strSql = "SELECT EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.FirstName AS [FullName] " +
                 "FROM EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
                 "WHERE " +
                 "EMPLOYEE.PositionId = POSITION.Id " +
@@ -455,7 +455,7 @@ namespace AMS.DAL
 
         public string GetSupervisorName(string deptId)
         {
-            strSql = "SELECT EMPLOYEE.FirstName + ', ' + EMPLOYEE.MiddleName + ' ' + EMPLOYEE.MiddleName AS [FullName] " +
+            strSql = "SELECT EMPLOYEE.FirstName + ', ' + EMPLOYEE.MiddleName + ' ' + EMPLOYEE.LastName AS [FullName] " +
                 "FROM EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
                 "WHERE " +
                 "EMPLOYEE.PositionId = POSITION.Id " +

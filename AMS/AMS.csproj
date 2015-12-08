@@ -190,6 +190,7 @@
     <Content Include="Employee\vPerformanceEvaluation.aspx" />
     <Content Include="Employee\vPrime_Performance_Evaluation.aspx" />
     <Content Include="EvaluationSelf\Evaluation_Self.aspx" />
+    <Content Include="EvaluationSelf\ScoreSheet.aspx" />
     <Content Include="EvaluationSelf\Score_Sheet.aspx" />
     <Content Include="EvaluationSelf\vEvaluation_Self.aspx" />
     <Content Include="Evaluation\ApprovedEvaluations.aspx" />
@@ -386,6 +387,7 @@
     <None Include="Properties\PublishProfiles\ams-dev00 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\ams-dev00 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\eHRIS.pubxml" />
+    <None Include="Properties\PublishProfiles\neHRIS.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="ReleaseResources.aspx" />
     <Content Include="release_resources.aspx" />
@@ -801,6 +803,13 @@
     </Compile>
     <Compile Include="EvaluationSelf\Evaluation_Self.aspx.designer.cs">
       <DependentUpon>Evaluation_Self.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluationSelf\ScoreSheet.aspx.cs">
+      <DependentUpon>ScoreSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EvaluationSelf\ScoreSheet.aspx.designer.cs">
+      <DependentUpon>ScoreSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="EvaluationSelf\Score_Sheet.aspx.cs">
       <DependentUpon>Score_Sheet.aspx</DependentUpon>

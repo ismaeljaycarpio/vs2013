@@ -98,7 +98,8 @@
                             AllowSorting="true"
                             OnPageIndexChanging="gvPendingApprovals_PageIndexChanging"
                             OnSelectedIndexChanging="gvPendingApprovals_SelectedIndexChanging"
-                            DataKeyNames="Id">
+                            OnSelectedIndexChanged="gvPendingApprovals_SelectedIndexChanged"
+                            DataKeyNames="Id,UserId">
                             <Columns>
                                 <asp:TemplateField>
                                     <HeaderTemplate>

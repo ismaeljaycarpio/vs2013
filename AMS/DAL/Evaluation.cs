@@ -1363,7 +1363,7 @@ namespace AMS.DAL
         //all roles -> approvals
         public DataTable GetPendingApprovalHR()
         {
-            strSql = "SELECT Evaluation.Id,EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName], " +
+            strSql = "SELECT Evaluation.UserId,Evaluation.Id,EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName], " +
                 "Evaluation.DateEvaluated, " +
                 "Evaluation.ApprovedByHRId, " +
                 "Evaluation.ApprovedByManagerId " +
@@ -1392,7 +1392,7 @@ namespace AMS.DAL
         //disregard HR assistant since it has a role of HR but limited
         public DataTable GetPendingApprovalGM()
         {
-            strSql = "SELECT Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+            strSql = "SELECT Evaluation.UserId,Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
                 "Evaluation.DateEvaluated, " +
                 "Evaluation.ApprovedByHRId, " +
                 "Evaluation.ApprovedByManagerId " +
@@ -1420,7 +1420,7 @@ namespace AMS.DAL
         //Pending Approval List by Manager ->
         public DataTable GetPendingApprovalManager(string deptId)
         {
-            strSql = strSql = "SELECT Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+            strSql = strSql = "SELECT Evaluation.UserId,Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
                 "Evaluation.DateEvaluated, " +
                 "Evaluation.ApprovedByHRId, " +
                 "Evaluation.ApprovedByManagerId " +
@@ -1452,7 +1452,7 @@ namespace AMS.DAL
         //Pending Approval List by Supervisor
         public DataTable GetPendingApprovalSupervisor(string deptId)
         {
-            strSql = strSql = "SELECT Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+            strSql = strSql = "SELECT Evaluation.UserId,Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
                 "Evaluation.DateEvaluated, " +
                 "Evaluation.ApprovedByHRId, " +
                 "Evaluation.ApprovedByManagerId " +
