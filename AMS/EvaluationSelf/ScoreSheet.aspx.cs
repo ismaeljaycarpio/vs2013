@@ -21,12 +21,23 @@ namespace AMS.EvaluationSelf
                 dt = emp.DisplayEmployee("");
 
                 DataTable dtColumn = new DataTable();
+                dtColumn.Columns.Add("Questions");
                 foreach(DataRow rw in dt.Rows)
                 {
-                    dtColumn.Columns.Add(rw["FullName"].ToString());
+                    dtColumn.Columns.Add(new DataColumn(rw["FullName"].ToString()));
                 }
 
+                for (int i = 0; i < dtColumn.Columns.Count - 1; i++ )
+                {
+                    dtColumn.Rows.Add(dtColumn.NewRow());
+                }
+                
+                
+                gvScoreSheet.ShowHeaderWhenEmpty = true;
+                gvScoreSheet.EmptyDataText = "No Records found";
                 gvScoreSheet.DataSource = dtColumn;
+                gvScoreSheet.DataBind();
+                
             }
         }
     }
