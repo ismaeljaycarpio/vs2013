@@ -84,7 +84,7 @@ namespace AMS.HR
             }
             catch(Exception exc)
             {
-                Response.Write(exc.ToString());
+                //Response.Write(exc.ToString());
                 pnlSuccess.Visible = false;
             }               
         }

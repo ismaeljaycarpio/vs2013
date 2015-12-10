@@ -6,6 +6,7 @@ using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text;
+using System.Security.Permissions;
 
 namespace AMS.DAL
 {
@@ -756,6 +757,8 @@ namespace AMS.DAL
 
         #region User Membership
         //fill EMPLOYEE tbl
+        [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
+        [PrincipalPermission(SecurityAction.Demand, Role = "HR")]
         public void RegisterUser(
             Guid UserId,
             string emp_Id,

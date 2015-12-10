@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Security.Permissions;
 
 namespace AMS.DAL
 {
@@ -17,7 +18,7 @@ namespace AMS.DAL
         DataTable dt;
         string strSql = "";
 
-
+        
         #region TOPLIS
         public DataTable displayTSIQuestions()
         {
@@ -72,6 +73,7 @@ namespace AMS.DAL
             return dt;
         }
 
+        
         public int InsertEvaluation(
             Guid UserId,
             string EvaluationType,
