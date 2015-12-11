@@ -384,10 +384,14 @@
       <DependentUpon>TSI_Performance_Evaluation.xsd</DependentUpon>
     </Content>
     <Content Include="EvaluationNested.master" />
-    <None Include="Properties\PublishProfiles\ams-dev00 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\ams-dev00 - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\eHRIS.pubxml" />
-    <None Include="Properties\PublishProfiles\neHRIS.pubxml" />
+    <Content Include="HR\Web.config" />
+    <Content Include="MasterConfig\Web.config" />
+    <None Include="HR\Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="HR\Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="ReleaseResources.aspx" />
     <Content Include="release_resources.aspx" />

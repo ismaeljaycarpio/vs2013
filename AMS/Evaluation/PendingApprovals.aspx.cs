@@ -209,9 +209,5 @@ namespace AMS.Evaluation
             Session["UserId"] = gvPendingApprovals.SelectedDataKey.Values["UserId"];
             Response.Redirect("~/Employee/vPerformanceEvaluation");
         }
-
-        protected void gvPendingApprovals_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
     }
 }

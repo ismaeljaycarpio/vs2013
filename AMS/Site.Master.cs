@@ -84,11 +84,6 @@ namespace AMS
                 //emp.UpdateStatusExpiredContracts();
             }
         }
-
-        protected void LoginView1_PreRender(object sender, EventArgs e)
-        {            
-        }
-
         protected void hlViewProfile_Click(object sender, EventArgs e)
         {
             if(Page.User.Identity.IsAuthenticated)

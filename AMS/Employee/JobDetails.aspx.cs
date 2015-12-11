@@ -124,6 +124,7 @@ namespace AMS.Employee
             {
                 Roles.AddUserToRole(_user.UserName, lblRole.Text);
             }
+
             Response.Redirect(Request.Url.AbsoluteUri);
         }
 

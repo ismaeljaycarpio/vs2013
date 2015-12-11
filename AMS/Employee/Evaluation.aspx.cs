@@ -33,8 +33,7 @@ namespace AMS.Employee
                 lblNextEvaluationDate.Text = emp.GetNextEvaluationDate(UserId);
 
                 //check ids
-                MembershipUser loggedInUser = Membership.GetUser();
-                Guid loggedUserId = Guid.Parse(loggedInUser.ProviderUserKey.ToString());
+                Guid loggedUserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
 
                 //disable controls
                 btnPerfEval.Enabled = false;

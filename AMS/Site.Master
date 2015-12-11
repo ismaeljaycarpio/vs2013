@@ -22,6 +22,19 @@
         <script src="<%: ResolveUrl("~/Scripts/bootstrap-datepicker.js") %>"></script>
     </asp:PlaceHolder>
 
+    <%--<asp:PlaceHolder runat="server">
+        <%: System.Web.Optimization.Scripts.Render("~/bundles/jquery") %>
+        <%: System.Web.Optimization.Scripts.Render("~/bundles/modernizr") %>
+        <%: System.Web.Optimization.Scripts.Render("~/bundles/bootstrap") %>
+        <%: System.Web.Optimization.Scripts.Render("~/bundles/moment") %>
+        <%: System.Web.Optimization.Scripts.Render("~/bundles/bootstrap-datepicker") %>
+
+        <%: System.Web.Optimization.Styles.Render("~/Content/site") %>
+        <%: System.Web.Optimization.Styles.Render("~/Content/bootstrap") %>
+        <%: System.Web.Optimization.Styles.Render("~/Content/bootstrap-theme") %>
+        <%: System.Web.Optimization.Styles.Render("~/Content/bootstrap-datepicker") %>
+    </asp:PlaceHolder>--%>
+
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
     <meta name="description" content="The description of my page" />
 </head>
