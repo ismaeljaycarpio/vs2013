@@ -35,10 +35,13 @@
                     <asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" />
                     <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" />
                     <div class="table-responsive">
+                        <div class="text-center"><asp:Label ID="lblCount" runat="server"></asp:Label></div>
                         <asp:GridView ID="gvEmployee"
                             runat="server"
                             class="table table-striped table-hover dataTable"
                             GridLines="None"
+                            ShowHeader="true"
+                            ShowHeaderWhenEmpty="true"
                             AutoGenerateColumns="false"
                             AllowPaging="true"
                             AllowSorting="true"
