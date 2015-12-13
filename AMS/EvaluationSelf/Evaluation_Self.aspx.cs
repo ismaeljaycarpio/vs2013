@@ -60,7 +60,8 @@ namespace AMS.EvaluationSelf
                     gvExcellent.Visible = false;
                 }
 
-                if(User.IsInRole("Manager") || User.IsInRole("Staff"))
+                if(User.IsInRole("Manager") || 
+                    User.IsInRole("Staff"))
                 {
                     //gvCus
                     var list = new List<int> { 63, 64, 65, 66, 67 };
