@@ -40,6 +40,11 @@ namespace AMS.HR
                 ddlDepartment.DataTextField = "Department";
                 ddlDepartment.DataBind();
 
+                ddlRole.DataSource = filler.fillRoles();
+                ddlRole.DataValueField = "RoleId";
+                ddlRole.DataTextField = "RoleName";
+                ddlRole.DataBind();
+
                 //load dept based on pos
                 ddlDepartment.SelectedValue = position.GetDepartmentIdBypPosition(ddlPosition.SelectedValue.ToString());
             }
@@ -59,8 +64,8 @@ namespace AMS.HR
 
                 //add to roles
                 //get role name from ddl position
-                string roleName = emp.GetRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
-                Roles.AddUserToRole(newUser.UserName, roleName);
+                //string roleName = emp.GetRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
+                Roles.AddUserToRole(newUser.UserName, ddlRole.SelectedItem.Text);
 
                 //notes:
                 //nationality-> default 67

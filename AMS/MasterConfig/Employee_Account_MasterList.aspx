@@ -8,6 +8,51 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <div id="updateModal" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Update Modal content-->
+            <div class="modal-content">
+                <asp:UpdatePanel ID="upEdit" runat="server">
+                    <ContentTemplate>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Edit Role</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form">
+                                <div class="form-group">
+                                    <asp:Label ID="lblRowId" runat="server" Visible="false"></asp:Label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtEditName">Name</label>
+                                    <asp:TextBox ID="txtEditName" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="DDLRole">Role</label>
+                                    <asp:DropDownList ID="DDLRole" runat="server" CssClass="form-control"></asp:DropDownList>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-primary" Text="Update" ValidationGroup="vsEdit" OnClick="btnUpdate_Click" />
+                            <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                        </div>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="gvEmployee" EventName="RowCommand" />
+                        <asp:AsyncPostBackTrigger ControlID="btnUpdate" EventName="Click" />
+                    </Triggers>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -35,49 +80,60 @@
                     <asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" />
                     <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" />
                     <div class="table-responsive">
-                        <asp:GridView ID="gvEmployee"
-                            runat="server"
-                            class="table table-striped table-hover dataTable"
-                            GridLines="None"
-                            AutoGenerateColumns="false"
-                            AllowPaging="true"
-                            AllowSorting="true"
-                            DataKeyNames="UserId"
-                            OnSorting="gvEmployee_Sorting"
-                            OnRowDataBound="gvEmployee_RowDataBound"
-                            OnPageIndexChanging="gvEmployee_PageIndexChanging"
-                            OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging">
-                            <Columns>
-                                <asp:BoundField DataField="Emp_Id" HeaderText="ID" SortExpression="Emp_Id" />
-                                <asp:TemplateField HeaderText="Full Name" SortExpression="FullName">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="lnkFNAME" runat="server" Text='<%# Eval("FullName") %>' CommandName="Select"></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                        <asp:UpdatePanel ID="upEmployee" runat="server">
+                            <ContentTemplate>
+                                <asp:GridView ID="gvEmployee"
+                                    runat="server"
+                                    class="table table-striped table-hover dataTable"
+                                    GridLines="None"
+                                    AutoGenerateColumns="false"
+                                    AllowPaging="true"
+                                    AllowSorting="true"
+                                    DataKeyNames="UserId"
+                                    OnSorting="gvEmployee_Sorting"
+                                    OnRowDataBound="gvEmployee_RowDataBound"
+                                    OnRowCommand="gvEmployee_RowCommand"
+                                    OnPageIndexChanging="gvEmployee_PageIndexChanging"
+                                    OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging">
+                                    <Columns>
+                                        <asp:BoundField DataField="Emp_Id" HeaderText="ID" SortExpression="Emp_Id" />
+                                        <asp:TemplateField HeaderText="Full Name" SortExpression="FullName">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lnkFNAME" runat="server" Text='<%# Eval("FullName") %>' CommandName="Select"></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Account Status" SortExpression="IsApproved">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="lblStatus"
-                                            runat="server"
-                                            OnClick="lblStatus_Click"
-                                            Text='<%# (Boolean.Parse(Eval("IsApproved").ToString())) ? "Active" : "Inactive" %>'>
-                                        </asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Account Status" SortExpression="IsApproved">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lblStatus"
+                                                    runat="server"
+                                                    OnClick="lblStatus_Click"
+                                                    Text='<%# (Boolean.Parse(Eval("IsApproved").ToString())) ? "Active" : "Inactive" %>'>
+                                                </asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Reset Password">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="lblReset"
-                                            runat="server"
-                                            OnClick="lblReset_Click"
-                                            Text="Reset Password">
-                                        </asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Reset Password">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lblReset"
+                                                    runat="server"
+                                                    OnClick="lblReset_Click"
+                                                    Text="Reset Password">
+                                                </asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
-                            </Columns>
-                            <PagerStyle CssClass="pagination-ys" />
-                        </asp:GridView>
+                                        <asp:BoundField DataField="RoleName" HeaderText="Role" SortExpression="RoleName" />
+                                        <asp:ButtonField HeaderText="Action" ButtonType="Button" Text="Edit Role" CommandName="editRecord" />
+                                    </Columns>
+                                    <PagerStyle CssClass="pagination-ys" />
+                                </asp:GridView>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="gvEmployee" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+
                     </div>
                 </div>
             </div>

@@ -58,14 +58,10 @@ namespace AMS.MasterConfig
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            //save
-            Guid RoleId = Guid.Parse(ddlAddRole.SelectedValue.ToString());
-
             //chk duplicate
             if (!position.CheckIfDuplicate(txtAddPosition.Text))
             {
                 position.AddPosition(txtAddPosition.Text,
-                RoleId,
                 ddlAddDepartment.SelectedValue.ToString());
             }
 
@@ -85,16 +81,10 @@ namespace AMS.MasterConfig
 
                 position.UpdatePosition(
                     txtEditPosition.Text,
-                    Guid.Parse(ddlEditRole.SelectedValue.ToString()),
                     ddlEditDepartment.SelectedValue.ToString(),
                     lblRowId.Text);
 
-         
-            //!IMPORTANT -> should update users roles
-            //not yet implemented
-            //update users ->update roleId whose userId->@UserId
-
-
+        
             gvRoles.DataSource = BindGridView();
             gvRoles.DataBind();
 
@@ -122,7 +112,6 @@ namespace AMS.MasterConfig
 
                 dt = position.GetPositionByRowId((int)gvRoles.DataKeys[index].Value);
                 lblRowId.Text = dt.Rows[0]["Id"].ToString();
-                ddlEditRole.SelectedValue = dt.Rows[0]["RoleId"].ToString();
                 ddlEditDepartment.SelectedValue = dt.Rows[0]["DepartmentId"].ToString();
                 txtEditPosition.Text = dt.Rows[0]["Position"].ToString();
 
@@ -135,12 +124,6 @@ namespace AMS.MasterConfig
 
         protected void fillAddDropDowns()
         {
-            //load role
-            ddlAddRole.DataSource = filler.fillRoles();
-            ddlAddRole.DataTextField = "RoleName";
-            ddlAddRole.DataValueField = "RoleId";
-            ddlAddRole.DataBind();
-
             //load dept
             ddlAddDepartment.DataSource = filler.fillDepartment();
             ddlAddDepartment.DataTextField = "Department";
@@ -149,13 +132,7 @@ namespace AMS.MasterConfig
         }
 
         protected void fillEditDropDowns()
-        {
-            //load role
-            ddlEditRole.DataSource = filler.fillRoles();
-            ddlEditRole.DataTextField = "RoleName";
-            ddlEditRole.DataValueField = "RoleId";
-            ddlEditRole.DataBind();
-            
+        {            
             //load dept
             ddlEditDepartment.DataSource = filler.fillDepartment();
             ddlEditDepartment.DataTextField = "Department";

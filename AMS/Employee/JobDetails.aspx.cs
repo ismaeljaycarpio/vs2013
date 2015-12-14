@@ -51,7 +51,7 @@ namespace AMS.Employee
                 txtContractStartingDate.Text = dt.Rows[0]["Contract_SD"].ToString();
                 txtContractEndingDate.Text = dt.Rows[0]["Contract_ED"].ToString();
 
-                lblRole.Text = emp.GetRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
+                //lblRole.Text = emp.GetRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
 
                 //get list of supervisor and manager
                 lblManager.Text = emp.GetManagerName(ddlDepartment.SelectedValue.ToString());
@@ -110,21 +110,6 @@ namespace AMS.Employee
                     ddlAccountStatus.SelectedValue,
                     Guid.Parse(hfUserId.Value));
 
-            //get user
-            MembershipUser _user = Membership.GetUser(Guid.Parse(hfUserId.Value));
-
-            //remove user from role membership
-            foreach (string role in Roles.GetRolesForUser(_user.UserName))
-            {
-                Roles.RemoveUserFromRole(_user.UserName, role);
-            }
-
-            //asign user to new role
-            if(!Roles.IsUserInRole(_user.UserName, lblRole.Text))
-            {
-                Roles.AddUserToRole(_user.UserName, lblRole.Text);
-            }
-
             Response.Redirect(Request.Url.AbsoluteUri);
         }
 
@@ -181,7 +166,7 @@ namespace AMS.Employee
 
         protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblRole.Text = emp.GetRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
+            //lblRole.Text = emp.GetRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
             ddlDepartment.SelectedValue = pos.GetDepartmentIdBypPosition(ddlPosition.SelectedValue.ToString());
             lblManager.Text = emp.GetManagerName(ddlDepartment.SelectedValue.ToString());
             lblSupervisor.Text = emp.GetSupervisorName(ddlDepartment.SelectedValue.ToString());

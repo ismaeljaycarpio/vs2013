@@ -80,11 +80,11 @@ namespace AMS.MasterConfig
         }
 
         protected void gvAgency_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            dt = new DataTable();
-            int index = Convert.ToInt32(e.CommandArgument);
+        {            
             if (e.CommandName.Equals("editRecord"))
             {
+                dt = new DataTable();
+                int index = Convert.ToInt32(e.CommandArgument);
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
                 dt = agency.GetAgencyById((int)(gvAgency.DataKeys[index].Value));

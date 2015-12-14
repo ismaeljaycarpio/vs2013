@@ -21,8 +21,9 @@ namespace AMS.DAL
         //get managerial position
         public DataTable DisplayPositions(string strSearch)
         {
-            strSql = "SELECT POSITION.Id, POSITION.Position, DEPARTMENT.Department, Roles.RoleName FROM POSITION, DEPARTMENT,Roles " +
-                "WHERE DEPARTMENT.Id = POSITION.DepartmentId AND POSITION.RoleId = Roles.RoleId " +
+            strSql = "SELECT POSITION.Id, POSITION.Position, DEPARTMENT.Department " +
+                "FROM POSITION INNER JOIN DEPARTMENT " +
+                "ON DEPARTMENT.Id = POSITION.DepartmentId " +
                 "AND (DEPARTMENT.Department LIKE '%' + @searchKeyWork + '%' OR POSITION.Position LIKE '%' + @searchKeyWork + '%')";
 
             conn = new SqlConnection();
@@ -39,22 +40,6 @@ namespace AMS.DAL
             return dt;
         }
 
-        public DataTable FillPositionByRoleId(Guid RoleId)
-        {
-            conn = new SqlConnection();
-            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
-            string strSql = "SELECT * FROM Position WHERE RoleId = @RoleId";
-            comm = new SqlCommand(strSql, conn);
-            comm.Parameters.AddWithValue("@RoleId", RoleId);
-            dt = new DataTable();
-            adp = new SqlDataAdapter(comm);
-
-            conn.Open();
-            adp.Fill(dt);
-            conn.Close();
-
-            return dt;
-        }
 
         public DataTable GetPositionByRowId(int rowId)
         {
@@ -94,11 +79,10 @@ namespace AMS.DAL
 
         public void AddPosition(
             string position,
-            Guid RoleId,
             string deptId)
         {
-            strSql = "INSERT INTO POSITION(Position,RoleId,DepartmentId) " +
-                "VALUES(@Position,@RoleId,@DepartmentId) ";
+            strSql = "INSERT INTO POSITION(Position,DepartmentId) " +
+                "VALUES(@Position,@DepartmentId) ";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -107,7 +91,6 @@ namespace AMS.DAL
             {
                 conn.Open();
                 comm.Parameters.AddWithValue("@Position", position);
-                comm.Parameters.AddWithValue("@RoleId", RoleId);
                 comm.Parameters.AddWithValue("@DepartmentId", deptId);
 
                 comm.ExecuteNonQuery();
@@ -119,11 +102,10 @@ namespace AMS.DAL
 
         public void UpdatePosition(
             string position,
-            Guid RoleId,
             string deptId,
             string rowId)
         {
-            strSql = "UPDATE POSITION SET Position=@Position, RoleId=@RoleId, DepartmentId=@DepartmentId WHERE Id=@RowId";
+            strSql = "UPDATE POSITION SET Position=@Position,DepartmentId=@DepartmentId WHERE Id=@RowId";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -132,7 +114,6 @@ namespace AMS.DAL
             {
                 conn.Open();
                 comm.Parameters.AddWithValue("@Position", position);
-                comm.Parameters.AddWithValue("@RoleId", RoleId);
                 comm.Parameters.AddWithValue("@DepartmentId", deptId);
                 comm.Parameters.AddWithValue("@RowId", rowId);
 

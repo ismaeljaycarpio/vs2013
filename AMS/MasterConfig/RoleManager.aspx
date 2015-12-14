@@ -23,11 +23,6 @@
                         <div class="modal-body">
                             <div class="form">
                                 <div class="form-group">
-                                    <label for="ddlAddRole">Role</label>
-                                    <asp:DropDownList ID="ddlAddRole" runat="server" CssClass="form-control"></asp:DropDownList>
-                                </div>
-
-                                <div class="form-group">
                                     <label for="ddlAddDepartment">Department</label>
                                     <asp:DropDownList ID="ddlAddDepartment" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
@@ -75,11 +70,6 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <asp:Label ID="lblRowId" runat="server" Visible="false"></asp:Label>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="ddlEditRole">Role</label>
-                                <asp:DropDownList ID="ddlEditRole" runat="server" CssClass="form-control"></asp:DropDownList>
                             </div>
 
                             <div class="form-group">
@@ -176,12 +166,6 @@
                                         <asp:TemplateField HeaderText="Department" SortExpression="Department">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblDepartment" runat="server" Text='<%# Eval("Department") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Role" SortExpression="RoleName">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblRole" runat="server" Text='<%# Eval("RoleName") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

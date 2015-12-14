@@ -22,15 +22,6 @@ namespace AMS.MasterConfig {
         protected global::System.Web.UI.UpdatePanel upAdd;
         
         /// <summary>
-        /// ddlAddRole control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAddRole;
-        
-        /// <summary>
         /// ddlAddDepartment control.
         /// </summary>
         /// <remarks>
@@ -83,15 +74,6 @@ namespace AMS.MasterConfig {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRowId;
-        
-        /// <summary>
-        /// ddlEditRole control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEditRole;
         
         /// <summary>
         /// ddlEditDepartment control.

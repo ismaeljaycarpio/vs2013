@@ -12,12 +12,20 @@ namespace AMS.MasterConfig
     public partial class Employee_Account_MasterList : System.Web.UI.Page
     {
         DAL.Account accnt = new DAL.Account();
+        DAL.Filler filler = new DAL.Filler();
+        DataTable dt;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!Page.IsPostBack)
             {
                 gvEmployee.DataSource = BindGridView();
                 gvEmployee.DataBind();
+
+                DDLRole.DataSource = filler.fillRoles();
+                DDLRole.DataTextField = "RoleName";
+                DDLRole.DataValueField = "RoleId";
+                DDLRole.DataBind();
             }
         }
 
@@ -195,6 +203,40 @@ namespace AMS.MasterConfig
             {
                 ViewState["directionState"] = value;
             }
+        }
+
+        protected void gvEmployee_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            dt = new DataTable();
+            if (e.CommandName.Equals("editRecord"))
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+                dt = accnt.SelectUserAccounts((Guid)(gvEmployee.DataKeys[index].Value));
+                lblRowId.Text = dt.Rows[0]["UserId"].ToString();
+                txtEditName.Text = dt.Rows[0]["FullName"].ToString();
+                DDLRole.SelectedValue = dt.Rows[0]["RoleId"].ToString();
+
+                sb.Append(@"<script type='text/javascript'>");
+                sb.Append("$('#updateModal').modal('show');");
+                sb.Append(@"</script>");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "EditShowModalScript", sb.ToString(), false);
+            }
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            accnt.ChangeRole(Guid.Parse(lblRowId.Text), DDLRole.SelectedItem.Text);
+
+            gvEmployee.DataSource = BindGridView();
+            gvEmployee.DataBind();
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append(@"<script type='text/javascript'>");
+            sb.Append("$('#updateModal').modal('hide');");
+            sb.Append(@"</script>");
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "EditHideModalScript", sb.ToString(), false);
         }
     }
 }

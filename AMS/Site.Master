@@ -148,8 +148,10 @@
                                                 <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu">
-                                                <li><asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
-                                                <li><asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
                                                 <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -203,7 +205,8 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
-                                                <li><asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
                                                 <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -242,7 +245,8 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
-                                                <li><asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
                                                 <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -281,7 +285,8 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
-                                                <li><asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
                                                 <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -320,7 +325,8 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
-                                                <li><asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
                                                 <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -353,7 +359,8 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
-                                                <li><asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
                                                 <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
                                             </ul>
                                         </li>

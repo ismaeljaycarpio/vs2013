@@ -190,7 +190,7 @@
 
                                         <asp:CommandField ShowDeleteButton="true" />
                                     </Columns>
-                                    <PagerStyle CssClass="pagination" />
+                                    <PagerStyle CssClass="pagination-ys" />
                                 </asp:GridView>
                                 <!-- Trigger the modal with a button -->
                                 <asp:Button ID="btnOpenModal" 

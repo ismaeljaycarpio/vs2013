@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.IO;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace AMS.Employee
 {
@@ -113,9 +116,40 @@ namespace AMS.Employee
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
+            //image resize before uploading to server
             if(FileUpload1.HasFile)
             {
-                FileUpload1.SaveAs(Server.MapPath("~/ProfileImages/") + hfUserId.Value + ".png" );
+                string fileName = FileUpload1.FileName;
+                Bitmap originalBMP = new Bitmap(FileUpload1.FileContent);
+                
+                FileInfo fInfo = new FileInfo(fileName);
+                if(fInfo.IsReadOnly)
+                {
+                    fInfo.IsReadOnly = false;
+                }
+
+                // Calculate the new image dimensions
+                int origWidth = originalBMP.Width;
+                int origHeight = originalBMP.Height;
+                int sngRatio = origWidth / origHeight;
+                int newWidth = 200;
+                int newHeight = newWidth / sngRatio;
+
+                Bitmap newBMP = new Bitmap(originalBMP, newWidth, newHeight);
+                Graphics oGraphics = Graphics.FromImage(newBMP);
+
+                oGraphics.SmoothingMode = SmoothingMode.AntiAlias;
+                oGraphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                oGraphics.DrawImage(originalBMP, 0, 0, newWidth, newHeight);
+
+                newBMP.Save(Server.MapPath("~/ProfileImages/") + hfUserId.Value + ".png");
+
+                originalBMP.Dispose();
+                newBMP.Dispose();
+                oGraphics.Dispose();
+
+
+                //FileUpload1.SaveAs(Server.MapPath("~/ProfileImages/") + hfUserId.Value + ".png" );
                 FileUpload1.FileContent.Dispose();
                 FileUpload1.Dispose();
                 imgProfile.ImageUrl = "~/ProfileImages/" + hfUserId.Value + ".png";

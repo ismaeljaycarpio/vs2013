@@ -329,46 +329,46 @@ namespace AMS.DAL
         #endregion
 
         #region JOB
-        public string GetRoleNameBypPosition(string PositionId)
-        {
-            strSql = "SELECT Roles.RoleName FROM Roles,POSITION " +
-                "WHERE POSITION.RoleId = Roles.RoleId AND " +
-                "POSITION.Id = @PositionId";
+        //public string GetRoleNameBypPosition(string PositionId)
+        //{
+        //    strSql = "SELECT Roles.RoleName FROM Roles,POSITION " +
+        //        "WHERE POSITION.RoleId = Roles.RoleId AND " +
+        //        "POSITION.Id = @PositionId";
 
-            conn = new SqlConnection();
-            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
-            comm = new SqlCommand(strSql, conn);
-            comm.Parameters.AddWithValue("@PositionId", PositionId);
-            dt = new DataTable();
-            adp = new SqlDataAdapter(comm);
+        //    conn = new SqlConnection();
+        //    conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+        //    comm = new SqlCommand(strSql, conn);
+        //    comm.Parameters.AddWithValue("@PositionId", PositionId);
+        //    dt = new DataTable();
+        //    adp = new SqlDataAdapter(comm);
 
-            conn.Open();
-            adp.Fill(dt);
-            conn.Close();
+        //    conn.Open();
+        //    adp.Fill(dt);
+        //    conn.Close();
 
-            return dt.Rows[0]["RoleName"].ToString();
-        }
+        //    return dt.Rows[0]["RoleName"].ToString();
+        //}
 
 
-        public string GetRoleNameByPositionName(string PositionName)
-        {
-            strSql = "SELECT Roles.RoleName FROM Roles,POSITION " +
-                "WHERE POSITION.RoleId = Roles.RoleId AND " +
-                "POSITION.Position = @Position";
+        //public string GetRoleNameByPositionName(string PositionName)
+        //{
+        //    strSql = "SELECT Roles.RoleName FROM Roles,POSITION " +
+        //        "WHERE POSITION.RoleId = Roles.RoleId AND " +
+        //        "POSITION.Position = @Position";
 
-            conn = new SqlConnection();
-            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
-            comm = new SqlCommand(strSql, conn);
-            comm.Parameters.AddWithValue("@Position", PositionName);
-            dt = new DataTable();
-            adp = new SqlDataAdapter(comm);
+        //    conn = new SqlConnection();
+        //    conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+        //    comm = new SqlCommand(strSql, conn);
+        //    comm.Parameters.AddWithValue("@Position", PositionName);
+        //    dt = new DataTable();
+        //    adp = new SqlDataAdapter(comm);
 
-            conn.Open();
-            adp.Fill(dt);
-            conn.Close();
+        //    conn.Open();
+        //    adp.Fill(dt);
+        //    conn.Close();
 
-            return dt.Rows[0]["RoleName"].ToString();
-        }
+        //    return dt.Rows[0]["RoleName"].ToString();
+        //}
 
         public string GetDepartment(Guid UserId)
         {
@@ -420,7 +420,6 @@ namespace AMS.DAL
                 "EMPLOYEE.PositionId = POSITION.Id " +
                 "AND POSITION.DepartmentId = DEPARTMENT.Id " +
                 "AND POSITION.DepartmentId = @DepartmentId " +
-                "AND POSITION.RoleId = UsersInRoles.RoleId " +
                 "AND UsersInRoles.RoleId = Roles.RoleId " +
                 "AND EMPLOYEE.UserId = UsersInRoles.UserId " +
                 "AND Roles.RoleName = 'Manager'";
@@ -462,7 +461,6 @@ namespace AMS.DAL
                 "EMPLOYEE.PositionId = POSITION.Id " +
                 "AND POSITION.DepartmentId = DEPARTMENT.Id " +
                 "AND POSITION.DepartmentId = @DepartmentId " +
-                "AND POSITION.RoleId = UsersInRoles.RoleId " +
                 "AND UsersInRoles.RoleId = Roles.RoleId " +
                 "AND EMPLOYEE.UserId = UsersInRoles.UserId " +
                 "AND Roles.RoleName = 'Supervisor'";
