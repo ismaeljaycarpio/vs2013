@@ -116,6 +116,8 @@ namespace AMS.Employee
             if(FileUpload1.HasFile)
             {
                 FileUpload1.SaveAs(Server.MapPath("~/ProfileImages/") + hfUserId.Value + ".png" );
+                FileUpload1.FileContent.Dispose();
+                FileUpload1.Dispose();
                 imgProfile.ImageUrl = "~/ProfileImages/" + hfUserId.Value + ".png";
             }
         }
