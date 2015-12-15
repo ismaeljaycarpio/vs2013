@@ -88,6 +88,7 @@
                                     GridLines="None"
                                     AutoGenerateColumns="false"
                                     AllowPaging="true"
+                                    ShowFooter="true"
                                     AllowSorting="true"
                                     DataKeyNames="UserId"
                                     OnSorting="gvEmployee_Sorting"
@@ -96,7 +97,12 @@
                                     OnPageIndexChanging="gvEmployee_PageIndexChanging"
                                     OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging">
                                     <Columns>
-                                        <asp:BoundField DataField="Emp_Id" HeaderText="ID" SortExpression="Emp_Id" />
+                                        <asp:TemplateField HeaderText="ID" SortExpression="Emp_Id" >
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblEmp_Id" runat="server" Text='<%# Eval("Emp_Id") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Full Name" SortExpression="FullName">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lnkFNAME" runat="server" Text='<%# Eval("FullName") %>' CommandName="Select"></asp:LinkButton>

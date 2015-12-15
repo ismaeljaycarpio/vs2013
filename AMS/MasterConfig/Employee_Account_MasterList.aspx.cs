@@ -186,6 +186,15 @@ namespace AMS.MasterConfig
                 
                 lnkReset.Attributes.Add("onclick", "return confirm('Do you want to reset the password of this user ? ');");
             }
+            else if(e.Row.RowType == DataControlRowType.Footer)
+            {
+                int _TotalRecs = BindGridView().Rows.Count;
+                int _CurrentRecStart = gvEmployee.PageIndex * gvEmployee.PageSize + 1;
+                int _CurrentRecEnd = gvEmployee.PageIndex * gvEmployee.PageSize + gvEmployee.Rows.Count;
+
+                e.Row.Cells[0].ColumnSpan = 2;
+                e.Row.Cells[0].Text = string.Format("Displaying {0} to {1} of {2} records found", _CurrentRecStart, _CurrentRecEnd, _TotalRecs);
+            }
         }
 
         public SortDirection direction
