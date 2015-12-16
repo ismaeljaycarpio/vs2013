@@ -43,7 +43,6 @@ namespace AMS.EvaluationSelf
                 //get evaluation details
                 dt = new DataTable();
                 dt = eval.GetEvaluated(evaluationId);
-                txtPeriodCovered.Text = dt.Rows[0]["PeriodCovered"].ToString();
 
                 //load grids values
                 gvSocialSkills.DataSource = eval.getSelf_SocialSkill_filled(evaluationId);
@@ -76,7 +75,7 @@ namespace AMS.EvaluationSelf
 
                 string agency = emp.GetAgencyName(UserId);
                 //update eval
-                eval.updateEvaluation_Self(agency, txtPeriodCovered.Text, evaluationId);
+                eval.updateEvaluation_Self(agency, evaluationId);
 
                 //get grid values
                 foreach (GridViewRow row in gvSocialSkills.Rows)

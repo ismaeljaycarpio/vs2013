@@ -18,8 +18,7 @@
                         <tr>
                             <td><b>Employee Name:</b>
                                 <asp:Label ID="lblEmpName" runat="server"></asp:Label></td>
-                            <td><b>Period Covered:</b>
-                                <asp:TextBox ID="txtPeriodCovered" runat="server"></asp:TextBox></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td><b>Designation</b>

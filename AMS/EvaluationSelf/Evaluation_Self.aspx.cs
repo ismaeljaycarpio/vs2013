@@ -108,8 +108,7 @@ namespace AMS.EvaluationSelf
                 int evaluationId = eval.insertEvaluation_Self(
                     UserId, 
                     "Self Evaluation", 
-                    agency, 
-                    "");
+                    agency);
 
                 //get grid values
                 foreach(GridViewRow row in gvSocialSkills.Rows)

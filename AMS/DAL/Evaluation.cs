@@ -1732,14 +1732,13 @@ namespace AMS.DAL
         public int insertEvaluation_Self(
             Guid UserId,
             string evaluationType,
-            string agency,
-            string PeriodCovered
+            string agency
             )
         {
             int _newlyInsertedId = 0;
 
-            strSql = "INSERT INTO Evaluation(UserId,EvaluationType,Agency,PeriodCovered) " +
-                "VALUES(@UserId,@EvaluationType,@Agency,@PeriodCovered);" +
+            strSql = "INSERT INTO Evaluation(UserId,EvaluationType,Agency) " +
+                "VALUES(@UserId,@EvaluationType,@Agency);" +
                 "SELECT SCOPE_IDENTITY()";
 
             conn = new SqlConnection();
@@ -1751,7 +1750,6 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@UserId", UserId);
                 comm.Parameters.AddWithValue("@EvaluationType", evaluationType);
                 comm.Parameters.AddWithValue("@Agency", agency);
-                comm.Parameters.AddWithValue("@PeriodCovered", PeriodCovered);
 
                 object exScalar = comm.ExecuteScalar();
                 _newlyInsertedId = (exScalar == null ? -1 : Convert.ToInt32(exScalar.ToString()));
@@ -1765,11 +1763,10 @@ namespace AMS.DAL
 
         public void updateEvaluation_Self(
             string agency,
-            string PeriodCovered,
             int evaluationId
             )
         {
-            strSql = "UPDATE Evaluation SET Agency=@Agency, PeriodCovered=@PeriodCovered WHERE Id=@Id";
+            strSql = "UPDATE Evaluation SET Agency=@Agency  WHERE Id=@Id";
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
 
@@ -1777,7 +1774,6 @@ namespace AMS.DAL
             {
                 conn.Open();
                 comm.Parameters.AddWithValue("@Agency", agency);
-                comm.Parameters.AddWithValue("@PeriodCovered", PeriodCovered);
                 comm.Parameters.AddWithValue("@Id", evaluationId);
                 comm.ExecuteNonQuery();
                 conn.Close();

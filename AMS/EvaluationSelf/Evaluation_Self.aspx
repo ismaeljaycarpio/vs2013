@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Evaluation_Self.aspx.cs" Inherits="AMS.EvaluationSelf.Evaluation_Self" %>
+﻿<%@ Page Title="Self Evaluation" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Evaluation_Self.aspx.cs" Inherits="AMS.EvaluationSelf.Evaluation_Self" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -32,25 +32,6 @@
                                 <asp:Label ID="lblEvalDate" runat="server"></asp:Label></td>
                             <td><b>Date of Last Evaluation:</b>
                                 <asp:Label ID="lblDateLastEvaluation" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"><b>Evaluation Period</b>
-                                <asp:RadioButtonList ID="rblNextEvaluation"
-                                    runat="server"
-                                    RepeatDirection="Horizontal"
-                                    CellSpacing="15">
-                                    <asp:ListItem Value="Monthly">Monthly</asp:ListItem>
-                                    <asp:ListItem Value="Quarterly">Quarterly</asp:ListItem>
-                                    <asp:ListItem Value="Semi-Annual">Semi-Annual</asp:ListItem>
-                                    <asp:ListItem Value="Annual">Annual</asp:ListItem>
-                                </asp:RadioButtonList>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
-                                    runat="server"
-                                    ControlToValidate="rblNextEvaluation"
-                                    ForeColor="Red"
-                                    Display="Dynamic"
-                                    ErrorMessage="Choose one"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                     </table>
