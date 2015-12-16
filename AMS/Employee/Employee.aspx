@@ -35,7 +35,8 @@
                     <asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" />
                     <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" />
                     <div class="table-responsive">
-                        <div class="text-center"><asp:Label ID="lblCount" runat="server"></asp:Label></div>
+                        <div class="text-center">
+                            <asp:Label ID="lblCount" runat="server"></asp:Label></div>
                         <asp:GridView ID="gvEmployee"
                             runat="server"
                             class="table table-striped table-hover dataTable"
@@ -46,9 +47,11 @@
                             AllowPaging="true"
                             AllowSorting="true"
                             DataKeyNames="UserId"
+                            ShowFooter="true"
                             EmptyDataText="No Record(s) found"
                             OnSorting="gvEmployee_Sorting"
                             OnPageIndexChanging="gvEmployee_PageIndexChanging"
+                            OnRowDataBound="gvEmployee_RowDataBound"
                             OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging">
                             <Columns>
                                 <asp:BoundField DataField="Emp_Id" HeaderText="ID" SortExpression="Emp_Id" />

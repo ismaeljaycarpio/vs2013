@@ -73,7 +73,7 @@
 
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <h5><span class="glyphicon glyphicon-alert"></span>Expiring Contracts <b><%= DateTime.Now.ToShortDateString() %> - <%= DateTime.Now.AddDays(14).ToShortDateString() %></b></h5>
+                    <h5><span class="glyphicon glyphicon-alert"></span>&nbsp;Expiring Contracts <b><%= DateTime.Now.ToShortDateString() %> - <%= DateTime.Now.AddDays(14).ToShortDateString() %></b></h5>
                 </div>
                 <div class="panel-body">
                     <asp:Button runat="server" Text="Word" ID="btnExpiringContract_Word" OnClick="btnExpiraingContract_Word_Click" />
