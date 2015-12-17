@@ -32,7 +32,6 @@ namespace AMS.Employee
             //get user from membership
             Guid UserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
 
-
             //get positionId and deptid
             string positionId = emp.GetPositionId(UserId);
             string deptId = emp.GetDepartmentId(UserId);

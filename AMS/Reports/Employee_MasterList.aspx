@@ -46,11 +46,13 @@
                             GridLines="None"
                             AutoGenerateColumns="false"
                             AllowPaging="true"
+                            ShowFooter="true"
                             AllowSorting="true"
                             ShowHeaderWhenEmpty="true"
                             DataKeyNames="UserId"
                             EmptyDataText="No Record(s) found"
                             OnSorting="gvEmployee_Sorting"
+                            OnRowDataBound="gvEmployee_RowDataBound"
                             OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging"
                             OnPageIndexChanging="gvEmployee_PageIndexChanging"
                             PageSize="7">
