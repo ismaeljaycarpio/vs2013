@@ -1638,7 +1638,6 @@ namespace AMS.DAL
             return dt;
         }
 
-
         public DataTable getSelf_SocialSkill()
         {
             //11 -> Initiative
