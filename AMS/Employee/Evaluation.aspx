@@ -14,10 +14,12 @@
                 </div>
                 <div class="panel-body">
                     <p>
-                        <b>Last Evaluation Date:</b> <asp:Label ID="lblLastEvaluationDate" runat="server" CssClass="label label-info"></asp:Label>
+                        <b>Last Evaluation Date:</b>
+                        <asp:Label ID="lblLastEvaluationDate" runat="server" CssClass="label label-info"></asp:Label>
                     </p>
                     <p>
-                        <b>Next Evaluation Date:</b> <asp:Label ID="lblNextEvaluationDate" runat="server" CssClass="label label-info"></asp:Label>
+                        <b>Next Evaluation Date:</b>
+                        <asp:Label ID="lblNextEvaluationDate" runat="server" CssClass="label label-info"></asp:Label>
                     </p>
                     <div class="table-responsive">
                         <asp:GridView ID="gvEvaluation"
@@ -63,6 +65,37 @@
                             Text="Performance Evaluation"
                             OnClick="btnPerfEval_Click" />
                     </div>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">Self Evaluation</div>
+                <div class="panel-body">
+                    <asp:GridView ID="gvSelfEvaluation"
+                        runat="server"
+                        class="table table-striped table-hover dataTable"
+                        GridLines="None"
+                        AutoGenerateColumns="false"
+                        AllowPaging="true"
+                        DataKeyNames="Id"
+                        ShowHeaderWhenEmpty="true"
+                        EmptyDataText="No record(s) found"
+                        OnPageIndexChanging="gvSelfEvaluation_PageIndexChanging"
+                        OnSelectedIndexChanged="gvSelfEvaluation_SelectedIndexChanged">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Evaluation Date">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lblDateEvaluated" runat="server" Text='<%# Eval("DateEvaluated") %>' CommandName="Select"></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Evaluated By">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblEvaluatedBy" runat="server" Text='<%# Eval("FullName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <PagerStyle CssClass="pagination-ys" />
+                    </asp:GridView>
                 </div>
             </div>
         </div>

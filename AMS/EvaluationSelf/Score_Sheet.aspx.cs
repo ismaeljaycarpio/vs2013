@@ -44,7 +44,7 @@ namespace AMS.Employee
                 User.IsInRole("HR"))
             {
                 //display all employee
-                //return dt = emp.DisplayEmployee(txtSearch.Text);
+                return dt = emp.DisplayEmployee(txtSearch.Text);
             }
             else if (User.IsInRole("Manager"))
             {
@@ -83,7 +83,7 @@ namespace AMS.Employee
 
             DataView sortedView = new DataView(BindGridView());
             sortedView.Sort = e.SortExpression + " " + sortingDirection;
-            Session["SortedView"] = sortedView;
+            Session["SortedView_ss"] = sortedView;
             gvEmployee.DataSource = sortedView;
             gvEmployee.DataBind();
         }
@@ -91,9 +91,9 @@ namespace AMS.Employee
         protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvEmployee.PageIndex = e.NewPageIndex;
-            if (Session["SortedView"] != null)
+            if (Session["SortedView_ss"] != null)
             {
-                gvEmployee.DataSource = Session["SortedView"];
+                gvEmployee.DataSource = Session["SortedView_ss"];
                 gvEmployee.DataBind();
             }
             else

@@ -26,7 +26,9 @@ namespace AMS.Employee
 
                 hfUserId.Value = Session["UserId"].ToString();
                 Guid UserId = Guid.Parse(hfUserId.Value);
+
                 BindGridView();
+                BindSelfEvaluation();
 
                 hfAgency.Value = emp.GetAgencyName(UserId);
                 lblLastEvaluationDate.Text = emp.GetLastEvaluationDate(UserId);
@@ -85,6 +87,9 @@ namespace AMS.Employee
                 {
                     btnPerfEval.Visible = false;
                     btnPerfEval.Enabled = false;
+
+                    //dont show self eval list
+                    gvSelfEvaluation.Visible = false;
                 }
             }
         }
@@ -94,6 +99,13 @@ namespace AMS.Employee
             Guid UserId = Guid.Parse(hfUserId.Value);
             gvEvaluation.DataSource = eval.DisplayMyEvaluation(UserId);
             gvEvaluation.DataBind();
+        }
+
+        protected void BindSelfEvaluation()
+        {
+            Guid UserId = Guid.Parse(hfUserId.Value);
+            gvSelfEvaluation.DataSource = eval.DisplayMySelf_Evaluation(UserId);
+            gvSelfEvaluation.DataBind();
         }
 
         protected void gvEvaluation_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -128,6 +140,18 @@ namespace AMS.Employee
         {
             Session["EvaluationId"] = gvEvaluation.SelectedValue.ToString();
             Response.Redirect("~/Employee/vPerformanceEvaluation");
+        }
+
+        protected void gvSelfEvaluation_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvSelfEvaluation.PageIndex = e.NewPageIndex;
+            BindSelfEvaluation();
+        }
+
+        protected void gvSelfEvaluation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["SelfEvaluationId"] = gvSelfEvaluation.SelectedValue.ToString();
+            Response.Redirect("~/EvaluationSelf/vEvaluation_Self");
         }
     }
 }

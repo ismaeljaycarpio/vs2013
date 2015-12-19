@@ -574,6 +574,29 @@ namespace AMS.DAL
             return dt;
         }
 
+        public DataTable DisplayMySelf_Evaluation(Guid UserId)
+        {
+            strSql = "SELECT SELF_EVALUATION.Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+                "SELF_EVALUATION.DateEvaluated FROM SELF_EVALUATION " +
+                "INNER JOIN EMPLOYEE " +
+                "ON SELF_EVALUATION.EvaluatedBy = EMPLOYEE.UserId " +
+                "AND SELF_EVALUATION.UserId = @UserId " +
+                "ORDER BY DateEvaluated DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         //Prime only
         public int InsertEvaluation_Prime(
             Guid UserId,
@@ -1343,6 +1366,25 @@ namespace AMS.DAL
         #endregion
 
         #region Approval
+
+        public DataTable Get_Self_Evaluated(int evaluationId)
+        {
+            strSql = "SELECT * FROM SELF_EVALUATION WHERE Id = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Id", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         public DataTable GetEvaluated(int evaluationId)
         {
             strSql = "SELECT * FROM Evaluation WHERE Id = @Id";
@@ -1728,16 +1770,16 @@ namespace AMS.DAL
             return dt;
         }
 
-        public int insertEvaluation_Self(
+        public int InsertEvaluation_Self(
             Guid UserId,
-            string evaluationType,
-            string agency
+            Guid evaluatedBy,
+            string dateEvaluated
             )
         {
             int _newlyInsertedId = 0;
 
-            strSql = "INSERT INTO Evaluation(UserId,EvaluationType,Agency) " +
-                "VALUES(@UserId,@EvaluationType,@Agency);" +
+            strSql = "INSERT INTO SELF_EVALUATION(UserId,EvaluatedBy,DateEvaluated) " +
+                "VALUES(@UserId,@EvaluatedBy,@DateEvaluated);" +
                 "SELECT SCOPE_IDENTITY()";
 
             conn = new SqlConnection();
@@ -1747,8 +1789,8 @@ namespace AMS.DAL
             {
                 conn.Open();
                 comm.Parameters.AddWithValue("@UserId", UserId);
-                comm.Parameters.AddWithValue("@EvaluationType", evaluationType);
-                comm.Parameters.AddWithValue("@Agency", agency);
+                comm.Parameters.AddWithValue("@EvaluatedBy", evaluatedBy);
+                comm.Parameters.AddWithValue("@DateEvaluated", dateEvaluated);
 
                 object exScalar = comm.ExecuteScalar();
                 _newlyInsertedId = (exScalar == null ? -1 : Convert.ToInt32(exScalar.ToString()));
@@ -1760,12 +1802,12 @@ namespace AMS.DAL
             return _newlyInsertedId;
         }
 
-        public void updateEvaluation_Self(
+        public void UpdateEvaluation_Self(
             string agency,
             int evaluationId
             )
         {
-            strSql = "UPDATE Evaluation SET Agency=@Agency  WHERE Id=@Id";
+            strSql = "UPDATE SELF_EVALUATION SET Agency=@Agency  WHERE Id=@Id";
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
 
@@ -1832,7 +1874,7 @@ namespace AMS.DAL
         public DataTable getSelf_CustomerService_filled(int evaluationId)
         {
             strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
-                "Evaluation_Self.Rating, Evaluation_Self.Remarks " +
+                "Evaluation_Self.CompetenceCatQId,Evaluation_Self.Rating, Evaluation_Self.Remarks " +
                 "FROM Evaluation_Self, CompetenceCatQ " +
                 "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
                 "AND CompetenceCatQ.CompetenceCatId  = 24 " +
@@ -1943,6 +1985,28 @@ namespace AMS.DAL
             comm.Dispose();
             conn.Dispose();
         }
+
+        public string Get_Self_Evaluation(Guid UserId, Guid EvaluatedBy, string DateEvaluated)
+        {
+            strSql = "SELECT Id  FROM SELF_EVALUATION WHERE UserId = @UserId AND EvaluatedBy = @EvaluatedBy AND DateEvaluated = @DateEvaluated";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            comm.Parameters.AddWithValue("@EvaluatedBy", EvaluatedBy);
+            comm.Parameters.AddWithValue("@DateEvaluated", DateEvaluated);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt.Rows[0]["Id"].ToString();
+        }
+
+
         #endregion
 
         #region CONFIG EVALUATION PERIOD
@@ -1996,6 +2060,26 @@ namespace AMS.DAL
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable IfUserIsAlreadyEvaluated(Guid UserId, Guid EvaluatedBy, string DateEvaluated)
+        {
+            strSql = "SELECT *  FROM SELF_EVALUATION WHERE UserId = @UserId AND EvaluatedBy = @EvaluatedBy AND DateEvaluated = @DateEvaluated";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            comm.Parameters.AddWithValue("@EvaluatedBy", EvaluatedBy);
+            comm.Parameters.AddWithValue("@DateEvaluated", DateEvaluated);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 
