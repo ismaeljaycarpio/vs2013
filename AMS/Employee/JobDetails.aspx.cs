@@ -75,6 +75,11 @@ namespace AMS.Employee
                     disableControls();
                     hideControls();
                 }
+
+                if (Request.QueryString["s"] != null)
+                {
+                    pnlSuccess.Visible = true;
+                }
             }
         }
 
@@ -110,7 +115,7 @@ namespace AMS.Employee
                     ddlAccountStatus.SelectedValue,
                     Guid.Parse(hfUserId.Value));
 
-            Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect(Request.Url.AbsoluteUri + "?s=1");
         }
 
         public void fillPosition()

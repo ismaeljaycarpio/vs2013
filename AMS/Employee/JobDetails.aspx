@@ -17,6 +17,10 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-horizontal">
+                        <asp:Panel ID="pnlSuccess" runat="server" CssClass="alert alert-success" Visible="false">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> User successfully updated.
+                        </asp:Panel>
                         <div class="form-group">
                             <label for="txtEmpId" class="col-sm-3 control-label">Employee ID</label>
                             <div class="col-sm-6">

@@ -24,22 +24,20 @@ namespace AMS.Employee
             {
                 if (Session["UserId"] == null)
                 {
-                    Response.Redirect("~Employee/Employee");
+                    Response.Redirect("~/Employee/Employee");
                 }
                 hfUserId.Value = Session["UserId"].ToString();
  
-                fillNationality();
-
                 //check image
                 if (!File.Exists(Server.MapPath("~/ProfileImages/") + hfUserId.Value + ".png"))
                 {
-                    imgProfile.ImageUrl = "~/ProfileImages/noImage.png";
-                    
+                    imgProfile.ImageUrl = "~/ProfileImages/noImage.png";                   
                 }
                 else
                 {
                     imgProfile.ImageUrl = "~/ProfileImages/" + hfUserId.Value + ".png";
                 }
+                fillNationality();
 
                 //load personal details
                 dt = new DataTable();
@@ -63,7 +61,12 @@ namespace AMS.Employee
                 {
                     hideControls();
                     disableControls();
-                }        
+                }
+
+                if (Request.QueryString["s"] != null)
+                {
+                    pnlSuccess.Visible = true;
+                }
             }
         }
 
@@ -103,7 +106,7 @@ namespace AMS.Employee
                     txtContactNo.Text,
                     Guid.Parse(hfUserId.Value));
 
-            Response.Redirect(Request.Url.AbsoluteUri);
+            Response.Redirect(Request.Url.AbsoluteUri + "?s=1");
         }
 
         public void fillNationality()
@@ -122,11 +125,6 @@ namespace AMS.Employee
                 string fileName = FileUpload1.FileName;
                 Bitmap originalBMP = new Bitmap(FileUpload1.FileContent);
                 
-                FileInfo fInfo = new FileInfo(fileName);
-                if(fInfo.IsReadOnly)
-                {
-                    fInfo.IsReadOnly = false;
-                }
 
                 // Calculate the new image dimensions
                 int origWidth = originalBMP.Width;

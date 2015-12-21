@@ -78,9 +78,12 @@
                         AutoGenerateColumns="false"
                         AllowPaging="true"
                         DataKeyNames="Id"
+                        PageSize="10"
                         ShowHeaderWhenEmpty="true"
+                        ShowFooter="true"
                         EmptyDataText="No record(s) found"
                         OnPageIndexChanging="gvSelfEvaluation_PageIndexChanging"
+                        OnRowDataBound="gvSelfEvaluation_RowDataBound"
                         OnSelectedIndexChanged="gvSelfEvaluation_SelectedIndexChanged">
                         <Columns>
                             <asp:TemplateField HeaderText="Evaluation Date">
@@ -96,6 +99,9 @@
                         </Columns>
                         <PagerStyle CssClass="pagination-ys" />
                     </asp:GridView>
+                    <asp:Panel ID="pnlInfo" runat="server" CssClass="alert alert-info" Visible="false">
+                        <strong class="label label-danger">Information!</strong> Evaluation to you by other <i>Employees</i> are hidden from you.
+                    </asp:Panel>
                 </div>
             </div>
         </div>

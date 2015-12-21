@@ -581,7 +581,7 @@ namespace AMS.DAL
                 "INNER JOIN EMPLOYEE " +
                 "ON SELF_EVALUATION.EvaluatedBy = EMPLOYEE.UserId " +
                 "AND SELF_EVALUATION.UserId = @UserId " +
-                "ORDER BY DateEvaluated DESC";
+                "ORDER BY CAST(DateEvaluated AS DATE) DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;

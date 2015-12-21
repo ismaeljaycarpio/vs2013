@@ -13,6 +13,15 @@ namespace AMS.Employee {
     public partial class JobDetails {
         
         /// <summary>
+        /// pnlSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSuccess;
+        
+        /// <summary>
         /// txtEmpId control.
         /// </summary>
         /// <remarks>

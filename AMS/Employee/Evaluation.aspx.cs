@@ -90,6 +90,7 @@ namespace AMS.Employee
 
                     //dont show self eval list
                     gvSelfEvaluation.Visible = false;
+                    pnlInfo.Visible = true;
                 }
             }
         }
@@ -152,6 +153,19 @@ namespace AMS.Employee
         {
             Session["SelfEvaluationId"] = gvSelfEvaluation.SelectedValue.ToString();
             Response.Redirect("~/EvaluationSelf/vEvaluation_Self");
+        }
+
+        protected void gvSelfEvaluation_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                int _TotalRecs = ((DataTable)(gvSelfEvaluation.DataSource)).Rows.Count;
+                int _CurrentRecStart = gvSelfEvaluation.PageIndex * gvSelfEvaluation.PageSize + 1;
+                int _CurrentRecEnd = gvSelfEvaluation.PageIndex * gvSelfEvaluation.PageSize + gvSelfEvaluation.Rows.Count;
+
+                e.Row.Cells[0].ColumnSpan = 2;
+                e.Row.Cells[0].Text = string.Format("Displaying <b style=color:red>{0}</b> to <b style=color:red>{1}</b> of {2} records found", _CurrentRecStart, _CurrentRecEnd, _TotalRecs);
+            }
         }
     }
 }

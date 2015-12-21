@@ -25,6 +25,14 @@ namespace AMS.Dashboard
                     !User.IsInRole("HR") && 
                     !User.IsInRole("General Manager"))
                 {
+                    if(User.IsInRole("Staff"))
+                    {
+                        //dont show pending eval to staffs
+                        pnlPendingEvaluationNotice.Visible = false;
+                        lnkCountExpiringContracts.PostBackUrl = "#";
+                        aEmp.HRef = "#";
+                    }
+                        
                     string deptName = emp.GetDepartment(UserId);
                     lblDepartment.Text = deptName;
                     pnlNotification.Visible = true;

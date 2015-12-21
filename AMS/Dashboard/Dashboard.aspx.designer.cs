@@ -40,6 +40,15 @@ namespace AMS.Dashboard {
         protected global::System.Web.UI.WebControls.LinkButton lnkBdayCount;
         
         /// <summary>
+        /// aEmp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aEmp;
+        
+        /// <summary>
         /// gvEmployeeMasterList control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace AMS.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkCountExpiringContracts;
+        
+        /// <summary>
+        /// pnlPendingEvaluationNotice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlPendingEvaluationNotice;
         
         /// <summary>
         /// lblCountPendingEvaluation control.
