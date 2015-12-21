@@ -22,7 +22,7 @@ namespace AMS.Reports
         {
             if(!Page.IsPostBack)
             {
-                ddlStatus.DataSource = filler.fillAccountStatus(true);
+                ddlStatus.DataSource = filler.fillAccountStatus();
                 ddlStatus.DataValueField = "Id";
                 ddlStatus.DataTextField = "AccountStatus";
                 ddlStatus.DataBind();
