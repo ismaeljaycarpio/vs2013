@@ -45,6 +45,7 @@
     <siteMapNode url="~/EvaluationSelf/Score_Sheet" title="Self Evaluation">
       <siteMapNode url="~/EvaluationSelf/Evaluation_Self" title="Add Self Evaluation"></siteMapNode>
       <siteMapNode url="~/EvaluationSelf/vEvaluation_Self" title="View Self Evaluation"></siteMapNode>
+      <siteMapNode url="~/EvaluationSelf/Summarize_Self_Evaluation.aspx" title="Summarize Self Evaluation"></siteMapNode>
     </siteMapNode>
     
     <siteMapNode title="HR Actions">

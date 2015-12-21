@@ -69,7 +69,7 @@
             </div>
 
             <div class="panel panel-info">
-                <div class="panel-heading">Self Evaluation</div>
+                <div class="panel-heading">Self Evaluation | <asp:LinkButton ID="lnkSummarize" runat="server" CssClass="label label-warning" Text="Go To Summarize Report" OnClick="lnkSummarize_Click"></asp:LinkButton></div>
                 <div class="panel-body">
                     <asp:GridView ID="gvSelfEvaluation"
                         runat="server"

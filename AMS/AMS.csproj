@@ -192,6 +192,7 @@
     <Content Include="EvaluationSelf\Evaluation_Self.aspx" />
     <Content Include="EvaluationSelf\ScoreSheet.aspx" />
     <Content Include="EvaluationSelf\Score_Sheet.aspx" />
+    <Content Include="EvaluationSelf\Summarize_Self_Evaluation.aspx" />
     <Content Include="EvaluationSelf\vEvaluation_Self.aspx" />
     <Content Include="Evaluation\ApprovedEvaluations.aspx" />
     <Content Include="Evaluation\PendingApprovals.aspx" />
@@ -821,6 +822,13 @@
     </Compile>
     <Compile Include="EvaluationSelf\Score_Sheet.aspx.designer.cs">
       <DependentUpon>Score_Sheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluationSelf\Summarize_Self_Evaluation.aspx.cs">
+      <DependentUpon>Summarize_Self_Evaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EvaluationSelf\Summarize_Self_Evaluation.aspx.designer.cs">
+      <DependentUpon>Summarize_Self_Evaluation.aspx</DependentUpon>
     </Compile>
     <Compile Include="EvaluationSelf\vEvaluation_Self.aspx.cs">
       <DependentUpon>vEvaluation_Self.aspx</DependentUpon>

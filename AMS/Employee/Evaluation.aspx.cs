@@ -167,5 +167,11 @@ namespace AMS.Employee
                 e.Row.Cells[0].Text = string.Format("Displaying <b style=color:red>{0}</b> to <b style=color:red>{1}</b> of {2} records found", _CurrentRecStart, _CurrentRecEnd, _TotalRecs);
             }
         }
+
+        protected void lnkSummarize_Click(object sender, EventArgs e)
+        {
+            Session["UserId"] = hfUserId.Value;
+            Response.Redirect("~/EvaluationSelf/Summarize_Self_Evaluation.aspx");
+        }
     }
 }
