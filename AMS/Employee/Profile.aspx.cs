@@ -37,6 +37,7 @@ namespace AMS.Employee
                 {
                     imgProfile.ImageUrl = "~/ProfileImages/" + hfUserId.Value + ".png";
                 }
+
                 fillNationality();
 
                 //load personal details
@@ -125,7 +126,6 @@ namespace AMS.Employee
                 string fileName = FileUpload1.FileName;
                 Bitmap originalBMP = new Bitmap(FileUpload1.FileContent);
                 
-
                 // Calculate the new image dimensions
                 int origWidth = originalBMP.Width;
                 int origHeight = originalBMP.Height;
@@ -146,8 +146,6 @@ namespace AMS.Employee
                 newBMP.Dispose();
                 oGraphics.Dispose();
 
-
-                //FileUpload1.SaveAs(Server.MapPath("~/ProfileImages/") + hfUserId.Value + ".png" );
                 FileUpload1.FileContent.Dispose();
                 FileUpload1.Dispose();
                 imgProfile.ImageUrl = "~/ProfileImages/" + hfUserId.Value + ".png";

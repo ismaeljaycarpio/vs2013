@@ -55,16 +55,11 @@ namespace AMS.HR
             lblError.Text = "";
             try
             {
-                //get generated username
-                string userName = emp.GetGeneratedUserName();
-
                 //membership class 
                 //default pass->'pass123'
                 MembershipUser newUser = Membership.CreateUser(txtEmpId.Text, "pass123");
 
-                //add to roles
-                //get role name from ddl position
-                //string roleName = emp.GetRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
+                //add to role
                 Roles.AddUserToRole(newUser.UserName, ddlRole.SelectedItem.Text);
 
                 //notes:
@@ -76,7 +71,6 @@ namespace AMS.HR
                     txtLastName.Text,
                     ddlPosition.SelectedValue.ToString());
 
-                //Response.Redirect("~/Employee/Employee"); 
                 pnlSuccess.Visible = true;
                 ClearControls();
             }
@@ -91,6 +85,7 @@ namespace AMS.HR
             {
                 //Response.Write(exc.ToString());
                 pnlSuccess.Visible = false;
+                lblError.Text = exc.Message;
             }               
         }
 

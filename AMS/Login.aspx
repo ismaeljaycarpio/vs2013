@@ -10,7 +10,7 @@
                 <div class="panel-body">
                     <asp:Login runat="server" ViewStateMode="Disabled" RenderOuterTable="false" OnLoggedIn="Unnamed_LoggedIn">
                         <LayoutTemplate>
-                            <p class="validation-summary-errors">
+                            <p class="validation-summary-errors text-danger">
                                 <asp:Literal runat="server" ID="FailureText" />
                                 <div class="col-sm-10"></div>
                             </p>
