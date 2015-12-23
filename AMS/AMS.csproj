@@ -152,6 +152,8 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="bin\AMS.dll" />
+    <Content Include="bin\AMS.pdb" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
