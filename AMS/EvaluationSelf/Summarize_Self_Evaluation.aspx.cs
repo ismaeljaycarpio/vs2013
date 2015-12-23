@@ -36,7 +36,6 @@ namespace AMS.EvaluationSelf
                 lblDepartment.Text = emp.GetDepartment(UserId);
                 lblDateHired.Text = emp.GetHiredDate(UserId);
                 lblPosition.Text = emp.GetPosition(UserId);
-
             }
         }
 

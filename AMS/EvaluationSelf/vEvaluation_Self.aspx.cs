@@ -74,7 +74,7 @@ namespace AMS.EvaluationSelf
                 if (User.IsInRole("Manager") ||
                     User.IsInRole("Staff"))
                 {
-                    //gvCus
+                    //customize visible rows in gvCus
                     var list = new List<int> { 63, 64, 65, 66, 67 };
                     foreach (GridViewRow row in gvCustomerService.Rows)
                     {

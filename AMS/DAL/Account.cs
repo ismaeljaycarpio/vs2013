@@ -46,6 +46,9 @@ namespace AMS.DAL
 
             conn.Open();
             adp.Fill(dt);
+
+            comm.Dispose();
+            adp.Dispose();
             conn.Close();
 
             return dt;
