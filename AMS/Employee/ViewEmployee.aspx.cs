@@ -76,7 +76,6 @@ namespace AMS.Employee
                 gvTrainings.DataSource = training.getTrainingsById(UserId);
                 gvTrainings.DataBind();
 
-
                 //get grid awards
                 dt = new DataTable();
                 DAL.Award award = new DAL.Award();

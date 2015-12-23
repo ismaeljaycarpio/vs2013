@@ -31,10 +31,10 @@ namespace AMS.Employee
         public DataTable BindGridView()
         {
             //get user from membership
-            MembershipUser _user = Membership.GetUser();
+            Guid _userId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
            
             //get departmentId
-            string deptId = emp.GetDepartmentId(Guid.Parse(_user.ProviderUserKey.ToString()));
+            string deptId = emp.GetDepartmentId(_userId);
 
             dt = new DataTable();
 
@@ -56,7 +56,6 @@ namespace AMS.Employee
                 //display staff by dept
                 return dt = emp.DisplayEmployeeOfSupervisor(txtSearch.Text, deptId);
             }
-
             return dt = null;
         }
 
