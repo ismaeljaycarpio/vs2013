@@ -28,6 +28,7 @@ namespace AMS.Employee
                 }
 
                 hfUserId.Value = Session["UserId"].ToString();
+
                 //load ddls
                 fillPosition();
                 fillDept();
@@ -51,8 +52,6 @@ namespace AMS.Employee
                 txtContractStartingDate.Text = dt.Rows[0]["Contract_SD"].ToString();
                 txtContractEndingDate.Text = dt.Rows[0]["Contract_ED"].ToString();
 
-                //lblRole.Text = emp.GetRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
-
                 //get list of supervisor and manager
                 lblManager.Text = emp.GetManagerName(ddlDepartment.SelectedValue.ToString());
                 lblSupervisor.Text = emp.GetSupervisorName(ddlDepartment.SelectedValue.ToString());
@@ -65,8 +64,8 @@ namespace AMS.Employee
                     if (contract_end_date < DateTime.Now)
                     {
                         pnlAccountStatus.Visible = true;
-                        ddlAccountStatus.ClearSelection();
-                        ddlAccountStatus.Items.FindByText("Expired").Selected = true;
+                        //ddlAccountStatus.ClearSelection();
+                        //ddlAccountStatus.Items.FindByText("Expired").Selected = true;
                     }                    
                 }
 

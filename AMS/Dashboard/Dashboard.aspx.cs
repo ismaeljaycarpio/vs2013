@@ -57,8 +57,7 @@ namespace AMS.Dashboard
                     lnkCountExpiringContracts.Text = dashb.CountExpiringContracts().ToString();
                     //lblCountNewlyHired.Text = dashb.CountNewlyHired().ToString();
                     lblCountPendingEvaluation.Text = dashb.CountPendingEvaluate().ToString();
-                }
-                
+                }                
             }
         }
 

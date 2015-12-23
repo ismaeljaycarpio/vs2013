@@ -182,7 +182,7 @@
                         </div>
 
                         <asp:Panel ID="pnlAccountStatus" runat="server" CssClass="alert alert-warning" Visible="false">
-                            <strong>Warning!</strong> Account Status is automatically selected <b>Expired</b> when user is past Contract End Date
+                            <strong>Notice!</strong> This Employee is past Contract End Date
                         </asp:Panel>
 
                         <div class="form-group">
