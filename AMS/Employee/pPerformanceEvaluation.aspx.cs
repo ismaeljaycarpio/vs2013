@@ -52,7 +52,7 @@ namespace AMS.Employee
             DAL.Evaluation eval = new DAL.Evaluation();
 
             dt = emp.GetProfileById(UserId);
-            dtEvaluation = eval.getEvaluated(evaluationId);
+            dtEvaluation = eval.GetEvaluated(evaluationId);
 
             //params
             ReportParameter[] param = new ReportParameter[21];

@@ -6,6 +6,7 @@ using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text;
+using System.Security.Permissions;
 
 namespace AMS.DAL
 {
@@ -328,46 +329,46 @@ namespace AMS.DAL
         #endregion
 
         #region JOB
-        public string GetRoleNameBypPosition(string PositionId)
-        {
-            strSql = "SELECT Roles.RoleName FROM Roles,POSITION " +
-                "WHERE POSITION.RoleId = Roles.RoleId AND " +
-                "POSITION.Id = @PositionId";
+        //public string GetRoleNameBypPosition(string PositionId)
+        //{
+        //    strSql = "SELECT Roles.RoleName FROM Roles,POSITION " +
+        //        "WHERE POSITION.RoleId = Roles.RoleId AND " +
+        //        "POSITION.Id = @PositionId";
 
-            conn = new SqlConnection();
-            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
-            comm = new SqlCommand(strSql, conn);
-            comm.Parameters.AddWithValue("@PositionId", PositionId);
-            dt = new DataTable();
-            adp = new SqlDataAdapter(comm);
+        //    conn = new SqlConnection();
+        //    conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+        //    comm = new SqlCommand(strSql, conn);
+        //    comm.Parameters.AddWithValue("@PositionId", PositionId);
+        //    dt = new DataTable();
+        //    adp = new SqlDataAdapter(comm);
 
-            conn.Open();
-            adp.Fill(dt);
-            conn.Close();
+        //    conn.Open();
+        //    adp.Fill(dt);
+        //    conn.Close();
 
-            return dt.Rows[0]["RoleName"].ToString();
-        }
+        //    return dt.Rows[0]["RoleName"].ToString();
+        //}
 
 
-        public string GetRoleNameByPositionName(string PositionName)
-        {
-            strSql = "SELECT Roles.RoleName FROM Roles,POSITION " +
-                "WHERE POSITION.RoleId = Roles.RoleId AND " +
-                "POSITION.Position = @Position";
+        //public string GetRoleNameByPositionName(string PositionName)
+        //{
+        //    strSql = "SELECT Roles.RoleName FROM Roles,POSITION " +
+        //        "WHERE POSITION.RoleId = Roles.RoleId AND " +
+        //        "POSITION.Position = @Position";
 
-            conn = new SqlConnection();
-            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
-            comm = new SqlCommand(strSql, conn);
-            comm.Parameters.AddWithValue("@Position", PositionName);
-            dt = new DataTable();
-            adp = new SqlDataAdapter(comm);
+        //    conn = new SqlConnection();
+        //    conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+        //    comm = new SqlCommand(strSql, conn);
+        //    comm.Parameters.AddWithValue("@Position", PositionName);
+        //    dt = new DataTable();
+        //    adp = new SqlDataAdapter(comm);
 
-            conn.Open();
-            adp.Fill(dt);
-            conn.Close();
+        //    conn.Open();
+        //    adp.Fill(dt);
+        //    conn.Close();
 
-            return dt.Rows[0]["RoleName"].ToString();
-        }
+        //    return dt.Rows[0]["RoleName"].ToString();
+        //}
 
         public string GetDepartment(Guid UserId)
         {
@@ -419,7 +420,6 @@ namespace AMS.DAL
                 "EMPLOYEE.PositionId = POSITION.Id " +
                 "AND POSITION.DepartmentId = DEPARTMENT.Id " +
                 "AND POSITION.DepartmentId = @DepartmentId " +
-                "AND POSITION.RoleId = UsersInRoles.RoleId " +
                 "AND UsersInRoles.RoleId = Roles.RoleId " +
                 "AND EMPLOYEE.UserId = UsersInRoles.UserId " +
                 "AND Roles.RoleName = 'Manager'";
@@ -455,13 +455,12 @@ namespace AMS.DAL
 
         public string GetSupervisorName(string deptId)
         {
-            strSql = "SELECT EMPLOYEE.FirstName + ', ' + EMPLOYEE.MiddleName + ' ' + EMPLOYEE.MiddleName AS [FullName] " +
+            strSql = "SELECT EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName] " +
                 "FROM EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
                 "WHERE " +
                 "EMPLOYEE.PositionId = POSITION.Id " +
                 "AND POSITION.DepartmentId = DEPARTMENT.Id " +
                 "AND POSITION.DepartmentId = @DepartmentId " +
-                "AND POSITION.RoleId = UsersInRoles.RoleId " +
                 "AND UsersInRoles.RoleId = Roles.RoleId " +
                 "AND EMPLOYEE.UserId = UsersInRoles.UserId " +
                 "AND Roles.RoleName = 'Supervisor'";
@@ -756,6 +755,8 @@ namespace AMS.DAL
 
         #region User Membership
         //fill EMPLOYEE tbl
+        [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
+        [PrincipalPermission(SecurityAction.Demand, Role = "HR")]
         public void RegisterUser(
             Guid UserId,
             string emp_Id,

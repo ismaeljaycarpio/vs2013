@@ -21,12 +21,17 @@ namespace AMS.DAL
         public DataTable DisplayUserAccounts(string searchKeyWord)
         {
             strSql = "SELECT Memberships.UserId, Memberships.IsApproved, " +
-                "EMPLOYEE.Emp_Id, " +
+                "EMPLOYEE.Emp_Id, Roles.RoleName, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName] " +
-                "FROM Memberships, EMPLOYEE " +
+                "FROM Memberships " +
+                "LEFT JOIN UsersInRoles " +
+                "ON Memberships.UserId = UsersInRoles.UserId " +
+                "LEFT JOIN Roles " +
+                "ON Roles.RoleId = UsersInRoles.RoleId " +
+                "LEFT JOIN EMPLOYEE " +
+                "ON Memberships.UserId = EMPLOYEE.UserId " +
                 "WHERE " +
-                "Memberships.UserId = EMPLOYEE.UserId " +
-                "AND (EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' OR " +
+                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' OR " +
                 "EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' OR " +
                 "EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' OR " +
                 "EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%') " +
@@ -36,6 +41,35 @@ namespace AMS.DAL
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
             comm.Parameters.AddWithValue("@searchKeyWord", searchKeyWord);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+
+            comm.Dispose();
+            adp.Dispose();
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable SelectUserAccounts(Guid UserId)
+        {
+            strSql = "SELECT Memberships.UserId, Memberships.IsApproved, " +
+                "EMPLOYEE.Emp_Id, Roles.RoleName, Roles.RoleId," +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName] " +
+                "FROM Memberships, UsersInRoles, Roles,EMPLOYEE " +
+                "WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId " +
+                "AND Memberships.UserId = UsersInRoles.UserId " +
+                "AND UsersInRoles.RoleId = Roles.RoleId " +
+                "AND Memberships.UserId = @UserId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 
@@ -90,6 +124,24 @@ namespace AMS.DAL
             string userName = mu.UserName;
 
             mu.ChangePassword(mu.ResetPassword(), "pass123");
+        }
+
+        public void ChangeRole(Guid UserId, string roleName)
+        {
+            //get user
+            MembershipUser _user = Membership.GetUser(UserId);
+
+            //remove user from all his/her roles
+            foreach(string role in Roles.GetRolesForUser(_user.UserName))
+            {
+                Roles.RemoveUserFromRole(_user.UserName, role);
+            }
+
+            //assign user to new role
+            if(!Roles.IsUserInRole(_user.UserName, roleName))
+            {
+                Roles.AddUserToRole(_user.UserName, roleName);
+            }
         }
     }
 }

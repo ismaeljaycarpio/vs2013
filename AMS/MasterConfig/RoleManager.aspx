@@ -23,11 +23,6 @@
                         <div class="modal-body">
                             <div class="form">
                                 <div class="form-group">
-                                    <label for="ddlAddRole">Role</label>
-                                    <asp:DropDownList ID="ddlAddRole" runat="server" CssClass="form-control"></asp:DropDownList>
-                                </div>
-
-                                <div class="form-group">
                                     <label for="ddlAddDepartment">Department</label>
                                     <asp:DropDownList ID="ddlAddDepartment" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
@@ -75,11 +70,6 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <asp:Label ID="lblRowId" runat="server" Visible="false"></asp:Label>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="ddlEditRole">Role</label>
-                                <asp:DropDownList ID="ddlEditRole" runat="server" CssClass="form-control"></asp:DropDownList>
                             </div>
 
                             <div class="form-group">
@@ -152,10 +142,12 @@
                                     GridLines="None"
                                     AutoGenerateColumns="false"
                                     AllowPaging="true"
+                                    AllowSorting="true"
                                     ShowHeaderWhenEmpty="true"
                                     DataKeyNames="Id"
                                     OnPageIndexChanging="gvRoles_PageIndexChanging"
                                     OnRowCommand="gvRoles_RowCommand"
+                                    OnSorting="gvRoles_Sorting"
                                     PageSize="10">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Row Id" Visible="false">
@@ -166,20 +158,14 @@
 
                                         <asp:ButtonField HeaderText="Action" ButtonType="Button" Text="Edit" CommandName="editRecord" />
 
-                                        <asp:TemplateField HeaderText="Positions">
+                                        <asp:TemplateField HeaderText="Positions" SortExpression="Position">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblPosition" runat="server" Text='<%# Eval("Position") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Department">
+                                        <asp:TemplateField HeaderText="Department" SortExpression="Department">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblDepartment" runat="server" Text='<%# Eval("Department") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Role">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblRole" runat="server" Text='<%# Eval("RoleName") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

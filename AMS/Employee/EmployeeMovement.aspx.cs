@@ -61,8 +61,8 @@ namespace AMS.Employee
                 ddlEMovement.SelectedValue.ToString(),
                 Guid.Parse(hfUserId.Value),
                 txtRemarks.Text,
-                txtAddFromDate.Text,
-                txtAddToDate.Text,
+                //txtAddFromDate.Text,
+                //txtAddToDate.Text,
                 txtEffectivityDate.Text);
 
             BindData();
@@ -79,8 +79,8 @@ namespace AMS.Employee
             emov.UpdateEMovement(ddlEditMovement.SelectedValue.ToString(),
                 Guid.Parse(hfUserId.Value),
                 txtEditRemarks.Text,
-                txtEditFromDate.Text,
-                txtEditToDate.Text,
+                //txtEditFromDate.Text,
+                //txtEditToDate.Text,
                 txtEditEffectivityDate.Text,
                 lblRowId.Text);
 
@@ -113,8 +113,8 @@ namespace AMS.Employee
                 lblRowId.Text = dt.Rows[0]["Id"].ToString();
                 ddlEditMovement.SelectedValue = dt.Rows[0]["EMovementId"].ToString();
                 txtEditRemarks.Text = dt.Rows[0]["Remarks"].ToString();
-                txtEditFromDate.Text = dt.Rows[0]["ToDate"].ToString();
-                txtEditToDate.Text = dt.Rows[0]["FromDate"].ToString();
+                //txtEditFromDate.Text = dt.Rows[0]["ToDate"].ToString();
+                //txtEditToDate.Text = dt.Rows[0]["FromDate"].ToString();
                 txtEditEffectivityDate.Text = dt.Rows[0]["EffectivityDate"].ToString();
 
                 sb.Append(@"<script type='text/javascript'>");

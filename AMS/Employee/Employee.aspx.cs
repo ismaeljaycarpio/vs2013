@@ -31,10 +31,10 @@ namespace AMS.Employee
         public DataTable BindGridView()
         {
             //get user from membership
-            MembershipUser _user = Membership.GetUser();
+            Guid _userId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
            
             //get departmentId
-            string deptId = emp.GetDepartmentId(Guid.Parse(_user.ProviderUserKey.ToString()));
+            string deptId = emp.GetDepartmentId(_userId);
 
             dt = new DataTable();
 
@@ -56,7 +56,6 @@ namespace AMS.Employee
                 //display staff by dept
                 return dt = emp.DisplayEmployeeOfSupervisor(txtSearch.Text, deptId);
             }
-
             return dt = null;
         }
 
@@ -181,6 +180,19 @@ namespace AMS.Employee
             Response.Output.Write(sw.ToString());
             Response.Flush();
             Response.End();
+        }
+
+        protected void gvEmployee_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.Row.RowType == DataControlRowType.Footer)
+            {
+                int _TotalRecs = BindGridView().Rows.Count;
+                int _CurrentRecStart = gvEmployee.PageIndex * gvEmployee.PageSize + 1;
+                int _CurrentRecEnd = gvEmployee.PageIndex * gvEmployee.PageSize + gvEmployee.Rows.Count;
+
+                e.Row.Cells[0].ColumnSpan = 2;
+                e.Row.Cells[0].Text = string.Format("Displaying <b style=color:red>{0}</b> to <b style=color:red>{1}</b> of {2} records found", _CurrentRecStart, _CurrentRecEnd, _TotalRecs);
+            }
         }
     }
 }

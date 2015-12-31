@@ -17,8 +17,9 @@ namespace AMS.MasterConfig
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
-            {                    
-                BindData();
+            {
+                gvDepartment.DataSource = BindGridView();
+                gvDepartment.DataBind();
 
                 //show/hide controls based on role
                 if (!User.IsInRole("Admin") && !User.IsInRole("HR"))
@@ -30,13 +31,9 @@ namespace AMS.MasterConfig
             }
         }
 
-        private void BindData()
+        private DataTable BindGridView()
         {
-            dt = new DataTable();
-            dt = dept.DisplayDepartment();
-
-            gvDepartment.DataSource = dt;
-            gvDepartment.DataBind();
+            return dept.DisplayDepartment();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -53,7 +50,8 @@ namespace AMS.MasterConfig
 
             }
 
-            BindData();
+            gvDepartment.DataSource = BindGridView();
+            gvDepartment.DataBind();
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
@@ -76,7 +74,8 @@ namespace AMS.MasterConfig
             }
 
 
-            BindData();
+            gvDepartment.DataSource = BindGridView();
+            gvDepartment.DataBind();
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
@@ -90,15 +89,17 @@ namespace AMS.MasterConfig
             string rowId = ((Label)gvDepartment.Rows[e.RowIndex].FindControl("lblRowId")).Text;
             dept.DeleteDepartment(rowId);
 
-            BindData();
+            gvDepartment.DataSource = BindGridView();
+            gvDepartment.DataBind();
         }
 
         protected void gvDepartment_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            dt = new DataTable();
-            int index = Convert.ToInt32(e.CommandArgument);
+        {           
             if (e.CommandName.Equals("editRecord"))
             {
+                dt = new DataTable();
+                int index = Convert.ToInt32(e.CommandArgument);
+
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
                 dt = dept.GetDepartment((int)(gvDepartment.DataKeys[index].Value));
@@ -119,6 +120,59 @@ namespace AMS.MasterConfig
             sb.Append("$('#addModal').modal('show');");
             sb.Append(@"</script>");
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AddShowModalScript", sb.ToString(), false);
+        }
+
+        protected void gvDepartment_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvDepartment.PageIndex = e.NewPageIndex;
+            if (Session["SortedView_dep"] != null)
+            {
+                gvDepartment.DataSource = Session["SortedView_dep"];
+                gvDepartment.DataBind();
+            }
+            else
+            {
+                gvDepartment.DataSource = BindGridView();
+                gvDepartment.DataBind();
+            }
+        }
+
+        protected void gvDepartment_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            string sortingDirection = string.Empty;
+            if (direction == SortDirection.Ascending)
+            {
+                direction = SortDirection.Descending;
+                sortingDirection = "Desc";
+            }
+            else
+            {
+                direction = SortDirection.Ascending;
+                sortingDirection = "Asc";
+            }
+
+            DataView sortedView = new DataView(BindGridView());
+            sortedView.Sort = e.SortExpression + " " + sortingDirection;
+            Session["SortedView_dep"] = sortedView;
+            gvDepartment.DataSource = sortedView;
+            gvDepartment.DataBind();
+        }
+
+        public SortDirection direction
+        {
+            get
+            {
+                if (ViewState["directionState"] == null)
+                {
+                    ViewState["directionState"] = SortDirection.Ascending;
+                }
+                return (SortDirection)ViewState["directionState"];
+            }
+
+            set
+            {
+                ViewState["directionState"] = value;
+            }
         }
     }
 }

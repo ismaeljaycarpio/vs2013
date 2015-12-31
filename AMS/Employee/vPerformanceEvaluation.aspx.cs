@@ -37,7 +37,7 @@ namespace AMS.Employee
 
                 //get evaluation details
                 dt = new DataTable();
-                dt = eval.getEvaluated(evaluationId);
+                dt = eval.GetEvaluated(evaluationId);
 
                 //chk evaluation type
                 if(dt.Rows[0]["EvaluationType"].ToString().Equals("Self Evaluation"))
@@ -106,6 +106,7 @@ namespace AMS.Employee
                     gvEvaluation.Columns[5].Visible = false;
                     txtNextEvaluationDate.Enabled = false;
                     RequiredFieldValidator3.Enabled = false;
+                    lnkprint.Visible = false;
                 }
                 else
                 {

@@ -6,7 +6,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h5>Performance Evaluation Form
-                        <a href="pPerformanceEvaluation.aspx">
+                        <a href="pPerformanceEvaluation.aspx" runat="server" id="lnkprint">
                             <span class="glyphicon glyphicon-print pull-right"></span>
                         </a>
                     </h5>

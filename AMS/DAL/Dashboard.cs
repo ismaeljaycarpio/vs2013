@@ -891,6 +891,34 @@ namespace AMS.DAL
             return dt.Rows.Count;
         }
 
+        public int CountPendingEvaluation(string deptId)
+        {
+            strSql = "SELECT DISTINCT Evaluation.UserId, MAX(CAST(Evaluation.NextEvaluationDate as DATE)) " +
+                "FROM Evaluation, EMPLOYEE, POSITION, DEPARTMENT " +
+                "WHERE EMPLOYEE.PositionId = POSITION.Id " +
+                "AND POSITION.DepartmentId = DEPARTMENT.Id " +
+                "AND Evaluation.UserId = EMPLOYEE.UserId " +
+                "AND DEPARTMENT.Id = @DepartmentId " +
+                        "GROUP by Evaluation.UserId " +
+                        "HAVING " +
+                        "DATEDIFF(DAY, GETDATE(), max(cast(NextEvaluationDate as date))) <= 14 " +
+                        "AND " +
+                        "DATEDIFF(DAY, GETDATE(), max(cast(NextEvaluationDate as date))) >= 0";
+
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt.Rows.Count;
+        }
+
         public DataTable DisplayPendingEvaluation()
         {
             conn = new SqlConnection();
@@ -920,6 +948,47 @@ namespace AMS.DAL
                             "DATEDIFF(DAY, GETDATE(), max(cast(NextEvaluationDate as date))) >= 0";
 
             comm.CommandText = strSql;
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable DisplayPendingEvaluation(string deptId)
+        {
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand();
+            comm.Connection = conn;
+
+            strSql = "SELECT DISTINCT Evaluation.UserId, EMPLOYEE.Emp_Id, " +
+                            "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                            "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                            "MAX(CAST(DateEvaluated as Date)) AS [LastEvaluationDate], " +
+                            "MAX(CAST(Evaluation.NextEvaluationDate as Date)) as [NextEvaluationDate] " +
+                            "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Evaluation WHERE " +
+                            "Memberships.UserId = EMPLOYEE.UserId AND " +
+                            "EMPLOYEE.PositionId = POSITION.Id AND " +
+                            "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                           "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                           "UsersInRoles.RoleId = Roles.RoleId AND " +
+                           "EMPLOYEE.UserId = Evaluation.UserId AND " +
+                           "DEPARTMENT.Id = @DepartmentId AND " +
+                            "Roles.RoleName != 'Admin' AND " +
+                            "EMPLOYEE.AccountStatusId = 1 " +
+                            "GROUP BY Evaluation.UserId, EMPLOYEE.Emp_Id, EMPLOYEE.LastName, EMPLOYEE.FirstName, Email,EMPLOYEE.MiddleName, " +
+                            "POSITION.Position, DEPARTMENT.Department " +
+                            "HAVING " +
+                            "DATEDIFF(DAY, GETDATE(), max(cast(NextEvaluationDate as date))) <= 14 " +
+                            "AND " +
+                            "DATEDIFF(DAY, GETDATE(), max(cast(NextEvaluationDate as date))) >= 0";
+
+            comm.CommandText = strSql;
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 

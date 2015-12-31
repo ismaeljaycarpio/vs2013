@@ -69,32 +69,22 @@ namespace AMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                if (Page.User.Identity.IsAuthenticated)
-                {
-                    //get current userid
-                    //MembershipUser _user = Membership.GetUser();
-                    //Guid UserId = (Guid)_user.ProviderUserKey;
-                    //if (Session["UserId"] == null)
-                    //    Session["UserId"] = UserId;
-                }
-
-                ////update account status
-                //emp.UpdateStatusExpiredContracts();
-            }
         }
-
-        protected void LoginView1_PreRender(object sender, EventArgs e)
-        {            
-        }
-
         protected void hlViewProfile_Click(object sender, EventArgs e)
         {
             if(Page.User.Identity.IsAuthenticated)
             {
                 Session["UserId"] = Membership.GetUser().ProviderUserKey;
                 Response.Redirect("~/Employee/ViewEmployee");
+            }
+        }
+
+        protected void hlViewEvaluation_Click(object sender, EventArgs e)
+        {
+            if (Page.User.Identity.IsAuthenticated)
+            {
+                Session["UserId"] = Membership.GetUser().ProviderUserKey;
+                Response.Redirect("~/Employee/Evaluation");
             }
         }
     }

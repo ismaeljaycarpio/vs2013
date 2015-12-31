@@ -266,19 +266,19 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Rating System</Value>
+                    <Value>5= significantly exceeds expectation</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Calibri</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -286,7 +286,7 @@
             <Top>0.52083in</Top>
             <Left>0.13021in</Left>
             <Height>0.25in</Height>
-            <Width>1.66667in</Width>
+            <Width>2.57292in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -305,19 +305,19 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Rating System</Value>
+                    <Value>4= Exceeds expectations</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Calibri</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -344,12 +344,12 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Rating System</Value>
+                    <Value>1= Unsatisfactory / Failed</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Calibri</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
@@ -383,19 +383,19 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Rating System</Value>
+                    <Value>3= Satisfactory</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Calibri</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Right</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -422,19 +422,19 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Rating System</Value>
+                    <Value>2= Needs Improvement</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Calibri</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Right</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -565,7 +565,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Staff</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -597,7 +599,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Evaluator</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -767,7 +771,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -799,7 +803,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -912,10 +916,14 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Staff </Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox42</rd:DefaultName>
@@ -942,10 +950,14 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Evaluator </Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox44</rd:DefaultName>
@@ -1105,7 +1117,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>StaffRating13</rd:DefaultName>
@@ -1135,7 +1149,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>EvaluatorRating13</rd:DefaultName>
@@ -1247,10 +1263,14 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Staff </Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox69</rd:DefaultName>
@@ -1277,10 +1297,14 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Evaluator </Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox71</rd:DefaultName>
@@ -1345,7 +1369,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>StaffRating3</rd:DefaultName>
@@ -1375,7 +1401,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>EvaluatorRating3</rd:DefaultName>
@@ -1440,7 +1468,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>StaffRating14</rd:DefaultName>
@@ -1470,7 +1500,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>EvaluatorRating14</rd:DefaultName>
@@ -1621,10 +1653,14 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Staff </Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox76</rd:DefaultName>
@@ -1650,11 +1686,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Evaluator Rating</Value>
-                              <Style />
+                              <Value>Evaluator </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox78</rd:DefaultName>
@@ -1719,7 +1759,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>StaffRating4</rd:DefaultName>
@@ -1749,7 +1791,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>EvaluatorRating4</rd:DefaultName>
@@ -1814,7 +1858,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>StaffRating15</rd:DefaultName>
@@ -1844,7 +1890,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>EvaluatorRating15</rd:DefaultName>
@@ -1955,11 +2003,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Staff Rating</Value>
-                              <Style />
+                              <Value>Staff </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox82</rd:DefaultName>
@@ -1985,11 +2037,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Evaluator Rating</Value>
-                              <Style />
+                              <Value>Evaluator </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox84</rd:DefaultName>
@@ -2290,8 +2346,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Staff Rating</Value>
-                              <Style />
+                              <Value>Staff </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2320,8 +2378,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Evaluator Rating</Value>
-                              <Style />
+                              <Value>Evaluator </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -2625,11 +2685,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Staff Rating</Value>
-                              <Style />
+                              <Value>Staff</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox94</rd:DefaultName>
@@ -2655,11 +2719,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Evaluator Rating</Value>
-                              <Style />
+                              <Value>Evaluator </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox96</rd:DefaultName>
@@ -2674,6 +2742,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -2999,11 +3068,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Staff Rating</Value>
-                              <Style />
+                              <Value>Staff </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox101</rd:DefaultName>
@@ -3029,11 +3102,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Evaluator Rating</Value>
-                              <Style />
+                              <Value>Evaluator </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox103</rd:DefaultName>
@@ -3334,11 +3411,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Staff Rating</Value>
-                              <Style />
+                              <Value>Staff </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox107</rd:DefaultName>
@@ -3364,11 +3445,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Evaluator Rating</Value>
-                              <Style />
+                              <Value>Evaluator </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox109</rd:DefaultName>
@@ -3669,11 +3754,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Staff Rating</Value>
-                              <Style />
+                              <Value>Staff </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox113</rd:DefaultName>
@@ -3699,11 +3788,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Evaluator Rating</Value>
-                              <Style />
+                              <Value>Evaluator </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox115</rd:DefaultName>
@@ -4004,11 +4097,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Staff Rating</Value>
-                              <Style />
+                              <Value>Staff </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox119</rd:DefaultName>
@@ -4034,11 +4131,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Evaluator Rating</Value>
-                              <Style />
+                              <Value>Evaluator </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox121</rd:DefaultName>
@@ -4339,11 +4440,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Staff Rating</Value>
-                              <Style />
+                              <Value>Staff</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox125</rd:DefaultName>
@@ -4369,11 +4474,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Evaluator Rating</Value>
-                              <Style />
+                              <Value>Evaluator </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox127</rd:DefaultName>
@@ -5917,13 +6026,13 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Right</TextAlign>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox201</rd:DefaultName>
         <Top>31.64868in</Top>
-        <Left>0.13708in</Left>
+        <Left>0.15097in</Left>
         <Height>0.25in</Height>
         <Width>1.4375in</Width>
         <ZIndex>64</ZIndex>

@@ -25,6 +25,14 @@ namespace AMS.Dashboard
                     !User.IsInRole("HR") && 
                     !User.IsInRole("General Manager"))
                 {
+                    if(User.IsInRole("Staff"))
+                    {
+                        //dont show pending eval to staffs
+                        pnlPendingEvaluationNotice.Visible = false;
+                        lnkCountExpiringContracts.PostBackUrl = "#";
+                        aEmp.HRef = "#";
+                    }
+                        
                     string deptName = emp.GetDepartment(UserId);
                     lblDepartment.Text = deptName;
                     pnlNotification.Visible = true;
@@ -37,6 +45,7 @@ namespace AMS.Dashboard
 
                     lnkCountExpiringContracts.Text = dashb.CountExpiringContracts(deptId).ToString();
                     //lblCountNewlyHired.Text = dashb.CountNewlyHired(deptId).ToString();
+                    lblCountPendingEvaluation.Text = dashb.CountPendingEvaluation(deptId).ToString();
                 }
                 else
                 {
@@ -48,8 +57,7 @@ namespace AMS.Dashboard
                     lnkCountExpiringContracts.Text = dashb.CountExpiringContracts().ToString();
                     //lblCountNewlyHired.Text = dashb.CountNewlyHired().ToString();
                     lblCountPendingEvaluation.Text = dashb.CountPendingEvaluate().ToString();
-                }
-                
+                }                
             }
         }
 

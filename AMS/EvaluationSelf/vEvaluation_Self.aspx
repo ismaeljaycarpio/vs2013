@@ -11,21 +11,28 @@
                 </div>
 
                 <div class="panel-body">
-                    <table class="table">
+                    <table class="table table-responsive">
                         <tr class="text-center">
-                            <td colspan="2"><b>ARBa SCORE SHEET</b></td>
+                            <td colspan="3"><b>ARBa SCORE SHEET</b></td>
                         </tr>
                         <tr>
                             <td><b>Employee Name:</b>
                                 <asp:Label ID="lblEmpName" runat="server"></asp:Label></td>
-                            <td><b>Period Covered:</b>
-                                <asp:TextBox ID="txtPeriodCovered" runat="server"></asp:TextBox></td>
+                            <td><b>Department:</b>
+                                <asp:Label ID="lblDepartment" runat="server"></asp:Label></td>
+                            <td><b>Position:</b>
+                                <asp:Label ID="lblPosition" runat="server"></asp:Label>
+                            </td>
                         </tr>
                         <tr>
-                            <td><b>Designation</b>
-                                <asp:Label ID="lblDesignation" runat="server"></asp:Label></td>
-                            <td><b>Start Date of Employment</b>
-                                <asp:TextBox ID="txtHiredDate" runat="server"></asp:TextBox></td>
+                            <td><b>Date Hired:</b>
+                                <asp:Label ID="lblDateHired" runat="server"></asp:Label>
+                            </td>
+                            <td><b>Evaluation Date:</b>
+                                <asp:Label ID="lblEvalDate" runat="server"></asp:Label></td>
+                            <td><b>Date of Last Evaluation:</b>
+                                <asp:Label ID="lblDateLastEvaluation" runat="server"></asp:Label>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -93,9 +100,15 @@
                             AutoGenerateColumns="false"
                             DataKeyNames="Id">
                             <Columns>
-                                <asp:TemplateField HeaderText="" Visible="false">
+                                <asp:TemplateField HeaderText="ID" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblId" runat="server" Text='<%# Eval("Id") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="ID" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblQId" runat="server" Text='<%# Eval("CompetenceCatQId") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 

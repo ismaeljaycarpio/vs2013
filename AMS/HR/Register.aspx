@@ -1,4 +1,9 @@
-﻿<%@ Page Title="Register Employee" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="AMS.HR.Register" %>
+﻿<%@ Page Title="Register Employee" 
+    Language="C#" 
+    MasterPageFile="~/Site.Master" 
+    AutoEventWireup="true" 
+    CodeBehind="Register.aspx.cs" 
+    Inherits="AMS.HR.Register" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -111,6 +116,16 @@
                                             <asp:AsyncPostBackTrigger ControlID="ddlPosition" EventName="SelectedIndexChanged" />
                                         </Triggers>
                                     </asp:UpdatePanel>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ddlRole" class="col-sm-2 control-label">Role:</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                    <asp:DropDownList ID="ddlRole" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlPosition_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>

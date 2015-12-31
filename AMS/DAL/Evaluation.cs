@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Security.Permissions;
 
 namespace AMS.DAL
 {
@@ -17,7 +18,7 @@ namespace AMS.DAL
         DataTable dt;
         string strSql = "";
 
-
+        
         #region TOPLIS
         public DataTable displayTSIQuestions()
         {
@@ -72,6 +73,7 @@ namespace AMS.DAL
             return dt;
         }
 
+        
         public int InsertEvaluation(
             Guid UserId,
             string EvaluationType,
@@ -557,6 +559,29 @@ namespace AMS.DAL
         {
             strSql = "SELECT Id, EvaluationType, EvaluatedById, DateEvaluated, ApprovedByManagerId, ApprovedByHRId FROM Evaluation WHERE UserId = @UserId " +
                 "ORDER BY DateEvaluated DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable DisplayMySelf_Evaluation(Guid UserId)
+        {
+            strSql = "SELECT SELF_EVALUATION.Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+                "SELF_EVALUATION.DateEvaluated FROM SELF_EVALUATION " +
+                "INNER JOIN EMPLOYEE " +
+                "ON SELF_EVALUATION.EvaluatedBy = EMPLOYEE.UserId " +
+                "AND SELF_EVALUATION.UserId = @UserId " +
+                "ORDER BY CAST(DateEvaluated AS DATE) DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -1341,7 +1366,26 @@ namespace AMS.DAL
         #endregion
 
         #region Approval
-        public DataTable getEvaluated(int evaluationId)
+
+        public DataTable Get_Self_Evaluated(int evaluationId)
+        {
+            strSql = "SELECT * FROM SELF_EVALUATION WHERE Id = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Id", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable GetEvaluated(int evaluationId)
         {
             strSql = "SELECT * FROM Evaluation WHERE Id = @Id";
 
@@ -1360,13 +1404,16 @@ namespace AMS.DAL
         }
 
         //Pending Approval List by HR
+        //all roles -> approvals
         public DataTable GetPendingApprovalHR()
         {
-            strSql = "SELECT Evaluation.Id,EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName], " +
+            strSql = "SELECT Evaluation.UserId,Evaluation.Id,EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName], " +
                 "Evaluation.DateEvaluated, " +
                 "Evaluation.ApprovedByHRId, " +
                 "Evaluation.ApprovedByManagerId " +
-                "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
+                "FROM EMPLOYEE " +
+                "INNER JOIN Evaluation " +
+                "ON EMPLOYEE.UserId = Evaluation.UserId " +
                 "WHERE " +
                 "Evaluation.ApprovedByHRId = @HRId";
 
@@ -1384,18 +1431,12 @@ namespace AMS.DAL
             return dt;
         }
 
-        //Pending Approval List by GM ->only managers
-        //GM the signatory of Managers
+        //Pending Approval List by GM ->only managers and HR
+        //GM the signatory of Managers/HR only
+        //disregard HR assistant since it has a role of HR but limited
         public DataTable GetPendingApprovalGM()
         {
-            //strSql = "SELECT Evaluation.Id,Evaluation.RemarksName,Evaluation.EvaluatedBy, " +
-            //    "Evaluation.AcknowledgedBy, Evaluation.UserId " +
-            //    "FROM Evaluation, UsersInRoles, Roles WHERE " +
-            //    "Evaluation.UserId = UsersInRoles.UserId AND " +
-            //    "UsersInRoles.RoleId = Roles.RoleId AND " +
-            //    "(Roles.RoleName = 'Manager' OR Roles.RoleName = 'HR')";
-
-            strSql = "SELECT Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+            strSql = "SELECT Evaluation.UserId,Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
                 "Evaluation.DateEvaluated, " +
                 "Evaluation.ApprovedByHRId, " +
                 "Evaluation.ApprovedByManagerId " +
@@ -1404,6 +1445,7 @@ namespace AMS.DAL
                 "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
                 "WHERE " +
                 "(Roles.RoleName = 'Manager' OR Roles.RoleName = 'HR') AND " +
+                "POSITION.Position != 'HR Assistant' AND " +
                 "Evaluation.ApprovedByManagerId = @ManagerId";
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -1422,15 +1464,18 @@ namespace AMS.DAL
         //Pending Approval List by Manager ->
         public DataTable GetPendingApprovalManager(string deptId)
         {
-            strSql = strSql = "SELECT Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+            strSql = strSql = "SELECT Evaluation.UserId,Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
                 "Evaluation.DateEvaluated, " +
                 "Evaluation.ApprovedByHRId, " +
                 "Evaluation.ApprovedByManagerId " +
                 "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
                 "INNER JOIN UsersInRoles ON Evaluation.UserId = UsersInRoles.UserId " +
                 "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
+                "INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
+                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
                 "WHERE " +
                 "(Roles.RoleName = 'Supervisor' OR Roles.RoleName = 'Staff') AND " +
+                "DEPARTMENT.Id = @DepartmentId AND " +
                 "Evaluation.ApprovedByManagerId = @ManagerId";
 
             conn = new SqlConnection();
@@ -1448,16 +1493,28 @@ namespace AMS.DAL
             return dt;
         }
 
-        //not implemented
-        //Pending Approval List by Manager
-        public DataTable getPendingApprovalSupervisor()
+        //Pending Approval List by Supervisor
+        public DataTable GetPendingApprovalSupervisor(string deptId)
         {
-            strSql = "SELECT Id,RemarksName,EvaluatedBy,AcknowledgedBy FROM Evaluation WHERE " +
-                    "(ApprovedByManagerId = '')";
+            strSql = strSql = "SELECT Evaluation.UserId,Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+                "Evaluation.DateEvaluated, " +
+                "Evaluation.ApprovedByHRId, " +
+                "Evaluation.ApprovedByManagerId " +
+                "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
+                "INNER JOIN UsersInRoles ON Evaluation.UserId = UsersInRoles.UserId " +
+                "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
+                "INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
+                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
+                "WHERE " +
+                "(Roles.RoleName = 'Staff') AND " +
+                "DEPARTMENT.Id = @DepartmentId AND " +
+                "Evaluation.ApprovedByManagerId = @ManagerId";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            comm.Parameters.AddWithValue("@ManagerId", Guid.Empty);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 
@@ -1623,7 +1680,6 @@ namespace AMS.DAL
             return dt;
         }
 
-
         public DataTable getSelf_SocialSkill()
         {
             //11 -> Initiative
@@ -1714,17 +1770,16 @@ namespace AMS.DAL
             return dt;
         }
 
-        public int insertEvaluation_Self(
+        public int InsertEvaluation_Self(
             Guid UserId,
-            string evaluationType,
-            string agency,
-            string PeriodCovered
+            Guid evaluatedBy,
+            string dateEvaluated
             )
         {
             int _newlyInsertedId = 0;
 
-            strSql = "INSERT INTO Evaluation(UserId,EvaluationType,Agency,PeriodCovered) " +
-                "VALUES(@UserId,@EvaluationType,@Agency,@PeriodCovered);" +
+            strSql = "INSERT INTO SELF_EVALUATION(UserId,EvaluatedBy,DateEvaluated) " +
+                "VALUES(@UserId,@EvaluatedBy,@DateEvaluated);" +
                 "SELECT SCOPE_IDENTITY()";
 
             conn = new SqlConnection();
@@ -1734,9 +1789,8 @@ namespace AMS.DAL
             {
                 conn.Open();
                 comm.Parameters.AddWithValue("@UserId", UserId);
-                comm.Parameters.AddWithValue("@EvaluationType", evaluationType);
-                comm.Parameters.AddWithValue("@Agency", agency);
-                comm.Parameters.AddWithValue("@PeriodCovered", PeriodCovered);
+                comm.Parameters.AddWithValue("@EvaluatedBy", evaluatedBy);
+                comm.Parameters.AddWithValue("@DateEvaluated", dateEvaluated);
 
                 object exScalar = comm.ExecuteScalar();
                 _newlyInsertedId = (exScalar == null ? -1 : Convert.ToInt32(exScalar.ToString()));
@@ -1748,13 +1802,12 @@ namespace AMS.DAL
             return _newlyInsertedId;
         }
 
-        public void updateEvaluation_Self(
+        public void UpdateEvaluation_Self(
             string agency,
-            string PeriodCovered,
             int evaluationId
             )
         {
-            strSql = "UPDATE Evaluation SET Agency=@Agency, PeriodCovered=@PeriodCovered WHERE Id=@Id";
+            strSql = "UPDATE SELF_EVALUATION SET Agency=@Agency  WHERE Id=@Id";
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
 
@@ -1762,7 +1815,6 @@ namespace AMS.DAL
             {
                 conn.Open();
                 comm.Parameters.AddWithValue("@Agency", agency);
-                comm.Parameters.AddWithValue("@PeriodCovered", PeriodCovered);
                 comm.Parameters.AddWithValue("@Id", evaluationId);
                 comm.ExecuteNonQuery();
                 conn.Close();
@@ -1822,7 +1874,7 @@ namespace AMS.DAL
         public DataTable getSelf_CustomerService_filled(int evaluationId)
         {
             strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
-                "Evaluation_Self.Rating, Evaluation_Self.Remarks " +
+                "Evaluation_Self.CompetenceCatQId,Evaluation_Self.Rating, Evaluation_Self.Remarks " +
                 "FROM Evaluation_Self, CompetenceCatQ " +
                 "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
                 "AND CompetenceCatQ.CompetenceCatId  = 24 " +
@@ -1933,6 +1985,166 @@ namespace AMS.DAL
             comm.Dispose();
             conn.Dispose();
         }
+
+        public string Get_Self_Evaluation(Guid UserId, Guid EvaluatedBy, string DateEvaluated)
+        {
+            strSql = "SELECT Id  FROM SELF_EVALUATION WHERE UserId = @UserId AND EvaluatedBy = @EvaluatedBy AND DateEvaluated = @DateEvaluated";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            comm.Parameters.AddWithValue("@EvaluatedBy", EvaluatedBy);
+            comm.Parameters.AddWithValue("@DateEvaluated", DateEvaluated);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt.Rows[0]["Id"].ToString();
+        }
+
+        public DataTable getSelf_SocialSkill_filled_Summarize(string DateEvaluated, Guid UserId)
+        {
+            strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
+                "Evaluation_Self.Rating, Evaluation_Self.Remarks, EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName], " +
+                "SELF_EVALUATION.UserId, SELF_EVALUATION.EvaluatedBy " +
+                "FROM Evaluation_Self, CompetenceCatQ, EMPLOYEE, SELF_EVALUATION " +
+                "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
+                "AND CompetenceCatQ.CompetenceCatId = 23 " +
+                "AND Evaluation_Self.EvaluationId = SELF_EVALUATION.Id " +
+                "AND SELF_EVALUATION.EvaluatedBy = EMPLOYEE.UserId " +
+                "AND SELF_EVALUATION.DateEvaluated = @DateEvaluated " +
+                "AND SELF_EVALUATION.UserId = @UserId";
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DateEvaluated", DateEvaluated);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getSelf_CustomerService_filled_Summarize(string DateEvaluated, Guid UserId)
+        {
+            strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
+                "Evaluation_Self.Rating, Evaluation_Self.Remarks, EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName], " +
+                "SELF_EVALUATION.UserId, SELF_EVALUATION.EvaluatedBy " +
+                "FROM Evaluation_Self, CompetenceCatQ, EMPLOYEE, SELF_EVALUATION " +
+                "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
+                "AND CompetenceCatQ.CompetenceCatId = 24 " +
+                "AND Evaluation_Self.EvaluationId = SELF_EVALUATION.Id " +
+                "AND SELF_EVALUATION.EvaluatedBy = EMPLOYEE.UserId " +
+                "AND SELF_EVALUATION.DateEvaluated = @DateEvaluated " +
+                "AND SELF_EVALUATION.UserId = @UserId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DateEvaluated", DateEvaluated);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getSelf_Originality_filled_Summarize(string DateEvaluated, Guid UserId)
+        {
+            strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
+                "Evaluation_Self.Rating, Evaluation_Self.Remarks, EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName], " +
+                "SELF_EVALUATION.UserId, SELF_EVALUATION.EvaluatedBy " +
+                "FROM Evaluation_Self, CompetenceCatQ, EMPLOYEE, SELF_EVALUATION " +
+                "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
+                "AND CompetenceCatQ.CompetenceCatId = 25 " +
+                "AND Evaluation_Self.EvaluationId = SELF_EVALUATION.Id " +
+                "AND SELF_EVALUATION.EvaluatedBy = EMPLOYEE.UserId " +
+                "AND SELF_EVALUATION.DateEvaluated = @DateEvaluated " +
+                "AND SELF_EVALUATION.UserId = @UserId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DateEvaluated", DateEvaluated);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getSelf_Responsibility_filled_Summarize(string DateEvaluated, Guid UserId)
+        {
+            strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
+                "Evaluation_Self.Rating, Evaluation_Self.Remarks, EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName], " +
+                "SELF_EVALUATION.UserId, SELF_EVALUATION.EvaluatedBy " +
+                "FROM Evaluation_Self, CompetenceCatQ, EMPLOYEE, SELF_EVALUATION " +
+                "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
+                "AND CompetenceCatQ.CompetenceCatId = 26 " +
+                "AND Evaluation_Self.EvaluationId = SELF_EVALUATION.Id " +
+                "AND SELF_EVALUATION.EvaluatedBy = EMPLOYEE.UserId " +
+                "AND SELF_EVALUATION.DateEvaluated = @DateEvaluated " +
+                "AND SELF_EVALUATION.UserId = @UserId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DateEvaluated", DateEvaluated);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getSelf_Excellent_filled_Summarize(string DateEvaluated, Guid UserId)
+        {
+            strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
+                "Evaluation_Self.Rating, Evaluation_Self.Remarks, EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName], " +
+                "SELF_EVALUATION.UserId, SELF_EVALUATION.EvaluatedBy " +
+                "FROM Evaluation_Self, CompetenceCatQ, EMPLOYEE, SELF_EVALUATION " +
+                "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
+                "AND CompetenceCatQ.CompetenceCatId = 27 " +
+                "AND Evaluation_Self.EvaluationId = SELF_EVALUATION.Id " +
+                "AND SELF_EVALUATION.EvaluatedBy = EMPLOYEE.UserId " +
+                "AND SELF_EVALUATION.DateEvaluated = @DateEvaluated " +
+                "AND SELF_EVALUATION.UserId = @UserId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DateEvaluated", DateEvaluated);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         #endregion
 
         #region CONFIG EVALUATION PERIOD
@@ -1986,6 +2198,26 @@ namespace AMS.DAL
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable IfUserIsAlreadyEvaluated(Guid UserId, Guid EvaluatedBy, string DateEvaluated)
+        {
+            strSql = "SELECT *  FROM SELF_EVALUATION WHERE UserId = @UserId AND EvaluatedBy = @EvaluatedBy AND DateEvaluated = @DateEvaluated";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            comm.Parameters.AddWithValue("@EvaluatedBy", EvaluatedBy);
+            comm.Parameters.AddWithValue("@DateEvaluated", DateEvaluated);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 

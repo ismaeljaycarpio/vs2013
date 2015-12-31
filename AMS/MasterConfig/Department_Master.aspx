@@ -112,8 +112,11 @@
                                     ShowHeaderWhenEmpty="true"
                                     AutoGenerateColumns="false"
                                     AllowPaging="true"
+                                    AllowSorting="true"
                                     DataKeyNames="Id"
                                     OnRowDeleting="gvDepartment_RowDeleting"
+                                    OnPageIndexChanging="gvDepartment_PageIndexChanging"
+                                    OnSorting="gvDepartment_Sorting"
                                     OnRowCommand="gvDepartment_RowCommand">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Row Id" Visible="false">
@@ -124,14 +127,14 @@
 
                                         <asp:ButtonField HeaderText="Action" ButtonType="Button" Text="Edit" CommandName="editRecord" />
 
-                                        <asp:TemplateField HeaderText="Department">
+                                        <asp:TemplateField HeaderText="Department" SortExpression="Department">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblDepartment" runat="server" Text='<%# Eval("Department") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:CommandField ShowDeleteButton="true" />
                                     </Columns>
-                                    <PagerStyle CssClass="pagination" />
+                                    <PagerStyle CssClass="pagination-ys" />
                                 </asp:GridView>
                                 <!-- Trigger the modal with a button -->
                                 <asp:Button ID="btnOpenModal" 

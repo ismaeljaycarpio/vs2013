@@ -22,7 +22,7 @@ namespace AMS.Reports
         {
             if(!Page.IsPostBack)
             {
-                ddlStatus.DataSource = filler.fillAccountStatus(true);
+                ddlStatus.DataSource = filler.fillAccountStatus();
                 ddlStatus.DataValueField = "Id";
                 ddlStatus.DataTextField = "AccountStatus";
                 ddlStatus.DataBind();
@@ -41,7 +41,7 @@ namespace AMS.Reports
             }
         }
 
-        private object BindExpiringContracts()
+        private DataTable BindExpiringContracts()
         {
             dt = new DataTable();
 
@@ -116,7 +116,15 @@ namespace AMS.Reports
 
         protected void gvEmployee_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if(e.Row.RowType == DataControlRowType.Footer)
+            {
+                int _TotalRecs = BindGridView().Rows.Count;
+                int _CurrentRecStart = gvEmployee.PageIndex * gvEmployee.PageSize + 1;
+                int _CurrentRecEnd = gvEmployee.PageIndex * gvEmployee.PageSize + gvEmployee.Rows.Count;
 
+                e.Row.Cells[0].ColumnSpan = 2;
+                e.Row.Cells[0].Text = string.Format("Displaying <b style=color:red>{0}</b> to <b style=color:red>{1}</b> of {2} records found", _CurrentRecStart, _CurrentRecEnd, _TotalRecs);
+            }
         }
 
         protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)

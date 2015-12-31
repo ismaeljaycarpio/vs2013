@@ -11,8 +11,9 @@
     <div class="row">
         <div class="col-md-12">
             <asp:Panel ID="pnlNotification" runat="server" CssClass="alert alert-info" Visible="false">
-                <strong><asp:Label ID="lblDepartment" runat="server"></asp:Label></strong>
-                <p>                  
+                <strong>
+                    <asp:Label ID="lblDepartment" runat="server"></asp:Label></strong>
+                <p>
                     Displaying Dashboard for Department specific only.
                 </p>
             </asp:Panel>
@@ -30,7 +31,7 @@
         </div>
 
         <div class="col-lg-4">
-            <h4><b><a href="~/Reports/Employee_MasterList.aspx" runat="server">Employee Master List</a></b></h4>
+            <h4><b><a href="~/Reports/Employee_MasterList.aspx" runat="server" id="aEmp">Employee Master List</a></b></h4>
             <div class="table table-responsive">
                 <asp:GridView ID="gvEmployeeMasterList"
                     runat="server"
@@ -45,8 +46,11 @@
                     <PagerStyle CssClass="pagination-ys" />
                 </asp:GridView>
                 <p>
-                    Expiring Contract in 2 weeks (<%=DateTime.Now.ToString("MM/dd/yyyy") %>) - (<%=DateTime.Now.AddDays(14).ToString("MM/dd/yyyy") %>):
-                    <asp:LinkButton ID="lnkCountExpiringContracts" runat="server" PostBackUrl="~/Reports/Employee_MasterList.aspx?Exp=5"></asp:LinkButton>
+                    <b>Expiring Contract in 2 weeks (<%=DateTime.Now.ToString("MM/dd/yyyy") %>) - (<%=DateTime.Now.AddDays(14).ToString("MM/dd/yyyy") %>):</b>
+                    <asp:LinkButton ID="lnkCountExpiringContracts"
+                        runat="server"
+                        ForeColor="Red"
+                        PostBackUrl="~/Reports/Employee_MasterList.aspx?Exp=5"></asp:LinkButton>
                 </p>
             </div>
         </div>
@@ -59,13 +63,16 @@
             </p>
         </div>--%>
 
-        <div class="col-lg-4">
-            <h4><a href="~/Evaluation/PendingEvaluation.aspx" runat="server"><b>Pending Evaluation </b>(<%=DateTime.Now.ToString("MM/dd/yyyy") %>) - (<%=DateTime.Now.AddDays(14).ToString("MM/dd/yyyy") %>)</a></h4>
-            <p>
-                Number of Employees that are to be evaluated:
+        <asp:Panel ID="pnlPendingEvaluationNotice" runat="server">
+            <div class="col-lg-4">
+                <h4><a href="~/Evaluation/PendingEvaluation.aspx" runat="server"><b>Pending Evaluation </b>(<%=DateTime.Now.ToString("MM/dd/yyyy") %>) - (<%=DateTime.Now.AddDays(14).ToString("MM/dd/yyyy") %>)</a></h4>
+                <p>
+                    Number of Employees that are to be evaluated:
                 <asp:Label ID="lblCountPendingEvaluation" runat="server" CssClass="label label-info"></asp:Label>
-            </p>
-        </div>
+                </p>
+            </div>
+        </asp:Panel>
+
 
     </div>
 

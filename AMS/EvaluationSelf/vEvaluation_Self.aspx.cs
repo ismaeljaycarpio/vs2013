@@ -34,16 +34,19 @@ namespace AMS.EvaluationSelf
                 Guid UserId = Guid.Parse(hfUserId.Value);
 
                 //Get selected evaluation id
-                int evaluationId = Convert.ToInt32(Session["EvaluationId"]);
+                int evaluationId = Convert.ToInt32(Session["SelfEvaluationId"]);
 
                 lblEmpName.Text = emp.GetFullName(UserId);
-                lblDesignation.Text = emp.GetDepartment(UserId);
-                txtHiredDate.Text = emp.GetHiredDate(UserId);
+                lblDepartment.Text = emp.GetDepartment(UserId);
+                lblDateHired.Text = emp.GetHiredDate(UserId);
+                lblPosition.Text = emp.GetPosition(UserId);
+
 
                 //get evaluation details
                 dt = new DataTable();
-                dt = eval.getEvaluated(evaluationId);
-                txtPeriodCovered.Text = dt.Rows[0]["PeriodCovered"].ToString();
+                dt = eval.Get_Self_Evaluated(evaluationId);
+
+                lblEvalDate.Text = dt.Rows[0]["DateEvaluated"].ToString();
 
                 //load grids values
                 gvSocialSkills.DataSource = eval.getSelf_SocialSkill_filled(evaluationId);
@@ -60,6 +63,47 @@ namespace AMS.EvaluationSelf
 
                 gvExcellent.DataSource = eval.getSelf_Excellent_filled(evaluationId);
                 gvExcellent.DataBind();
+
+                if (!User.IsInRole("Manager"))
+                {
+                    gvOriginality.Visible = false;
+                    gvResponsibility.Visible = false;
+                    gvExcellent.Visible = false;
+                }
+
+                if (User.IsInRole("Manager") ||
+                    User.IsInRole("Staff"))
+                {
+                    //customize visible rows in gvCus
+                    var list = new List<int> { 63, 64, 65, 66, 67 };
+                    foreach (GridViewRow row in gvCustomerService.Rows)
+                    {
+                        if (row.RowType == DataControlRowType.DataRow)
+                        {
+                            int Id = int.Parse((row.FindControl("lblQId") as Label).Text);
+                            if (!list.Contains(Id))
+                            {
+                                row.Visible = false;
+                            }
+                        }
+                    }
+                }
+                else if (User.IsInRole("Supervisor"))
+                {
+                    //gvCus
+                    var list = new List<int> { 63, 64, 65, 66, 67 };
+                    foreach (GridViewRow row in gvCustomerService.Rows)
+                    {
+                        if (row.RowType == DataControlRowType.DataRow)
+                        {
+                            int Id = int.Parse((row.FindControl("lblQId") as Label).Text);
+                            if (list.Contains(Id))
+                            {
+                                row.Visible = false;
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -76,7 +120,7 @@ namespace AMS.EvaluationSelf
 
                 string agency = emp.GetAgencyName(UserId);
                 //update eval
-                eval.updateEvaluation_Self(agency, txtPeriodCovered.Text, evaluationId);
+                //eval.updateEvaluation_Self(agency, evaluationId);
 
                 //get grid values
                 foreach (GridViewRow row in gvSocialSkills.Rows)
@@ -139,7 +183,7 @@ namespace AMS.EvaluationSelf
                     }
                 }
 
-                Response.Redirect("~/EvaluationSelf/vSelf_Evaluation");
+                Response.Redirect(Request.Url.AbsoluteUri);
             }
         }
     }

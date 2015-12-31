@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.IO;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace AMS.Employee
 {
@@ -21,22 +24,21 @@ namespace AMS.Employee
             {
                 if (Session["UserId"] == null)
                 {
-                    Response.Redirect("~Employee/Employee");
+                    Response.Redirect("~/Employee/Employee");
                 }
                 hfUserId.Value = Session["UserId"].ToString();
  
-                fillNationality();
-
                 //check image
                 if (!File.Exists(Server.MapPath("~/ProfileImages/") + hfUserId.Value + ".png"))
                 {
-                    imgProfile.ImageUrl = "~/ProfileImages/noImage.png";
-                    
+                    imgProfile.ImageUrl = "~/ProfileImages/noImage.png";                   
                 }
                 else
                 {
                     imgProfile.ImageUrl = "~/ProfileImages/" + hfUserId.Value + ".png";
                 }
+
+                fillNationality();
 
                 //load personal details
                 dt = new DataTable();
@@ -60,7 +62,12 @@ namespace AMS.Employee
                 {
                     hideControls();
                     disableControls();
-                }        
+                }
+
+                if (Request.QueryString["s"] != null)
+                {
+                    pnlSuccess.Visible = true;
+                }
             }
         }
 
@@ -94,11 +101,13 @@ namespace AMS.Employee
                     rblStatus.SelectedValue.ToString(),
                     rblGender.SelectedValue.ToString(),
                     ddlNationality.SelectedValue.ToString(),
-                    txtDoB.Text,
+                    Request.Form[txtDoB.UniqueID],
                     rblBloodType.SelectedValue.ToString(),
-                     txtLanguage.Text,
+                    txtLanguage.Text,
                     txtContactNo.Text,
-                    Guid.Parse(hfUserId.Value));   
+                    Guid.Parse(hfUserId.Value));
+
+            Response.Redirect(Request.Url.AbsoluteUri + "?s=1");
         }
 
         public void fillNationality()
@@ -111,9 +120,34 @@ namespace AMS.Employee
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
+            //image resize before uploading to server
             if(FileUpload1.HasFile)
             {
-                FileUpload1.SaveAs(Server.MapPath("~/ProfileImages/") + hfUserId.Value + ".png" );
+                string fileName = FileUpload1.FileName;
+                Bitmap originalBMP = new Bitmap(FileUpload1.FileContent);
+                
+                // Calculate the new image dimensions
+                int origWidth = originalBMP.Width;
+                int origHeight = originalBMP.Height;
+                int sngRatio = origWidth / origHeight;
+                int newWidth = 200;
+                int newHeight = newWidth / sngRatio;
+
+                Bitmap newBMP = new Bitmap(originalBMP, newWidth, newHeight);
+                Graphics oGraphics = Graphics.FromImage(newBMP);
+
+                oGraphics.SmoothingMode = SmoothingMode.AntiAlias;
+                oGraphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                oGraphics.DrawImage(originalBMP, 0, 0, newWidth, newHeight);
+
+                newBMP.Save(Server.MapPath("~/ProfileImages/") + hfUserId.Value + ".png");
+
+                originalBMP.Dispose();
+                newBMP.Dispose();
+                oGraphics.Dispose();
+
+                FileUpload1.FileContent.Dispose();
+                FileUpload1.Dispose();
                 imgProfile.ImageUrl = "~/ProfileImages/" + hfUserId.Value + ".png";
             }
         }

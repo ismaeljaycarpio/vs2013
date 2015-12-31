@@ -37,7 +37,7 @@
                                         ErrorMessage="Remarks is required"></asp:RequiredFieldValidator>
                                 </div>
 
-                                <div class="form-group">
+                                <%--<div class="form-group">
                                     <label for="txtAddFromDate">From:</label>
                                     <asp:TextBox ID="txtAddFromDate" runat="server" CssClass="form-control" data-provide="datepicker"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5"
@@ -59,7 +59,7 @@
                                         CssClass="label label-danger"
                                         ValidationGroup="vgAdd"
                                         ErrorMessage="To Date is required"></asp:RequiredFieldValidator>
-                                </div>
+                                </div>--%>
 
                                 <div class="form-group">
                                     <label for="txtEffectivityDate">Effectivity Date:</label>
@@ -121,7 +121,7 @@
                                         ErrorMessage="Remarks is required"></asp:RequiredFieldValidator>
                                 </div>
 
-                                <div class="form-group">
+                                <%--<div class="form-group">
                                     <label for="txtEditFromDate">From:</label>
                                     <asp:TextBox ID="txtEditFromDate" runat="server" CssClass="form-control" data-provide="datepicker"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator8"
@@ -143,7 +143,7 @@
                                         CssClass="label label-danger"
                                         ValidationGroup="vgEdit"
                                         ErrorMessage="To Date is required"></asp:RequiredFieldValidator>
-                                </div>
+                                </div>--%>
 
                                 <div class="form-group">
                                     <label for="txtEditEffectivityDate">Effectivity Date:</label>

@@ -27,10 +27,19 @@ namespace AMS.EvaluationSelf
                     Response.Redirect("~/EvaluationSelf/Score_Sheet");
                 }
 
-
+               
                 //get selected user
                 hfUserId.Value = Session["UserId"].ToString();
                 Guid UserId = Guid.Parse(hfUserId.Value);
+                Guid loggedUserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
+
+                //chk if logged user already evaluated selected user
+                if (eval.IfUserIsAlreadyEvaluated(UserId, loggedUserId, DateTime.Now.ToShortDateString()).Rows.Count > 0)
+                {
+                    //redirect to edit
+                    Session["SelfEvaluationId"] = eval.Get_Self_Evaluation(UserId, loggedUserId, DateTime.Now.ToShortDateString());
+                    Response.Redirect("~/EvaluationSelf/vEvaluation_Self");
+                }
 
                 lblEmpName.Text = emp.GetFullName(UserId);
                 lblDepartment.Text = emp.GetDepartment(UserId);
@@ -60,7 +69,8 @@ namespace AMS.EvaluationSelf
                     gvExcellent.Visible = false;
                 }
 
-                if(User.IsInRole("Manager") || User.IsInRole("Staff"))
+                if(User.IsInRole("Manager") || 
+                    User.IsInRole("Staff"))
                 {
                     //gvCus
                     var list = new List<int> { 63, 64, 65, 66, 67 };
@@ -102,13 +112,13 @@ namespace AMS.EvaluationSelf
             {
                 //get selected user
                 Guid UserId = Guid.Parse(hfUserId.Value);
+                Guid loggedUserId = (Guid)Membership.GetUser().ProviderUserKey;
                 string agency = emp.GetAgencyName(UserId);
 
-                int evaluationId = eval.insertEvaluation_Self(
-                    UserId, 
-                    "Self Evaluation", 
-                    agency, 
-                    "");
+                int evaluationId = eval.InsertEvaluation_Self(
+                    UserId,
+                    loggedUserId,
+                    DateTime.Now.ToShortDateString());
 
                 //get grid values
                 foreach(GridViewRow row in gvSocialSkills.Rows)
@@ -170,7 +180,9 @@ namespace AMS.EvaluationSelf
                         eval.addSelf_Evaluation_Rating(evaluationId, Id, rating, remarks);
                     }
                 }
-                Session["EvaluationId"] = evaluationId;
+
+
+                Session["SelfEvaluationId"] = evaluationId;
                 Response.Redirect("~/EvaluationSelf/vEvaluation_Self");
             }        
         }

@@ -47,10 +47,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=15.1.3.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
-      <HintPath>..\packages\AjaxControlToolkit.15.1.3.0\lib\net40\AjaxControlToolkit.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
@@ -156,6 +152,8 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="bin\AMS.dll" />
+    <Content Include="bin\AMS.pdb" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -169,6 +167,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
     <Content Include="Dashboard\Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Employee\ARBa_Score_Sheet.aspx" />
@@ -194,25 +195,14 @@
     <Content Include="Employee\vPerformanceEvaluation.aspx" />
     <Content Include="Employee\vPrime_Performance_Evaluation.aspx" />
     <Content Include="EvaluationSelf\Evaluation_Self.aspx" />
+    <Content Include="EvaluationSelf\ScoreSheet.aspx" />
     <Content Include="EvaluationSelf\Score_Sheet.aspx" />
+    <Content Include="EvaluationSelf\Summarize_Self_Evaluation.aspx" />
     <Content Include="EvaluationSelf\vEvaluation_Self.aspx" />
     <Content Include="Evaluation\ApprovedEvaluations.aspx" />
     <Content Include="Evaluation\PendingApprovals.aspx" />
     <Content Include="Evaluation\PendingEvaluation.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\PrimePowerLogo.png" />
@@ -400,8 +390,14 @@
       <DependentUpon>TSI_Performance_Evaluation.xsd</DependentUpon>
     </Content>
     <Content Include="EvaluationNested.master" />
-    <None Include="Properties\PublishProfiles\ams-dev00 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\ams-dev00 - Web Deploy.pubxml" />
+    <Content Include="HR\Web.config" />
+    <Content Include="MasterConfig\Web.config" />
+    <None Include="HR\Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="HR\Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <None Include="Properties\PublishProfiles\eHRIS.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="ReleaseResources.aspx" />
@@ -819,12 +815,26 @@
     <Compile Include="EvaluationSelf\Evaluation_Self.aspx.designer.cs">
       <DependentUpon>Evaluation_Self.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EvaluationSelf\ScoreSheet.aspx.cs">
+      <DependentUpon>ScoreSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EvaluationSelf\ScoreSheet.aspx.designer.cs">
+      <DependentUpon>ScoreSheet.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EvaluationSelf\Score_Sheet.aspx.cs">
       <DependentUpon>Score_Sheet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EvaluationSelf\Score_Sheet.aspx.designer.cs">
       <DependentUpon>Score_Sheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluationSelf\Summarize_Self_Evaluation.aspx.cs">
+      <DependentUpon>Summarize_Self_Evaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EvaluationSelf\Summarize_Self_Evaluation.aspx.designer.cs">
+      <DependentUpon>Summarize_Self_Evaluation.aspx</DependentUpon>
     </Compile>
     <Compile Include="EvaluationSelf\vEvaluation_Self.aspx.cs">
       <DependentUpon>vEvaluation_Self.aspx</DependentUpon>
@@ -1016,8 +1026,8 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Employee\Report2.rdlc" />
-    <EmbeddedResource Include="Employee\Report3.rdlc" />
+    <Content Include="Employee\Report2.rdlc" />
+    <Content Include="Employee\Report3.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

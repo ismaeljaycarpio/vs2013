@@ -97,7 +97,8 @@
                             ShowHeaderWhenEmpty="true"
                             AllowSorting="true"
                             OnPageIndexChanging="gvPendingApprovals_PageIndexChanging"
-                            DataKeyNames="Id">
+                            OnSelectedIndexChanging="gvPendingApprovals_SelectedIndexChanging"
+                            DataKeyNames="Id,UserId">
                             <Columns>
                                 <asp:TemplateField>
                                     <HeaderTemplate>

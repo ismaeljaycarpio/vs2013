@@ -26,15 +26,16 @@ namespace AMS.Employee
 
                 hfUserId.Value = Session["UserId"].ToString();
                 Guid UserId = Guid.Parse(hfUserId.Value);
+
                 BindGridView();
+                BindSelfEvaluation();
 
                 hfAgency.Value = emp.GetAgencyName(UserId);
                 lblLastEvaluationDate.Text = emp.GetLastEvaluationDate(UserId);
                 lblNextEvaluationDate.Text = emp.GetNextEvaluationDate(UserId);
 
                 //check ids
-                MembershipUser loggedInUser = Membership.GetUser();
-                Guid loggedUserId = Guid.Parse(loggedInUser.ProviderUserKey.ToString());
+                Guid loggedUserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
 
                 //disable controls
                 btnPerfEval.Enabled = false;
@@ -84,8 +85,12 @@ namespace AMS.Employee
                     //self eval
                 else
                 {
-                    //btnPerfEval.Visible = true;
-                    //btnPerfEval.Enabled = true;
+                    btnPerfEval.Visible = false;
+                    btnPerfEval.Enabled = false;
+
+                    //dont show self eval list
+                    gvSelfEvaluation.Visible = false;
+                    pnlInfo.Visible = true;
                 }
             }
         }
@@ -95,6 +100,13 @@ namespace AMS.Employee
             Guid UserId = Guid.Parse(hfUserId.Value);
             gvEvaluation.DataSource = eval.DisplayMyEvaluation(UserId);
             gvEvaluation.DataBind();
+        }
+
+        protected void BindSelfEvaluation()
+        {
+            Guid UserId = Guid.Parse(hfUserId.Value);
+            gvSelfEvaluation.DataSource = eval.DisplayMySelf_Evaluation(UserId);
+            gvSelfEvaluation.DataBind();
         }
 
         protected void gvEvaluation_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -129,6 +141,37 @@ namespace AMS.Employee
         {
             Session["EvaluationId"] = gvEvaluation.SelectedValue.ToString();
             Response.Redirect("~/Employee/vPerformanceEvaluation");
+        }
+
+        protected void gvSelfEvaluation_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvSelfEvaluation.PageIndex = e.NewPageIndex;
+            BindSelfEvaluation();
+        }
+
+        protected void gvSelfEvaluation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["SelfEvaluationId"] = gvSelfEvaluation.SelectedValue.ToString();
+            Response.Redirect("~/EvaluationSelf/vEvaluation_Self");
+        }
+
+        protected void gvSelfEvaluation_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                int _TotalRecs = ((DataTable)(gvSelfEvaluation.DataSource)).Rows.Count;
+                int _CurrentRecStart = gvSelfEvaluation.PageIndex * gvSelfEvaluation.PageSize + 1;
+                int _CurrentRecEnd = gvSelfEvaluation.PageIndex * gvSelfEvaluation.PageSize + gvSelfEvaluation.Rows.Count;
+
+                e.Row.Cells[0].ColumnSpan = 2;
+                e.Row.Cells[0].Text = string.Format("Displaying <b style=color:red>{0}</b> to <b style=color:red>{1}</b> of {2} records found", _CurrentRecStart, _CurrentRecEnd, _TotalRecs);
+            }
+        }
+
+        protected void lnkSummarize_Click(object sender, EventArgs e)
+        {
+            Session["UserId"] = hfUserId.Value;
+            Response.Redirect("~/EvaluationSelf/Summarize_Self_Evaluation.aspx");
         }
     }
 }

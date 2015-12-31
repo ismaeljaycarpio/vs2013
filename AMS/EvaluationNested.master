@@ -35,15 +35,7 @@
                             <li id="pendingApproval">
                                 <a runat="server" href="~/Evaluation/PendingApprovals">Pending Approvals</a>
                             </li>
-                            <li id="approvedEvaluations"><a runat="server" href="~/Evaluation/ApprovedEvaluations">Approved Evaluations</a></li>
-<%--                            <li id="jobDetails"><a runat="server" href="Employee/JobDetails">Job Details</a></li>
-                            <li id="jobexp"><a runat="server" href="Employee/JobExperience">Job Experiences</a></li>
-                            <li id="edu"><a runat="server" href="~/Employee/Education">Education</a></li>
-                            <li id="training"><a runat="server" href="~/Employee/Trainings">Trainings</a></li>
-                            <li id="award"><a runat="server" href="~/Employee/Awards">Awards</a></li>
-                            <li id="violation"><a runat="server" href="~/Employee/Violations">Violations</a></li>
-                            <li id="emer"><a runat="server" href="~/Employee/Contacts">Contacts</a></li>
-                            <li id="pers"><a runat="server" href="~/Employee/PersonalCards">Membership Cards</a></li>--%>
+                            <%--<li id="approvedEvaluations"><a runat="server" href="~/Evaluation/ApprovedEvaluations">Approved Evaluations</a></li>--%>
                         </ul>
                     </div>
                     <!--/.nav-collapse -->

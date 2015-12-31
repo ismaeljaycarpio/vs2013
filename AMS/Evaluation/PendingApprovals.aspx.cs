@@ -22,6 +22,7 @@ namespace AMS.Evaluation
             if(Page.IsPostBack)
                 GetData();  
                 BindData();
+
             if(!Page.IsPostBack)
             {
                 MembershipUser mu = Membership.GetUser();
@@ -44,7 +45,6 @@ namespace AMS.Evaluation
 
             if(User.IsInRole("General Manager"))
             {
-                //display approval for managers only
                 dt = eval.GetPendingApprovalGM();
             }
             else if(User.IsInRole("HR"))
@@ -54,6 +54,10 @@ namespace AMS.Evaluation
             else if(User.IsInRole("Manager"))
             {
                 dt = eval.GetPendingApprovalManager(deptId);
+            }
+            else if(User.IsInRole("Supervisor"))
+            {
+                dt = eval.GetPendingApprovalSupervisor(deptId);
             }
             else
             {
@@ -94,7 +98,13 @@ namespace AMS.Evaluation
                         eval.ApprovePendingApprovalHR(gvPendingApprovals.DataKeys[i].Value.ToString(), loggedUserId);
                         arr.Remove(gvPendingApprovals.DataKeys[i].Value);
                     }
-                    else if(User.IsInRole("Manager") || User.IsInRole("General Manager"))
+                    else if(User.IsInRole("Manager") || 
+                        User.IsInRole("General Manager"))
+                    {
+                        eval.ApprovePendingApprovalManager(gvPendingApprovals.DataKeys[i].Value.ToString(), loggedUserId);
+                        arr.Remove(gvPendingApprovals.DataKeys[i].Value);
+                    }
+                    else if(User.IsInRole("Supervisor"))
                     {
                         eval.ApprovePendingApprovalManager(gvPendingApprovals.DataKeys[i].Value.ToString(), loggedUserId);
                         arr.Remove(gvPendingApprovals.DataKeys[i].Value);
@@ -190,6 +200,14 @@ namespace AMS.Evaluation
                 }
             }
             ViewState["SelectedRecords"] = arr;
+        }
+
+        protected void gvPendingApprovals_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            gvPendingApprovals.SelectedIndex = Convert.ToInt32(e.NewSelectedIndex);
+            Session["EvaluationId"] = Convert.ToInt32(gvPendingApprovals.SelectedDataKey.Values["Id"]);
+            Session["UserId"] = gvPendingApprovals.SelectedDataKey.Values["UserId"];
+            Response.Redirect("~/Employee/vPerformanceEvaluation");
         }
     }
 }

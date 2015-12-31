@@ -21,7 +21,6 @@ namespace AMS.Employee
                     Response.Redirect("~/Employee/Employee");
                 }
                     
-
                 hfUserId.Value = Session["UserId"].ToString();
                 BindData();
 

@@ -166,5 +166,18 @@ namespace AMS.Dashboard
             gvEmployee.DataSource = BindGridView();
             gvEmployee.DataBind();
         }
+
+        protected void gvEmployee_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                int _TotalRecs = BindGridView().Rows.Count;
+                int _CurrentRecStart = gvEmployee.PageIndex * gvEmployee.PageSize + 1;
+                int _CurrentRecEnd = gvEmployee.PageIndex * gvEmployee.PageSize + gvEmployee.Rows.Count;
+
+                e.Row.Cells[0].ColumnSpan = 2;
+                e.Row.Cells[0].Text = string.Format("Displaying <b style=color:red>{0}</b> to <b style=color:red>{1}</b> of {2} records found", _CurrentRecStart, _CurrentRecEnd, _TotalRecs);
+            }
+        }
     }
 }

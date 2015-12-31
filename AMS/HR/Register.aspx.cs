@@ -40,6 +40,11 @@ namespace AMS.HR
                 ddlDepartment.DataTextField = "Department";
                 ddlDepartment.DataBind();
 
+                ddlRole.DataSource = filler.fillRoles();
+                ddlRole.DataValueField = "RoleId";
+                ddlRole.DataTextField = "RoleName";
+                ddlRole.DataBind();
+
                 //load dept based on pos
                 ddlDepartment.SelectedValue = position.GetDepartmentIdBypPosition(ddlPosition.SelectedValue.ToString());
             }
@@ -50,17 +55,12 @@ namespace AMS.HR
             lblError.Text = "";
             try
             {
-                //get generated username
-                string userName = emp.GetGeneratedUserName();
-
                 //membership class 
                 //default pass->'pass123'
                 MembershipUser newUser = Membership.CreateUser(txtEmpId.Text, "pass123");
 
-                //add to roles
-                //get role name from ddl position
-                string roleName = emp.GetRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
-                Roles.AddUserToRole(newUser.UserName, roleName);
+                //add to role
+                Roles.AddUserToRole(newUser.UserName, ddlRole.SelectedItem.Text);
 
                 //notes:
                 //nationality-> default 67
@@ -71,19 +71,21 @@ namespace AMS.HR
                     txtLastName.Text,
                     ddlPosition.SelectedValue.ToString());
 
-                //Response.Redirect("~/Employee/Employee"); 
                 pnlSuccess.Visible = true;
                 ClearControls();
             }
             catch(MembershipCreateUserException mcue)
             {
                 lblError.Text = "ID is already in use, Please Generate ID again.";
+                lblError.Text += "\n";
+                lblError.Text = "Detailed Error: " + mcue.InnerException.ToString();
                 pnlSuccess.Visible = false;
             }
             catch(Exception exc)
             {
-                Response.Write(exc.ToString());
+                //Response.Write(exc.ToString());
                 pnlSuccess.Visible = false;
+                lblError.Text = exc.Message;
             }               
         }
 

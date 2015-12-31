@@ -44,7 +44,7 @@ namespace AMS.Employee
 
                 //get evaluation details
                 dt = new DataTable();
-                dt = eval.getEvaluated(evaluationId);
+                dt = eval.GetEvaluated(evaluationId);
         
                 //fill approval
                 //approvals

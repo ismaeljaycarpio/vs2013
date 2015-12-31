@@ -49,7 +49,7 @@ namespace AMS.Employee
             DataTable dtEvaluation = new DataTable();
 
             dt = emp.GetProfileById(UserId);
-            dtEvaluation = eval.getEvaluated(evaluationId);
+            dtEvaluation = eval.GetEvaluated(evaluationId);
 
             //params
             ReportParameter[] param = new ReportParameter[32];

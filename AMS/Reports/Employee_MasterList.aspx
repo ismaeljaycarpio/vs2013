@@ -46,11 +46,13 @@
                             GridLines="None"
                             AutoGenerateColumns="false"
                             AllowPaging="true"
+                            ShowFooter="true"
                             AllowSorting="true"
                             ShowHeaderWhenEmpty="true"
                             DataKeyNames="UserId"
                             EmptyDataText="No Record(s) found"
                             OnSorting="gvEmployee_Sorting"
+                            OnRowDataBound="gvEmployee_RowDataBound"
                             OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging"
                             OnPageIndexChanging="gvEmployee_PageIndexChanging"
                             PageSize="7">
@@ -73,7 +75,7 @@
 
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <h5><span class="glyphicon glyphicon-alert"></span>Expiring Contracts <b><%= DateTime.Now.ToShortDateString() %> - <%= DateTime.Now.AddDays(14).ToShortDateString() %></b></h5>
+                    <h5><span class="glyphicon glyphicon-alert"></span>&nbsp;Expiring Contracts <b><%= DateTime.Now.ToShortDateString() %> - <%= DateTime.Now.AddDays(14).ToShortDateString() %></b></h5>
                 </div>
                 <div class="panel-body">
                     <asp:Button runat="server" Text="Word" ID="btnExpiringContract_Word" OnClick="btnExpiraingContract_Word_Click" />

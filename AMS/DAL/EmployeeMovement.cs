@@ -65,12 +65,12 @@ namespace AMS.DAL
             string emovement_id,
             Guid userId,
             string remarks,
-            string fromDate,
-            string toDate,
+            //string fromDate,
+            //string toDate,
             string effectivityDate)
         {
-            strSql = "INSERT INTO EMOVEMENT_EMPLOYEE(EMovementId, UserId, Remarks, FromDate, ToDate, EffectivityDate) " +
-                "VALUES(@EMovementId, @UserId, @Remarks, @FromDate, @ToDate, @EffectivityDate)";
+            strSql = "INSERT INTO EMOVEMENT_EMPLOYEE(EMovementId, UserId, Remarks, EffectivityDate) " +
+                "VALUES(@EMovementId, @UserId, @Remarks, @EffectivityDate)";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -81,8 +81,8 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@EMovementId", emovement_id);
                 comm.Parameters.AddWithValue("@UserId", userId);
                 comm.Parameters.AddWithValue("@Remarks", remarks);
-                comm.Parameters.AddWithValue("@FromDate", fromDate);
-                comm.Parameters.AddWithValue("@ToDate", toDate);
+                //comm.Parameters.AddWithValue("@FromDate", fromDate);
+                //comm.Parameters.AddWithValue("@ToDate", toDate);
                 comm.Parameters.AddWithValue("@EffectivityDate", effectivityDate);
                 comm.ExecuteNonQuery();
                 conn.Close();
@@ -95,8 +95,8 @@ namespace AMS.DAL
             string emovement_id,
             Guid userId,
             string remarks,
-            string fromDate,
-            string toDate,
+            //string fromDate,
+            //string toDate,
             string effectivityDate,
             string rowId)
         {
@@ -104,8 +104,8 @@ namespace AMS.DAL
                 "EMovementId = @EMovementId, " +
                 "UserId = @UserId, " +
                 "Remarks = @Remarks, " +
-                "FromDate = @FromDate, " +
-                "ToDate = @ToDate, " +
+                //"FromDate = @FromDate, " +
+                //"ToDate = @ToDate, " +
                 "EffectivityDate = @EffectivityDate " +
                 "WHERE Id = @RowId";
 
@@ -118,8 +118,8 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@EMovementId", emovement_id);
                 comm.Parameters.AddWithValue("@UserId", userId);
                 comm.Parameters.AddWithValue("@Remarks", remarks);
-                comm.Parameters.AddWithValue("@FromDate", fromDate);
-                comm.Parameters.AddWithValue("@ToDate", toDate);
+                //comm.Parameters.AddWithValue("@FromDate", fromDate);
+                //comm.Parameters.AddWithValue("@ToDate", toDate);
                 comm.Parameters.AddWithValue("@EffectivityDate", effectivityDate);
                 comm.Parameters.AddWithValue("@RowId", rowId);
                 comm.ExecuteNonQuery();
