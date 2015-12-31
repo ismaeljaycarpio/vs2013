@@ -16,7 +16,7 @@ namespace AMS.DAL
         SqlCommand comm;
         SqlDataAdapter adp;
         DataTable dt;
-        string strSql = "";
+        string strSql = String.Empty;
 
         public DataTable DisplayUserAccounts(string searchKeyWord)
         {
