@@ -23,7 +23,7 @@
     <div class="row">
 
         <div class="col-lg-4">
-            <h4><a href="~/Reports/BirthDay_Celeb.aspx" runat="server"><span class="glyphicon glyphicon-cutlery"></span><b><%= DateTime.Now.ToString("MMMMM") %></b> Birthday Celebrants</a></h4>
+            <h4><a href="~/Reports/BirthDay_Celeb.aspx" runat="server"><b><%= DateTime.Now.ToString("MMMMM") %></b> Birthday Celebrants</a></h4>
             <p>
                 Number of Employees with Birthday this month:
                 <asp:LinkButton ID="lnkBdayCount" runat="server" OnClick="lnkBdayCount_Click" CssClass="label label-info"></asp:LinkButton>

@@ -398,7 +398,6 @@
     <None Include="HR\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Properties\PublishProfiles\eHRIS.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="ReleaseResources.aspx" />
     <Content Include="release_resources.aspx" />
