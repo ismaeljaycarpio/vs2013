@@ -104,10 +104,10 @@
                                     <ul class="nav navbar-nav">
                                         <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee">Employee</a></li>
-                                        <li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>
-                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Evaluation Approval<span class="caret"></span></a>
+                                        <%--<li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>--%>
+                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Approvals</a></li>
+                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Evaluation Approvals</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
@@ -169,9 +169,9 @@
                                         <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee">Employee</a></li>
                                         <%--<li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>--%>
-                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Evaluation Approval<span class="caret"></span></a>
+                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Approvals</a></li>
+                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Evaluation Approvals</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
@@ -224,9 +224,9 @@
                                         <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee">Employee</a></li>
                                         <%--<li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Self Evaluation</a></li>--%>
-                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Evaluation Approval<span class="caret"></span></a>
+                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Approvals</a></li>
+                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Evaluation Approvals</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -263,10 +263,10 @@
                                     <ul class="nav navbar-nav">
                                         <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee">Employee</a></li>
-                                        <li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>
-                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Evaluation Approval<span class="caret"></span></a>
+                                        <%--<li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>--%>
+                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Approvals</a></li>
+                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending EvaluationApprovals</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -303,10 +303,10 @@
                                     <ul class="nav navbar-nav">
                                         <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee">Employee</a></li>
-                                        <li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>
-                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Evaluation Approval<span class="caret"></span></a>
+                                        <%--<li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>--%>
+                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Approvals</a></li>
+                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Evaluation Approvals</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -342,7 +342,7 @@
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav">
                                         <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
-                                        <li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>
+                                        <%--<li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>--%>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="dropdown">
