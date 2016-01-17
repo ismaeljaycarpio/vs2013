@@ -77,8 +77,6 @@ namespace AMS.HR
             catch(MembershipCreateUserException mcue)
             {
                 lblError.Text = "ID is already in use, Please Generate ID again.";
-                lblError.Text += "\n";
-                lblError.Text = "Detailed Error: " + mcue.InnerException.ToString();
                 pnlSuccess.Visible = false;
             }
             catch(Exception exc)

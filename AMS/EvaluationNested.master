@@ -33,7 +33,7 @@
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav" id="nav">
                             <li id="pendingApproval">
-                                <a runat="server" href="~/Evaluation/PendingApprovals">Pending Approvals</a>
+                                <a runat="server" href="~/Evaluation/PendingApprovals">Pending Evaluation Approvals</a>
                             </li>
                             <%--<li id="approvedEvaluations"><a runat="server" href="~/Evaluation/ApprovedEvaluations">Approved Evaluations</a></li>--%>
                         </ul>
