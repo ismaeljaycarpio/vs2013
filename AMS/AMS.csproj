@@ -205,6 +205,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="HR\TimeInTimeOut.aspx" />
     <Content Include="Images\PrimePowerLogo.png" />
     <Content Include="Login.aspx" />
     <Content Include="HR\Register.aspx" />
@@ -865,6 +866,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HR\TimeInTimeOut.aspx.cs">
+      <DependentUpon>TimeInTimeOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\TimeInTimeOut.aspx.designer.cs">
+      <DependentUpon>TimeInTimeOut.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
