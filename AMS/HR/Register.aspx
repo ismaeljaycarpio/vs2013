@@ -1,21 +1,17 @@
-﻿<%@ Page Title="Register Employee" 
-    Language="C#" 
-    MasterPageFile="~/Site.Master" 
-    AutoEventWireup="true" 
-    CodeBehind="Register.aspx.cs" 
+﻿<%@ Page Title="Register Employee"
+    Language="C#"
+    MasterPageFile="~/HRNested.master"
+    AutoEventWireup="true"
+    CodeBehind="Register.aspx.cs"
     Inherits="AMS.HR.Register" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="row">
-        <%--<asp:Button ID="btnMassReg" runat="server" OnClick="btnMassReg_Click" Text="Mass" CausesValidation="false" />--%>
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3>Register</h3>
+                    <h4><strong>Register Employee</strong></h4>
                 </div>
                 <div class="panel-body">
                     <asp:Panel ID="pnlSuccess" runat="server" CssClass="alert alert-success" Visible="false">
@@ -148,7 +144,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2"></div>
     </div>
 
 </asp:Content>

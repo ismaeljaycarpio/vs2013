@@ -48,8 +48,9 @@
       <siteMapNode url="~/EvaluationSelf/Summarize_Self_Evaluation.aspx" title="Summarize Self Evaluation"></siteMapNode>
     </siteMapNode>
     
-    <siteMapNode title="HR Actions">
-      <siteMapNode url="~/HR/Register" title="Register"></siteMapNode>
+    <siteMapNode title="HR">
+      <siteMapNode url="~/HR/Register" title="Register Employee"></siteMapNode>
+      <siteMapNode url="~/HR/TimeInTimeOut.aspx" title="Time In / Time Out"></siteMapNode>
     </siteMapNode>
 
     <siteMapNode title="Master Config">

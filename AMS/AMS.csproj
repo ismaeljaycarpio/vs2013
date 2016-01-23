@@ -393,6 +393,7 @@
     <Content Include="EvaluationNested.master" />
     <Content Include="HR\Web.config" />
     <Content Include="MasterConfig\Web.config" />
+    <Content Include="HRNested.master" />
     <None Include="HR\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -617,6 +618,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DAL\Account.cs" />
     <Compile Include="DAL\Agency.cs" />
+    <Compile Include="DAL\Attendance.cs" />
     <Compile Include="DAL\Award.cs" />
     <Compile Include="DAL\Contact.cs" />
     <Compile Include="DAL\Dashboard.cs" />
@@ -866,6 +868,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HRNested.master.cs">
+      <DependentUpon>HRNested.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HRNested.master.designer.cs">
+      <DependentUpon>HRNested.master</DependentUpon>
     </Compile>
     <Compile Include="HR\TimeInTimeOut.aspx.cs">
       <DependentUpon>TimeInTimeOut.aspx</DependentUpon>
