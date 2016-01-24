@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -10,6 +11,9 @@ namespace AMS.HR
 {
     public partial class TimeInTimeOut : System.Web.UI.Page
     {
+        DAL.Attendance attendance = new DAL.Attendance();
+        DataTable dt;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!Page.IsPostBack)
@@ -32,6 +36,8 @@ namespace AMS.HR
                     Guid userId = Guid.Parse(Membership.GetUser(txtEmpId.Text).ProviderUserKey.ToString());
                     if(userId != null)
                     {
+
+
                         lblError.ForeColor = System.Drawing.Color.DarkBlue;
                         lblError.Text = "User successfull Time-In at " + DateTime.Now;
                     }
