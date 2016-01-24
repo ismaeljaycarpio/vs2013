@@ -22,7 +22,8 @@
       <siteMapNode url="~/Employee/JobDetails" title="Job Details"></siteMapNode>
       <siteMapNode url="~/Employee/EmployeeMovement" title="Employee Movement"></siteMapNode>
       <siteMapNode url="~/Employee/ErrorPage" title="Error Page"></siteMapNode>
-
+      <siteMapNode url="~/Employee/TimeInTimeOut" title="Time In Time Out"></siteMapNode>
+      
       <siteMapNode url="~/Employee/Evaluation" title="Evaluation">
         <siteMapNode url="~/Employee/PerformanceEvaluation" title="TOPLIS Performance Evaluation" />
           <siteMapNode url="~/Employee/vPerformanceEvaluation" title="Update TOPLIS Performance Evaluation" >

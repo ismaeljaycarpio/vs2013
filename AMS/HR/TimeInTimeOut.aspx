@@ -7,6 +7,31 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+
+    <!-- Bootstrap Modal Dialog -->
+    <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <asp:UpdatePanel ID="upModal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">
+                                <asp:Label ID="lblModalTitle" runat="server" Text=""></asp:Label></h4>
+                        </div>
+                        <div class="modal-body">
+                            <asp:Label ID="lblModalBody" runat="server" Text=""></asp:Label>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+    </div>
+
+
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -53,12 +78,12 @@
 
                         <div class="form-group">
                             <label for="txtEmpId" class="col-sm-2 control-label"></label>
-                            <div class="col-sm-6">                           
-                                <asp:TextBox ID="txtRemarks" 
+                            <div class="col-sm-6">
+                                <asp:TextBox ID="txtRemarks"
                                     TextMode="MultiLine"
-                                    Height="100" 
-                                    runat="server" 
-                                    CssClass="form-control" 
+                                    Height="80"
+                                    runat="server"
+                                    CssClass="form-control"
                                     placeholder="Enter reason here if you're late...leave blank if not"></asp:TextBox>
                             </div>
                         </div>
@@ -75,7 +100,7 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="form-group">
                             <label for="lblError" class="col-sm-2 control-label">&nbsp;</label>
                             <div class="col-sm-10">

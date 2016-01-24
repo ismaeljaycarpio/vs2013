@@ -36,10 +36,11 @@ namespace AMS.HR
                     Guid userId = Guid.Parse(Membership.GetUser(txtEmpId.Text).ProviderUserKey.ToString());
                     if(userId != null)
                     {
-
-
-                        lblError.ForeColor = System.Drawing.Color.DarkBlue;
-                        lblError.Text = "User successfull Time-In at " + DateTime.Now;
+                        attendance.TimeIn(userId, DateTime.Now, txtRemarks.Text);
+                        lblModalTitle.Text = "Successfull Time-In";
+                        lblModalBody.Text = "User " + txtEmpId.Text + " successfully time-in at : " + DateTime.Now;
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+                        upModal.Update();
                     }
                     else
                     {
@@ -51,7 +52,30 @@ namespace AMS.HR
 
         protected void TimeOut_Click(object sender, EventArgs e)
         {
-
+            Page.Validate();
+            if (Page.IsValid)
+            {
+                if (!Membership.ValidateUser(txtEmpId.Text, txtPassword.Text))
+                {
+                    lblError.Text = "Invalid Username/Password combination. Try again!";
+                }
+                else
+                {
+                    Guid userId = Guid.Parse(Membership.GetUser(txtEmpId.Text).ProviderUserKey.ToString());
+                    if (userId != null)
+                    {
+                        attendance.TimeOut(userId, DateTime.Now, txtRemarks.Text);
+                        lblModalTitle.Text = "Successfull Time-Out";
+                        lblModalBody.Text = "User " + txtEmpId.Text + " successfully time-out at : " + DateTime.Now;
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+                        upModal.Update();
+                    }
+                    else
+                    {
+                        lblError.Text = "ERROR: Problem getting information for the user " + txtEmpId.Text.Trim();
+                    }
+                }
+            }
         }
 
         protected void clearButtons()

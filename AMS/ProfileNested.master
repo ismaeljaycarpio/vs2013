@@ -49,6 +49,8 @@
                             <li id="pers"><a runat="server" href="~/Employee/PersonalCards">Membership Cards</a></li>
 
                             <li id="myeval"><a runat="server" href="~/Employee/Evaluation">Evaluations</a></li>
+
+                            <li id="timeinandout"><a runat="server" href="~/Employee/TimeInTimeOut">Time In / Time Out</a></li>
                         </ul>
                     </div>
                     <!--/.nav-collapse -->

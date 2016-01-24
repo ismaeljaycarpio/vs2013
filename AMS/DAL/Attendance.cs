@@ -21,12 +21,10 @@ namespace AMS.DAL
         public void TimeIn(
             Guid UserId,
             DateTime timeIn,
-            DateTime timeOut,
-            string remarks,
-            string totalHours)
+            string remarks)
         {
-            strSql = "INSERT INTO TimeInTimeOut(UserId,TimeIn,TimeOut,Remarks,TotalHours) " +
-                "VALUES(@UserId, @TimeIn, @TimeOut, @Remarks, @TotalHours)";
+            strSql = "INSERT INTO TimeInTimeOut(UserId,TimeIn,Remarks) " +
+                "VALUES(@UserId, @TimeIn, @Remarks)";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -36,9 +34,7 @@ namespace AMS.DAL
                 conn.Open();
                 comm.Parameters.AddWithValue("@UserId", UserId);
                 comm.Parameters.AddWithValue("@TimeIn", timeIn);
-                comm.Parameters.AddWithValue("@TimeOut", timeOut);
                 comm.Parameters.AddWithValue("@Remarks", remarks);
-                comm.Parameters.AddWithValue("@TotalHours", totalHours);
 
                 comm.ExecuteNonQuery();
                 conn.Close();
@@ -48,10 +44,12 @@ namespace AMS.DAL
         }
 
         public void TimeOut(
-            int attendaceId,
-            DateTime timeOut)
+            Guid UserId,
+            DateTime timeOut,
+            string remarks)
         {
-            strSql = "UDPATE TimeInTimeOut SET TimeOut = @TimeOut WHERE Id = @Id";
+            strSql = "INSERT INTO TimeInTimeOut(UserId,TimeOut,Remarks) " +
+                "VALUES(@UserId, @TimeOut, @Remarks)";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -59,7 +57,10 @@ namespace AMS.DAL
             using (comm = new SqlCommand(strSql, conn))
             {
                 conn.Open();
+                comm.Parameters.AddWithValue("@UserId", UserId);
                 comm.Parameters.AddWithValue("@TimeOut", timeOut);
+                comm.Parameters.AddWithValue("@Remarks", remarks);
+
                 comm.ExecuteNonQuery();
                 conn.Close();
             }
@@ -90,6 +91,24 @@ namespace AMS.DAL
             }
 
             return strMaxId;
+        }
+
+        public DataTable DisplayAttendance(Guid userId)
+        {
+            strSql = "SELECT * FROM TimeInTimeOut WHERE UserId = @UserId ORDER BY TimeIn";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", userId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
         }
     }
 }
