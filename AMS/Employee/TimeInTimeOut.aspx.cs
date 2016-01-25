@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
+using System.Data;
+using System.IO;
 
 namespace AMS.Employee
 {
@@ -21,7 +23,7 @@ namespace AMS.Employee
                 {
                     gvEmployee.DataSource = BindGridView();
                     gvEmployee.DataBind();
-                    txtSearch.Focus();
+                    //txtSearch.Focus();
                 }
                 else
                 {
@@ -43,12 +45,38 @@ namespace AMS.Employee
 
         protected void gvEmployee_Sorting(object sender, GridViewSortEventArgs e)
         {
+            string sortingDirection = string.Empty;
+            if (direction == SortDirection.Ascending)
+            {
+                direction = SortDirection.Descending;
+                sortingDirection = "Desc";
+            }
+            else
+            {
+                direction = SortDirection.Ascending;
+                sortingDirection = "Asc";
+            }
 
+            DataView sortedView = new DataView(BindGridView());
+            sortedView.Sort = e.SortExpression + " " + sortingDirection;
+            Session["viewTimeIn"] = sortedView;
+            gvEmployee.DataSource = sortedView;
+            gvEmployee.DataBind();
         }
 
         protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            this.gvEmployee.PageIndex = e.NewPageIndex;
+            if (Session["viewTimeIn"] != null)
+            {
+                gvEmployee.DataSource = Session["viewTimeIn"];
+                gvEmployee.DataBind();
+            }
+            else
+            {
+                gvEmployee.DataSource = BindGridView();
+                gvEmployee.DataBind();
+            }
         }
 
         protected void gvEmployee_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -59,6 +87,23 @@ namespace AMS.Employee
         protected void gvEmployee_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
 
+        }
+
+        public SortDirection direction
+        {
+            get
+            {
+                if (ViewState["directionState"] == null)
+                {
+                    ViewState["directionState"] = SortDirection.Ascending;
+                }
+                return (SortDirection)ViewState["directionState"];
+            }
+
+            set
+            {
+                ViewState["directionState"] = value;
+            }
         }
     }
 }

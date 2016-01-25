@@ -13,7 +13,7 @@
                     <h5>List of Time In / Time Out</h5>
                 </div>
                 <div class="panel-body">
-                    <div class="form-horizontal">
+                    <%--<div class="form-horizontal">
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <div class="input-group">
@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>--%>
 
                     <%--<asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" />
                     <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" />--%>
@@ -53,8 +53,8 @@
                             OnRowDataBound="gvEmployee_RowDataBound"
                             OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging">
                             <Columns>
-                                <asp:BoundField DataField="TimeIn" HeaderText="Time-In" SortExpression="Time-In" />
-                                <asp:BoundField DataField="TimeOut" HeaderText="Time-Out" SortExpression="Time-Out" />
+                                <asp:BoundField DataField="TimeIn" HeaderText="Time-In" SortExpression="TimeIn" />
+                                <asp:BoundField DataField="TimeOut" HeaderText="Time-Out" SortExpression="TimeOut" />
                                 <asp:BoundField DataField="Remarks" HeaderText="Remarks" SortExpression="Remarks" />
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />

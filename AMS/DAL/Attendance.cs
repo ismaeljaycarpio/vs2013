@@ -95,7 +95,7 @@ namespace AMS.DAL
 
         public DataTable DisplayAttendance(Guid userId)
         {
-            strSql = "SELECT * FROM TimeInTimeOut WHERE UserId = @UserId ORDER BY TimeIn";
+            strSql = "SELECT * FROM TimeInTimeOut WHERE UserId = @UserId ORDER BY Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
