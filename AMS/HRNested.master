@@ -1,12 +1,9 @@
-﻿<%@ Master Language="C#"
-    MasterPageFile="~/Site.Master"
-    AutoEventWireup="true"
-    CodeBehind="ProfileNested.master.cs"
-    Inherits="AMS.ProfileNested" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="HRNested.master.cs" Inherits="AMS.HRNested" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
     <script type="text/javascript">
         $(document).ready(function () {
             var url = window.location.pathname;
@@ -36,21 +33,10 @@
                     </div>
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav" id="nav">
-                            <li id="viewemp"><a runat="server" href="~/Employee/ViewEmployee">Profile Overview</a></li>
-                            <li id="profiledetails"><a runat="server" href="~/Employee/Profile">Personal Details</a></li>
-                            <li id="jobDetails"><a runat="server" href="~/Employee/JobDetails">Job Details</a></li>
-                            <li id="emovement"><a runat="server" href="~/Employee/EmployeeMovement">Employee Movement</a></li>
-                            <li id="jobexp"><a runat="server" href="~/Employee/JobExperience">Job Experiences</a></li>
-                            <li id="edu"><a runat="server" href="~/Employee/Education">Education</a></li>
-                            <li id="training"><a runat="server" href="~/Employee/Trainings">Trainings</a></li>
-                            <li id="award"><a runat="server" href="~/Employee/Awards">Awards</a></li>
-                            <li id="violation"><a runat="server" href="~/Employee/Violations">Violations</a></li>
-                            <li id="emer"><a runat="server" href="~/Employee/Contacts">Contacts</a></li>
-                            <li id="pers"><a runat="server" href="~/Employee/PersonalCards">Membership Cards</a></li>
-
-                            <li id="myeval"><a runat="server" href="~/Employee/Evaluation">Evaluations</a></li>
-
-                            <li id="timeinandout"><a runat="server" href="~/Employee/TimeInTimeOut">Time In / Time Out</a></li>
+                            <li id="registerEmployee"><a runat="server" href="~/HR/Register">Register Employee</a></li>
+                            <li id="timeintimeout">
+                                <a runat="server" href="~/HR/TimeInTimeOut.aspx">Time In / Time Out</a>
+                            </li>
                         </ul>
                     </div>
                     <!--/.nav-collapse -->

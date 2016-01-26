@@ -189,6 +189,7 @@
     <Content Include="Employee\pPrime_Performance_Evaluation.aspx" />
     <Content Include="Employee\Prime_Performance_Evaluation.aspx" />
     <Content Include="Employee\Profile.aspx" />
+    <Content Include="Employee\TimeInTimeOut.aspx" />
     <Content Include="Employee\Trainings.aspx" />
     <Content Include="Employee\ViewEmployee.aspx" />
     <Content Include="Employee\Violations.aspx" />
@@ -393,12 +394,14 @@
     <Content Include="EvaluationNested.master" />
     <Content Include="HR\Web.config" />
     <Content Include="MasterConfig\Web.config" />
+    <Content Include="HRNested.master" />
     <None Include="HR\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="HR\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <None Include="Properties\PublishProfiles\eHRIS.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="ReleaseResources.aspx" />
     <Content Include="release_resources.aspx" />
@@ -617,6 +620,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DAL\Account.cs" />
     <Compile Include="DAL\Agency.cs" />
+    <Compile Include="DAL\Attendance.cs" />
     <Compile Include="DAL\Award.cs" />
     <Compile Include="DAL\Contact.cs" />
     <Compile Include="DAL\Dashboard.cs" />
@@ -766,6 +770,13 @@
     <Compile Include="Employee\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Employee\TimeInTimeOut.aspx.cs">
+      <DependentUpon>TimeInTimeOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\TimeInTimeOut.aspx.designer.cs">
+      <DependentUpon>TimeInTimeOut.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Employee\Trainings.aspx.cs">
       <DependentUpon>Trainings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -866,6 +877,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HRNested.master.cs">
+      <DependentUpon>HRNested.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HRNested.master.designer.cs">
+      <DependentUpon>HRNested.master</DependentUpon>
     </Compile>
     <Compile Include="HR\TimeInTimeOut.aspx.cs">
       <DependentUpon>TimeInTimeOut.aspx</DependentUpon>

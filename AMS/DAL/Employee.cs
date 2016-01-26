@@ -623,7 +623,7 @@ namespace AMS.DAL
             adp.Fill(dt);
             conn.Close();
 
-            return dt.Rows[0]["Agency"].ToString();
+            return dt.Rows[0]["Agency"].ToString().Trim();
         }
 
         public void AddJobDetails(
