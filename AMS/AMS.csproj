@@ -215,6 +215,7 @@
     <Content Include="MasterConfig\Department_Master.aspx" />
     <Content Include="MasterConfig\Employee_Account_MasterList.aspx" />
     <Content Include="MasterConfig\RoleManager.aspx" />
+    <Content Include="MasterConfig\TransactionLogs.aspx" />
     <Content Include="myLogs.txt" />
     <Content Include="NotYetImplemented.aspx" />
     <Content Include="packages.config" />
@@ -402,6 +403,7 @@
     <None Include="HR\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="MasterConfigNested.master" />
     <None Include="Properties\PublishProfiles\eHRIS.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="ReleaseResources.aspx" />
@@ -914,6 +916,13 @@
     <Compile Include="HR\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MasterConfigNested.master.cs">
+      <DependentUpon>MasterConfigNested.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterConfigNested.master.designer.cs">
+      <DependentUpon>MasterConfigNested.master</DependentUpon>
+    </Compile>
     <Compile Include="MasterConfig\Agency.aspx.cs">
       <DependentUpon>Agency.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -941,6 +950,13 @@
     </Compile>
     <Compile Include="MasterConfig\RoleManager.aspx.designer.cs">
       <DependentUpon>RoleManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterConfig\TransactionLogs.aspx.cs">
+      <DependentUpon>TransactionLogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterConfig\TransactionLogs.aspx.designer.cs">
+      <DependentUpon>TransactionLogs.aspx</DependentUpon>
     </Compile>
     <Compile Include="NotYetImplemented.aspx.cs">
       <DependentUpon>NotYetImplemented.aspx</DependentUpon>
