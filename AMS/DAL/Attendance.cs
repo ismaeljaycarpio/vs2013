@@ -110,5 +110,34 @@ namespace AMS.DAL
 
             return dt;
         }
+
+        //active only
+        public DataTable DisplayAttendance(string keyWord)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
+                "TimeIn, TimeOut, Remarks " +
+                "FROM EMPLOYEE INNER JOIN TimeInTimeOut " +
+                "ON EMPLOYEE.UserId = TimeInTimeOut.UserId " +
+                "AND " +
+                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%') " +
+                "AND EMPLOYEE.AccountStatusId = 1 " + 
+                "ORDER BY TimeInTimeOut.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@searchKeyWord", keyWord);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
     }
 }

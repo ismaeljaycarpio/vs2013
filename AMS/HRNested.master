@@ -37,6 +37,9 @@
                             <li id="timeintimeout">
                                 <a runat="server" href="~/HR/TimeInTimeOut.aspx">Time In / Time Out</a>
                             </li>
+                            <li id="attendance">
+                                <a runat="server" href="~/HR/Attendance.aspx">Attendace Logs</a>
+                            </li>
                         </ul>
                     </div>
                     <!--/.nav-collapse -->
