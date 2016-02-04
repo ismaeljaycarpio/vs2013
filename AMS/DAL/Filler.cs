@@ -14,6 +14,7 @@ namespace AMS.DAL
         SqlCommand comm;
         SqlDataAdapter adp;
         DataTable dt;
+        public static string CONN_STRING = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
 
         public DataTable getList(string strSql)
         {
@@ -101,6 +102,29 @@ namespace AMS.DAL
             dt = new DataTable();
             dt = getList("SELECT * FROM ACCOUNT_STATUS");
             return dt;
+        }
+
+        public void Databasebackup()
+        {
+            //chk dir
+            string dirPath = @"C:\\inetpub\\Databasebackup_" + DateTime.Now.Year.ToString() + 
+                "-" + DateTime.Now.Month.ToString().PadLeft(2,'0') + "-" + DateTime.Now.Day.ToString().PadLeft(2,'0');
+
+            string strSql = "backup database dbAMS to disk='" + dirPath + ".Bak'";
+
+            if(!System.IO.Directory.Exists(dirPath))
+            {
+                System.IO.Directory.CreateDirectory(dirPath);
+            }
+
+            //db backup
+            using(conn = new SqlConnection(CONN_STRING))
+            {
+                comm = new SqlCommand(strSql, conn);
+                conn.Open();
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
         }
     }
 }

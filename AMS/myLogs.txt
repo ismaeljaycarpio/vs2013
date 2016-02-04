@@ -2,10 +2,14 @@
 ////////////////////2016-02-03////////////////////////////////
 //////////////////////////////////////////////////////////////
 - add start data && end date filter for Attendance logs
-- delete confirmation for Master Config
+- add func to delete confirmation for Master Config
 - add automated db backup
 - add transaction logs (logs for every add/edit/delete only)
+- optimized image rendering in ~/Employee/ViewEmployee ***DONE***
+- add error log
 
+- ERROR: one of Contact field is not large engough to accomodate a input
+	- SOL: set to varchar(MAX)
 
 ///////////////////////////////////////////////////////////////
 ////////////////////2016-01-25////////////////////////////////
@@ -20,11 +24,6 @@
 - add automated database backup
 - add action logs (logs for every add/edit/delete only)
 - add login/logout (attendance) system under HR tab
-
-
-
-
-
 
 ///////////////////////////////////////////////////////////////
 ////////////////////2015-12-23////////////////////////////////

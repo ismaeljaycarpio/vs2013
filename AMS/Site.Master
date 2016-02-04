@@ -133,7 +133,9 @@
                                                 <li><a runat="server" href="~/MasterConfig/Department_Master">Department</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/Employee_Account_MasterList">Employee Account Management</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/RoleManager">Positions Management</a></li>
-
+                                                <li><a runat="server" href="~/MasterConfig/TransactionLogs.aspx">Audit Trail</a></li>
+                                                <li><a runat="server" href="~/MasterConfig/ErrorLogs.aspx">Error Logs</a></li>
+                                                <li><a runat="server" href="~/MasterConfig/BackupDatabase.aspx">Database Backup</a></li>
                                             </ul>
                                         </li>
                                     </ul>

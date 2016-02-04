@@ -212,8 +212,10 @@
     <Content Include="Login.aspx" />
     <Content Include="HR\Register.aspx" />
     <Content Include="MasterConfig\Agency.aspx" />
+    <Content Include="MasterConfig\BackupDatabase.aspx" />
     <Content Include="MasterConfig\Department_Master.aspx" />
     <Content Include="MasterConfig\Employee_Account_MasterList.aspx" />
+    <Content Include="MasterConfig\ErrorLogs.aspx" />
     <Content Include="MasterConfig\RoleManager.aspx" />
     <Content Include="MasterConfig\TransactionLogs.aspx" />
     <Content Include="myLogs.txt" />
@@ -636,6 +638,7 @@
     <Compile Include="DAL\FileUpload.cs" />
     <Compile Include="DAL\Filler.cs" />
     <Compile Include="DAL\Experience.cs" />
+    <Compile Include="DAL\Logger.cs" />
     <Compile Include="DAL\MembershipCard.cs" />
     <Compile Include="DAL\PositionManagement.cs" />
     <Compile Include="DAL\Training.cs" />
@@ -930,6 +933,13 @@
     <Compile Include="MasterConfig\Agency.aspx.designer.cs">
       <DependentUpon>Agency.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MasterConfig\BackupDatabase.aspx.cs">
+      <DependentUpon>BackupDatabase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterConfig\BackupDatabase.aspx.designer.cs">
+      <DependentUpon>BackupDatabase.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterConfig\Department_Master.aspx.cs">
       <DependentUpon>Department_Master.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -943,6 +953,13 @@
     </Compile>
     <Compile Include="MasterConfig\Employee_Account_MasterList.aspx.designer.cs">
       <DependentUpon>Employee_Account_MasterList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterConfig\ErrorLogs.aspx.cs">
+      <DependentUpon>ErrorLogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterConfig\ErrorLogs.aspx.designer.cs">
+      <DependentUpon>ErrorLogs.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterConfig\RoleManager.aspx.cs">
       <DependentUpon>RoleManager.aspx</DependentUpon>
