@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <label for="imgProfile" class="col-sm-2 control-label">&nbsp;</label>
                     <div class="col-sm-10">
-                        <asp:Image ID="imgProfile" runat="server" AlternateText="Profile Image" Height="200" Width="200" />
+                        <asp:Image ID="imgProfile" runat="server" AlternateText="Profile Image" CssClass="img-responsive" />
                     </div>
                 </div>
 

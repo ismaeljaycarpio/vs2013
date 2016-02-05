@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h5>List of Time In / Time Out</h5>
+                    <h5>List of Time In / Time Out Logs</h5>
                 </div>
                 <div class="panel-body">
                     <%--<div class="form-horizontal">

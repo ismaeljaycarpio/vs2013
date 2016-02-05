@@ -14,6 +14,7 @@ namespace AMS.HR
         DAL.Employee emp = new DAL.Employee();
         DAL.PositionManagement position = new DAL.PositionManagement();
         DAL.Filler filler = new DAL.Filler();
+        DAL.Logger logger = new DAL.Logger();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -71,8 +72,12 @@ namespace AMS.HR
                     txtLastName.Text,
                     ddlPosition.SelectedValue.ToString());
 
+                logger.transactionLog(Guid.Parse(Membership.GetUser().ProviderUserKey.ToString()),
+                    "Added user: " + txtEmpId.Text + " with Position:" + ddlPosition.SelectedItem.Text +
+                    " and Role: " + ddlRole.SelectedItem.Text);
+
                 pnlSuccess.Visible = true;
-                ClearControls();
+                ClearControls();               
             }
             catch(MembershipCreateUserException mcue)
             {
