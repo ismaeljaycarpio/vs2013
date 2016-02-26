@@ -22,6 +22,15 @@ namespace AMS.Employee {
         protected global::System.Web.UI.WebControls.Panel pnlSuccess;
         
         /// <summary>
+        /// pnlAccountStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAccountStatus;
+        
+        /// <summary>
         /// txtEmpId control.
         /// </summary>
         /// <remarks>
@@ -209,15 +218,6 @@ namespace AMS.Employee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlAccountStatus;
-        
-        /// <summary>
-        /// pnlAccountStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAccountStatus;
         
         /// <summary>
         /// btnUpdateJob control.

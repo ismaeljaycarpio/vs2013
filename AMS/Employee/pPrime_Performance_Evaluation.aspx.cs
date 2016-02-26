@@ -26,7 +26,7 @@ namespace AMS.Employee
             {
                 if(Session["UserId"] == null)
                 {
-                    Response.Redirect("~/Employee/Employee");
+                    Response.Redirect("~/Employee/Employee.aspx");
                 }
                 hfUserId.Value = Session["UserId"].ToString();
                 GenerateReport();

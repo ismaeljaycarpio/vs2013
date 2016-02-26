@@ -271,14 +271,14 @@ namespace AMS.Reports
         {
             gvExpiringContract.SelectedIndex = Convert.ToInt32(e.NewSelectedIndex);
             Session["UserId"] = gvExpiringContract.SelectedDataKey.Value;
-            Response.Redirect("~/Employee/JobDetails");
+            Response.Redirect("~/Employee/JobDetails.aspx");
         }
 
         protected void gvEmployee_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             gvEmployee.SelectedIndex = Convert.ToInt32(e.NewSelectedIndex);
             Session["UserId"] = gvEmployee.SelectedDataKey.Value;
-            Response.Redirect("~/Employee/JobDetails");
+            Response.Redirect("~/Employee/JobDetails.aspx");
         }
     }
 }

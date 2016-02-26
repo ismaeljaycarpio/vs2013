@@ -143,7 +143,7 @@ namespace AMS.Evaluation
         {
             gvEmployee.SelectedIndex = Convert.ToInt32(e.NewSelectedIndex);
             Session["UserId"] = gvEmployee.SelectedDataKey.Value;
-            Response.Redirect("~/Employee/Evaluation");
+            Response.Redirect("~/Employee/Evaluation.aspx");
         }
         public SortDirection direction
         {

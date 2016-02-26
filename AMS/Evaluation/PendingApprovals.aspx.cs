@@ -30,7 +30,7 @@ namespace AMS.Evaluation
 
                 if(emp.GetPosition(logged_UserId) == "HR Assistant")
                 {
-                    Response.Redirect("~/UnauthorizedAccess");
+                    Response.Redirect("~/UnauthorizedAccess.aspx");
                 }
             }
         }
@@ -207,7 +207,7 @@ namespace AMS.Evaluation
             gvPendingApprovals.SelectedIndex = Convert.ToInt32(e.NewSelectedIndex);
             Session["EvaluationId"] = Convert.ToInt32(gvPendingApprovals.SelectedDataKey.Values["Id"]);
             Session["UserId"] = gvPendingApprovals.SelectedDataKey.Values["UserId"];
-            Response.Redirect("~/Employee/vPerformanceEvaluation");
+            Response.Redirect("~/Employee/vPerformanceEvaluation.aspx");
         }
     }
 }

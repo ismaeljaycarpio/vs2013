@@ -441,7 +441,7 @@ namespace AMS.DAL
                 foreach (DataRow row in dt.Rows)
                 {
                     sb.AppendLine(row["FullName"].ToString());
-                    sb.AppendLine("<br>");
+                    sb.AppendLine("<BR>");
                 }
                 return sb.ToString();
             }
@@ -482,7 +482,7 @@ namespace AMS.DAL
                 foreach (DataRow row in dt.Rows)
                 {
                     sb.AppendLine(row["FullName"].ToString());
-                    sb.AppendLine("\r\n");
+                    sb.AppendLine("<BR>");
                 }
                 return sb.ToString();
             }

@@ -84,7 +84,7 @@ namespace AMS.Employee
         {
             gvEmployee.SelectedIndex = Convert.ToInt32(e.NewSelectedIndex);
             Session["UserId"] = gvEmployee.SelectedDataKey.Value;
-            Response.Redirect("~/Employee/ViewEmployee");
+            Response.Redirect("~/Employee/ViewEmployee.aspx");
         }
 
 

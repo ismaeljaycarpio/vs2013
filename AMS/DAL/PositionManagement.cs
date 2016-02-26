@@ -152,5 +152,24 @@ namespace AMS.DAL
                 return false;
             }
         }
+
+        public void deletePosition(string positionId)
+        {
+            strSql = "DELETE FROM POSITION WHERE Id = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@Id", positionId);
+
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
     }
 }

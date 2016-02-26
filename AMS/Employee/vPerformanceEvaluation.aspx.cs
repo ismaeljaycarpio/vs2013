@@ -25,7 +25,7 @@ namespace AMS.Employee
             {
                 if (Session["UserId"] == null)
                 {
-                    Response.Redirect("~/Employee/Employee");
+                    Response.Redirect("~/Employee/Employee.aspx");
                 }
                     
                 //get selected user
@@ -42,12 +42,12 @@ namespace AMS.Employee
                 //chk evaluation type
                 if(dt.Rows[0]["EvaluationType"].ToString().Equals("Self Evaluation"))
                 {
-                    Response.Redirect("~/Employee/vSelf_Evaluation");
+                    Response.Redirect("~/Employee/vSelf_Evaluation.aspx");
                 }
 
                 if (dt.Rows[0]["Agency"].ToString().Equals("PrimePower"))
                 {
-                    Response.Redirect("~/Employee/vPrime_Performance_Evaluation");
+                    Response.Redirect("~/Employee/vPrime_Performance_Evaluation.aspx");
                 }
 
                 lblEmpName.Text = emp.GetFullName(UserId);
@@ -263,8 +263,8 @@ namespace AMS.Employee
                     }
                 }
             }
-            
-            Response.Redirect("~/Employee/vPerformanceEvaluation");
+
+            Response.Redirect("~/Employee/vPerformanceEvaluation.aspx");
         }
     }
 }

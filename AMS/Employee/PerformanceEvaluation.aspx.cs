@@ -26,7 +26,7 @@ namespace AMS.Employee
             {
                 if (Session["UserId"] == null)
                 {
-                    Response.Redirect("~/Employee/Employee");
+                    Response.Redirect("~/Employee/Employee.aspx");
                 }
 
                 //get selected user
@@ -217,8 +217,8 @@ namespace AMS.Employee
                             rating);
                     }
                 }
-            }            
-            Response.Redirect("~/Employee/Evaluation");
+            }
+            Response.Redirect("~/Employee/Evaluation.aspx");
         }
     }
 }

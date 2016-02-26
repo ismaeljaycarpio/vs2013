@@ -111,6 +111,18 @@ namespace AMS.MasterConfig
                 sb.Append(@"</script>");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "EditShowModalScript", sb.ToString(), false);
             }
+            else if (e.CommandName.Equals("deleteRecord"))
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                string rowId = ((Label)gvDepartment.Rows[index].FindControl("lblRowId")).Text;
+                hfDeleteId.Value = rowId;
+
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb.Append(@"<script type='text/javascript'>");
+                sb.Append("$('#deleteModal').modal('show');");
+                sb.Append(@"</script>");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteShowModalScript", sb.ToString(), false);
+            }
         }
 
         protected void btnOpenModal_Click(object sender, EventArgs e)
@@ -173,6 +185,20 @@ namespace AMS.MasterConfig
             {
                 ViewState["directionState"] = value;
             }
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            dept.DeleteDepartment(hfDeleteId.Value);
+
+            gvDepartment.DataSource = BindGridView();
+            gvDepartment.DataBind();
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append(@"<script type='text/javascript'>");
+            sb.Append("$('#deleteModal').modal('hide');");
+            sb.Append(@"</script>");
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteHideModalScript", sb.ToString(), false);
         }
     }
 }

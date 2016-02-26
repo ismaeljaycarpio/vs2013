@@ -78,7 +78,6 @@ namespace AMS.MasterConfig
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-
                 position.UpdatePosition(
                     txtEditPosition.Text,
                     ddlEditDepartment.SelectedValue.ToString(),
@@ -119,6 +118,18 @@ namespace AMS.MasterConfig
                 sb.Append("$('#updateModal').modal('show');");
                 sb.Append(@"</script>");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "EditShowModalScript", sb.ToString(), false);
+            }
+            else if (e.CommandName.Equals("deleteRecord"))
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                string rowId = ((Label)gvRoles.Rows[index].FindControl("lblRowId")).Text;
+                hfDeleteId.Value = rowId;
+
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb.Append(@"<script type='text/javascript'>");
+                sb.Append("$('#deleteModal').modal('show');");
+                sb.Append(@"</script>");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteShowModalScript", sb.ToString(), false);
             }
         }
 
@@ -176,6 +187,20 @@ namespace AMS.MasterConfig
             {
                 ViewState["directionState"] = value;
             }
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            position.deletePosition(hfDeleteId.Value);
+
+            gvRoles.DataSource = BindGridView();
+            gvRoles.DataBind();
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append(@"<script type='text/javascript'>");
+            sb.Append("$('#deleteModal').modal('hide');");
+            sb.Append(@"</script>");
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteHideModalScript", sb.ToString(), false);          
         }
     }
 }

@@ -75,7 +75,7 @@ namespace AMS
             if(Page.User.Identity.IsAuthenticated)
             {
                 Session["UserId"] = Membership.GetUser().ProviderUserKey;
-                Response.Redirect("~/Employee/ViewEmployee");
+                Response.Redirect("~/Employee/ViewEmployee.aspx");
             }
         }
 
@@ -84,7 +84,7 @@ namespace AMS
             if (Page.User.Identity.IsAuthenticated)
             {
                 Session["UserId"] = Membership.GetUser().ProviderUserKey;
-                Response.Redirect("~/Employee/Evaluation");
+                Response.Redirect("~/Employee/Evaluation.aspx");
             }
         }
     }

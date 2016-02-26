@@ -21,7 +21,7 @@ namespace AMS.Employee
             {
                 if (Session["UserId"] == null)
                 {
-                    Response.Redirect("~/Employee/Employee");
+                    Response.Redirect("~/Employee/Employee.aspx");
                 }
                     
                 //bind userid to control

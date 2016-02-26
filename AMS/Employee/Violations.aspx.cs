@@ -18,7 +18,7 @@ namespace AMS.Employee
             {
                 if(Session["UserId"] == null)
                 {
-                    Response.Redirect("~/Employee/Employee");
+                    Response.Redirect("~/Employee/Employee.aspx");
                 }
 
                 hfUserId.Value = Session["UserId"].ToString();
@@ -106,6 +106,17 @@ namespace AMS.Employee
                 sb.Append(@"</script>");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "EditShowModalScript", sb.ToString(), false);
             }
+            else if (e.CommandName.Equals("deleteRecord"))
+            {
+                string rowId = ((Label)gvViolations.Rows[index].FindControl("lblRowId")).Text;
+                hfDeleteId.Value = rowId;
+
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb.Append(@"<script type='text/javascript'>");
+                sb.Append("$('#deleteModal').modal('show');");
+                sb.Append(@"</script>");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteShowModalScript", sb.ToString(), false);
+            }
         }
 
         protected void btnOpenModal_Click(object sender, EventArgs e)
@@ -115,6 +126,19 @@ namespace AMS.Employee
             sb.Append("$('#addModal').modal('show');");
             sb.Append(@"</script>");
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AddShowModalScript", sb.ToString(), false);
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            violation.deleteViolation(hfDeleteId.Value);
+
+            BindData();
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append(@"<script type='text/javascript'>");
+            sb.Append("$('#deleteModal').modal('hide');");
+            sb.Append(@"</script>");
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteHideModalScript", sb.ToString(), false);
         }
     }
 }

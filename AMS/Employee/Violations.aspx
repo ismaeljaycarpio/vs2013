@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Violations" Language="C#" MasterPageFile="~/ProfileNested.master" AutoEventWireup="true" CodeBehind="Violations.aspx.cs" Inherits="AMS.Employee.Violations" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <!-- Add Modal -->
+    <!-- Add Modal -->
     <div id="addModal" class="modal">
         <div class="modal-dialog" role="dialog">
 
@@ -161,6 +162,34 @@
         </div>
     </div>
 
+    <!-- Delete Modal -->
+    <div id="deleteModal" class="modal fade" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Delete Record</h4>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this record ?
+                            <asp:HiddenField ID="hfDeleteId" runat="server" />
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="btnDelete" runat="server" CssClass="btn btn-danger" Text="Delete" OnClick="btnDelete_Click" />
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="btnDelete" EventName="Click" />
+                    </Triggers>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-12">
@@ -217,7 +246,8 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:CommandField ShowDeleteButton="true" />
+                                        <asp:ButtonField HeaderText="" ButtonType="Link" Text="Delete" CommandName="deleteRecord" />
+
                                     </Columns>
                                     <PagerStyle CssClass="pagination" />
                                 </asp:GridView>

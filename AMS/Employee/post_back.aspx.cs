@@ -11,7 +11,7 @@ namespace AMS.Employee
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("~/Employee/vPrime_Performance_Evaluation");
+            Response.Redirect("~/Employee/vPrime_Performance_Evaluation.aspx");
         }
     }
 }

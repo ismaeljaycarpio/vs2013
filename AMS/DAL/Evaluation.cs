@@ -2229,5 +2229,25 @@ namespace AMS.DAL
         }
         
         #endregion
+
+        #region DeleteEvaluation
+        public void deleteEvaluation(string Id)
+        {
+            strSql = "DELETE FROM Evaluation WHERE Id = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@Id", Id);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+        #endregion
     }
 }

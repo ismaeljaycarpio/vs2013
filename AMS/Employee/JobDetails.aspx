@@ -21,6 +21,11 @@
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             <strong>Success!</strong> User successfully updated.
                         </asp:Panel>
+
+                        <asp:Panel ID="pnlAccountStatus" runat="server" CssClass="alert alert-danger" Visible="false">
+                            <strong>Notice!</strong> This Employee is past Contract End Date
+                        </asp:Panel>
+
                         <div class="form-group">
                             <label for="txtEmpId" class="col-sm-3 control-label">Employee ID</label>
                             <div class="col-sm-6">
@@ -181,15 +186,12 @@
                             </div>
                         </div>
 
-                        <asp:Panel ID="pnlAccountStatus" runat="server" CssClass="alert alert-warning" Visible="false">
-                            <strong>Notice!</strong> This Employee is past Contract End Date
-                        </asp:Panel>
-
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-10">
                                 <asp:Button ID="btnUpdateJob" runat="server" CssClass="btn btn-primary" Text="Update" OnClick="btnUpdateJob_Click" />
                             </div>
                         </div>
+                   
                     </div>
                 </div>
             </div>

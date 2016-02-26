@@ -25,7 +25,7 @@ namespace AMS.Employee
             {
                 if(Session["UserId"] == null)
                 {
-                    Response.Redirect("~/Employee/Employee");
+                    Response.Redirect("~/Employee/Employee.aspx");
                 }
 
                 //get selected user
@@ -859,7 +859,7 @@ namespace AMS.Employee
             }
             //Response.Redirect("~/Employee/vPrime_Performance_Evaluation");
             //Response.Redirect(Request.RawUrl);
-            Response.Redirect("~/Employee/post_back");
+            Response.Redirect("~/Employee/post_back.aspx");
         }
 
         protected void gvCooperation_RowDataBound(object sender, GridViewRowEventArgs e)

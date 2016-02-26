@@ -89,7 +89,7 @@ namespace AMS.HR
         {
             gvEmployee.SelectedIndex = Convert.ToInt32(e.NewSelectedIndex);
             Session["UserId"] = gvEmployee.SelectedDataKey.Value;
-            Response.Redirect("~/Employee/ViewEmployee");
+            Response.Redirect("~/Employee/ViewEmployee.aspx");
         }
 
         protected void btnExportToPDF_Click(object sender, EventArgs e)

@@ -36,21 +36,19 @@
                     </div>
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav" id="nav">
-                            <li id="viewemp"><a runat="server" href="~/Employee/ViewEmployee">Profile Overview</a></li>
-                            <li id="profiledetails"><a runat="server" href="~/Employee/Profile">Personal Details</a></li>
-                            <li id="jobDetails"><a runat="server" href="~/Employee/JobDetails">Job Details</a></li>
-                            <li id="emovement"><a runat="server" href="~/Employee/EmployeeMovement">Employee Movement</a></li>
-                            <li id="jobexp"><a runat="server" href="~/Employee/JobExperience">Job Experiences</a></li>
-                            <li id="edu"><a runat="server" href="~/Employee/Education">Education</a></li>
-                            <li id="training"><a runat="server" href="~/Employee/Trainings">Trainings</a></li>
-                            <li id="award"><a runat="server" href="~/Employee/Awards">Awards</a></li>
-                            <li id="violation"><a runat="server" href="~/Employee/Violations">Violations</a></li>
-                            <li id="emer"><a runat="server" href="~/Employee/Contacts">Contacts</a></li>
-                            <li id="pers"><a runat="server" href="~/Employee/PersonalCards">Membership Cards</a></li>
-
-                            <li id="myeval"><a runat="server" href="~/Employee/Evaluation">Evaluations</a></li>
-
-                            <li id="timeinandout"><a runat="server" href="~/Employee/TimeInTimeOut">Time In / Time Out</a></li>
+                            <li id="viewemp"><a runat="server" href="~/Employee/ViewEmployee.aspx">Profile Overview</a></li>
+                            <li id="profiledetails"><a runat="server" href="~/Employee/Profile.aspx">Personal Details</a></li>
+                            <li id="jobDetails"><a runat="server" href="~/Employee/JobDetails.aspx">Job Details</a></li>
+                            <li id="emovement"><a runat="server" href="~/Employee/EmployeeMovement.aspx">Employee Movement</a></li>
+                            <li id="jobexp"><a runat="server" href="~/Employee/JobExperience.aspx">Job Experiences</a></li>
+                            <li id="edu"><a runat="server" href="~/Employee/Education.aspx">Education</a></li>
+                            <li id="training"><a runat="server" href="~/Employee/Trainings.aspx">Trainings</a></li>
+                            <li id="award"><a runat="server" href="~/Employee/Awards.aspx">Awards</a></li>
+                            <li id="violation"><a runat="server" href="~/Employee/Violations.aspx">Violations</a></li>
+                            <li id="emer"><a runat="server" href="~/Employee/Contacts.aspx">Contacts</a></li>
+                            <li id="pers"><a runat="server" href="~/Employee/PersonalCards.aspx">Membership Cards</a></li>
+                            <li id="myeval"><a runat="server" href="~/Employee/Evaluation.aspx">Evaluations</a></li>
+                            <li id="timeinandout"><a runat="server" href="~/Employee/TimeInTimeOut.aspx">Time In / Time Out</a></li>
                         </ul>
                     </div>
                     <!--/.nav-collapse -->

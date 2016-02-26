@@ -2,64 +2,64 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode url="~/Default.aspx" title="Home"  description="">
     
-    <siteMapNode url="~/Login" title="Login"></siteMapNode>
-    <siteMapNode url="~/Account/Manage" title="Change Password"></siteMapNode>
-    <siteMapNode url="~/Dashboard/Dashboard" title="Dashboard">
+    <siteMapNode url="~/Login.aspx" title="Login"></siteMapNode>
+    <siteMapNode url="~/Account/Manage.aspx" title="Change Password"></siteMapNode>
+    <siteMapNode url="~/Dashboard/Dashboard.aspx" title="Dashboard">
       <siteMapNode url="~/Dashboard/BirthDay_Celeb.aspx" title="Monthly BirthDay Celebrants"></siteMapNode>
     </siteMapNode>
       
-    <siteMapNode url="~/Employee/Employee" title="Employees"  description="" roles="Admin,HR,General Manager,Manager,Supervisor">
-      <siteMapNode url="~/Employee/AddEmployee" title="Add Employee"  description="" />
-      <siteMapNode url="~/Employee/ViewEmployee" title="View Employee"  description="" />
-      <siteMapNode url="~/Employee/Awards" title="Awards"></siteMapNode>
-      <siteMapNode url="~/Employee/Education" title="Education"></siteMapNode>
-      <siteMapNode url="~/Employee/Contacts" title="Contacts"></siteMapNode>
-      <siteMapNode url="~/Employee/JobExperience" title="Job Experiences"></siteMapNode>
-      <siteMapNode url="~/Employee/PersonalCards" title="Membership Cards"></siteMapNode>
-      <siteMapNode url="~/Employee/Trainings" title="Trainings"></siteMapNode>
-      <siteMapNode url="~/Employee/Violations" title="Violations"></siteMapNode>
-      <siteMapNode url="~/Employee/Profile" title="Personal Details"></siteMapNode>
-      <siteMapNode url="~/Employee/JobDetails" title="Job Details"></siteMapNode>
-      <siteMapNode url="~/Employee/EmployeeMovement" title="Employee Movement"></siteMapNode>
-      <siteMapNode url="~/Employee/ErrorPage" title="Error Page"></siteMapNode>
-      <siteMapNode url="~/Employee/TimeInTimeOut" title="Time In Time Out"></siteMapNode>
+    <siteMapNode url="~/Employee/Employee.aspx" title="Employees"  description="" roles="Admin,HR,General Manager,Manager,Supervisor">
+      <siteMapNode url="~/Employee/AddEmployee.aspx" title="Add Employee"  description="" />
+      <siteMapNode url="~/Employee/ViewEmployee.aspx" title="View Employee"  description="" />
+      <siteMapNode url="~/Employee/Awards.aspx" title="Awards"></siteMapNode>
+      <siteMapNode url="~/Employee/Education.aspx" title="Education"></siteMapNode>
+      <siteMapNode url="~/Employee/Contacts.aspx" title="Contacts"></siteMapNode>
+      <siteMapNode url="~/Employee/JobExperience.aspx" title="Job Experiences"></siteMapNode>
+      <siteMapNode url="~/Employee/PersonalCards.aspx" title="Membership Cards"></siteMapNode>
+      <siteMapNode url="~/Employee/Trainings.aspx" title="Trainings"></siteMapNode>
+      <siteMapNode url="~/Employee/Violations.aspx" title="Violations"></siteMapNode>
+      <siteMapNode url="~/Employee/Profile.aspx" title="Personal Details"></siteMapNode>
+      <siteMapNode url="~/Employee/JobDetails.aspx" title="Job Details"></siteMapNode>
+      <siteMapNode url="~/Employee/EmployeeMovement.aspx" title="Employee Movement"></siteMapNode>
+      <siteMapNode url="~/Employee/ErrorPage.aspx" title="Error Page"></siteMapNode>
+      <siteMapNode url="~/Employee/TimeInTimeOut.aspx" title="Time In Time Out"></siteMapNode>
       
-      <siteMapNode url="~/Employee/Evaluation" title="Evaluation">
-        <siteMapNode url="~/Employee/PerformanceEvaluation" title="TOPLIS Performance Evaluation" />
-          <siteMapNode url="~/Employee/vPerformanceEvaluation" title="Update TOPLIS Performance Evaluation" >
+      <siteMapNode url="~/Employee/Evaluation.aspx" title="Evaluation">
+        <siteMapNode url="~/Employee/PerformanceEvaluation.aspx" title="TOPLIS Performance Evaluation" />
+          <siteMapNode url="~/Employee/vPerformanceEvaluation.aspx" title="Update TOPLIS Performance Evaluation" >
             <siteMapNode url="~/Employee/pPerformanceEvaluation.aspx" title="Print TOPLIS Performance Evaluation" />
           </siteMapNode>
 
-        <siteMapNode url="~/Employee/Prime_Performance_Evaluation" title="Prime Performance Evaluation" />
-        <siteMapNode url="~/Employee/vPrime_Performance_Evaluation" title="Update Prime Performance Evaluation">
-          <siteMapNode url="~/Employee/pPrime_Performance_Evaluation" title="Print Prime Performance Evaluation"/>
+        <siteMapNode url="~/Employee/Prime_Performance_Evaluation.aspx" title="Prime Performance Evaluation" />
+        <siteMapNode url="~/Employee/vPrime_Performance_Evaluation.aspx" title="Update Prime Performance Evaluation">
+          <siteMapNode url="~/Employee/pPrime_Performance_Evaluation.aspx" title="Print Prime Performance Evaluation"/>
         </siteMapNode>
       </siteMapNode>
     </siteMapNode>
 
     <siteMapNode title="Evaluation">
-      <siteMapNode url="~/Evaluation/PendingApprovals" title="Pending Approvals"></siteMapNode>
-      <siteMapNode url="~/Evaluation/ApprovedEvaluations" title="Approved Evaluations"></siteMapNode>
+      <siteMapNode url="~/Evaluation/PendingApprovals.aspx" title="Pending Approvals"></siteMapNode>
+      <siteMapNode url="~/Evaluation/ApprovedEvaluations.aspx" title="Approved Evaluations"></siteMapNode>
       <siteMapNode url="~/Evaluation/PendingEvaluation.aspx" title="Pending Evaluation"></siteMapNode>
     </siteMapNode>
 
-    <siteMapNode url="~/EvaluationSelf/Score_Sheet" title="Self Evaluation">
-      <siteMapNode url="~/EvaluationSelf/Evaluation_Self" title="Add Self Evaluation"></siteMapNode>
-      <siteMapNode url="~/EvaluationSelf/vEvaluation_Self" title="View Self Evaluation"></siteMapNode>
+    <siteMapNode url="~/EvaluationSelf/Score_Sheet.aspx" title="Self Evaluation">
+      <siteMapNode url="~/EvaluationSelf/Evaluation_Self.aspx" title="Add Self Evaluation"></siteMapNode>
+      <siteMapNode url="~/EvaluationSelf/vEvaluation_Self.aspx" title="View Self Evaluation"></siteMapNode>
       <siteMapNode url="~/EvaluationSelf/Summarize_Self_Evaluation.aspx" title="Summarize Self Evaluation"></siteMapNode>
     </siteMapNode>
     
     <siteMapNode title="HR">
-      <siteMapNode url="~/HR/Register" title="Register Employee"></siteMapNode>
+      <siteMapNode url="~/HR/Register.aspx" title="Register Employee"></siteMapNode>
       <siteMapNode url="~/HR/TimeInTimeOut.aspx" title="Time In / Time Out"></siteMapNode>
       <siteMapNode url="~/HR/Attendance.aspx" title="Attendance Logs"></siteMapNode>
     </siteMapNode>
 
     <siteMapNode title="Master Config">
-      <siteMapNode url="~/MasterConfig/Agency" title="Agency Master List"></siteMapNode>
-      <siteMapNode url="~/MasterConfig/Department_Master" title="Department Master List"></siteMapNode>
-      <siteMapNode url="~/MasterConfig/Employee_Account_MasterList" title="Account Master List"></siteMapNode>
-      <siteMapNode url="~/MasterConfig/RoleManager" title="Position Master List"></siteMapNode>
+      <siteMapNode url="~/MasterConfig/Agency.aspx" title="Agency Master List"></siteMapNode>
+      <siteMapNode url="~/MasterConfig/Department_Master.aspx" title="Department Master List"></siteMapNode>
+      <siteMapNode url="~/MasterConfig/Employee_Account_MasterList.aspx" title="Account Master List"></siteMapNode>
+      <siteMapNode url="~/MasterConfig/RoleManager.aspx" title="Position Master List"></siteMapNode>
     </siteMapNode>
 
     <siteMapNode title="Reports">

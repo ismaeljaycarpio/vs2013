@@ -130,7 +130,7 @@
                                         </asp:TemplateField>
 
                                         <asp:BoundField DataField="RoleName" HeaderText="Role" SortExpression="RoleName" />
-                                        <asp:ButtonField HeaderText="Action" ButtonType="Button" Text="Edit Role" CommandName="editRecord" />
+                                        <asp:ButtonField HeaderText="Action" ButtonType="Link" Text="Edit Role" CommandName="editRecord" />
                                     </Columns>
                                     <PagerStyle CssClass="pagination-ys" />
                                 </asp:GridView>

@@ -27,7 +27,7 @@ namespace AMS.Employee
                 }
                 else
                 {
-                    Response.Redirect("~/Employee/Employee");
+                    Response.Redirect("~/Employee/Employee.aspx");
                 }
             }
         }

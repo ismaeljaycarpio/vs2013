@@ -89,7 +89,7 @@
                                     <ul class="dropdown-menu">
                                         <li>
                                             <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
-                                        <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
+                                        <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -102,12 +102,11 @@
                             <asp:RoleGroup Roles="Admin">
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav">
-                                        <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
-                                        <li><a runat="server" href="~/Employee/Employee">Employee</a></li>
-                                        <%--<li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>--%>
+                                        <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
+                                        <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Evaluation Approvals</a></li>
+                                                <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Pending Evaluation Approvals</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
@@ -122,17 +121,17 @@
                                         </li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HR<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/HR/Register">Register Employee</a></li>
+                                                <li><a runat="server" href="~/HR/Register.aspx">Register Employee</a></li>
                                                 <li><a runat="server" href="~/HR/TimeInTimeOut.aspx">Time In / Time Out</a></li>
                                                 <li><a runat="server" href="~/HR/Attendance.aspx">Attendance Logs</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Master Config <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/MasterConfig/Agency">Agency</a></li>
-                                                <li><a runat="server" href="~/MasterConfig/Department_Master">Department</a></li>
-                                                <li><a runat="server" href="~/MasterConfig/Employee_Account_MasterList">Employee Account Management</a></li>
-                                                <li><a runat="server" href="~/MasterConfig/RoleManager">Positions Management</a></li>
+                                                <li><a runat="server" href="~/MasterConfig/Agency.aspx">Agency</a></li>
+                                                <li><a runat="server" href="~/MasterConfig/Department_Master.aspx">Department</a></li>
+                                                <li><a runat="server" href="~/MasterConfig/Employee_Account_MasterList.aspx">Employee Account Management</a></li>
+                                                <li><a runat="server" href="~/MasterConfig/RoleManager.aspx">Positions Management</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/TransactionLogs.aspx">Audit Trail</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/ErrorLogs.aspx">Error Logs</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/BackupDatabase.aspx">Database Backup</a></li>
@@ -150,17 +149,18 @@
                                                 aria-expanded="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                                 <span class="caret"></span>
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
                                                 <li>
                                                     <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
-                                                <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
+                                                <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" />
+                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Default.aspx" />
                                         </li>
                                     </ul>
                                 </ContentTemplate>
@@ -170,12 +170,11 @@
                             <asp:RoleGroup Roles="HR">
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav">
-                                        <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
-                                        <li><a runat="server" href="~/Employee/Employee">Employee</a></li>
-                                        <%--<li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>--%>
+                                        <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
+                                        <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Evaluation Approvals</a></li>
+                                                <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Pending Evaluation Approvals</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
@@ -190,7 +189,7 @@
                                         </li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HR<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/HR/Register">Register Employee</a></li>
+                                                <li><a runat="server" href="~/HR/Register.aspx">Register Employee</a></li>
                                                 <li><a runat="server" href="~/HR/TimeInTimeOut.aspx">Time In / Time Out</a></li>
                                                 <li><a runat="server" href="~/HR/Attendance.aspx">Attendance Logs</a></li>
                                             </ul>
@@ -207,17 +206,18 @@
                                                 aria-expanded="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                                 <span class="caret"></span>
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
                                                 <li>
                                                     <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
-                                                <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
+                                                <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" />
+                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Default.aspx" />
                                         </li>
                                     </ul>
                                 </ContentTemplate>
@@ -227,12 +227,11 @@
                             <asp:RoleGroup Roles="General Manager">
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav">
-                                        <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
-                                        <li><a runat="server" href="~/Employee/Employee">Employee</a></li>
-                                        <%--<li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Self Evaluation</a></li>--%>
+                                        <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
+                                        <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Evaluation Approvals</a></li>
+                                                <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Pending Evaluation Approvals</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -247,13 +246,14 @@
                                                 aria-expanded="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                                 <span class="caret"></span>
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
                                                 <li>
                                                     <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
-                                                <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
+                                                <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -267,12 +267,11 @@
                             <asp:RoleGroup Roles="Manager">
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav">
-                                        <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
-                                        <li><a runat="server" href="~/Employee/Employee">Employee</a></li>
-                                        <%--<li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>--%>
+                                        <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
+                                        <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending EvaluationApprovals</a></li>
+                                                <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Pending EvaluationApprovals</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -287,17 +286,18 @@
                                                 aria-expanded="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                                 <span class="caret"></span>
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
                                                 <li>
                                                     <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
-                                                <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
+                                                <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" />
+                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Default.aspx" />
                                         </li>
                                     </ul>
                                 </ContentTemplate>
@@ -307,12 +307,11 @@
                             <asp:RoleGroup Roles="Supervisor">
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav">
-                                        <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
-                                        <li><a runat="server" href="~/Employee/Employee">Employee</a></li>
-                                        <%--<li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>--%>
+                                        <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
+                                        <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals">Pending Evaluation Approvals</a></li>
+                                                <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Pending Evaluation Approvals</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -327,17 +326,18 @@
                                                 aria-expanded="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                                 <span class="caret"></span>
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
                                                 <li>
                                                     <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
-                                                <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
+                                                <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" />
+                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Default.aspx" />
                                         </li>
                                     </ul>
                                 </ContentTemplate>
@@ -347,8 +347,7 @@
                             <asp:RoleGroup Roles="Staff">
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav">
-                                        <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
-                                        <%--<li><a runat="server" href="~/EvaluationSelf/Score_Sheet">Score Sheet</a></li>--%>
+                                        <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="dropdown">
@@ -361,17 +360,18 @@
                                                 aria-expanded="false">
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                                 <span class="caret"></span>
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
                                                 <li>
                                                     <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
-                                                <li><a runat="server" href="~/Account/Manage">Change Password</a></li>
+                                                <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" />
+                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Default.aspx" />
                                         </li>
                                     </ul>
                                 </ContentTemplate>

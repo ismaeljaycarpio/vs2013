@@ -1160,31 +1160,31 @@
                             <tr>
                                 <td colspan="2">
                                     <b>Evaluated By:</b>
-                                    <asp:Label ID="lblEvaluatedBy" runat="server"></asp:Label>                                    
+                                    <asp:Label ID="lblEvaluatedBy" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
                                     <b>Approved By Manager:</b>
-                                    <asp:Label ID="lblApprovedByManager" runat="server"></asp:Label>                                    
+                                    <asp:Label ID="lblApprovedByManager" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
                                     <b>Approved By HR:</b>
-                                    <asp:Label ID="lblApprovedByHR" runat="server"></asp:Label>                                    
+                                    <asp:Label ID="lblApprovedByHR" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
                                     <b>Acknowledged By:</b>
-                                    <asp:Label ID="lblAcknowledgeBy" runat="server"></asp:Label>                                    
+                                    <asp:Label ID="lblAcknowledgeBy" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
                                     <b>Date Evaulated:</b>
-                                    <asp:Label ID="lblDateEvaluated" runat="server"></asp:Label>                                    
+                                    <asp:Label ID="lblDateEvaluated" runat="server"></asp:Label>
                                 </td>
                             </tr>
                         </table>
