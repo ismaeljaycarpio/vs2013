@@ -67,7 +67,7 @@
                         ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Login">Log in</a></li>
+                                <li><a runat="server" href="~/Login.aspx">Log in</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
