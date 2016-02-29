@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ProfileNested.master" AutoEventWireup="true" CodeBehind="vPerformanceEvaluation.aspx.cs" Inherits="AMS.Employee.vPerformanceEvaluation" %>
+﻿<%@ Page Title="View Performance Evaluation" Language="C#" MasterPageFile="~/ProfileNested.master" AutoEventWireup="true" CodeBehind="vPerformanceEvaluation.aspx.cs" Inherits="AMS.Employee.vPerformanceEvaluation" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
@@ -101,7 +101,7 @@
 
                                         <asp:TemplateField HeaderText="Rating">
                                             <ItemTemplate>
-                                                <asp:TextBox runat="server" ID="txtStaffRating" Width="50" Text='<%# Eval("StaffRating") %>'></asp:TextBox>
+                                                <asp:TextBox runat="server" ID="txtStaffRating" Width="50" Text='<%# Eval("StaffRating") %>' CssClass="form-control"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
                                                     runat="server"
                                                     Display="Dynamic"
@@ -125,7 +125,7 @@
 
                                         <asp:TemplateField HeaderText="Evaluator Rating">
                                             <ItemTemplate>
-                                                <asp:TextBox runat="server" ID="txtEvaluatorRating" Width="50" Text='<%# Eval("EvaluatorRating") %>'></asp:TextBox>
+                                                <asp:TextBox runat="server" ID="txtEvaluatorRating" Width="50" Text='<%# Eval("EvaluatorRating") %>' CssClass="form-control"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
                                                     runat="server"
                                                     Display="Dynamic"
@@ -175,27 +175,27 @@
                         <tr>
                             <td>(1 ) Unacceptable</td>
                             <td>
-                                <asp:TextBox ID="txtUnacceptable" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtUnacceptable" runat="server" CssClass="form-control"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td>(2 ) Fall Short of Objectives</td>
                             <td>
-                                <asp:TextBox ID="txtFallShort" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtFallShort" runat="server" CssClass="form-control"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td>(3 ) Effective</td>
                             <td>
-                                <asp:TextBox ID="txtEffective" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtEffective" runat="server" CssClass="form-control"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td>(4 ) Highly Effective</td>
                             <td>
-                                <asp:TextBox ID="txtHighlyEffective" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtHighlyEffective" runat="server" CssClass="form-control"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td>(5 ) Exceptional</td>
                             <td>
-                                <asp:TextBox ID="txtExceptional" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtExceptional" runat="server" CssClass="form-control"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td>Remarks/Recommendation</td>

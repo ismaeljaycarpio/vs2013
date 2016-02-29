@@ -1,4 +1,43 @@
-﻿///////////////////////////////////////////////////////////////
+﻿[Staff],2015-1007,Food and Beverage
+[Supervisor],2015-1021
+[Manager],2015-461
+[GM],2015-462
+[HR],2015-1002
+[Admin],admin
+
+
+///////////////////////////////////////////////////////////////
+////////////////////2016-02-29////////////////////////////////
+//////////////////////////////////////////////////////////////
+- Bugs on GridView Paging and Sorting **WAITING
+
+
+BUG:
+	Emergency Contact table - varchar(50) to varchar(MAX)
+
+
+Mich:
+	- Template: Add Enable Logo
+	- Home - bday panel, announcement, activities
+	- menu for - Evaluation Approvals
+	- Employee/Employee - add column Agency **DONE**
+	- MasterConfig/Employee_Account_MasterList.aspx - add column Agency **DONE**
+	- Reports/Employee_MasterList.aspx - add column Agency **DONE**
+
+[EHI]
+	- HMO side tab link
+
+
+
+Time Keeping:
+
+
+
+Leaves:
+
+
+
+///////////////////////////////////////////////////////////////
 ////////////////////2016-02-26////////////////////////////////
 //////////////////////////////////////////////////////////////
 - continue delete confirmation in MasterConfig

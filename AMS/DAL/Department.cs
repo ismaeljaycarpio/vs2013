@@ -20,7 +20,7 @@ namespace AMS.DAL
 
         public DataTable DisplayDepartment()
         {
-            strSql = "SELECT * FROM DEPARTMENT";
+            strSql = "SELECT * FROM DEPARTMENT ORDER BY Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;

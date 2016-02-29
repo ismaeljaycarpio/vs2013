@@ -51,6 +51,14 @@
             });
         </script>
 
+        <script>
+            $(document).ready(function () {
+                var url = this.location.pathname;
+                var filename = url.substring(url.lastIndexOf('/') + 1);
+                $('a[href="' + filename + '"]').parent().addClass('active');
+            });
+        </script>
+
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -59,7 +67,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">eHRIS |</a>
+                    <a class="navbar-brand" runat="server" href="~/Default.aspx">eHRIS |</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <asp:LoginView ID="LoginView1"
@@ -71,7 +79,7 @@
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
-                            <ul class="nav navbar-nav">
+                            <%--<ul class="nav navbar-nav">
                                 <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
@@ -95,20 +103,17 @@
                                 <li>
                                     <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" CausesValidation="false" />
                                 </li>
-                            </ul>
+                            </ul>--%>
                         </LoggedInTemplate>
-                        <%--For Admin Only--%>
+                        
                         <RoleGroups>
+                            <%-- Admin Only--%>
                             <asp:RoleGroup Roles="Admin">
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav">
                                         <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
-                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Pending Evaluation Approvals</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Evaluation Approvals</a></li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a runat="server" href="~/Reports/BirthDay_Celeb.aspx">Birthday Celebrants</a></li>
@@ -132,9 +137,10 @@
                                                 <li><a runat="server" href="~/MasterConfig/Department_Master.aspx">Department</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/Employee_Account_MasterList.aspx">Employee Account Management</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/RoleManager.aspx">Positions Management</a></li>
+                                                <%--<li class="divider"></li>
                                                 <li><a runat="server" href="~/MasterConfig/TransactionLogs.aspx">Audit Trail</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/ErrorLogs.aspx">Error Logs</a></li>
-                                                <li><a runat="server" href="~/MasterConfig/BackupDatabase.aspx">Database Backup</a></li>
+                                                <li><a runat="server" href="~/MasterConfig/BackupDatabase.aspx">Database Backup</a></li>--%>
                                             </ul>
                                         </li>
                                     </ul>
@@ -166,17 +172,13 @@
                                 </ContentTemplate>
                             </asp:RoleGroup>
 
-                            <%--For HR --%>
+                            <%-- HR --%>
                             <asp:RoleGroup Roles="HR">
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav">
                                         <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
-                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Pending Evaluation Approvals</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Evaluation Approvals</a></li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a runat="server" href="~/Reports/BirthDay_Celeb.aspx">Birthday Celebrants</a></li>
@@ -229,11 +231,7 @@
                                     <ul class="nav navbar-nav">
                                         <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
-                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Pending Evaluation Approvals</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Evaluation Approvals</a></li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="dropdown">
@@ -269,11 +267,7 @@
                                     <ul class="nav navbar-nav">
                                         <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
-                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Pending EvaluationApprovals</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Evaluation Approvals</a></li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="dropdown">
@@ -309,11 +303,7 @@
                                     <ul class="nav navbar-nav">
                                         <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
-                                        <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Approvals<span class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Pending Evaluation Approvals</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Evaluation Approvals</a></li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="dropdown">

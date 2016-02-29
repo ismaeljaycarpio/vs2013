@@ -27,12 +27,14 @@ namespace AMS.DAL
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
-                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                ", AGENCY.Agency AS [Agency] " + 
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency WHERE " +
                 "Memberships.UserId = EMPLOYEE.UserId AND " +
                 "EMPLOYEE.PositionId = POSITION.Id AND " +
                 "POSITION.DepartmentId = DEPARTMENT.Id AND " +
                 "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
                 "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " + 
                 "Roles.RoleName != 'Admin' AND " +
                 "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
                 "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
@@ -63,12 +65,14 @@ namespace AMS.DAL
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
-                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                ", AGENCY.Agency AS [Agency] " + 
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency WHERE " +
                 "Memberships.UserId = EMPLOYEE.UserId AND " +
                 "EMPLOYEE.PositionId = POSITION.Id AND " +
                 "POSITION.DepartmentId = DEPARTMENT.Id AND " +
                 "DEPARTMENT.Id = @DepartmentId AND " +
                 "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " + 
                 "UsersInRoles.RoleId = Roles.RoleId AND " +
                 "(Roles.RoleName = 'Supervisor' OR Roles.RoleName = 'Staff') AND " +
                 "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
@@ -101,12 +105,14 @@ namespace AMS.DAL
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
-                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles WHERE " +
+                ", AGENCY.Agency AS [Agency] " + 
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency WHERE " +
                 "Memberships.UserId = EMPLOYEE.UserId AND " +
                 "EMPLOYEE.PositionId = POSITION.Id AND " +
                 "POSITION.DepartmentId = DEPARTMENT.Id AND " +
                 "DEPARTMENT.Id = @DepartmentId AND " +
                 "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " + 
                 "UsersInRoles.RoleId = Roles.RoleId AND " +
                 "(Roles.RoleName = 'Staff') AND " +
                 "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +

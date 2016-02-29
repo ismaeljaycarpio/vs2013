@@ -15,12 +15,32 @@ namespace AMS.DAL
         SqlCommand comm;
         SqlDataAdapter adp;
         DataTable dt;
+        string strSql = String.Empty;
+
         public static string CONN_STRING = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+
+        public DataTable displayAuditTrail()
+        {
+            strSql = "SELECT * FROM TrannsactionLog ORDER BY Id DESC";
+            using(conn = new SqlConnection(CONN_STRING))
+            {
+                dt = new DataTable();
+                comm = new SqlCommand(strSql, conn);
+                adp = new SqlDataAdapter(comm);
+
+                conn.Open();
+                adp.Fill(dt);
+                conn.Close();
+
+                return dt;
+            }
+        }
 
         public void transactionLog(Guid userId,
             string action)
         {
-            string strSql = "INSERT INTO TransactionLog VALUES(@UserId, @Action, @ActionDate)";
+            strSql = "INSERT INTO TransactionLog VALUES(@UserId, @Action, @ActionDate)";
             using(conn = new SqlConnection(CONN_STRING))
             {
                 comm = new SqlCommand(strSql, conn);
@@ -35,7 +55,7 @@ namespace AMS.DAL
 
         public void errorLog(Guid userId, string error)
         {
-            string strSql = "INSERT INTO ErroLog VALUES(@UserId, @Action, @ActionDate)";
+            strSql = "INSERT INTO ErroLog VALUES(@UserId, @Action, @ActionDate)";
             using (conn = new SqlConnection(CONN_STRING))
             {
                 comm = new SqlCommand(strSql, conn);

@@ -23,6 +23,7 @@ namespace AMS.DAL
             strSql = "SELECT Memberships.UserId, Memberships.IsApproved, " +
                 "EMPLOYEE.Emp_Id, Roles.RoleName, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName] " +
+                ", AGENCY.Agency AS [Agency] " +
                 "FROM Memberships " +
                 "LEFT JOIN UsersInRoles " +
                 "ON Memberships.UserId = UsersInRoles.UserId " +
@@ -30,6 +31,8 @@ namespace AMS.DAL
                 "ON Roles.RoleId = UsersInRoles.RoleId " +
                 "LEFT JOIN EMPLOYEE " +
                 "ON Memberships.UserId = EMPLOYEE.UserId " +
+                "LEFT JOIN AGENCY " +
+                "ON EMPLOYEE.AgencyId = AGENCY.Id " +
                 "WHERE " +
                 "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' OR " +
                 "EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' OR " +

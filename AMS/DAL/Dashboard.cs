@@ -192,23 +192,54 @@ namespace AMS.DAL
             return dt;
         }
 
-        public DataTable DisplayMasterList(string searchkeyWord, string accountStatusId)
+        public DataTable DisplayMasterList(string searchkeyWord, string accountStatusId, string agencyId)
         {
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand();
             comm.Connection = conn;
 
-            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+            if (accountStatusId == "0" && agencyId == "0")
+            {
+                strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
                 "EMPLOYEE.BirthDate, " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
                 "ACCOUNT_STATUS.AccountStatus " +
-                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, ACCOUNT_STATUS WHERE " +
+                ", AGENCY.Agency AS [Agency] " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, ACCOUNT_STATUS, AGENCY WHERE " +
                 "Memberships.UserId = EMPLOYEE.UserId AND " +
                 "EMPLOYEE.PositionId = POSITION.Id AND " +
                 "POSITION.DepartmentId = DEPARTMENT.Id AND " +
                 "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "ACCOUNT_STATUS.Id = EMPLOYEE.AccountStatusId AND " +
+                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') " +
+                "ORDER BY Employee.Emp_Id ASC";
+
+                comm.Parameters.AddWithValue("@searchKeyWord", searchkeyWord);
+            }
+            else if (accountStatusId != "0" && agencyId == "0")
+            {
+                strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "EMPLOYEE.BirthDate, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                "ACCOUNT_STATUS.AccountStatus " +
+                ", AGENCY.Agency AS [Agency] " + 
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, ACCOUNT_STATUS, AGENCY WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
                 "UsersInRoles.RoleId = Roles.RoleId AND " +
                 "Roles.RoleName != 'Admin' AND " +
                 "ACCOUNT_STATUS.Id = EMPLOYEE.AccountStatusId AND " +
@@ -221,8 +252,70 @@ namespace AMS.DAL
                 "EMPLOYEE.AccountStatusId = @AccountStatusId " +
                 "ORDER BY Employee.Emp_Id ASC";
 
-            comm.Parameters.AddWithValue("@AccountStatusId", accountStatusId);
-            comm.Parameters.AddWithValue("@searchKeyWord", searchkeyWord);
+                comm.Parameters.AddWithValue("@AccountStatusId", accountStatusId);
+                comm.Parameters.AddWithValue("@searchKeyWord", searchkeyWord);
+            }
+            else if (accountStatusId == "0" && agencyId != "0")
+            {
+                strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "EMPLOYEE.BirthDate, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                "ACCOUNT_STATUS.AccountStatus " +
+                ", AGENCY.Agency AS [Agency] " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, ACCOUNT_STATUS, AGENCY WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "ACCOUNT_STATUS.Id = EMPLOYEE.AccountStatusId AND " +
+                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') AND " +
+                "EMPLOYEE.AgencyId = @AgencyId " +
+                "ORDER BY Employee.Emp_Id ASC";
+
+                comm.Parameters.AddWithValue("@AgencyId", agencyId);
+                comm.Parameters.AddWithValue("@searchKeyWord", searchkeyWord);
+            }
+            else if (accountStatusId != "0" && agencyId != "0")
+            {
+                strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "EMPLOYEE.BirthDate, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                "ACCOUNT_STATUS.AccountStatus " +
+                ", AGENCY.Agency AS [Agency] " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, ACCOUNT_STATUS, AGENCY WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "ACCOUNT_STATUS.Id = EMPLOYEE.AccountStatusId AND " +
+                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%') AND " +
+                "EMPLOYEE.AgencyId = @AgencyId " +
+                "AND EMPLOYEE.AccountStatusId = @AccountStatusId " +
+                "ORDER BY Employee.Emp_Id ASC";
+
+                comm.Parameters.AddWithValue("@AgencyId", agencyId);
+                comm.Parameters.AddWithValue("@AccountStatusId", accountStatusId);
+                comm.Parameters.AddWithValue("@searchKeyWord", searchkeyWord);
+            }
+      
             comm.CommandText = strSql;
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
@@ -234,7 +327,7 @@ namespace AMS.DAL
             return dt;
         }
 
-        public DataTable DisplayMasterList(string searchkeyWord, string accountStatusId, string deptId)
+        public DataTable DisplayMasterList(string searchkeyWord, string accountStatusId, string agencyId, string deptId)
         {
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;

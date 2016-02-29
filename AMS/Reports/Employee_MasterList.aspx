@@ -22,6 +22,7 @@
                                 <div class="input-group">
                                     <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
+                                    <asp:DropDownList ID="ddlAgency" runat="server" CssClass="form-control"></asp:DropDownList>
                                     <span class="input-group-btn">
                                         <asp:Button ID="btnSearch"
                                             runat="server"
@@ -66,6 +67,7 @@
                                 <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
                                 <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
                                 <asp:BoundField DataField="AccountStatus" HeaderText="Contract Status" SortExpression="AccountStatus" />
+                                <asp:BoundField DataField="Agency" HeaderText="Agency" SortExpression="Agency" />
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

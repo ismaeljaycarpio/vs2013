@@ -44,11 +44,11 @@
                         <tr>
                             <td colspan="3"><b>Next Evaluation Date:</b>
                                 <asp:TextBox ID="txtNextEvaluationDate" runat="server" data-provide="datepicker" placeholder="Next Evaluation Date" CssClass="form-control"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" 
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
                                     runat="server"
                                     Display="Dynamic"
                                     ForeColor="Red"
-                                    ControlToValidate="txtNextEvaluationDate" 
+                                    ControlToValidate="txtNextEvaluationDate"
                                     ErrorMessage="Next Evaluation Date is Required"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -102,7 +102,7 @@
 
                                         <asp:TemplateField HeaderText="Rating">
                                             <ItemTemplate>
-                                                <asp:TextBox runat="server" ID="txtStaffRating" Width="50"></asp:TextBox>
+                                                <asp:TextBox runat="server" ID="txtStaffRating" Width="50" CssClass="form-control"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
                                                     runat="server"
                                                     Display="Dynamic"
@@ -123,7 +123,7 @@
 
                                         <asp:TemplateField HeaderText="Evaluator">
                                             <ItemTemplate>
-                                                <asp:TextBox runat="server" ID="txtEvaluatorRating" Width="50"></asp:TextBox>
+                                                <asp:TextBox runat="server" ID="txtEvaluatorRating" Width="50" CssClass="form-control"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
                                                     runat="server"
                                                     Display="Dynamic"
@@ -165,27 +165,27 @@
                             <tr>
                                 <td>(1 ) Unacceptable</td>
                                 <td>
-                                    <asp:TextBox ID="txtUnacceptable" runat="server"></asp:TextBox></td>
+                                    <asp:TextBox ID="txtUnacceptable" runat="server" CssClass="form-control"></asp:TextBox></td>
                             </tr>
                             <tr>
                                 <td>(2 ) Fall Short of Objectives</td>
                                 <td>
-                                    <asp:TextBox ID="txtFallShort" runat="server"></asp:TextBox></td>
+                                    <asp:TextBox ID="txtFallShort" runat="server" CssClass="form-control"></asp:TextBox></td>
                             </tr>
                             <tr>
                                 <td>(3 ) Effective</td>
                                 <td>
-                                    <asp:TextBox ID="txtEffective" runat="server"></asp:TextBox></td>
+                                    <asp:TextBox ID="txtEffective" runat="server" CssClass="form-control"></asp:TextBox></td>
                             </tr>
                             <tr>
                                 <td>(4 ) Highly Effective</td>
                                 <td>
-                                    <asp:TextBox ID="txtHighlyEffective" runat="server"></asp:TextBox></td>
+                                    <asp:TextBox ID="txtHighlyEffective" runat="server" CssClass="form-control"></asp:TextBox></td>
                             </tr>
                             <tr>
                                 <td>(5 ) Exceptional</td>
                                 <td>
-                                    <asp:TextBox ID="txtExceptional" runat="server"></asp:TextBox></td>
+                                    <asp:TextBox ID="txtExceptional" runat="server" CssClass="form-control"></asp:TextBox></td>
                             </tr>
                             <tr>
                                 <td>Remarks/Recommendation</td>

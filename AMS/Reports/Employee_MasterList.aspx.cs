@@ -16,6 +16,7 @@ namespace AMS.Reports
         DAL.Filler filler = new DAL.Filler();
         DAL.Dashboard dashb = new DAL.Dashboard();
         DAL.Employee emp = new DAL.Employee();
+        DAL.Agency agency = new DAL.Agency();
         DataTable dt;
         
         protected void Page_Load(object sender, EventArgs e)
@@ -26,6 +27,13 @@ namespace AMS.Reports
                 ddlStatus.DataValueField = "Id";
                 ddlStatus.DataTextField = "AccountStatus";
                 ddlStatus.DataBind();
+                ddlStatus.Items.Insert(0, new ListItem("All Status", "0"));
+
+                ddlAgency.DataSource = agency.DisplayAgency();
+                ddlAgency.DataValueField = "Id";
+                ddlAgency.DataTextField = "Agency";
+                ddlAgency.DataBind();
+                ddlAgency.Items.Insert(0, new ListItem("All Agency", "0"));
 
                 //chk if expiring contract is selected
                 if (Request.QueryString["Exp"] != null)
@@ -81,7 +89,7 @@ namespace AMS.Reports
             }
             else
             {
-                dt = dashb.DisplayMasterList(txtSearch.Text, ddlStatus.SelectedValue);
+                dt = dashb.DisplayMasterList(txtSearch.Text, ddlStatus.SelectedValue, ddlAgency.SelectedValue);
             }
             
             return dt;

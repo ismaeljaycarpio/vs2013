@@ -60,6 +60,9 @@
       <siteMapNode url="~/MasterConfig/Department_Master.aspx" title="Department Master List"></siteMapNode>
       <siteMapNode url="~/MasterConfig/Employee_Account_MasterList.aspx" title="Account Master List"></siteMapNode>
       <siteMapNode url="~/MasterConfig/RoleManager.aspx" title="Position Master List"></siteMapNode>
+      <siteMapNode url="~/MasterConfig/TransactionLogs.aspx" title="Audit Trail"></siteMapNode>
+      <siteMapNode url="~/MasterConfig/ErrorLogs.aspx" title="Error Logs (Debugging Purposes)"></siteMapNode>
+      <siteMapNode url="~/MasterConfig/BackupDatabase.aspx" title="Database Backup"></siteMapNode>
     </siteMapNode>
 
     <siteMapNode title="Reports">

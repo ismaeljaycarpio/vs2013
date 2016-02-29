@@ -92,6 +92,7 @@
                             runat="server"
                             class="table table-striped table-hover dataTable"
                             GridLines="None"
+                            EmptyDataText="No Pending Evaluation Approvals"
                             AutoGenerateColumns="false"
                             AllowPaging="true"
                             ShowHeaderWhenEmpty="true"

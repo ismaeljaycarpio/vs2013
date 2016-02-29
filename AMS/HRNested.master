@@ -33,11 +33,11 @@
                     </div>
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav" id="nav">
-                            <li id="registerEmployee"><a runat="server" href="~/HR/Register.aspx">Register Employee</a></li>
-                            <li id="timeintimeout">
+                            <li id="Register"><a runat="server" href="~/HR/Register.aspx">Register Employee</a></li>
+                            <li id="TimeInTimeOut">
                                 <a runat="server" href="~/HR/TimeInTimeOut.aspx">Time In / Time Out</a>
                             </li>
-                            <li id="attendance">
+                            <li id="Attendance">
                                 <a runat="server" href="~/HR/Attendance.aspx">Attendace Logs</a>
                             </li>
                         </ul>

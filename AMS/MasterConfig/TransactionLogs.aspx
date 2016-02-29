@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Transaction Logs"
+﻿<%@ Page Title="Audit Trail"
     Language="C#"
     MasterPageFile="~/MasterConfigNested.master"
     AutoEventWireup="true"

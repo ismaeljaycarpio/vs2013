@@ -47,7 +47,7 @@ namespace AMS.Evaluation
             {
                 dt = eval.GetPendingApprovalGM();
             }
-            else if(User.IsInRole("HR"))
+            else if(User.IsInRole("HR") || User.IsInRole("Admin"))
             {
                 dt = eval.GetPendingApprovalHR();
             }
