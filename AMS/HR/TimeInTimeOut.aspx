@@ -34,7 +34,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4><strong>Time In / Time Out</strong></h4>
                 </div>

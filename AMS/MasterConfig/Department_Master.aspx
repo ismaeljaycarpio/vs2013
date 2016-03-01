@@ -124,7 +124,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-danger">
                 <div class="panel-heading">
                     <h5>Departments</h5>
                 </div>
