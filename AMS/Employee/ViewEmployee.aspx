@@ -68,6 +68,13 @@
                         <asp:Label ID="lblAgency" runat="server"></asp:Label>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="lblEmergencyContactPerson" class="col-sm-2 control-label">Contact Person: </label>
+                    <div class="col-sm-10">
+                        <asp:Label ID="lblEmergencyContactPerson" runat="server"></asp:Label>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -77,9 +84,11 @@
                 <asp:GridView ID="gvEMovement"
                     runat="server"
                     CssClass="table table-striped"
+                    AllowPaging="true"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
                     EmptyDataText="No Record(s) found"
+                    OnPageIndexChanging="gvEMovement_PageIndexChanging"
                     GridLines="None">
                     <Columns>
                         <asp:BoundField DataField="EMovement" HeaderText="Movement" />
@@ -99,7 +108,9 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    AllowPaging="true"
                     EmptyDataText="No Record(s) found"
+                    OnPageIndexChanging="gvExperience_PageIndexChanging"
                     GridLines="None">
                     <Columns>
                         <asp:BoundField DataField="Job" HeaderText="Job" />
@@ -121,6 +132,8 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    AllowPaging="true"
+                    OnPageIndexChanging="gvEducation_PageIndexChanging"
                     EmptyDataText="No Record(s) found"
                     GridLines="None">
                     <Columns>
@@ -142,6 +155,8 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    AllowPaging="true"
+                    OnPageIndexChanging="gvTrainings_PageIndexChanging"
                     EmptyDataText="No Record(s) found"
                     GridLines="None">
                     <Columns>
@@ -163,6 +178,8 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    AllowPaging="true"
+                    OnPageIndexChanging="gvAwards_PageIndexChanging"
                     EmptyDataText="No Record(s) found"
                     GridLines="None">
                     <Columns>
@@ -183,6 +200,8 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    AllowPaging="true"
+                    OnPageIndexChanging="gvViolations_PageIndexChanging"
                     EmptyDataText="No Record(s) found"
                     GridLines="None">
                     <Columns>
@@ -204,6 +223,8 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    AllowPaging="true"
+                    OnPageIndexChanging="gvForEmergency_PageIndexChanging"
                     EmptyDataText="No Record(s) found"
                     GridLines="None">
                     <Columns>
@@ -225,6 +246,8 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    AllowPaging="true"
+                    OnPageIndexChanging="gvPersonalCards_PageIndexChanging"
                     EmptyDataText="No Record(s) found"
                     GridLines="None">
                     <Columns>
@@ -245,6 +268,8 @@
                     CssClass="table table-striped"
                     AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="true"
+                    AllowPaging="true"
+                    OnPageIndexChanging="gvDocuments_PageIndexChanging"
                     EmptyDataText="No File(s) Uploaded"
                     GridLines="None">
                     <Columns>

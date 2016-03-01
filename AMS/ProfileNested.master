@@ -45,7 +45,7 @@
                             <li id="Trainings"><a runat="server" href="~/Employee/Trainings.aspx">Trainings</a></li>
                             <li id="Awards"><a runat="server" href="~/Employee/Awards.aspx">Awards</a></li>
                             <li id="Violations"><a runat="server" href="~/Employee/Violations.aspx">Violations</a></li>
-                            <li id="Contacts"><a runat="server" href="~/Employee/Contacts.aspx">Contacts</a></li>
+                            <li id="Contacts"><a runat="server" href="~/Employee/Contacts.aspx">Emergency Contacts</a></li>
                             <li id="PersonalCards"><a runat="server" href="~/Employee/PersonalCards.aspx">Membership Cards</a></li>
                             <li class="divider"></li>
                             <li id="Evaluation"><a runat="server" href="~/Employee/Evaluation.aspx">Evaluations</a></li>

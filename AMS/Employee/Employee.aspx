@@ -32,8 +32,8 @@
                         </div>
                     </div>
 
-                    <asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" />
-                    <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" />
+                    <%--<asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" />
+                    <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" />--%>
                     <div class="table-responsive">
                         <div class="text-center">
                             <asp:Label ID="lblCount" runat="server"></asp:Label>

@@ -109,6 +109,9 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
+                                        <asp:BoundField DataField="Agency" HeaderText="Agency" SortExpression="Agency" />
+                                        <asp:BoundField DataField="RoleName" HeaderText="Role" SortExpression="RoleName" />
+
                                         <asp:TemplateField HeaderText="Account Status" SortExpression="IsApproved">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lblStatus"
@@ -128,9 +131,7 @@
                                                 </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
-                                        <asp:BoundField DataField="Agency" HeaderText="Agency" SortExpression="Agency" />
-                                        <asp:BoundField DataField="RoleName" HeaderText="Role" SortExpression="RoleName" />
+            
                                         <asp:ButtonField HeaderText="Action" ButtonType="Link" Text="Edit Role" CommandName="editRecord" />
                                     </Columns>
                                     <PagerStyle CssClass="pagination-ys" />

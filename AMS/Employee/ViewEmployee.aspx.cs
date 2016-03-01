@@ -52,59 +52,56 @@ namespace AMS.Employee
                 lblAgency.Text = dt.Rows[0]["Agency"].ToString();
 
 
-                //get grid emovement
-                dt = new DataTable();
-                DAL.EmployeeMovement emov = new DAL.EmployeeMovement();
-                gvEMovement.DataSource = emov.DisplayEMovement(UserId);
-                gvEMovement.DataBind();
-
-                //get grid jobexp
-                dt = new DataTable();
-                DAL.Experience exp = new DAL.Experience();
-                gvExperience.DataSource = exp.getExperienceById(UserId);
-                gvExperience.DataBind();
-
-                //get grid education
-                dt = new DataTable();
-                DAL.Education educ = new DAL.Education();
-                gvEducation.DataSource = educ.getEducationById(UserId);
-                gvEducation.DataBind();
-
-                //get grid trainings
-                dt = new DataTable();
-                DAL.Training training = new DAL.Training();
-                gvTrainings.DataSource = training.getTrainingsById(UserId);
-                gvTrainings.DataBind();
-
-                //get grid awards
-                dt = new DataTable();
-                DAL.Award award = new DAL.Award();
-                gvAwards.DataSource = award.getAwardsById(UserId);
-                gvAwards.DataBind();
-
-                //get grid violation
-                dt = new DataTable();
-                DAL.Violation violation = new DAL.Violation();
-                gvViolations.DataSource = violation.getViolationsById(UserId);
-                gvViolations.DataBind();
-
-                //get grid foremergency
-                dt = new DataTable();
-                DAL.Contact contact = new DAL.Contact();
-                gvForEmergency.DataSource = contact.getContactById(UserId);
-                gvForEmergency.DataBind();
-
-                //get grid personalcards
-                dt = new DataTable();
-                DAL.MembershipCard memCard = new DAL.MembershipCard();
-                gvPersonalCards.DataSource = memCard.getPersonalCardsById(UserId);
-                gvPersonalCards.DataBind();
-
-                BindDocuments(UserId);
+                bindGridviews(UserId);
 
                 //hide controls
                 hideControls();
             }
+        }
+
+        public void bindGridviews(Guid UserId)
+        {
+            //get grid emovement
+            DAL.EmployeeMovement emov = new DAL.EmployeeMovement();
+            gvEMovement.DataSource = emov.DisplayEMovement(UserId);
+            gvEMovement.DataBind();
+
+            //get grid jobexp
+            DAL.Experience exp = new DAL.Experience();
+            gvExperience.DataSource = exp.getExperienceById(UserId);
+            gvExperience.DataBind();
+
+            //get grid education
+            DAL.Education educ = new DAL.Education();
+            gvEducation.DataSource = educ.getEducationById(UserId);
+            gvEducation.DataBind();
+
+            //get grid trainings
+            DAL.Training training = new DAL.Training();
+            gvTrainings.DataSource = training.getTrainingsById(UserId);
+            gvTrainings.DataBind();
+
+            //get grid awards
+            DAL.Award award = new DAL.Award();
+            gvAwards.DataSource = award.getAwardsById(UserId);
+            gvAwards.DataBind();
+
+            //get grid violation
+            DAL.Violation violation = new DAL.Violation();
+            gvViolations.DataSource = violation.getViolationsById(UserId);
+            gvViolations.DataBind();
+
+            //get grid foremergency
+            DAL.Contact contact = new DAL.Contact();
+            gvForEmergency.DataSource = contact.getContactById(UserId);
+            gvForEmergency.DataBind();
+
+            //get grid personalcards
+            DAL.MembershipCard memCard = new DAL.MembershipCard();
+            gvPersonalCards.DataSource = memCard.getPersonalCardsById(UserId);
+            gvPersonalCards.DataBind();
+
+            BindDocuments(UserId);
         }
 
         protected void hideControls()
@@ -172,6 +169,51 @@ namespace AMS.Employee
             {
                 gvDocuments.Columns[2].Visible = false;
             }
+        }
+
+        protected void gvEMovement_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvEMovement.PageIndex = e.NewPageIndex;
+        }
+
+        protected void gvExperience_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvExperience.PageIndex = e.NewPageIndex;
+        }
+
+        protected void gvEducation_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvEducation.PageIndex = e.NewPageIndex;
+        }
+
+        protected void gvTrainings_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvTrainings.PageIndex = e.NewPageIndex;
+        }
+
+        protected void gvAwards_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvAwards.PageIndex = e.NewPageIndex;
+        }
+
+        protected void gvViolations_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvViolations.PageIndex = e.NewPageIndex;
+        }
+
+        protected void gvForEmergency_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvForEmergency.PageIndex = e.NewPageIndex;
+        }
+
+        protected void gvPersonalCards_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvPersonalCards.PageIndex = e.NewPageIndex;
+        }
+
+        protected void gvDocuments_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvDocuments.PageIndex = e.NewPageIndex;
         }
     }
 }

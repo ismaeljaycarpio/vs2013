@@ -60,7 +60,7 @@ namespace AMS.Dashboard
             Response.Clear();
             Response.Buffer = true;
             Response.AddHeader("content-disposition",
-                "attachment;filename=" + DateTime.Now.Year + DateTime.Now.ToString("MMMMM") + "BirthDay_Celebrants" + ".doc");
+                "attachment;filename=" + DateTime.Now.ToString("MMMMM") + "-BirthDay_Celebrants" + ".doc");
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-word ";
             StringWriter sw = new StringWriter();
@@ -82,7 +82,7 @@ namespace AMS.Dashboard
             Response.Clear();
             Response.Buffer = true;
             Response.AddHeader("content-disposition",
-             "attachment;filename=EmployeeList.xls");
+             "attachment;filename=" + DateTime.Now.ToString("MMMMM") + "-BirthDay_Celebrants" + ".xls");
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-excel";
             StringWriter sw = new StringWriter();

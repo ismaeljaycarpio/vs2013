@@ -53,6 +53,9 @@ input[type="select"] {
     z-index: 100000 !important;
 }
 
+.clickable{
+    cursor: pointer;
+}
 
 .pagination-ys {
     /*display: inline-block;*/

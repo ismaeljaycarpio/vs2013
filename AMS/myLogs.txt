@@ -7,19 +7,41 @@
 
 
 ///////////////////////////////////////////////////////////////
+////////////////////2016-03-01////////////////////////////////
+//////////////////////////////////////////////////////////////
+- nav-tabs for the Employee master list and expiring contracts - **DONE**
+- removed word/excel button in Employee/Employee -> not report - **DONE**
+- add Agency in Reports/Birthdat Celebrants - **DONE**
+- fix Alignment of agency drop down filter in Reports/Employee_MasterList.aspx - **SKIP**
+- fix exported document filename in reports - **DONE**
+- add paging in profile
+- Filters
+
+HOME
+
+Pending Evaluation Approvals: [Evaluation/PendingApprovals.aspx]
+	- Employee/vPerformanceEvaluation.aspx
+
+
+- add edit username
+- add tab for HMO
+
+
+///////////////////////////////////////////////////////////////
 ////////////////////2016-02-29////////////////////////////////
 //////////////////////////////////////////////////////////////
-- Bugs on GridView Paging and Sorting **WAITING
+- Bugs on GridView Paging and Sorting **ON HOLD**
 
 
 BUG:
 	Emergency Contact table - varchar(50) to varchar(MAX)
+	Address to appear in Emergency Contact
 
 
 Mich:
 	- Template: Add Enable Logo
 	- Home - bday panel, announcement, activities
-	- menu for - Evaluation Approvals
+	- menu for - Evaluation Approvals **DONE**
 	- Employee/Employee - add column Agency **DONE**
 	- MasterConfig/Employee_Account_MasterList.aspx - add column Agency **DONE**
 	- Reports/Employee_MasterList.aspx - add column Agency **DONE**

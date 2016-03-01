@@ -40,7 +40,6 @@
                                             CssClass="btn btn-primary"
                                             Text="Go"
                                             OnClick="btnSearch_Click" />
-
                                     </span>
                                     <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
                                 </div>
@@ -75,6 +74,7 @@
                                         <asp:Label runat="server" ID="lblBirthDate" Text='<%# Eval("BirthDate", "{0:d}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
+                                <asp:BoundField DataField="Agency" HeaderText="Agency" SortExpression="Agency" />
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Contacts" Language="C#" MasterPageFile="~/ProfileNested.master" AutoEventWireup="true" CodeBehind="Contacts.aspx.cs" Inherits="AMS.Employee.Contacts" %>
+﻿<%@ Page Title="Emergency Contacts" Language="C#" MasterPageFile="~/ProfileNested.master" AutoEventWireup="true" CodeBehind="Contacts.aspx.cs" Inherits="AMS.Employee.Contacts" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Add Modal -->
     <div id="addModal" class="modal">
@@ -387,7 +387,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h5>Contacts</h5>
+                    <h5>Emergency Contacts</h5>
                 </div>
 
                 <div class="panel-body">
@@ -428,13 +428,13 @@
 
                                         <asp:TemplateField HeaderText="Address">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblAddress" runat="server" Text='<%# Eval("G_Address") %>'></asp:Label>
+                                                <asp:Label ID="lblAddress" runat="server" Text='<%# Eval("Address") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Contact No">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblContactNo" runat="server" Text='<%# Eval("G_Phone") %>'></asp:Label>
+                                                <asp:Label ID="lblContactNo" runat="server" Text='<%# Eval("PhoneNo") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

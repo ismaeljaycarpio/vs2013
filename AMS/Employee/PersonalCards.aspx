@@ -164,7 +164,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h5>Memberships</h5>
+                    <h5>Membership Cards</h5>
                 </div>
 
                 <div class="panel-body">
@@ -221,7 +221,7 @@
                                     <PagerStyle CssClass="pagination" />
                                 </asp:GridView>
                                 <!-- Trigger the modal with a button -->
-                                <asp:Button ID="btnOpenModal" runat="server" CssClass="btn btn-info btn-sm" Text="Add Membership" OnClick="btnOpenModal_Click" />
+                                <asp:Button ID="btnOpenModal" runat="server" CssClass="btn btn-info btn-sm" Text="Add Membership Card" OnClick="btnOpenModal_Click" />
                             </ContentTemplate>
                             <Triggers>
                             </Triggers>

@@ -3,6 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="jumbotron">
+    <div class="row">
+        <div class="col-lg-4">
+            <h4>Notification</h4>
+        </div>
     </div>
 </asp:Content>

@@ -210,7 +210,7 @@
                                 <asp:Button ID="btnOpenModal"
                                     runat="server"
                                     CssClass="btn btn-info btn-sm"
-                                    Text="Add Movement"
+                                    Text="Add Employee Movement"
                                     OnClick="btnOpenModal_Click" />
                             </ContentTemplate>
                             <Triggers>

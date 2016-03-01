@@ -72,9 +72,9 @@ namespace AMS.HR
                     txtLastName.Text,
                     ddlPosition.SelectedValue.ToString());
 
-                logger.transactionLog(Guid.Parse(Membership.GetUser().ProviderUserKey.ToString()),
-                    "Added user: " + txtEmpId.Text + " with Position:" + ddlPosition.SelectedItem.Text +
-                    " and Role: " + ddlRole.SelectedItem.Text);
+                //logger.transactionLog(Guid.Parse(Membership.GetUser().ProviderUserKey.ToString()),
+                //    "Added user: " + txtEmpId.Text + " with Position:" + ddlPosition.SelectedItem.Text +
+                //    " and Role: " + ddlRole.SelectedItem.Text);
 
                 pnlSuccess.Visible = true;
                 ClearControls();               
