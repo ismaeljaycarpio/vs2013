@@ -118,11 +118,13 @@ namespace AMS.Employee
 
         protected void btnPerfEval_Click(object sender, EventArgs e)
         {
-            if (hfAgency.Value.Equals("TOPLIS Solutions Inc."))
+            string loweredAgency = hfAgency.Value.ToLower();
+
+            if (loweredAgency.Contains("toplis"))
             {
                 Response.Redirect("~/Employee/PerformanceEvaluation.aspx");
             }
-            else if (hfAgency.Value.Equals("PrimePower"))
+            else if (loweredAgency.Contains("primepower"))
             {
                 Response.Redirect("~/Employee/Prime_Performance_Evaluation.aspx");
             }

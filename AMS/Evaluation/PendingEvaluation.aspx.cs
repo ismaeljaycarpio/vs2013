@@ -39,8 +39,7 @@ namespace AMS.Evaluation
             else
             {
                 return dashb.DisplayPendingEvaluation(deptId);
-            }
-            
+            }   
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)

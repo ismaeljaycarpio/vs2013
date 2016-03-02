@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.IO;
+using System.Web.Security;
 
 namespace AMS.MasterConfig
 {
@@ -232,6 +233,18 @@ namespace AMS.MasterConfig
                 sb.Append(@"</script>");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "EditShowModalScript", sb.ToString(), false);
             }
+            else if (e.CommandName.Equals("deleteRecord"))
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                string rowId = ((Label)gvEmployee.Rows[index].FindControl("lblEmp_Id")).Text;
+                hfDeleteId.Value = rowId;
+
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb.Append(@"<script type='text/javascript'>");
+                sb.Append("$('#deleteModal').modal('show');");
+                sb.Append(@"</script>");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteShowModalScript", sb.ToString(), false);
+            }
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
@@ -246,6 +259,20 @@ namespace AMS.MasterConfig
             sb.Append("$('#updateModal').modal('hide');");
             sb.Append(@"</script>");
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "EditHideModalScript", sb.ToString(), false);
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            Membership.DeleteUser(hfDeleteId.Value);
+
+            gvEmployee.DataSource = BindGridView();
+            gvEmployee.DataBind();
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append(@"<script type='text/javascript'>");
+            sb.Append("$('#deleteModal').modal('hide');");
+            sb.Append(@"</script>");
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteHideModalScript", sb.ToString(), false);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace AMS.MasterConfig
                 //show/hide controls based on role
                 if (!User.IsInRole("Admin") && !User.IsInRole("HR"))
                 {
-                    btnOpenModal.Visible = false;
+                    //btnOpenModal.Visible = false;
                     gvDepartment.Columns[1].Visible = false;
                     gvDepartment.Columns[3].Visible = false;
                 }

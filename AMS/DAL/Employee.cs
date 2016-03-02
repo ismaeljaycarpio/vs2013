@@ -632,6 +632,24 @@ namespace AMS.DAL
             return dt.Rows[0]["Agency"].ToString().Trim();
         }
 
+        public string GetAgencyId(Guid UserId)
+        {
+            strSql = "SELECT AgencyId FROM EMPLOYEE WHERE UserId = @UserId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt.Rows[0]["AgencyId"].ToString().Trim();
+        }
+
         public void AddJobDetails(
             Guid UserId,
             string emp_id,

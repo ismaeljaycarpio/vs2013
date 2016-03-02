@@ -68,13 +68,6 @@
                         <asp:Label ID="lblAgency" runat="server"></asp:Label>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="lblEmergencyContactPerson" class="col-sm-2 control-label">Contact Person: </label>
-                    <div class="col-sm-10">
-                        <asp:Label ID="lblEmergencyContactPerson" runat="server"></asp:Label>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -230,8 +223,8 @@
                     <Columns>
                         <asp:BoundField DataField="G_Name" HeaderText="Guardian" />
                         <asp:BoundField DataField="Relationship" HeaderText="Relationship" />
-                        <asp:BoundField DataField="G_Address" HeaderText="Address" />
-                        <asp:BoundField DataField="G_Phone" HeaderText="Contact No" />
+                        <asp:BoundField DataField="Address" HeaderText="Address" />
+                        <asp:BoundField DataField="PhoneNo" HeaderText="Phone" />
                     </Columns>
                 </asp:GridView>
             </div>

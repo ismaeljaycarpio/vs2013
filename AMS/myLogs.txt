@@ -9,8 +9,10 @@
 ////////////////////2016-03-02////////////////////////////////
 //////////////////////////////////////////////////////////////
 timekeeping
--use Ajax (UpdatePanel) in all gridviews
-
+- use Ajax (UpdatePanel) in all gridviews
+- fixed Evaluation redirection for agency - **DONE**
+- backup [Documents] and [ProfileImages] when publishing
+- add permanently delete employee [Encoding mistake only]
 
 
 ///////////////////////////////////////////////////////////////
