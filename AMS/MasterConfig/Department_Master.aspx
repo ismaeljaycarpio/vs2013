@@ -1,14 +1,14 @@
-﻿<%@ Page Title="Department Master List" 
-    Language="C#" 
-    MasterPageFile="~/Site.Master" 
-    AutoEventWireup="true" 
-    CodeBehind="Department_Master.aspx.cs" 
+﻿<%@ Page Title="Department Master List"
+    Language="C#"
+    MasterPageFile="~/Site.Master"
+    AutoEventWireup="true"
+    CodeBehind="Department_Master.aspx.cs"
     Inherits="AMS.MasterConfig.Department_Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-     <!-- Add Modal -->
+    <!-- Add Modal -->
     <div id="addModal" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" role="dialog">
         <div class="modal-dialog">
 
@@ -126,6 +126,15 @@
         <div class="col-md-12">
             <div class="panel panel-danger">
                 <div class="panel-heading">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addModal">Add</button>
+                        <%--<asp:Button ID="btnOpenModal"
+                            runat="server"
+                            CssClass="btn btn-info btn-sm"
+                            Text="Add Department"
+                            OnClick="btnOpenModal_Click"
+                            CausesValidation="false" />--%>
+                    </div>
                     <h5>Departments</h5>
                 </div>
 
@@ -167,12 +176,7 @@
                                     <PagerStyle CssClass="pagination-ys" />
                                 </asp:GridView>
                                 <!-- Trigger the modal with a button -->
-                                <asp:Button ID="btnOpenModal" 
-                                    runat="server" 
-                                    CssClass="btn btn-info btn-sm" 
-                                    Text="Add Department"
-                                    OnClick="btnOpenModal_Click" 
-                                    CausesValidation="false" />
+
                             </ContentTemplate>
                             <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="gvDepartment" />
