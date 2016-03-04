@@ -65,8 +65,10 @@
                             <h4 class="modal-title">Delete Record</h4>
                         </div>
                         <div class="modal-body">
-                            Are you sure you want to delete this record ? 
-                            All information associated with this user will also be deleted.
+                            <p class="text-danger">
+                                Are you sure you want to delete this record ? 
+                            All information associated with this user will also be removed.
+                            </p>
                             <asp:HiddenField ID="hfDeleteId" runat="server" />
                         </div>
                         <div class="modal-footer">

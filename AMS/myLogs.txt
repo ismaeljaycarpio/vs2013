@@ -6,13 +6,19 @@
 [Admin],admin
 
 ///////////////////////////////////////////////////////////////
+////////////////////2016-03-03////////////////////////////////
+//////////////////////////////////////////////////////////////
+- timekeeping
+
+
+///////////////////////////////////////////////////////////////
 ////////////////////2016-03-02////////////////////////////////
 //////////////////////////////////////////////////////////////
 timekeeping
-- use Ajax (UpdatePanel) in all gridviews
+- use Ajax (UpdatePanel) in all gridviews !!DISCARD!!
 - fixed Evaluation redirection for agency - **DONE**
 - backup [Documents] and [ProfileImages] when publishing
-- add permanently delete employee [Encoding mistake only]
+- add permanently delete employee [Encoding mistake only] - **DONE**
 
 
 ///////////////////////////////////////////////////////////////
@@ -21,7 +27,7 @@ timekeeping
 - nav-tabs for the Employee master list and expiring contracts - **DONE**
 - removed word/excel button in Employee/Employee -> not report - **DONE**
 - add Agency in Reports/Birthdat Celebrants - **DONE**
-- fix Alignment of agency drop down filter in Reports/Employee_MasterList.aspx - **SKIP**
+- fix Alignment of agency drop down filter in Reports/Employee_MasterList.aspx - **SKIP** -> **DONE**
 - fix exported document filename in reports - **DONE**
 - add paging in profile
 - Filters

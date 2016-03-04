@@ -47,9 +47,9 @@
                             <li id="Violations"><a runat="server" href="~/Employee/Violations.aspx">Violations</a></li>
                             <li id="Contacts"><a runat="server" href="~/Employee/Contacts.aspx">Emergency Contacts</a></li>
                             <li id="PersonalCards"><a runat="server" href="~/Employee/PersonalCards.aspx">Membership Cards</a></li>
-                            <li class="divider"></li>
+                            <li class="nav-divider"></li>
                             <li id="Evaluation"><a runat="server" href="~/Employee/Evaluation.aspx">Evaluations</a></li>
-                            <li class="divider"></li>
+                            <li class="nav-divider"></li>
                             <li id="TimeInTimeOut"><a runat="server" href="~/Employee/TimeInTimeOut.aspx">Time In / Time Out</a></li>
                         </ul>
                     </div>
