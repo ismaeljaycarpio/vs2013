@@ -50,7 +50,7 @@
                             <li class="nav-divider"></li>
                             <li id="Evaluation"><a runat="server" href="~/Employee/Evaluation.aspx">Evaluations</a></li>
                             <li class="nav-divider"></li>
-                            <li id="TimeInTimeOut"><a runat="server" href="~/Employee/TimeInTimeOut.aspx">Time In / Time Out</a></li>
+                            <li id="TimeInTimeOut"><a runat="server" href="~/Employee/TimeInTimeOut.aspx">Timekeeping Logs</a></li>
                         </ul>
                     </div>
                     <!--/.nav-collapse -->

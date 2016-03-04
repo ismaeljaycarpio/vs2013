@@ -45,7 +45,7 @@ namespace AMS.HR
                     else
                     {
                         lblError.Text = "ERROR: Problem getting information for the user " + txtEmpId.Text.Trim();
-                    }                  
+                    }
                 }
             }
         }

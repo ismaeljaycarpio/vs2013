@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Attendance"
+﻿<%@ Page Title="Timekeeping Logs"
     Language="C#"
     MasterPageFile="~/HRNested.master"
     AutoEventWireup="true"
@@ -14,18 +14,36 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-horizontal">
+
                         <div class="form-group">
+                            <label for="txtStartDate" class="col-sm-2 control-label">Dates</label>
                             <div class="col-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <asp:Button ID="btnSearch"
-                                            runat="server"
-                                            CssClass="btn btn-primary"
-                                            Text="Go"
-                                            OnClick="btnSearch_Click" />
-                                    </span>
-                                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search for name, Id"></asp:TextBox>
+                                <div class="input-daterange">
+                                    <div class="input-group">
+                                        <asp:TextBox ID="txtStartDate" runat="server" data-provide="datepicker" CssClass="form-control" placeholder="Start Date"></asp:TextBox>
+                                        <span class="input-group-addon">to</span>
+                                        <asp:TextBox ID="txtEndDate" runat="server" data-provide="datepicker" CssClass="form-control" placeholder="End Date"></asp:TextBox>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ddlStatus" class="col-sm-2 control-label">Name:</label>
+                            <div class="col-sm-10">
+                                <asp:DropDownList ID="ddlName" runat="server" CssClass="form-control">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="btnSearch" class="col-sm-2 control-label">&nbsp;</label>
+                            <div class="col-sm-10">
+                                <asp:Button ID="btnSearch"
+                                    runat="server"
+                                    CssClass="btn btn-primary form-control"
+                                    Text="Go"
+                                    OnClick="btnSearch_Click" />
                             </div>
                         </div>
                     </div>
@@ -59,9 +77,26 @@
                                         <asp:LinkButton ID="lnkFNAME" runat="server" Text='<%# Eval("FullName") %>' CommandName="Select"></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="TimeIn" HeaderText="Time-IN" SortExpression="TimeIn" />
-                                <asp:BoundField DataField="TimeOut" HeaderText="Time-OUT" SortExpression="TimeOut" />
+
+                                <asp:TemplateField HeaderText="IN" SortExpression="TimeIn">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblTimeIn" runat="server" Text='<%# Eval("TimeIn") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="OUT" SortExpression="TimeOut">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblTimeOut" runat="server" Text='<%# Eval("TimeOut") %>'>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
                                 <asp:BoundField DataField="Remarks" HeaderText="Remarks" SortExpression="Remarks" />
+
+                                <asp:TemplateField HeaderText="Hours Rendered" SortExpression="HoursRendered">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblHoursRendered" runat="server"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

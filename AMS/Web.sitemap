@@ -51,7 +51,7 @@
     
     <siteMapNode title="HR">
       <siteMapNode url="~/HR/Register.aspx" title="Register Employee"></siteMapNode>
-      <siteMapNode url="~/HR/TimeInTimeOut.aspx" title="Time In / Time Out"></siteMapNode>
+      <siteMapNode url="~/HR/TimeInTimeOut.aspx" title="Timekeeping Logs"></siteMapNode>
       <siteMapNode url="~/HR/Attendance.aspx" title="Timekeeping Logs"></siteMapNode>
     </siteMapNode>
 

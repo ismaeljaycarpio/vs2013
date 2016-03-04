@@ -19,15 +19,37 @@ namespace AMS.HR
         {
             if(!Page.IsPostBack)
             {
+                //fill employee
+                ddlName.DataSource = attendance.displayEmployee();
+                ddlName.DataTextField = "FullName";
+                ddlName.DataValueField = "UserId";
+                ddlName.DataBind();
+                ddlName.Items.Insert(0, new ListItem("--- All ---", "0"));
+
                 gvEmployee.DataSource = BindGridView();
                 gvEmployee.DataBind();
-                txtSearch.Focus();
+                //txtSearch.Focus();
             }
         }
 
         private DataTable BindGridView()
         {
-            return attendance.DisplayAttendance(txtSearch.Text);
+            if(ddlName.SelectedValue == "0" && txtStartDate.Text == String.Empty)
+            {
+                return attendance.DisplayAttendance("");
+            }
+            else if (ddlName.SelectedValue != "0" && txtStartDate.Text == String.Empty)
+            {
+                //display all logs for that user only
+                Guid userId = Guid.Parse(ddlName.SelectedValue);
+                return attendance.DisplayAttendanceOfUser(userId);
+            }
+            else if (ddlName.SelectedValue != "0" && txtStartDate.Text != String.Empty)
+            {
+                //display all logs for that user w/ date
+            }
+
+            return attendance.DisplayAttendance("");
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -74,6 +96,28 @@ namespace AMS.HR
 
         protected void gvEmployee_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if(e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string timeIn = ((Label)e.Row.FindControl("lblTimeIn")).Text;
+                string timeOut = ((Label)e.Row.FindControl("lblTimeOut")).Text;
+
+                if(timeIn != String.Empty && timeOut != String.Empty)
+                {
+                    DateTime startTime = Convert.ToDateTime(timeIn);
+                    DateTime endTime = Convert.ToDateTime(timeOut);
+
+                    TimeSpan diff = endTime.Subtract(startTime);
+
+                    Label lblRenderedHours = (Label)e.Row.FindControl("lblHoursRendered");
+                    lblRenderedHours.Text = String.Format("{0} hours, {1} minutes", diff.Hours, diff.Minutes);
+
+                    if(diff.Hours < 8)
+                    {
+                        lblRenderedHours.ForeColor = System.Drawing.Color.Red;
+                    }
+                }    
+            }
+
             if (e.Row.RowType == DataControlRowType.Footer)
             {
                 int _TotalRecs = BindGridView().Rows.Count;

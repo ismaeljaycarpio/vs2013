@@ -44,6 +44,7 @@
                         <strong>Success!</strong> User successfully created.
                     </asp:Panel>
                     <div class="form-horizontal" role="form">
+
                         <div class="form-group">
                             <label for="txtEmpId" class="col-sm-2 control-label">ID</label>
                             <div class="col-sm-10">

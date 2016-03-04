@@ -139,5 +139,49 @@ namespace AMS.DAL
 
             return dt;
         }
+
+        //active only
+        public DataTable DisplayAttendanceOfUser(Guid UserId)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
+                "TimeIn, TimeOut, Remarks " +
+                "FROM EMPLOYEE INNER JOIN TimeInTimeOut " +
+                "ON EMPLOYEE.UserId = TimeInTimeOut.UserId " +
+                "AND EMPLOYEE.AccountStatusId = 1 " +
+                "AND EMPLOYEE.UserId = @UserId " + 
+                "ORDER BY TimeInTimeOut.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable displayEmployee()
+        {
+            strSql = "SELECT UserId, LastName + ',' + FirstName + ' ' + MiddleName AS [FullName] " +
+                "FROM EMPLOYEE ORDER BY FullName";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
     }
 }
