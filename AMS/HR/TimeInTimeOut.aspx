@@ -31,6 +31,43 @@
         </div>
     </div>
 
+    <div class="modal fade" id="timeoutModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <asp:UpdatePanel ID="upConfirmTimeOut" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Confirm Time-out</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form">
+                                <div class="form-group">
+                                    <label for="ddlLastTimeIn">Last Time-in:</label>
+                                    <asp:DropDownList ID="ddlLastTimeIn" runat="server" CssClass="form-control"></asp:DropDownList>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtReasons">Reasons if no login:</label>
+                                    <asp:TextBox ID="txtReasons"
+                                        TextMode="MultiLine"
+                                        Height="80"
+                                        runat="server"
+                                        CssClass="form-control"
+                                        placeholder="Enter reason here if you have no login...leave blank if not"></asp:TextBox>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="btnConfirmTimeout" runat="server" Text="Time Out" CssClass="btn btn-warning" OnClick="btnConfirmTimeout_Click" CausesValidation="false" />
+                            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-12">

@@ -115,6 +115,10 @@ namespace AMS.HR
                     {
                         lblRenderedHours.ForeColor = System.Drawing.Color.Red;
                     }
+                    else
+                    {
+                        lblRenderedHours.ForeColor = System.Drawing.Color.Green;
+                    }
                 }    
             }
 

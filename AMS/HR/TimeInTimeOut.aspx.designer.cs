@@ -40,6 +40,42 @@ namespace AMS.HR {
         protected global::System.Web.UI.WebControls.Label lblModalBody;
         
         /// <summary>
+        /// upConfirmTimeOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upConfirmTimeOut;
+        
+        /// <summary>
+        /// ddlLastTimeIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLastTimeIn;
+        
+        /// <summary>
+        /// txtReasons control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtReasons;
+        
+        /// <summary>
+        /// btnConfirmTimeout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmTimeout;
+        
+        /// <summary>
         /// pnlSuccess control.
         /// </summary>
         /// <remarks>

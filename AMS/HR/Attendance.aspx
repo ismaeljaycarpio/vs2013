@@ -16,6 +16,14 @@
                     <div class="form-horizontal">
 
                         <div class="form-group">
+                            <label for="ddlStatus" class="col-sm-2 control-label">Name:</label>
+                            <div class="col-sm-10">
+                                <asp:DropDownList ID="ddlName" runat="server" CssClass="form-control">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label for="txtStartDate" class="col-sm-2 control-label">Dates</label>
                             <div class="col-sm-10">
                                 <div class="input-daterange">
@@ -25,14 +33,6 @@
                                         <asp:TextBox ID="txtEndDate" runat="server" data-provide="datepicker" CssClass="form-control" placeholder="End Date"></asp:TextBox>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="ddlStatus" class="col-sm-2 control-label">Name:</label>
-                            <div class="col-sm-10">
-                                <asp:DropDownList ID="ddlName" runat="server" CssClass="form-control">
-                                </asp:DropDownList>
                             </div>
                         </div>
 
@@ -90,13 +90,14 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:BoundField DataField="Remarks" HeaderText="Remarks" SortExpression="Remarks" />
-
                                 <asp:TemplateField HeaderText="Hours Rendered" SortExpression="HoursRendered">
                                     <ItemTemplate>
                                         <asp:Label ID="lblHoursRendered" runat="server"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
+
+                                <asp:BoundField DataField="Remarks" HeaderText="Remarks" SortExpression="Remarks" />
+                                
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

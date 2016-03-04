@@ -68,6 +68,28 @@ namespace AMS.DAL
             conn.Dispose();
         }
 
+        public void updateTimeOut(
+            string rowId,
+            DateTime timeOut)
+        {
+            strSql = "UPDATE TimeInTimeOut SET TimeOut = @TimeOut WHERE Id = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@Id", rowId);
+                comm.Parameters.AddWithValue("@TimeOut", timeOut);
+
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+
         public string getMaxId(Guid UserId)
         {
             strSql = "SELECT MAX(Id) FROM TimeInTimeOut WHERE UserId = @UserId";
@@ -91,6 +113,25 @@ namespace AMS.DAL
             }
 
             return strMaxId;
+        }
+
+        public DataTable getlastTimeIn(Guid UserId)
+        {
+            strSql = "SELECT Id,TimeIn FROM TimeInTimeOut WHERE UserId = @UserId AND Id = (SELECT MAX(Id) FROM TimeInTimeOut)";
+            string strMaxId = String.Empty;
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
         }
 
         public DataTable DisplayAttendance(Guid userId)

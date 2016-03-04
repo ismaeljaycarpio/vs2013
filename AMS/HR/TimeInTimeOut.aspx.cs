@@ -64,11 +64,14 @@ namespace AMS.HR
                     Guid userId = Guid.Parse(Membership.GetUser(txtEmpId.Text).ProviderUserKey.ToString());
                     if (userId != null)
                     {
-                        attendance.TimeOut(userId, DateTime.Now, txtRemarks.Text);
-                        lblModalTitle.Text = "Successfull Time-Out";
-                        lblModalBody.Text = "User " + txtEmpId.Text + " successfully time-out at : " + DateTime.Now;
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
-                        upModal.Update();
+                        ddlLastTimeIn.DataSource = attendance.getlastTimeIn(userId);
+                        ddlLastTimeIn.DataTextField = "TimeIn";
+                        ddlLastTimeIn.DataValueField = "Id";
+                        ddlLastTimeIn.DataBind();
+                        ddlLastTimeIn.Items.Insert(1, new ListItem("No Login", "0"));
+
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#timeoutModal').modal();", true);
+                        upConfirmTimeOut.Update();
                     }
                     else
                     {
@@ -84,6 +87,18 @@ namespace AMS.HR
             txtPassword.Text = String.Empty;
             txtRemarks.Text = String.Empty;
             lblError.Text = String.Empty;
+        }
+
+        protected void btnConfirmTimeout_Click(object sender, EventArgs e)
+        {
+            //update record
+            attendance.updateTimeOut(ddlLastTimeIn.SelectedValue, DateTime.Now);
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append(@"<script type='text/javascript'>");
+            sb.Append("$('#timeoutModal').modal('hide');");
+            sb.Append(@"</script>");
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteHideModalScript", sb.ToString(), false);
         }
     }
 }
