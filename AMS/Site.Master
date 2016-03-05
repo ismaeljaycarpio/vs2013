@@ -137,9 +137,9 @@
                                                 <li><a runat="server" href="~/MasterConfig/Department_Master.aspx">Department</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/Employee_Account_MasterList.aspx">Employee Account Management</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/RoleManager.aspx">Positions Management</a></li>
-                                                <li class="divider"></li>
+                                                <%--<li class="divider"></li>
                                                 <li><a runat="server" href="#">Leave Types</a></li>
-                                                <li class="divider"></li>
+                                                <li class="divider"></li>--%>
                                                 <%--<li><a runat="server" href="~/MasterConfig/TransactionLogs.aspx">Audit Trail</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/ErrorLogs.aspx">Error Logs</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/BackupDatabase.aspx">Database Backup</a></li>--%>

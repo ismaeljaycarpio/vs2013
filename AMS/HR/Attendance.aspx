@@ -24,8 +24,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="txtStartDate" class="col-sm-2 control-label">Dates</label>
-                            <div class="col-sm-10">
+                            <label for="txtStartDate" class="col-sm-2 control-label">Date:</label>
+                            <div class="col-md-8">
                                 <div class="input-daterange">
                                     <div class="input-group">
                                         <asp:TextBox ID="txtStartDate" runat="server" data-provide="datepicker" CssClass="form-control" placeholder="Start Date"></asp:TextBox>

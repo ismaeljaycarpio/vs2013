@@ -41,6 +41,15 @@
                             <h4 class="modal-title">Confirm Time-out</h4>
                         </div>
                         <div class="modal-body">
+                            <p>
+                                Your last time-in was
+                                <asp:Label ID="lblLastTimeIn" runat="server" ForeColor="Red"></asp:Label>
+                            </p>
+
+                            <p>
+                                If you forgot to time-in, please select <span class="label label-info">No Time-In</span> in the dropdown.
+                            </p>
+
                             <div class="form">
                                 <div class="form-group">
                                     <label for="ddlLastTimeIn">Last Time-in:</label>

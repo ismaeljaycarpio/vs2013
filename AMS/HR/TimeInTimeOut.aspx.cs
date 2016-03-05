@@ -68,8 +68,25 @@ namespace AMS.HR
                         ddlLastTimeIn.DataTextField = "TimeIn";
                         ddlLastTimeIn.DataValueField = "Id";
                         ddlLastTimeIn.DataBind();
-                        ddlLastTimeIn.Items.Insert(1, new ListItem("No Login", "0"));
 
+                        if(ddlLastTimeIn.Items.Count > 0)
+                        {
+                            ddlLastTimeIn.Items.Insert(1, new ListItem("No Time-In", "0"));
+
+                            string strLastTimein = ddlLastTimeIn.SelectedItem.Text;
+                            DateTime dtTimein = Convert.ToDateTime(strLastTimein);
+                            TimeSpan diff = DateTime.Now.Subtract(dtTimein);
+
+                            lblLastTimeIn.Text = String.Format("{0} day/s, {1} hours, {2} minutes ago", diff.Days, diff.Hours, diff.Minutes);
+                        }
+                        else if(ddlLastTimeIn.Items.Count == 0)
+                        {
+                            ddlLastTimeIn.Items.Insert(0, new ListItem("", "0"));
+                            ddlLastTimeIn.Items.Insert(1, new ListItem("No Login", "-1"));
+
+                            lblLastTimeIn.Text = "no records found";
+                            lblLastTimeIn.ForeColor = System.Drawing.Color.DarkOrange;
+                        }
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#timeoutModal').modal();", true);
                         upConfirmTimeOut.Update();
                     }
@@ -91,8 +108,17 @@ namespace AMS.HR
 
         protected void btnConfirmTimeout_Click(object sender, EventArgs e)
         {
-            //update record
-            attendance.updateTimeOut(ddlLastTimeIn.SelectedValue, DateTime.Now);
+            Guid userId = Guid.Parse(Membership.GetUser(txtEmpId.Text).ProviderUserKey.ToString());
+
+            //chk
+            if(ddlLastTimeIn.SelectedValue == "0" || ddlLastTimeIn.SelectedValue == "-1")
+            {
+                attendance.TimeOut(userId, DateTime.Now, txtReasons.Text);
+            }
+            else
+            {
+                attendance.updateTimeOut(ddlLastTimeIn.SelectedValue, DateTime.Now);
+            }
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");

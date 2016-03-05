@@ -24,7 +24,7 @@ namespace AMS.HR
                 ddlName.DataTextField = "FullName";
                 ddlName.DataValueField = "UserId";
                 ddlName.DataBind();
-                ddlName.Items.Insert(0, new ListItem("--- All ---", "0"));
+                ddlName.Items.Insert(0, new ListItem("--- All Employee ---", "0"));
 
                 gvEmployee.DataSource = BindGridView();
                 gvEmployee.DataBind();
@@ -36,7 +36,19 @@ namespace AMS.HR
         {
             if(ddlName.SelectedValue == "0" && txtStartDate.Text == String.Empty)
             {
-                return attendance.DisplayAttendance("");
+                return attendance.DisplayAttendance();
+            }
+            else if(ddlName.SelectedValue == "0" && txtStartDate.Text != String.Empty
+                && txtEndDate.Text == String.Empty)
+            {
+                //display all logs w/ date
+                return attendance.DisplayAttendanceOfUser(txtStartDate.Text);
+            }
+            else if (ddlName.SelectedValue == "0" && txtStartDate.Text != String.Empty
+                && txtEndDate.Text != String.Empty)
+            {
+                //display all logs w/ daterange
+                return attendance.DisplayAttendanceOfUser(txtStartDate.Text, txtEndDate.Text);
             }
             else if (ddlName.SelectedValue != "0" && txtStartDate.Text == String.Empty)
             {
@@ -47,9 +59,19 @@ namespace AMS.HR
             else if (ddlName.SelectedValue != "0" && txtStartDate.Text != String.Empty)
             {
                 //display all logs for that user w/ date
+                Guid userId = Guid.Parse(ddlName.SelectedValue);
+                return attendance.DisplayAttendanceOfUser(userId, txtStartDate.Text);
+            }
+            else if(ddlName.SelectedValue != "0" && 
+                txtStartDate.Text != String.Empty && 
+                txtEndDate.Text != String.Empty)
+            {
+                //display logs for that user with date range
+                Guid userId = Guid.Parse(ddlName.SelectedValue);
+                return attendance.DisplayAttendanceOfUser(userId, txtStartDate.Text, txtEndDate.Text);
             }
 
-            return attendance.DisplayAttendance("");
+            return attendance.DisplayAttendance();
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)

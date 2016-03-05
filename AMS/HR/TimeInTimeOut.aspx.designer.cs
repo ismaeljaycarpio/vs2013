@@ -49,6 +49,15 @@ namespace AMS.HR {
         protected global::System.Web.UI.UpdatePanel upConfirmTimeOut;
         
         /// <summary>
+        /// lblLastTimeIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLastTimeIn;
+        
+        /// <summary>
         /// ddlLastTimeIn control.
         /// </summary>
         /// <remarks>

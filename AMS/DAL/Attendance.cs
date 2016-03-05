@@ -90,30 +90,6 @@ namespace AMS.DAL
             conn.Dispose();
         }
 
-        public string getMaxId(Guid UserId)
-        {
-            strSql = "SELECT MAX(Id) FROM TimeInTimeOut WHERE UserId = @UserId";
-            string strMaxId = String.Empty;
-
-            conn = new SqlConnection();
-            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
-            comm = new SqlCommand(strSql, conn);
-            comm.Parameters.AddWithValue("@UserId", UserId);
-            dt = new DataTable();
-            adp = new SqlDataAdapter(comm);
-
-            conn.Open();
-            adp.Fill(dt);
-            conn.Close();
-
-            if(dt.Rows.Count > 0)
-            {
-                strMaxId = dt.Rows[0]["Id"].ToString();
-                return strMaxId;
-            }
-
-            return strMaxId;
-        }
 
         public DataTable getlastTimeIn(Guid UserId)
         {
@@ -153,24 +129,95 @@ namespace AMS.DAL
         }
 
         //active only
-        public DataTable DisplayAttendance(string keyWord)
+        public DataTable DisplayAttendance()
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
                 "TimeIn, TimeOut, Remarks " +
                 "FROM EMPLOYEE INNER JOIN TimeInTimeOut " +
                 "ON EMPLOYEE.UserId = TimeInTimeOut.UserId " +
-                "AND " +
-                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
-                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
-                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
-                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%') " +
                 "AND EMPLOYEE.AccountStatusId = 1 " + 
                 "ORDER BY TimeInTimeOut.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
-            comm.Parameters.AddWithValue("@searchKeyWord", keyWord);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable DisplayAttendanceOfUser(string startDate)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
+                "TimeIn, TimeOut, Remarks " +
+                "FROM EMPLOYEE INNER JOIN TimeInTimeOut " +
+                "ON EMPLOYEE.UserId = TimeInTimeOut.UserId " +
+                "AND EMPLOYEE.AccountStatusId = 1 " +
+                "AND ((TimeInTimeOut.TimeIn >= @startDate AND TimeInTimeOut.TimeIn < DATEADD(DAY,1,@startDate)) " +
+                "OR (TimeInTimeOut.TimeOut >= @startDate AND TimeInTimeOut.TimeOut < DATEADD(DAY,1,@startDate))) " +
+                "ORDER BY TimeInTimeOut.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@startDate", startDate);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable DisplayAttendanceOfUser(Guid UserId, string startDate)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
+                "TimeIn, TimeOut, Remarks " +
+                "FROM EMPLOYEE INNER JOIN TimeInTimeOut " +
+                "ON EMPLOYEE.UserId = TimeInTimeOut.UserId " +
+                "AND EMPLOYEE.AccountStatusId = 1 " +
+                "AND EMPLOYEE.UserId = @UserId " +
+                "AND ((TimeInTimeOut.TimeIn >= @startDate AND TimeInTimeOut.TimeIn < DATEADD(DAY,1,@startDate)) " +
+                "OR (TimeInTimeOut.TimeOut >= @startDate AND TimeInTimeOut.TimeOut < DATEADD(DAY,1,@startDate))) " +
+                "ORDER BY TimeInTimeOut.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            comm.Parameters.AddWithValue("@startDate", startDate);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable DisplayAttendanceOfUser(string startDate, string endDate)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
+                "TimeIn, TimeOut, Remarks " +
+                "FROM EMPLOYEE INNER JOIN TimeInTimeOut " +
+                "ON EMPLOYEE.UserId = TimeInTimeOut.UserId " +
+                "AND EMPLOYEE.AccountStatusId = 1 " +
+                "AND (TimeInTimeOut.TimeIn BETWEEN @startDate AND @endDate OR TimeInTimeOut.TimeOut BETWEEN @startDate AND @endDate) " +
+                "ORDER BY TimeInTimeOut.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@startDate", startDate);
+            comm.Parameters.AddWithValue("@endDate", endDate);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 
@@ -196,6 +243,33 @@ namespace AMS.DAL
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
             comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable DisplayAttendanceOfUser(Guid UserId, string startDate, string endDate)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
+                "TimeIn, TimeOut, Remarks " +
+                "FROM EMPLOYEE INNER JOIN TimeInTimeOut " +
+                "ON EMPLOYEE.UserId = TimeInTimeOut.UserId " +
+                "AND EMPLOYEE.AccountStatusId = 1 " +
+                "AND EMPLOYEE.UserId = @UserId " +
+                "AND (TimeInTimeOut.TimeIn BETWEEN @startDate AND @endDate OR TimeInTimeOut.TimeOut BETWEEN @startDate AND @endDate) " +
+                "ORDER BY TimeInTimeOut.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            comm.Parameters.AddWithValue("@startDate", startDate);
+            comm.Parameters.AddWithValue("@endDate", endDate);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 
