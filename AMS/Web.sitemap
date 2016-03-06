@@ -63,6 +63,7 @@
       <siteMapNode url="~/MasterConfig/TransactionLogs.aspx" title="Audit Trail"></siteMapNode>
       <siteMapNode url="~/MasterConfig/ErrorLogs.aspx" title="Error Logs (Debugging Purposes)"></siteMapNode>
       <siteMapNode url="~/MasterConfig/BackupDatabase.aspx" title="Database Backup"></siteMapNode>
+      <siteMapNode url="~/MasterConfig/Announcement.aspx" title="Announcement/Activities"></siteMapNode>
     </siteMapNode>
 
     <siteMapNode title="Reports">

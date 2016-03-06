@@ -151,7 +151,7 @@ namespace AMS.DAL
             return dt;
         }
 
-        public DataTable DisplayAttendanceOfUser(string startDate)
+        public DataTable DisplayAttendance(string startDate)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
                 "TimeIn, TimeOut, Remarks " +
@@ -203,7 +203,7 @@ namespace AMS.DAL
             return dt;
         }
 
-        public DataTable DisplayAttendanceOfUser(string startDate, string endDate)
+        public DataTable DisplayAttendance(string startDate, string endDate)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
                 "TimeIn, TimeOut, Remarks " +

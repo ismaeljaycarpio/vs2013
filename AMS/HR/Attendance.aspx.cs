@@ -42,13 +42,13 @@ namespace AMS.HR
                 && txtEndDate.Text == String.Empty)
             {
                 //display all logs w/ date
-                return attendance.DisplayAttendanceOfUser(txtStartDate.Text);
+                return attendance.DisplayAttendance(txtStartDate.Text);
             }
             else if (ddlName.SelectedValue == "0" && txtStartDate.Text != String.Empty
                 && txtEndDate.Text != String.Empty)
             {
                 //display all logs w/ daterange
-                return attendance.DisplayAttendanceOfUser(txtStartDate.Text, txtEndDate.Text);
+                return attendance.DisplayAttendance(txtStartDate.Text, txtEndDate.Text);
             }
             else if (ddlName.SelectedValue != "0" && txtStartDate.Text == String.Empty)
             {

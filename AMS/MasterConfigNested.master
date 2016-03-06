@@ -33,13 +33,14 @@
                     </div>
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav" id="nav">
-                            <li id="transactionLogs"><a runat="server" href="~/MasterConfig/TransactionLogs.aspx">Audit Trail</a></li>
+                            <li id="announcements"><a runat="server" href="~/MasterConfig/Announcement.aspx">Announcement/Activities</a></li>
+                            <%--                            <li id="transactionLogs"><a runat="server" href="~/MasterConfig/TransactionLogs.aspx">Audit Trail</a></li>
                             <li id="errorLogs">
                                 <a runat="server" href="~/MasterConfig/ErrorLogs.aspx">Error Logs</a>
                             </li>
                             <li id="dbbackUp">
                                 <a runat="server" href="~/MasterConfig/BackupDatabase.aspx">Database Backup</a>
-                            </li>
+                            </li>--%>
                         </ul>
                     </div>
                     <!--/.nav-collapse -->

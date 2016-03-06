@@ -208,6 +208,7 @@
     <Content Include="Login.aspx" />
     <Content Include="HR\Register.aspx" />
     <Content Include="MasterConfig\Agency.aspx" />
+    <Content Include="MasterConfig\Announcement.aspx" />
     <Content Include="MasterConfig\BackupDatabase.aspx" />
     <Content Include="MasterConfig\Department_Master.aspx" />
     <Content Include="MasterConfig\Employee_Account_MasterList.aspx" />
@@ -593,6 +594,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DAL\Account.cs" />
     <Compile Include="DAL\Agency.cs" />
+    <Compile Include="DAL\Announcement.cs" />
     <Compile Include="DAL\Attendance.cs" />
     <Compile Include="DAL\Award.cs" />
     <Compile Include="DAL\Contact.cs" />
@@ -606,6 +608,7 @@
     <Compile Include="DAL\FileUpload.cs" />
     <Compile Include="DAL\Filler.cs" />
     <Compile Include="DAL\Experience.cs" />
+    <Compile Include="DAL\Home.cs" />
     <Compile Include="DAL\Logger.cs" />
     <Compile Include="DAL\MembershipCard.cs" />
     <Compile Include="DAL\PositionManagement.cs" />
@@ -900,6 +903,13 @@
     </Compile>
     <Compile Include="MasterConfig\Agency.aspx.designer.cs">
       <DependentUpon>Agency.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterConfig\Announcement.aspx.cs">
+      <DependentUpon>Announcement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterConfig\Announcement.aspx.designer.cs">
+      <DependentUpon>Announcement.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterConfig\BackupDatabase.aspx.cs">
       <DependentUpon>BackupDatabase.aspx</DependentUpon>
