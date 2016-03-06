@@ -34,6 +34,40 @@ namespace AMS.DAL
             return dt;
         }
 
+        public DataTable getAnn()
+        {
+            strSql = "SELECT * FROM Announcement WHERE Type = 'Announcement' ORDER BY Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getAct()
+        {
+            strSql = "SELECT * FROM Announcement WHERE Type = 'Activity' ORDER BY Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         public DataTable getAnnById(int rowId)
         {
             strSql = "SELECT * FROM Announcement WHERE Id = @Id";

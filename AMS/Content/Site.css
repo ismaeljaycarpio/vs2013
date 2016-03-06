@@ -57,6 +57,10 @@ input[type="select"] {
     cursor: pointer;
 }
 
+.wrapAnnouncement{
+    white-space: pre-wrap;
+}
+
 .pagination-ys {
     /*display: inline-block;*/
     padding-left: 0;

@@ -21,8 +21,11 @@ namespace AMS
             {
                 lblTodayBirthday.Text = home.getBirthdayToday();
 
-                lvAnn.DataSource = ann.displayAnn();
+                lvAnn.DataSource = ann.getAnn();
                 lvAnn.DataBind();
+
+                lvAct.DataSource = ann.getAct();
+                lvAct.DataBind();
             }
         }
 
