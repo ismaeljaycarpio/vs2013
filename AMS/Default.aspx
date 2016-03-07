@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
         <div class="col-lg-4">
-            <h4><span class="glyphicon glyphicon-apple"></span>&nbsp;Today's Birthdays - <%: DateTime.Now.Date.ToShortDateString() %></h4>
+            <h4><span class="glyphicon glyphicon-calendar"></span>&nbsp;Today's Birthdays - <%: DateTime.Now.Date.ToShortDateString() %></h4>
             <p>
                 <asp:Label ID="lblTodayBirthday" runat="server"></asp:Label>
             </p>

@@ -205,6 +205,8 @@
     <Content Include="HR\Attendance.aspx" />
     <Content Include="HR\TimeInTimeOut.aspx" />
     <Content Include="Images\PrimePowerLogo.png" />
+    <Content Include="Leave\Leave.aspx" />
+    <Content Include="Leave\MyLeave.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="HR\Register.aspx" />
     <Content Include="MasterConfig\Agency.aspx" />
@@ -213,6 +215,7 @@
     <Content Include="MasterConfig\Department_Master.aspx" />
     <Content Include="MasterConfig\Employee_Account_MasterList.aspx" />
     <Content Include="MasterConfig\ErrorLogs.aspx" />
+    <Content Include="MasterConfig\Leaves.aspx" />
     <Content Include="MasterConfig\RoleManager.aspx" />
     <Content Include="MasterConfig\TransactionLogs.aspx" />
     <Content Include="myLogs.txt" />
@@ -609,6 +612,7 @@
     <Compile Include="DAL\Filler.cs" />
     <Compile Include="DAL\Experience.cs" />
     <Compile Include="DAL\Home.cs" />
+    <Compile Include="DAL\Leaves.cs" />
     <Compile Include="DAL\Logger.cs" />
     <Compile Include="DAL\MembershipCard.cs" />
     <Compile Include="DAL\PositionManagement.cs" />
@@ -876,6 +880,20 @@
     <Compile Include="HR\TimeInTimeOut.aspx.designer.cs">
       <DependentUpon>TimeInTimeOut.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Leave\Leave.aspx.cs">
+      <DependentUpon>Leave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Leave\Leave.aspx.designer.cs">
+      <DependentUpon>Leave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Leave\MyLeave.aspx.cs">
+      <DependentUpon>MyLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Leave\MyLeave.aspx.designer.cs">
+      <DependentUpon>MyLeave.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -938,6 +956,13 @@
     </Compile>
     <Compile Include="MasterConfig\ErrorLogs.aspx.designer.cs">
       <DependentUpon>ErrorLogs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterConfig\Leaves.aspx.cs">
+      <DependentUpon>Leaves.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterConfig\Leaves.aspx.designer.cs">
+      <DependentUpon>Leaves.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterConfig\RoleManager.aspx.cs">
       <DependentUpon>RoleManager.aspx</DependentUpon>

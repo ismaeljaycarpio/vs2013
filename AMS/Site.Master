@@ -105,7 +105,7 @@
                                 </li>
                             </ul>--%>
                         </LoggedInTemplate>
-                        
+
                         <RoleGroups>
                             <%-- Admin Only--%>
                             <asp:RoleGroup Roles="Admin">
@@ -114,6 +114,7 @@
                                         <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
                                         <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Evaluation Approvals</a></li>
+                                        <li><a runat="server" href="~/Leave/Leave.aspx">Leaves</a></li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a runat="server" href="~/Reports/BirthDay_Celeb.aspx">Birthday Celebrants</a></li>
@@ -139,6 +140,8 @@
                                                 <li><a runat="server" href="~/MasterConfig/RoleManager.aspx">Positions Management</a></li>
                                                 <li class="divider"></li>
                                                 <li><a runat="server" href="~/MasterConfig/Announcement.aspx">Announcement/Activities</a></li>
+                                                <li class="divider"></li>
+                                                <li><a runat="server" href="~/MasterConfig/Leaves.aspx">Leave Types</a></li>
                                                 <%--<li class="divider"></li>
                                                 <li><a runat="server" href="#">Leave Types</a></li>
                                                 <li class="divider"></li>--%>
@@ -183,6 +186,7 @@
                                         <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
                                         <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Evaluation Approvals</a></li>
+                                        <li><a runat="server" href="~/Leave/Leave.aspx">Leaves</a></li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a runat="server" href="~/Reports/BirthDay_Celeb.aspx">Birthday Celebrants</a></li>
@@ -236,6 +240,7 @@
                                         <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
                                         <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Evaluation Approvals</a></li>
+                                        <li><a runat="server" href="~/Leave/Leave.aspx">Leaves</a></li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="dropdown">
@@ -272,6 +277,7 @@
                                         <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
                                         <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Evaluation Approvals</a></li>
+                                        <li><a runat="server" href="~/Leave/Leave.aspx">Leaves</a></li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="dropdown">
@@ -308,6 +314,7 @@
                                         <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
                                         <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
                                         <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Evaluation Approvals</a></li>
+                                        <li><a runat="server" href="~/Leave/Leave.aspx">Leaves</a></li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="dropdown">
