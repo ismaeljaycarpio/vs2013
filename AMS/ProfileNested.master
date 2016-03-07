@@ -51,8 +51,8 @@
                             <li id="Evaluation"><a runat="server" href="~/Employee/Evaluation.aspx">Evaluations</a></li>
                             <li class="nav-divider"></li>
                             <li id="TimeInTimeOut"><a runat="server" href="~/Employee/TimeInTimeOut.aspx">Timekeeping Logs</a></li>
-                            <li class="nav-divider"></li>
-                            <li id="myLeaves"><a runat="server" href="~/Leave/MyLeave.aspx">My Leaves</a></li>
+                            <%--<li class="nav-divider"></li>--%>
+                            <%--<li id="myLeaves"><a runat="server" href="~/Leave/MyLeave.aspx">My Leaves</a></li>--%>
                         </ul>
                     </div>
                     <!--/.nav-collapse -->
