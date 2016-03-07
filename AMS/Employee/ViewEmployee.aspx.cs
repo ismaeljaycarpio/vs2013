@@ -13,6 +13,7 @@ namespace AMS.Employee
     {
         DAL.Employee emp = new DAL.Employee();
         DAL.FileUpload fileUp = new DAL.FileUpload();
+        DAL.Schedule sched = new DAL.Schedule();
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -53,6 +54,18 @@ namespace AMS.Employee
 
 
                 bindGridviews(UserId);
+
+                //schedule
+                dt = new DataTable();
+                dt = sched.GetScheduleById(UserId);
+                if(dt.Rows.Count > 0)
+                {
+                    lblCurrentSchedule.Text = String.Format("{0} - {1}", dt.Rows[0]["TimeStart"].ToString(), dt.Rows[0]["TimeEnd"].ToString());
+                }
+                else
+                {
+                    lblCurrentSchedule.Text = "No Schedule";
+                }
 
                 //hide controls
                 hideControls();
@@ -111,6 +124,7 @@ namespace AMS.Employee
                 FileUpload1.Visible = false;
                 btnUpload.Visible = false;
                 divDocs.Visible = false;
+                openUpdate.Visible = false;
             }
         }
         
@@ -214,6 +228,29 @@ namespace AMS.Employee
         protected void gvDocuments_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvDocuments.PageIndex = e.NewPageIndex;
+        }
+
+        protected void btnUpdateSchedule_Click(object sender, EventArgs e)
+        {
+            sched.addSchedule(Guid.Parse(hfUserId.Value), txtTimeStart.Text, txtTimeEnd.Text);
+
+            //schedule
+            dt = new DataTable();
+            dt = sched.GetScheduleById(Guid.Parse(hfUserId.Value));
+            if (dt.Rows.Count > 0)
+            {
+                lblCurrentSchedule.Text = String.Format("{0} - {1}", dt.Rows[0]["TimeStart"].ToString(), dt.Rows[0]["TimeEnd"].ToString());
+            }
+            else
+            {
+                lblCurrentSchedule.Text = "No Schedule";
+            }
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append(@"<script type='text/javascript'>");
+            sb.Append("$('#updateModal').modal('hide');");
+            sb.Append(@"</script>");
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "HideShowModalScript", sb.ToString(), false);
         }
     }
 }

@@ -616,6 +616,7 @@
     <Compile Include="DAL\Logger.cs" />
     <Compile Include="DAL\MembershipCard.cs" />
     <Compile Include="DAL\PositionManagement.cs" />
+    <Compile Include="DAL\Schedule.cs" />
     <Compile Include="DAL\Training.cs" />
     <Compile Include="DAL\Violation.cs" />
     <Compile Include="Dashboard\Dashboard.aspx.cs">

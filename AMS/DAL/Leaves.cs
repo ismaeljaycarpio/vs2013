@@ -82,7 +82,7 @@ namespace AMS.DAL
             string rowId)
         {
             strSql = "UPDATE LeaveType SET " +
-                "LeaveName = @Agency, " +
+                "LeaveName = @LeaveName, " +
                 "NoOfDays = @NoOfDays," +
                 "ModifiedDate = @ModifiedDate " +
                 "WHERE Id = @RowId";
@@ -93,7 +93,7 @@ namespace AMS.DAL
             using (comm = new SqlCommand(strSql, conn))
             {
                 conn.Open();
-                comm.Parameters.AddWithValue("@Agency", leaveName);
+                comm.Parameters.AddWithValue("@LeaveName", leaveName);
                 comm.Parameters.AddWithValue("@NoOfDays", noOfDays);
                 comm.Parameters.AddWithValue("@ModifiedDate", DateTime.Now);
                 comm.Parameters.AddWithValue("@RowId", rowId);

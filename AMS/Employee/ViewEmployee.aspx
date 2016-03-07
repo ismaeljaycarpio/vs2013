@@ -68,6 +68,19 @@
                         <asp:Label ID="lblAgency" runat="server"></asp:Label>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <asp:UpdatePanel ID="upSched" runat="server">
+                        <ContentTemplate>
+                            <label for="lblCurrentSchedule" class="col-sm-2 control-label">Current Schedule: </label>
+                            <div class="col-sm-10">
+                                <asp:Label ID="lblCurrentSchedule" runat="server"></asp:Label>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateModal" runat="server" id="openUpdate">Update Schedule</button>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+
             </div>
         </div>
 
@@ -291,4 +304,60 @@
         </div>
     </div>
     <asp:HiddenField ID="hfUserId" runat="server" />
+
+    <!-- Edit Modal -->
+    <div id="updateModal" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Update Modal content-->
+            <div class="modal-content">
+                <asp:UpdatePanel ID="upEdit" runat="server">
+                    <ContentTemplate>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Select New Schedule</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <asp:Label ID="lblRowId" runat="server" Visible="false"></asp:Label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtTimeStart">Time Start:</label>
+                                <asp:TextBox ID="txtTimeStart" runat="server" CssClass="form-control" TextMode="Time"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
+                                    runat="server"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtTimeStart"
+                                    CssClass="label label-danger"
+                                    ValidationGroup="vgEdit"
+                                    ErrorMessage="Time Start is required"></asp:RequiredFieldValidator>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtTimeEnd">Time End:</label>
+                                <asp:TextBox ID="txtTimeEnd" runat="server" CssClass="form-control" TextMode="Time"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
+                                    runat="server"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtTimeEnd"
+                                    CssClass="label label-danger"
+                                    ValidationGroup="vgEdit"
+                                    ErrorMessage="Time End is required"></asp:RequiredFieldValidator>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="btnUpdateSchedule" runat="server" CssClass="btn btn-primary" Text="Update" ValidationGroup="vgEdit" OnClick="btnUpdateSchedule_Click" />
+                            <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                        </div>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="btnUpdateSchedule" EventName="Click" />
+                    </Triggers>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+    </div>
 </asp:Content>

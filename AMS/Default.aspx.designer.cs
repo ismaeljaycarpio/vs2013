@@ -13,15 +13,6 @@ namespace AMS {
     public partial class Default {
         
         /// <summary>
-        /// lblTodayBirthday control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTodayBirthday;
-        
-        /// <summary>
         /// lvAnn control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace AMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvAnn;
+        
+        /// <summary>
+        /// lblTodayBirthday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTodayBirthday;
         
         /// <summary>
         /// lvAct control.
