@@ -263,7 +263,7 @@ namespace AMS.MasterConfig
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            Membership.DeleteUser(hfDeleteId.Value);
+            Membership.DeleteUser(hfDeleteId.Value, true);
 
             gvEmployee.DataSource = BindGridView();
             gvEmployee.DataBind();

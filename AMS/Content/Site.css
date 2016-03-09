@@ -61,6 +61,10 @@ input[type="select"] {
     white-space: pre-wrap;
 }
 
+.rbl{
+    margin-left:50px;
+    margin-right:20px;
+}
 .pagination-ys {
     /*display: inline-block;*/
     padding-left: 0;

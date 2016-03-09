@@ -12,6 +12,8 @@ namespace AMS.MasterConfig
     public partial class Leaves : System.Web.UI.Page
     {
         DAL.Leaves leave = new DAL.Leaves();
+        DAL.Agency agency = new DAL.Agency();
+
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -19,6 +21,19 @@ namespace AMS.MasterConfig
             if(!Page.IsPostBack)
             {
                 bindGridView();
+
+                dt = new DataTable();
+                dt = agency.DisplayAgency();
+
+                ddlAgency.DataSource = dt;
+                ddlAgency.DataTextField = "Agency";
+                ddlAgency.DataValueField = "Id";
+                ddlAgency.DataBind();
+
+                ddlEditAgency.DataSource = dt;
+                ddlEditAgency.DataTextField = "Agency";
+                ddlEditAgency.DataValueField = "Id";
+                ddlEditAgency.DataBind();
             }
         }
 
@@ -31,7 +46,8 @@ namespace AMS.MasterConfig
         protected void btnSave_Click(object sender, EventArgs e)
         {
             leave.addLeaveType(txtAddLeave.Text,
-                txtAddDays.Text);
+                txtAddDays.Text,
+                ddlAgency.SelectedValue);
 
             bindGridView();
 
@@ -44,7 +60,7 @@ namespace AMS.MasterConfig
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            leave.updateLeave(txtEditLeave.Text, txtEditDays.Text, lblRowId.Text);
+            leave.updateLeave(txtEditLeave.Text, txtEditDays.Text, ddlEditAgency.SelectedValue, lblRowId.Text);
 
             bindGridView();
 
@@ -80,6 +96,7 @@ namespace AMS.MasterConfig
                 lblRowId.Text = dt.Rows[0]["Id"].ToString();
                 txtEditLeave.Text = dt.Rows[0]["LeaveName"].ToString();
                 txtEditDays.Text = dt.Rows[0]["NoOfDays"].ToString();
+                ddlEditAgency.SelectedValue = dt.Rows[0]["AgencyId"].ToString();
 
                 sb.Append(@"<script type='text/javascript'>");
                 sb.Append("$('#updateModal').modal('show');");

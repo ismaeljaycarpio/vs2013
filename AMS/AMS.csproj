@@ -216,6 +216,7 @@
     <Content Include="MasterConfig\Employee_Account_MasterList.aspx" />
     <Content Include="MasterConfig\ErrorLogs.aspx" />
     <Content Include="MasterConfig\Leaves.aspx" />
+    <Content Include="MasterConfig\LeaveUser.aspx" />
     <Content Include="MasterConfig\RoleManager.aspx" />
     <Content Include="MasterConfig\TransactionLogs.aspx" />
     <Content Include="myLogs.txt" />
@@ -964,6 +965,13 @@
     </Compile>
     <Compile Include="MasterConfig\Leaves.aspx.designer.cs">
       <DependentUpon>Leaves.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterConfig\LeaveUser.aspx.cs">
+      <DependentUpon>LeaveUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterConfig\LeaveUser.aspx.designer.cs">
+      <DependentUpon>LeaveUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterConfig\RoleManager.aspx.cs">
       <DependentUpon>RoleManager.aspx</DependentUpon>

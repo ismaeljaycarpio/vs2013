@@ -20,7 +20,11 @@ namespace AMS.DAL
 
         public DataTable displayLeaves()
         {
-            strSql = "SELECT * FROM LeaveType";
+            strSql = "SELECT LeaveType.Id, LeaveType.LeaveName, LeaveType.NoOfDays, " +
+                "AGENCY.Agency " +
+                "FROM LeaveType, AGENCY " +
+                "WHERE " +
+                "LeaveType.AgencyId = AGENCY.Id";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -55,11 +59,12 @@ namespace AMS.DAL
 
         public void addLeaveType(
             string leaveName,
-            string noOfDays
+            string noOfDays,
+            string agencyId
             )
         {
-            strSql = "INSERT INTO LeaveType(LeaveName,NoOfDays) " +
-                "VALUES(@LeaveName,@NoOfDays)";
+            strSql = "INSERT INTO LeaveType(LeaveName,NoOfDays,AgencyId) " +
+                "VALUES(@LeaveName,@NoOfDays,@AgencyId)";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -69,6 +74,7 @@ namespace AMS.DAL
                 conn.Open();
                 comm.Parameters.AddWithValue("@LeaveName", leaveName);
                 comm.Parameters.AddWithValue("@NoOfDays", noOfDays);
+                comm.Parameters.AddWithValue("@AgencyId", agencyId);
                 comm.ExecuteNonQuery();
                 conn.Close();
             }
@@ -79,12 +85,14 @@ namespace AMS.DAL
         public void updateLeave(
             string leaveName,
             string noOfDays,
+            string agencyId,
             string rowId)
         {
             strSql = "UPDATE LeaveType SET " +
                 "LeaveName = @LeaveName, " +
                 "NoOfDays = @NoOfDays," +
-                "ModifiedDate = @ModifiedDate " +
+                "ModifiedDate = @ModifiedDate, " +
+                "AgencyId = @AgencyId " +
                 "WHERE Id = @RowId";
 
             conn = new SqlConnection();
@@ -96,6 +104,7 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@LeaveName", leaveName);
                 comm.Parameters.AddWithValue("@NoOfDays", noOfDays);
                 comm.Parameters.AddWithValue("@ModifiedDate", DateTime.Now);
+                comm.Parameters.AddWithValue("@AgencyId", agencyId);
                 comm.Parameters.AddWithValue("@RowId", rowId);
 
                 comm.ExecuteNonQuery();

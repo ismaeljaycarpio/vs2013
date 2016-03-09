@@ -65,6 +65,7 @@
       <siteMapNode url="~/MasterConfig/BackupDatabase.aspx" title="Database Backup"></siteMapNode>
       <siteMapNode url="~/MasterConfig/Announcement.aspx" title="Announcement/Activities"></siteMapNode>
     <siteMapNode url="~/MasterConfig/Leaves.aspx" title="Leaves"></siteMapNode>
+    <siteMapNode url="~/MasterConfig/LeaveUser.aspx" title="Configure User Leaves"></siteMapNode>
     </siteMapNode>
 
     <siteMapNode title="Reports">

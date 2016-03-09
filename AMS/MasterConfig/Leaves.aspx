@@ -26,7 +26,17 @@
                                         ErrorMessage="Leave Type is required"></asp:RequiredFieldValidator>
                                 </div>
                                 <div class="form-group">
-                                    <label for="txtAddDays">No of Days</label>
+                                    <label for="ddlAgency">Agency</label>
+                                    <asp:DropDownList ID="ddlAgency" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6"
+                                        runat="server"
+                                        Display="Dynamic"
+                                        ControlToValidate="ddlAgency"
+                                        CssClass="label label-danger"
+                                        ErrorMessage="Agency is required"></asp:RequiredFieldValidator>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtAddDays">Default Days</label>
                                     <asp:TextBox ID="txtAddDays" runat="server" CssClass="form-control" placeholder="No of Days"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
                                         runat="server"
@@ -81,6 +91,18 @@
                                     ValidationGroup="vgEdit"
                                     ErrorMessage="Leave Type is required"></asp:RequiredFieldValidator>
                             </div>
+
+                            <div class="form-group">
+                                <label for="ddlEditAgency">Agency</label>
+                                <asp:DropDownList ID="ddlEditAgency" runat="server" CssClass="form-control"></asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5"
+                                    runat="server"
+                                    Display="Dynamic"
+                                    ControlToValidate="ddlEditAgency"
+                                    CssClass="label label-danger"
+                                    ErrorMessage="Agency is required"></asp:RequiredFieldValidator>
+                            </div>
+
                             <div class="form-group">
                                 <label for="txtEditDays">No of Days</label>
                                 <asp:TextBox ID="txtEditDays" runat="server" CssClass="form-control" placeholder="No of Days"></asp:TextBox>
@@ -169,7 +191,8 @@
                                         </asp:TemplateField>
                                         <asp:ButtonField HeaderText="" ButtonType="Button" Text="Edit" CommandName="editRecord" />
                                         <asp:BoundField HeaderText="Leave" DataField="LeaveName" />
-                                        <asp:BoundField HeaderText="No of Days" DataField="NoOfDays" />
+                                        <asp:BoundField HeaderText="Agency" DataField="Agency" />
+                                        <asp:BoundField HeaderText="Default Days" DataField="NoOfDays" />
                                         <asp:ButtonField HeaderText="" ButtonType="Link" Text="Delete" CommandName="deleteRecord" />
 
                                     </Columns>
