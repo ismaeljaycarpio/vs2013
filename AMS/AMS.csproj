@@ -187,6 +187,7 @@
     <Content Include="Employee\Profile.aspx" />
     <Content Include="Employee\TimeInTimeOut.aspx" />
     <Content Include="Employee\Trainings.aspx" />
+    <Content Include="Employee\UpdateSchedule.aspx" />
     <Content Include="Employee\ViewEmployee.aspx" />
     <Content Include="Employee\Violations.aspx" />
     <Content Include="Employee\vPerformanceEvaluation.aspx" />
@@ -766,6 +767,13 @@
     </Compile>
     <Compile Include="Employee\Trainings.aspx.designer.cs">
       <DependentUpon>Trainings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\UpdateSchedule.aspx.cs">
+      <DependentUpon>UpdateSchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\UpdateSchedule.aspx.designer.cs">
+      <DependentUpon>UpdateSchedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\ViewEmployee.aspx.cs">
       <DependentUpon>ViewEmployee.aspx</DependentUpon>

@@ -75,7 +75,8 @@
                             <label for="lblCurrentSchedule" class="col-sm-2 control-label">Current Schedule: </label>
                             <div class="col-sm-10">
                                 <asp:Label ID="lblCurrentSchedule" runat="server"></asp:Label>
-                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateModal" runat="server" id="openUpdate">Update Schedule</button>
+                                <%--<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateModal" runat="server" id="openUpdate">Update Schedule</button>--%>
+                                <asp:HyperLink ID="hlSchedule" runat="server" NavigateUrl="~/Employee/UpdateSchedule.aspx">Update Schedule</asp:HyperLink>
                             </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>

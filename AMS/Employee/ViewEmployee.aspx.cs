@@ -124,7 +124,8 @@ namespace AMS.Employee
                 FileUpload1.Visible = false;
                 btnUpload.Visible = false;
                 divDocs.Visible = false;
-                openUpdate.Visible = false;
+                hlSchedule.Visible = false;
+                //openUpdate.Visible = false;
             }
         }
         
