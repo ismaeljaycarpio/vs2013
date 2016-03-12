@@ -1,11 +1,13 @@
 ﻿<%@ Page Title="Timekeeping Logs"
     Language="C#"
-    MasterPageFile="~/HRNested.master"
+    MasterPageFile="~/Site.Master"
     AutoEventWireup="true"
     CodeBehind="Attendance.aspx.cs"
     Inherits="AMS.HR.Attendance" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-info">
@@ -25,7 +27,7 @@
 
                         <div class="form-group">
                             <label for="txtStartDate" class="col-sm-2 control-label">Date:</label>
-                            <div class="col-md-8">
+                            <div class="col-lg-4">
                                 <div class="input-daterange">
                                     <div class="input-group">
                                         <asp:TextBox ID="txtStartDate" runat="server" data-provide="datepicker" CssClass="form-control" placeholder="Start Date"></asp:TextBox>
@@ -96,8 +98,17 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
+                                <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
                                 <asp:BoundField DataField="Remarks" HeaderText="Remarks" SortExpression="Remarks" />
-                                
+
+                                <asp:TemplateField HeaderText="Schedule" SortExpression="TimeStart">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblTimeStart" runat="server" Text='<%# Eval("TimeStart") %>'></asp:Label>
+                                        <asp:Label ID="lblTo" runat="server" Text=" - "></asp:Label>
+                                        <asp:Label ID="lblTimeEnd" runat="server" Text='<%# Eval("TimeEnd") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

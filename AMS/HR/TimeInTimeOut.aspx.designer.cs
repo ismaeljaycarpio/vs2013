@@ -49,31 +49,13 @@ namespace AMS.HR {
         protected global::System.Web.UI.UpdatePanel upConfirmTimeOut;
         
         /// <summary>
-        /// lblLastTimeIn control.
+        /// ddlTimeOutSched control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLastTimeIn;
-        
-        /// <summary>
-        /// ddlLastTimeIn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLastTimeIn;
-        
-        /// <summary>
-        /// txtReasons control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReasons;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTimeOutSched;
         
         /// <summary>
         /// btnConfirmTimeout control.
@@ -83,6 +65,33 @@ namespace AMS.HR {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConfirmTimeout;
+        
+        /// <summary>
+        /// upConfirmTimeIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upConfirmTimeIn;
+        
+        /// <summary>
+        /// ddlSchedule control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSchedule;
+        
+        /// <summary>
+        /// btnConfirmTimeIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmTimeIn;
         
         /// <summary>
         /// pnlSuccess control.

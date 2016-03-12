@@ -72,7 +72,7 @@
                 <div class="form-group">
                     <asp:UpdatePanel ID="upSched" runat="server">
                         <ContentTemplate>
-                            <label for="lblCurrentSchedule" class="col-sm-2 control-label">Current Schedule: </label>
+                            <label for="lblCurrentSchedule" class="col-sm-2 control-label">&nbsp;</label>
                             <div class="col-sm-10">
                                 <asp:Label ID="lblCurrentSchedule" runat="server"></asp:Label>
                                 <%--<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateModal" runat="server" id="openUpdate">Update Schedule</button>--%>

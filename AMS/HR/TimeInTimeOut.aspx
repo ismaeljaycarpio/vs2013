@@ -41,17 +41,17 @@
                             <h4 class="modal-title">Confirm Time-out</h4>
                         </div>
                         <div class="modal-body">
-                            <p>
+                            <%--<p>
                                 Your last time-in was
                                 <asp:Label ID="lblLastTimeIn" runat="server" ForeColor="Red"></asp:Label>
                             </p>
 
                             <p>
                                 If you forgot to time-in, please select <span class="label label-info">No Time-In</span> in the dropdown.
-                            </p>
+                            </p>--%>
 
                             <div class="form">
-                                <div class="form-group">
+                                <%--<div class="form-group">
                                     <label for="ddlLastTimeIn">Last Time-in:</label>
                                     <asp:DropDownList ID="ddlLastTimeIn" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
@@ -64,12 +64,54 @@
                                         runat="server"
                                         CssClass="form-control"
                                         placeholder="Enter reason here if you have no login...leave blank if not"></asp:TextBox>
-                                </div>
+                                </div>--%>
+                                <p>
+                                    Select your schedule for todays time-in. 
+                                If you dont see any value, please contact your supervisor.
+                                </p>
 
+                                <div class="form">
+                                    <div class="form-group">
+                                        <label for="ddlTimeOutSched">Timeout Today:</label>
+                                        <asp:DropDownList ID="ddlTimeOutSched" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <asp:Button ID="btnConfirmTimeout" runat="server" Text="Time Out" CssClass="btn btn-warning" OnClick="btnConfirmTimeout_Click" CausesValidation="false" />
+                            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+    </div>
+
+    <div class="modal fade" id="timeinModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <asp:UpdatePanel ID="upConfirmTimeIn" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Confirm Time-In</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Select your schedule for todays time-in. 
+                                If you dont see any value, please contact your supervisor.
+                            </p>
+
+                            <div class="form">
+                                <div class="form-group">
+                                    <label for="ddlTodaysSchedule">Schedule Today:</label>
+                                    <asp:DropDownList ID="ddlSchedule" runat="server" CssClass="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="btnConfirmTimeIn" runat="server" Text="Time In" CssClass="btn btn-warning" OnClick="btnConfirmTimeIn_Click" CausesValidation="false" />
                             <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
                         </div>
                     </div>
@@ -124,14 +166,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="txtEmpId" class="col-sm-2 control-label"></label>
+                            <label for="txtRemarks" class="col-sm-2 control-label"></label>
                             <div class="col-sm-6">
                                 <asp:TextBox ID="txtRemarks"
                                     TextMode="MultiLine"
                                     Height="80"
                                     runat="server"
                                     CssClass="form-control"
-                                    placeholder="Enter reason here if you're late...leave blank if not"></asp:TextBox>
+                                    placeholder="Enter reason here"></asp:TextBox>
                             </div>
                         </div>
 

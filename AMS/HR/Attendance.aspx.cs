@@ -56,7 +56,7 @@ namespace AMS.HR
                 Guid userId = Guid.Parse(ddlName.SelectedValue);
                 return attendance.DisplayAttendanceOfUser(userId);
             }
-            else if (ddlName.SelectedValue != "0" && txtStartDate.Text != String.Empty)
+            else if (ddlName.SelectedValue != "0" && txtStartDate.Text != String.Empty && txtEndDate.Text == String.Empty)
             {
                 //display all logs for that user w/ date
                 Guid userId = Guid.Parse(ddlName.SelectedValue);

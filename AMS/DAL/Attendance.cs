@@ -112,7 +112,7 @@ namespace AMS.DAL
 
         public DataTable DisplayAttendance(Guid userId)
         {
-            strSql = "SELECT * FROM TimeInTimeOut WHERE UserId = @UserId ORDER BY Id DESC";
+            strSql = "SELECT * FROM Schedule WHERE UserId = @UserId AND TimeIn IS NOT NULL AND TimeOut IS NOT NULL ORDER BY Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -132,11 +132,12 @@ namespace AMS.DAL
         public DataTable DisplayAttendance()
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
-                "TimeIn, TimeOut, Remarks " +
-                "FROM EMPLOYEE INNER JOIN TimeInTimeOut " +
-                "ON EMPLOYEE.UserId = TimeInTimeOut.UserId " +
-                "AND EMPLOYEE.AccountStatusId = 1 " + 
-                "ORDER BY TimeInTimeOut.Id DESC";
+                "TimeIn, TimeOut, Remarks, Status, TimeStart, TimeEnd " +
+                "FROM EMPLOYEE INNER JOIN Schedule " +
+                "ON EMPLOYEE.UserId = Schedule.UserId " +
+                "AND EMPLOYEE.AccountStatusId = 1 " +
+                "AND (TimeIn IS NOT NULL OR TimeOut IS NOT NULL OR Status = 'DayOff') " +
+                "ORDER BY Schedule.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -154,13 +155,14 @@ namespace AMS.DAL
         public DataTable DisplayAttendance(string startDate)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
-                "TimeIn, TimeOut, Remarks " +
-                "FROM EMPLOYEE INNER JOIN TimeInTimeOut " +
-                "ON EMPLOYEE.UserId = TimeInTimeOut.UserId " +
+                "TimeIn, TimeOut, Remarks, Status, TimeStart, TimeEnd " +
+                "FROM EMPLOYEE INNER JOIN Schedule " +
+                "ON EMPLOYEE.UserId = Schedule.UserId " +
                 "AND EMPLOYEE.AccountStatusId = 1 " +
-                "AND ((TimeInTimeOut.TimeIn >= @startDate AND TimeInTimeOut.TimeIn < DATEADD(DAY,1,@startDate)) " +
-                "OR (TimeInTimeOut.TimeOut >= @startDate AND TimeInTimeOut.TimeOut < DATEADD(DAY,1,@startDate))) " +
-                "ORDER BY TimeInTimeOut.Id DESC";
+                "AND (TimeIn IS NOT NULL OR TimeOut IS NOT NULL) " +
+                "AND ((Schedule.TimeIn >= @startDate AND Schedule.TimeIn < DATEADD(DAY,1,@startDate)) " +
+                "OR (Schedule.TimeOut >= @startDate AND Schedule.TimeOut < DATEADD(DAY,1,@startDate))) " +
+                "ORDER BY Schedule.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -179,14 +181,15 @@ namespace AMS.DAL
         public DataTable DisplayAttendanceOfUser(Guid UserId, string startDate)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
-                "TimeIn, TimeOut, Remarks " +
-                "FROM EMPLOYEE INNER JOIN TimeInTimeOut " +
-                "ON EMPLOYEE.UserId = TimeInTimeOut.UserId " +
+                "TimeIn, TimeOut, Remarks, Status, TimeStart, TimeEnd " +
+                "FROM EMPLOYEE INNER JOIN Schedule " +
+                "ON EMPLOYEE.UserId = Schedule.UserId " +
                 "AND EMPLOYEE.AccountStatusId = 1 " +
+                "AND (TimeIn IS NOT NULL OR TimeOut IS NOT NULL) " +
                 "AND EMPLOYEE.UserId = @UserId " +
-                "AND ((TimeInTimeOut.TimeIn >= @startDate AND TimeInTimeOut.TimeIn < DATEADD(DAY,1,@startDate)) " +
-                "OR (TimeInTimeOut.TimeOut >= @startDate AND TimeInTimeOut.TimeOut < DATEADD(DAY,1,@startDate))) " +
-                "ORDER BY TimeInTimeOut.Id DESC";
+                "AND ((Schedule.TimeIn >= @startDate AND Schedule.TimeIn < DATEADD(DAY,1,@startDate)) " +
+                "OR (Schedule.TimeOut >= @startDate AND Schedule.TimeOut < DATEADD(DAY,1,@startDate))) " +
+                "ORDER BY Schedule.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -206,12 +209,13 @@ namespace AMS.DAL
         public DataTable DisplayAttendance(string startDate, string endDate)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
-                "TimeIn, TimeOut, Remarks " +
-                "FROM EMPLOYEE INNER JOIN TimeInTimeOut " +
-                "ON EMPLOYEE.UserId = TimeInTimeOut.UserId " +
+                "TimeIn, TimeOut, Remarks, Status, TimeStart, TimeEnd " +
+                "FROM EMPLOYEE INNER JOIN Schedule " +
+                "ON EMPLOYEE.UserId = Schedule.UserId " +
                 "AND EMPLOYEE.AccountStatusId = 1 " +
-                "AND (TimeInTimeOut.TimeIn BETWEEN @startDate AND @endDate OR TimeInTimeOut.TimeOut BETWEEN @startDate AND @endDate) " +
-                "ORDER BY TimeInTimeOut.Id DESC";
+                "AND (TimeIn IS NOT NULL OR TimeOut IS NOT NULL) " +
+                "AND (Schedule.TimeIn BETWEEN @startDate AND @endDate OR Schedule.TimeOut BETWEEN @startDate AND @endDate) " +
+                "ORDER BY Schedule.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -232,12 +236,13 @@ namespace AMS.DAL
         public DataTable DisplayAttendanceOfUser(Guid UserId)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
-                "TimeIn, TimeOut, Remarks " +
-                "FROM EMPLOYEE INNER JOIN TimeInTimeOut " +
-                "ON EMPLOYEE.UserId = TimeInTimeOut.UserId " +
+                "TimeIn, TimeOut, Remarks, Status, TimeStart, TimeEnd " +
+                "FROM EMPLOYEE INNER JOIN Schedule " +
+                "ON EMPLOYEE.UserId = Schedule.UserId " +
                 "AND EMPLOYEE.AccountStatusId = 1 " +
-                "AND EMPLOYEE.UserId = @UserId " + 
-                "ORDER BY TimeInTimeOut.Id DESC";
+                "AND (TimeIn IS NOT NULL OR TimeOut IS NOT NULL) " +
+                "AND EMPLOYEE.UserId = @UserId " +
+                "ORDER BY Schedule.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -256,13 +261,15 @@ namespace AMS.DAL
         public DataTable DisplayAttendanceOfUser(Guid UserId, string startDate, string endDate)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
-                "TimeIn, TimeOut, Remarks " +
-                "FROM EMPLOYEE INNER JOIN TimeInTimeOut " +
-                "ON EMPLOYEE.UserId = TimeInTimeOut.UserId " +
+                "TimeIn, TimeOut, Remarks, Status, TimeStart, TimeEnd " +
+                "FROM EMPLOYEE INNER JOIN Schedule " +
+                "ON EMPLOYEE.UserId = Schedule.UserId " +
                 "AND EMPLOYEE.AccountStatusId = 1 " +
+                "AND (TimeIn IS NOT NULL OR TimeOut IS NOT NULL) " +
                 "AND EMPLOYEE.UserId = @UserId " +
-                "AND (TimeInTimeOut.TimeIn BETWEEN @startDate AND @endDate OR TimeInTimeOut.TimeOut BETWEEN @startDate AND @endDate) " +
-                "ORDER BY TimeInTimeOut.Id DESC";
+                "AND (Schedule.TimeIn BETWEEN @startDate AND @endDate " +
+                "OR Schedule.TimeOut BETWEEN @startDate AND @endDate) " +
+                "ORDER BY Schedule.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;

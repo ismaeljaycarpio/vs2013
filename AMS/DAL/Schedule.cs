@@ -18,9 +18,9 @@ namespace AMS.DAL
         string strSql = "";
 
 
-        public DataTable GetScheduleById(Guid userId)
+        public DataTable getScheduleToday(Guid userId)
         {
-            strSql = "SELECT * FROM Schedule WHERE UserId = @UserId AND Id = (SELECT MAX(Id) FROM Schedule WHERE UserId = @UserId)";
+            strSql = "SELECT * FROM Schedule WHERE UserId = @UserId ORDER BY TimeStart DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -36,13 +36,69 @@ namespace AMS.DAL
             return dt;
         }
 
+        public DataTable GetScheduleById(Guid userId)
+        {
+            strSql = "SELECT * FROM Schedule WHERE UserId = @UserId ORDER BY TimeStart DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", userId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        //get assigned attendace
+        public DataTable getScheduleTodayAttendance(Guid userId)
+        {
+            strSql = "SELECT * FROM Schedule WHERE UserId = @UserId AND TimeStart IS NOT NULL AND TimeEnd IS NOT NULL ORDER BY TimeStart DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", userId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable GetScheduleById(int rowId)
+        {
+            strSql = "SELECT * FROM Schedule WHERE Id = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Id", rowId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         public void addSchedule(
             Guid userId,
             string timeStart,
-            string timeEnd)
+            string timeEnd,
+            string status)
         {
-            strSql = "INSERT INTO Schedule(UserId,TimeStart,TimeEnd) " +
-                "VALUES(@UserId,@TimeStart,@TimeEnd)";
+            strSql = "INSERT INTO Schedule(UserId,TimeStart,TimeEnd,Status) " +
+                "VALUES(@UserId,@TimeStart,@TimeEnd,@Status)";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -51,8 +107,132 @@ namespace AMS.DAL
             {
                 conn.Open();
                 comm.Parameters.AddWithValue("@UserId", userId);
-                comm.Parameters.AddWithValue("@TimeStart", timeStart);
-                comm.Parameters.AddWithValue("@TimeEnd", timeEnd);
+                comm.Parameters.AddWithValue("@TimeStart", Convert.ToDateTime(timeStart));
+                comm.Parameters.AddWithValue("@TimeEnd", Convert.ToDateTime(timeEnd));
+                comm.Parameters.AddWithValue("@Status", status);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+
+        public void updateSchedule(
+            string timeStart,
+            string timeEnd,
+            string status,
+            string rowId)
+        {
+            strSql = "UPDATE Schedule SET TimeStart=@TimeStart, TimeEnd=@TimeEnd, Status=@Status WHERE Id=@Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@Id", rowId);
+                comm.Parameters.AddWithValue("@TimeStart", Convert.ToDateTime(timeStart));
+                comm.Parameters.AddWithValue("@TimeEnd", Convert.ToDateTime(timeEnd));
+                comm.Parameters.AddWithValue("@Status", status);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+
+        public void deleteSchedule(string rowId)
+        {
+            strSql = "DELETE FROM Schedule WHERE Id = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@Id", rowId);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+
+        public void updateTimeIn(string rowId, string remarks)
+        {
+            strSql = "UPDATE Schedule SET TimeIn=@TimeIn, Remarks=@Remarks WHERE Id=@Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@Id", rowId);
+                comm.Parameters.AddWithValue("@TimeIn", DateTime.Now);
+                comm.Parameters.AddWithValue("@Remarks", remarks);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+
+        public void updateTimeOut(string rowId,string remarks)
+        {
+            strSql = "UPDATE Schedule SET TimeOut=@TimeOut, Remarks=@Remarks WHERE Id=@Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@Id", rowId);
+                comm.Parameters.AddWithValue("@TimeOut", DateTime.Now);
+                comm.Parameters.AddWithValue("@Remarks", remarks);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+
+        public void insertSchedByStaff_timeIn(Guid userId, string remarks)
+        {
+            strSql = "INSERT INTO Schedule(UserId,TimeIn,Remarks) VALUES(@UserId,@TimeIn,@Remarks)";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@TimeIn", DateTime.Now);
+                comm.Parameters.AddWithValue("@UserId", userId);
+                comm.Parameters.AddWithValue("@Remarks", remarks);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+
+        public void insertSchedByStaff_timeOut(Guid userId, string remarks)
+        {
+            strSql = "INSERT INTO Schedule(UserId,TimeOut,Remarks) VALUES(@UserId,@TimeOut,@Remarks)";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@TimeOut", DateTime.Now);
+                comm.Parameters.AddWithValue("@Remarks", remarks);
+                comm.Parameters.AddWithValue("@UserId", userId);
                 comm.ExecuteNonQuery();
                 conn.Close();
             }

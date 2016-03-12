@@ -55,18 +55,6 @@ namespace AMS.Employee
 
                 bindGridviews(UserId);
 
-                //schedule
-                dt = new DataTable();
-                dt = sched.GetScheduleById(UserId);
-                if(dt.Rows.Count > 0)
-                {
-                    lblCurrentSchedule.Text = String.Format("{0} - {1}", dt.Rows[0]["TimeStart"].ToString(), dt.Rows[0]["TimeEnd"].ToString());
-                }
-                else
-                {
-                    lblCurrentSchedule.Text = "No Schedule";
-                }
-
                 //hide controls
                 hideControls();
             }
@@ -233,7 +221,7 @@ namespace AMS.Employee
 
         protected void btnUpdateSchedule_Click(object sender, EventArgs e)
         {
-            sched.addSchedule(Guid.Parse(hfUserId.Value), txtTimeStart.Text, txtTimeEnd.Text);
+            //sched.addSchedule(Guid.Parse(hfUserId.Value), txtTimeStart.Text, txtTimeEnd.Text);
 
             //schedule
             dt = new DataTable();
