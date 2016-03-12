@@ -167,7 +167,11 @@
                                                 <li>
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
                                                 <li>
-                                                    <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                    <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton>
+                                                </li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewSchedule" runat="server" OnClick="hlViewSchedule_Click" CausesValidation="false">View My Schedule</asp:LinkButton>
+                                                </li>
                                                 <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -222,6 +226,9 @@
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
                                                 <li>
                                                     <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewSchedule" runat="server" OnClick="hlViewSchedule_Click" CausesValidation="false">View My Schedule</asp:LinkButton>
+                                                </li>
                                                 <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -259,6 +266,9 @@
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
                                                 <li>
                                                     <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewSchedule" runat="server" OnClick="hlViewSchedule_Click" CausesValidation="false">View My Schedule</asp:LinkButton>
+                                                </li>
                                                 <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -296,6 +306,9 @@
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
                                                 <li>
                                                     <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewSchedule" runat="server" OnClick="hlViewSchedule_Click" CausesValidation="false">View My Schedule</asp:LinkButton>
+                                                </li>
                                                 <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -333,6 +346,9 @@
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
                                                 <li>
                                                     <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewSchedule" runat="server" OnClick="hlViewSchedule_Click" CausesValidation="false">View My Schedule</asp:LinkButton>
+                                                </li>
                                                 <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
                                             </ul>
                                         </li>
@@ -367,6 +383,9 @@
                                                     <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
                                                 <li>
                                                     <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewSchedule" runat="server" OnClick="hlViewSchedule_Click" CausesValidation="false">View My Schedule</asp:LinkButton>
+                                                </li>
                                                 <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
                                             </ul>
                                         </li>

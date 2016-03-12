@@ -206,6 +206,33 @@ namespace AMS.DAL
             return dt;
         }
 
+        public DataTable DisplayAttendanceOfUser(Guid UserId, string startDate, bool someValue)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
+                "TimeIn, TimeOut, Remarks, Status, TimeStart, TimeEnd " +
+                "FROM EMPLOYEE INNER JOIN Schedule " +
+                "ON EMPLOYEE.UserId = Schedule.UserId " +
+                "AND EMPLOYEE.AccountStatusId = 1 " +
+                "AND EMPLOYEE.UserId = @UserId " +
+                "AND ((Schedule.TimeIn >= @startDate AND Schedule.TimeIn < DATEADD(DAY,1,@startDate)) " +
+                "OR (Schedule.TimeOut >= @startDate AND Schedule.TimeOut < DATEADD(DAY,1,@startDate))) " +
+                "ORDER BY Schedule.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            comm.Parameters.AddWithValue("@startDate", startDate);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         public DataTable DisplayAttendance(string startDate, string endDate)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
@@ -258,6 +285,30 @@ namespace AMS.DAL
             return dt;
         }
 
+        public DataTable DisplayAttendanceOfUser(Guid UserId, bool someValue)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
+                "TimeIn, TimeOut, Remarks, Status, TimeStart, TimeEnd " +
+                "FROM EMPLOYEE INNER JOIN Schedule " +
+                "ON EMPLOYEE.UserId = Schedule.UserId " +
+                "AND EMPLOYEE.AccountStatusId = 1 " +
+                "AND EMPLOYEE.UserId = @UserId " +
+                "ORDER BY Schedule.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         public DataTable DisplayAttendanceOfUser(Guid UserId, string startDate, string endDate)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
@@ -266,6 +317,34 @@ namespace AMS.DAL
                 "ON EMPLOYEE.UserId = Schedule.UserId " +
                 "AND EMPLOYEE.AccountStatusId = 1 " +
                 "AND (TimeIn IS NOT NULL OR TimeOut IS NOT NULL) " +
+                "AND EMPLOYEE.UserId = @UserId " +
+                "AND (Schedule.TimeIn BETWEEN @startDate AND @endDate " +
+                "OR Schedule.TimeOut BETWEEN @startDate AND @endDate) " +
+                "ORDER BY Schedule.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@UserId", UserId);
+            comm.Parameters.AddWithValue("@startDate", startDate);
+            comm.Parameters.AddWithValue("@endDate", endDate);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable DisplayAttendanceOfUser(Guid UserId, string startDate, string endDate, bool someValue)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, (EMPLOYEE.LastName + ',' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName]," +
+                "TimeIn, TimeOut, Remarks, Status, TimeStart, TimeEnd " +
+                "FROM EMPLOYEE INNER JOIN Schedule " +
+                "ON EMPLOYEE.UserId = Schedule.UserId " +
+                "AND EMPLOYEE.AccountStatusId = 1 " +
                 "AND EMPLOYEE.UserId = @UserId " +
                 "AND (Schedule.TimeIn BETWEEN @startDate AND @endDate " +
                 "OR Schedule.TimeOut BETWEEN @startDate AND @endDate) " +

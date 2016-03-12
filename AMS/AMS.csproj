@@ -178,6 +178,7 @@
     <Content Include="Employee\Evaluation.aspx" />
     <Content Include="Employee\JobDetails.aspx" />
     <Content Include="Employee\JobExperience.aspx" />
+    <Content Include="Employee\MySchedule.aspx" />
     <Content Include="Employee\PerformanceEvaluation.aspx" />
     <Content Include="Employee\PersonalCards.aspx" />
     <Content Include="Employee\post_back.aspx" />
@@ -704,6 +705,13 @@
     </Compile>
     <Compile Include="Employee\JobExperience.aspx.designer.cs">
       <DependentUpon>JobExperience.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\MySchedule.aspx.cs">
+      <DependentUpon>MySchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\MySchedule.aspx.designer.cs">
+      <DependentUpon>MySchedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\PerformanceEvaluation.aspx.cs">
       <DependentUpon>PerformanceEvaluation.aspx</DependentUpon>

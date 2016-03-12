@@ -24,6 +24,7 @@
       <siteMapNode url="~/Employee/ErrorPage.aspx" title="Error Page"></siteMapNode>
       <siteMapNode url="~/Employee/TimeInTimeOut.aspx" title="Time In Time Out"></siteMapNode>
       <siteMapNode url="~/Employee/UpdateSchedule.aspx" title="Schedule"></siteMapNode>
+      <siteMapNode url="~/Employee/MySchedule.aspx" title="My Schedule"></siteMapNode>
       
       <siteMapNode url="~/Employee/Evaluation.aspx" title="Evaluation">
         <siteMapNode url="~/Employee/PerformanceEvaluation.aspx" title="TOPLIS Performance Evaluation" />
@@ -77,6 +78,9 @@
       <siteMapNode url="~/Reports/NewlyHired.aspx" title="Newly Hired"></siteMapNode>
       <siteMapNode url="~/Reports/Duration_of_Contracts.aspx" title="Duration of Contracts"></siteMapNode>
     </siteMapNode>
-    
+
+    <siteMapNode url="~/Leave/Leave.aspx" title="Leaves">
+      
+    </siteMapNode>
   </siteMapNode>
 </siteMap>

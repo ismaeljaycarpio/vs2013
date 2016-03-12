@@ -173,7 +173,7 @@
                                     Height="80"
                                     runat="server"
                                     CssClass="form-control"
-                                    placeholder="Enter reason here"></asp:TextBox>
+                                    placeholder="Enter remarks here..."></asp:TextBox>
                             </div>
                         </div>
 

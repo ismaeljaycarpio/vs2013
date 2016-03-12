@@ -87,5 +87,14 @@ namespace AMS
                 Response.Redirect("~/Employee/Evaluation.aspx");
             }
         }
+
+        protected void hlViewSchedule_Click(object sender, EventArgs e)
+        {
+            if (Page.User.Identity.IsAuthenticated)
+            {
+                Session["UserId"] = Membership.GetUser().ProviderUserKey;
+                Response.Redirect("~/Employee/MySchedule.aspx");
+            }
+        }
     }
 }
