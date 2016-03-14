@@ -2,50 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div id="addModal" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" role="dialog">
-        <div class="modal-dialog">
-            <!-- Update Modal content-->
-            <div class="modal-content">
-                <asp:UpdatePanel ID="upAddModal" runat="server">
-                    <ContentTemplate>
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Add Leaves</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form">
-                                <div class="form-group">
-                                    <asp:Label ID="Label1" runat="server" Visible="false"></asp:Label>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="txtEditName">Name</label>
-                                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label for="DDLRole">Role</label>
-                                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control"></asp:DropDownList>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" Text="Update" ValidationGroup="vgEdit" OnClick="btnUpdate_Click" />
-                            <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                        </div>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="gvEmployee" EventName="RowCommand" />
-                        <asp:AsyncPostBackTrigger ControlID="btnUpdate" EventName="Click" />
-                    </Triggers>
-                </asp:UpdatePanel>
-            </div>
-        </div>
-    </div>
-
-
     <div id="updateModal" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" role="dialog">
         <div class="modal-dialog">
             <!-- Update Modal content-->
@@ -63,14 +19,41 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="txtEditName">Name</label>
-                                    <asp:TextBox ID="txtEditName" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
-                                </div>
+                                    <label for="gvLeaves">Leaves available</label>
+                                    <asp:GridView ID="gvLeaves"
+                                        runat="server"
+                                        class="table table-striped table-hover dataTable"
+                                        GridLines="None"
+                                        AutoGenerateColumns="false"
+                                        DataKeyNames="Id">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="LeaveTypeId" SortExpression="LeaveTypeId">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblLeaveTypeId" runat="server" Text='<%# Eval("Id") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
+                                            <asp:TemplateField HeaderText="LeaveTypeName" SortExpression="LeaveTypeName">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblLeaveTypeName" runat="server" Text='<%# Eval("LeaveName") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
-                                <div class="form-group">
-                                    <label for="DDLRole">Role</label>
-                                    <asp:DropDownList ID="DDLRole" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            <asp:TemplateField HeaderText="Default Days" SortExpression="DefaultDays">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDefaultDays" runat="server" Text='<%# Eval("DefaultDays") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Assign Remaining Days" SortExpression="NoOfDays">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtRemainingDays" runat="server" CssClass="form-control" Text='<%# Eval("NoOfDays") %>' TextMode="Number"></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                        </Columns>
+                                        <PagerStyle CssClass="pagination-ys" />
+                                    </asp:GridView>
                                 </div>
 
                             </div>
@@ -168,15 +151,11 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:ButtonField HeaderText="" ButtonType="Button" Text="Add" CommandName="addRecord" />
-
                                         <asp:BoundField DataField="FullName" HeaderText="Name" SortExpression="FullName" />
                                         <asp:BoundField DataField="Agency" HeaderText="Agency" SortExpression="Agency" />
                                         <asp:BoundField DataField="RoleName" HeaderText="Role" SortExpression="RoleName" />
 
                                         <asp:ButtonField HeaderText="" ButtonType="Link" Text="Edit Leaves" CommandName="editRecord" />
-                                        <asp:ButtonField HeaderText="" ButtonType="Link" Text="Delete Leaves" CommandName="deleteRecord" />
-
                                     </Columns>
                                     <PagerStyle CssClass="pagination-ys" />
                                 </asp:GridView>
@@ -191,5 +170,5 @@
             </div>
         </div>
     </div>
-
+    <asp:HiddenField ID="hfUserId" runat="server" />
 </asp:Content>

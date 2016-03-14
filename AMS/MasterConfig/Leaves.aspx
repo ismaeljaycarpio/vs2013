@@ -192,7 +192,7 @@
                                         <asp:ButtonField HeaderText="" ButtonType="Button" Text="Edit" CommandName="editRecord" />
                                         <asp:BoundField HeaderText="Leave" DataField="LeaveName" />
                                         <asp:BoundField HeaderText="Agency" DataField="Agency" />
-                                        <asp:BoundField HeaderText="Default Days" DataField="NoOfDays" />
+                                        <asp:BoundField HeaderText="Default Days" DataField="DefaultDays" />
                                         <asp:ButtonField HeaderText="" ButtonType="Link" Text="Delete" CommandName="deleteRecord" />
 
                                     </Columns>

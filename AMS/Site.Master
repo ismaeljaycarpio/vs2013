@@ -142,7 +142,6 @@
                                                 <li><a runat="server" href="~/MasterConfig/Announcement.aspx">Announcement/Activities</a></li>
                                                 <li class="divider"></li>
                                                 <li><a runat="server" href="~/MasterConfig/Leaves.aspx">Leave Types</a></li>
-                                                <li class="divider"></li>
                                                 <li><a runat="server" href="~/MasterConfig/LeaveUser.aspx">Configure User Leaves</a></li>
                                                 <%--<li><a runat="server" href="~/MasterConfig/TransactionLogs.aspx">Audit Trail</a></li>
                                                 <li><a runat="server" href="~/MasterConfig/ErrorLogs.aspx">Error Logs</a></li>

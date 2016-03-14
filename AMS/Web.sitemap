@@ -25,6 +25,7 @@
       <siteMapNode url="~/Employee/TimeInTimeOut.aspx" title="Time In Time Out"></siteMapNode>
       <siteMapNode url="~/Employee/UpdateSchedule.aspx" title="Schedule"></siteMapNode>
       <siteMapNode url="~/Employee/MySchedule.aspx" title="My Schedule"></siteMapNode>
+      <siteMapNode url="~/Leave/MyLeave.aspx" title="My Leaves"></siteMapNode>
       
       <siteMapNode url="~/Employee/Evaluation.aspx" title="Evaluation">
         <siteMapNode url="~/Employee/PerformanceEvaluation.aspx" title="TOPLIS Performance Evaluation" />

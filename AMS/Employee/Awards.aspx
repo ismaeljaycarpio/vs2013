@@ -4,7 +4,6 @@
     <!-- Add Modal -->
     <div id="addModal" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <asp:UpdatePanel ID="upAdd" runat="server">

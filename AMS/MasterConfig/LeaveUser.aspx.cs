@@ -13,6 +13,8 @@ namespace AMS.MasterConfig
     public partial class LeaveUser : System.Web.UI.Page
     {
         DAL.Account accnt = new DAL.Account();
+        DAL.Employee emp = new DAL.Employee();
+        DAL.Leaves leaves = new DAL.Leaves();
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -58,47 +60,25 @@ namespace AMS.MasterConfig
         protected void gvEmployee_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             dt = new DataTable();
-            if(e.CommandName.Equals("addRecord"))
+            if(e.CommandName.Equals("editRecord"))
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-                dt = accnt.SelectUserAccounts((Guid)(gvEmployee.DataKeys[index].Value));
-                lblRowId.Text = dt.Rows[0]["UserId"].ToString();
-                txtEditName.Text = dt.Rows[0]["FullName"].ToString();
-                DDLRole.SelectedValue = dt.Rows[0]["RoleId"].ToString();
+                //get agencyId
+                string agencyId = emp.GetAgencyId((Guid)(gvEmployee.DataKeys[index].Value));
+                lblRowId.Text = (gvEmployee.DataKeys[index].Value).ToString();
+
+                //get leaves for user
+                dt = leaves.getLeaves((Guid)(gvEmployee.DataKeys[index].Value), agencyId);
+
+                gvLeaves.DataSource = dt;
+                gvLeaves.DataBind();
 
                 sb.Append(@"<script type='text/javascript'>");
                 sb.Append("$('#updateModal').modal('show');");
                 sb.Append(@"</script>");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "EditShowModalScript", sb.ToString(), false);
-            }
-            else if(e.CommandName.Equals("editRecord"))
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                System.Text.StringBuilder sb = new System.Text.StringBuilder();
-
-                dt = accnt.SelectUserAccounts((Guid)(gvEmployee.DataKeys[index].Value));
-                lblRowId.Text = dt.Rows[0]["UserId"].ToString();
-                txtEditName.Text = dt.Rows[0]["FullName"].ToString();
-                DDLRole.SelectedValue = dt.Rows[0]["RoleId"].ToString();
-
-                sb.Append(@"<script type='text/javascript'>");
-                sb.Append("$('#updateModal').modal('show');");
-                sb.Append(@"</script>");
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "EditShowModalScript", sb.ToString(), false);
-            }
-            else if(e.CommandName.Equals("deleteRecord"))
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                string rowId = ((Label)gvEmployee.Rows[index].FindControl("lblEmp_Id")).Text;
-                hfDeleteId.Value = rowId;
-
-                System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                sb.Append(@"<script type='text/javascript'>");
-                sb.Append("$('#deleteModal').modal('show');");
-                sb.Append(@"</script>");
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteShowModalScript", sb.ToString(), false);
             }
         }
 
@@ -147,10 +127,18 @@ namespace AMS.MasterConfig
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            accnt.ChangeRole(Guid.Parse(lblRowId.Text), DDLRole.SelectedItem.Text);
+            Guid userId = Guid.Parse(lblRowId.Text);
 
-            gvEmployee.DataSource = BindGridView();
-            gvEmployee.DataBind();
+            //delte leaves for user
+            leaves.deleteLeavesForUser(userId);
+
+            //save leaves for user
+            foreach(GridViewRow row in gvLeaves.Rows)
+            {
+                string leaveTypeId = (row.FindControl("lblLeaveTypeId") as Label).Text;
+                string noOfDays = (row.FindControl("txtRemainingDays") as TextBox).Text;
+                leaves.addLeaveTypeToUser(leaveTypeId, noOfDays, userId);
+            }
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");

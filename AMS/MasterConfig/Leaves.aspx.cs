@@ -95,7 +95,7 @@ namespace AMS.MasterConfig
                 dt = leave.getLeaveId((int)(gvLeave.DataKeys[index].Value));
                 lblRowId.Text = dt.Rows[0]["Id"].ToString();
                 txtEditLeave.Text = dt.Rows[0]["LeaveName"].ToString();
-                txtEditDays.Text = dt.Rows[0]["NoOfDays"].ToString();
+                txtEditDays.Text = dt.Rows[0]["DefaultDays"].ToString();
                 ddlEditAgency.SelectedValue = dt.Rows[0]["AgencyId"].ToString();
 
                 sb.Append(@"<script type='text/javascript'>");
