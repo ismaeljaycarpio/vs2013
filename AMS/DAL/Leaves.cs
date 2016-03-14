@@ -363,6 +363,26 @@ namespace AMS.DAL
             comm.Dispose();
             conn.Dispose();
         }
+
+        public void deleteLeaveTransaction(string rowId)
+        {
+            strSql = "DELETE FROM LeaveTransaction WHERE Id = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@Id", rowId);
+
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
+
         #endregion
 
         #region LeaveApproval

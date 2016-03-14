@@ -11,6 +11,24 @@
 ////////////////////2016-03-14//////////////////////////////
 //////////////////////////////////////////////////////////////
 - Refine Process of timesheet/leave/approval
+- where to put approved by dept head -> is it pending/approved/disapproved
+
+http://localhost:26475/Leave/MyLeave.aspx
+	- implement -> cant edit when approved - **DONE**
+	- implement -> cant input negative(-) values in No of Days - **DONE**
+	- implement -> cant exceed no of days to lblRemainingDays - **DONE**
+	- implement -> hide delete if once approve/disapprove by either hr/deptHead - **DONE**
+	- implement -> delete leaveTransaction - **DONE**
+
+http://localhost:26475/Leave/Leave.aspx
+	- implement Reports (printable)
+	- 
+
+VALIDATION:
+	- dates
+	- 
+ADDITION:
+	- search filters
 
 ///////////////////////////////////////////////////////////////
 ////////////////////2016-03-13//////////////////////////////

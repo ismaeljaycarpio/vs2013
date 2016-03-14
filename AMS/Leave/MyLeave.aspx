@@ -71,6 +71,18 @@
                                         CssClass="label label-danger"
                                         ValidationGroup="vgAdd"
                                         ErrorMessage="No of Days is required"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" 
+                                        runat="server"
+                                        Display="Dynamic"
+                                        ControlToValidate="txtNoOfDays"
+                                        ForeColor="Red"
+                                        ValidationExpression="^[1-9]\d*$"
+                                        ValidationGroup="vgAdd"
+                                        ErrorMessage="Positive Numbers only">*</asp:RegularExpressionValidator>
+                                </div>
+
+                                <div class="form-group">
+                                    <asp:Label ID="lblAddValidateRemainingDays" runat="server" CssClass="label label-danger"></asp:Label>
                                 </div>
                             </div>
 
@@ -124,7 +136,7 @@
 
                                 <div class="form-group">
                                     <label for="lblEditRemainingDays">Remaining Days:</label>
-                                    <asp:Label ID="lblEditRemainingDays" runat="server"></asp:Label>
+                                    <asp:Label ID="lblEditRemainingDays" runat="server" Text="0"></asp:Label>
                                 </div>
 
 
@@ -162,7 +174,20 @@
                                         CssClass="label label-danger"
                                         ValidationGroup="vgEdit"
                                         ErrorMessage="No of Days is required"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" 
+                                        runat="server"
+                                        Display="Dynamic"
+                                        ControlToValidate="txtEditNoOfDays"
+                                        ForeColor="Red"
+                                        ValidationGroup="vgEdit"
+                                        ValidationExpression="^[1-9]\d*$"
+                                        ErrorMessage="Positive Numbers only">*</asp:RegularExpressionValidator>
                                 </div>
+
+                                <div class="form-group">
+                                    <asp:Label ID="lblEditValidateRemainingDays" runat="server" CssClass="label label-danger"></asp:Label>
+                                </div>
+
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -292,6 +317,12 @@
                                             </asp:TemplateField>
 
                                             <%--<asp:ButtonField HeaderText="" ButtonType="Link" Text="Delete" CommandName="deleteRecord" />--%>
+                                            
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <asp:Button ID="btnShowDelete" runat="server" Text="Delete" CommandName="deleteRecord" CssClass="btn btn-danger" CommandArgument='<%#((GridViewRow) Container).RowIndex %>'/>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
                                         </Columns>
                                         <PagerStyle CssClass="pagination-ys" />

@@ -103,7 +103,6 @@
                                                         <asp:Label ID="lblNoOfDays" runat="server" Text='<%# Eval("NumberOfDays") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:BoundField DataField="FiledDate" HeaderText="Filed Date" SortExpression="FiledDate" />
 
                                                 <asp:BoundField DataField="FiledDate" HeaderText="Filed Date" SortExpression="FiledDate" />
 
