@@ -19,6 +19,11 @@ namespace AMS.Leave
         {
             if(!Page.IsPostBack)
             {
+                if(Membership.GetUser() == null)
+                {
+                    Response.Redirect("~/Login.aspx");
+                }
+
                 gvPendingLeaveApprovals.DataSource = bindGridview_Pending();
                 gvPendingLeaveApprovals.DataBind();
                 lblPendingCount.Text = gvPendingLeaveApprovals.Rows.Count.ToString();
@@ -134,7 +139,9 @@ namespace AMS.Leave
 
         protected void gvPendingLeaveApprovals_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvPendingLeaveApprovals.PageIndex = e.NewPageIndex;
+            gvPendingLeaveApprovals.DataSource = bindGridview_Pending();
+            gvPendingLeaveApprovals.DataBind();
         }
 
         protected void gvPendingLeaveApprovals_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -214,7 +221,9 @@ namespace AMS.Leave
 
         protected void gvApproved_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvApproved.PageIndex = e.NewPageIndex;
+            gvApproved.DataSource = bindGridview_Approved();
+            gvApproved.DataBind();
         }
 
         protected void gvApproved_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -224,12 +233,13 @@ namespace AMS.Leave
 
         protected void gvRejected_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvRejected.PageIndex = e.NewPageIndex;
+            gvRejected.DataSource = bindGridview_Rejected();
+            gvRejected.DataBind();
         }
 
         protected void gvRejected_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
         }
 
     }

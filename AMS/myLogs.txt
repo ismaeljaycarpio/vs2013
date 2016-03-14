@@ -12,6 +12,8 @@
 //////////////////////////////////////////////////////////////
 - Refine Process of timesheet/leave/approval
 - where to put approved by dept head -> is it pending/approved/disapproved
+- activate user when locked-out
+- reflect user leave in timesheet
 
 http://localhost:26475/Leave/MyLeave.aspx
 	- implement -> cant edit when approved - **DONE**
@@ -22,7 +24,7 @@ http://localhost:26475/Leave/MyLeave.aspx
 
 http://localhost:26475/Leave/Leave.aspx
 	- implement Reports (printable)
-	- 
+	- refine process
 
 VALIDATION:
 	- dates
