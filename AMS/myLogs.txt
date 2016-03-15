@@ -7,6 +7,49 @@
 [Admin],admin						|			|
 
 
+
+///////////////////////////////////////////////////////////////
+////////////////////2016-03-15//////////////////////////////
+//////////////////////////////////////////////////////////////
+db details:
+- LeaveTransaction
+	Id
+	LeaveTypeUserId (varchar)
+	NumberOfDays (varchar)
+	DepartmentHeadApproval (varchar)
+	HRApproval (varchar)
+	FromDate (datetime)
+	ToDate (datetime)
+	Status (varchar)
+	UserId (guid)
+	FiledDate (datetime)
+
+- LeaveType
+	Id
+	LeaveName (varchar)
+	CreateDate (datetime)
+	ModifiedDate (datetime)
+	DefaultDays (varchar)
+	AgencyId (varchar)
+
+- LeaveTypeUser
+	Id
+	UserId (guid)
+	LeaveTypeId (int)
+	NoOfDays (int)
+
+- Schedule
+	Id
+	UserId
+	TimeStart
+	TimeEnd
+	Status (varchar)
+	TimeIn
+	TimeOut
+	Remarks
+
+
+
 ///////////////////////////////////////////////////////////////
 ////////////////////2016-03-14//////////////////////////////
 //////////////////////////////////////////////////////////////
