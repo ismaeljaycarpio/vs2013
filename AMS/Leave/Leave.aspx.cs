@@ -176,7 +176,7 @@ namespace AMS.Leave
 
                 leaves.approve_Pending_leave(false, true, hfApproveId.Value, "Approved");
     
-                //insert in timesheet
+                //should reflect in timesheet
 
             }
 

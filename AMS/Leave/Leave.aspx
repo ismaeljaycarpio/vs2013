@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Leave Management" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Leave.aspx.cs" Inherits="AMS.Leave.Leave" %>
+﻿<%@ Page Title="Leave Approvals" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Leave.aspx.cs" Inherits="AMS.Leave.Leave" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>

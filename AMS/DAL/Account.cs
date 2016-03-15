@@ -20,7 +20,7 @@ namespace AMS.DAL
 
         public DataTable DisplayUserAccounts(string searchKeyWord)
         {
-            strSql = "SELECT Memberships.UserId, Memberships.IsApproved, " +
+            strSql = "SELECT Memberships.UserId, Memberships.IsApproved, Memberships.IsLockedOut, " +
                 "EMPLOYEE.Emp_Id, Roles.RoleName, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName] " +
                 ", AGENCY.Agency AS [Agency] " +
@@ -145,6 +145,25 @@ namespace AMS.DAL
             {
                 Roles.AddUserToRole(_user.UserName, roleName);
             }
+        }
+
+        public void LockUser(Guid UserId)
+        {
+            strSql = "UPDATE Memberships SET IsLockedOut = 'True' WHERE UserId = @UserId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@UserId", UserId);
+
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
         }
     }
 }

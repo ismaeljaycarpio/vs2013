@@ -415,7 +415,7 @@ namespace AMS.DAL
                 "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
                 "AND LeaveTransaction.DepartmentHeadApproval IS NULL " +
                 "AND LeaveTransaction.HRApproval IS NULL " +
-                "ORDER BY LeaveTransaction.Id ASC";
+                "ORDER BY LeaveTransaction.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -458,7 +458,7 @@ namespace AMS.DAL
                 "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
                 "AND LeaveTransaction.DepartmentHeadApproval = 'Approved' " +
                 "AND LeaveTransaction.HRApproval IS NULL " +
-                "ORDER BY LeaveTransaction.Id ASC";
+                "ORDER BY LeaveTransaction.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -502,7 +502,7 @@ namespace AMS.DAL
                 "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
                 "AND LeaveTransaction.DepartmentHeadApproval IS NULL " +
                 "AND LeaveTransaction.HRApproval IS NULL " +
-                "ORDER BY LeaveTransaction.Id ASC";
+                "ORDER BY LeaveTransaction.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -547,7 +547,7 @@ namespace AMS.DAL
                 "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
                 "AND LeaveTransaction.DepartmentHeadApproval IS NULL " +
                 "AND LeaveTransaction.HRApproval IS NULL " +
-                "ORDER BY LeaveTransaction.Id ASC";
+                "ORDER BY LeaveTransaction.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -631,7 +631,7 @@ namespace AMS.DAL
                 "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
                 "AND LeaveTransaction.DepartmentHeadApproval = 'Approved' " +
                 "AND LeaveTransaction.HRApproval = 'Approved' " +
-                "ORDER BY LeaveTransaction.Id ASC";
+                "ORDER BY LeaveTransaction.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -674,7 +674,7 @@ namespace AMS.DAL
                 "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
                 "AND LeaveTransaction.DepartmentHeadApproval = 'Approved' " +
                 "AND LeaveTransaction.HRApproval = 'Approved' " +
-                "ORDER BY LeaveTransaction.Id ASC";
+                "ORDER BY LeaveTransaction.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -718,7 +718,7 @@ namespace AMS.DAL
                 "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
                 "AND LeaveTransaction.DepartmentHeadApproval = 'Approved' " +
                 "AND LeaveTransaction.HRApproval = 'Approved' " +
-                "ORDER BY LeaveTransaction.Id ASC";
+                "ORDER BY LeaveTransaction.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -763,7 +763,7 @@ namespace AMS.DAL
                 "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
                 "AND LeaveTransaction.DepartmentHeadApproval = 'Approved' " +
                 "AND LeaveTransaction.HRApproval = 'Approved' " +
-                "ORDER BY LeaveTransaction.Id ASC";
+                "ORDER BY LeaveTransaction.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -808,7 +808,7 @@ namespace AMS.DAL
                 "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
                 "AND (LeaveTransaction.DepartmentHeadApproval = 'Disapproved' " +
                 "OR LeaveTransaction.HRApproval = 'Disapproved') " +
-                "ORDER BY LeaveTransaction.Id ASC";
+                "ORDER BY LeaveTransaction.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -851,7 +851,7 @@ namespace AMS.DAL
                 "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
                 "AND (LeaveTransaction.DepartmentHeadApproval = 'Disapproved' " +
                 "OR LeaveTransaction.HRApproval = 'Disapproved') " +
-                "ORDER BY LeaveTransaction.Id ASC";
+                "ORDER BY LeaveTransaction.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -895,7 +895,7 @@ namespace AMS.DAL
                 "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
                 "AND (LeaveTransaction.DepartmentHeadApproval = 'Disapproved' " +
                 "OR LeaveTransaction.HRApproval = 'Disapproved') " +
-                "ORDER BY LeaveTransaction.Id ASC";
+                "ORDER BY LeaveTransaction.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -940,7 +940,7 @@ namespace AMS.DAL
                 "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
                 "AND (LeaveTransaction.DepartmentHeadApproval = 'Disapproved' " +
                 "OR LeaveTransaction.HRApproval = 'Disapproved') " +
-                "ORDER BY LeaveTransaction.Id ASC";
+                "ORDER BY LeaveTransaction.Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;

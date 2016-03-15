@@ -9,8 +9,32 @@
 
 
 ///////////////////////////////////////////////////////////////
-////////////////////2016-03-15//////////////////////////////
-//////////////////////////////////////////////////////////////
+////////////////////2016-03-15/////////////////////////////////
+///////////////////////////////////////////////////////////////
+- Refine Process of timesheet/leave/approval
+- where to put approved by dept head -> is it pending/approved/disapproved
+- Unlock/Lock user  - **DONE** - http://localhost:26475/MasterConfig/Employee_Account_MasterList.aspx
+- reflect user leave in timesheet
+
+3 areas for viewing timesheet:
+	- http://localhost:26475/Employee/UpdateSchedule.aspx - **DONE**
+	- http://localhost:26475/Employee/MySchedule.aspx - **DONE**
+	- http://localhost:26475/HR/Attendance.aspx - **DONE**
+
+TASK:
+http://localhost:26475/Leave/MyLeave.aspx
+	- validate remaining days of leave when filed
+
+http://localhost:26475/Employee/UpdateSchedule.aspx
+	- add column TimeIn,TimeOut **DONE**
+	- cant edit TimeIn,TimeOut **DONE**
+	- can update user w/ no schedule but has TimeIn/TimeOut **DONE**
+	- 
+http://localhost:26475/HR/TimeInTimeOut.aspx
+	- will only show time-in where date is equal today or > to avoid accidentally overwriting old scheds
+	- implement -> avoid overwriting TimeIn/TimeOut ****IMPORTANT****
+	- 
+
 db details:
 - LeaveTransaction
 	Id
@@ -47,8 +71,6 @@ db details:
 	TimeIn
 	TimeOut
 	Remarks
-
-
 
 ///////////////////////////////////////////////////////////////
 ////////////////////2016-03-14//////////////////////////////
@@ -405,3 +427,12 @@ HR:
 
 IMPROVEMENTS, PERFORMANCE
 - Profile Image Upload - (sizing)
+
+
+
+=================================================================
+=================================================================
+============ FUTURE IMPLEMENTATION ==============================
+=================================================================
+=================================================================
+- make rich editor in Announcement

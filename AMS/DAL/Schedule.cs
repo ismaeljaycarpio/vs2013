@@ -55,14 +55,24 @@ namespace AMS.DAL
         }
 
         //get assigned attendace
+        //limit the record for 2 days only
+        //good for dayshift, midshift only
+        //need to rework for night shifg because of adjustment of day
         public DataTable getScheduleTodayAttendance(Guid userId)
         {
-            strSql = "SELECT * FROM Schedule WHERE UserId = @UserId AND TimeStart IS NOT NULL AND TimeEnd IS NOT NULL ORDER BY TimeStart DESC";
+            strSql = "SELECT * FROM Schedule " +
+                "WHERE UserId = @UserId " +
+                "AND TimeStart IS NOT NULL " +
+                "AND TimeEnd IS NOT NULL " +
+                "AND (TimeStart >= @thisDay AND TimeStart < @this2Day)  " +
+                "ORDER BY TimeStart DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
             comm.Parameters.AddWithValue("@UserId", userId);
+            comm.Parameters.AddWithValue("@thisDay", DateTime.Today);
+            comm.Parameters.AddWithValue("@this2Day", DateTime.Today.AddDays(1));
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 

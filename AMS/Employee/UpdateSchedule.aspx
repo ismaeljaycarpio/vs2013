@@ -210,7 +210,8 @@
                                         <asp:BoundField DataField="TimeStart" HeaderText="Time Start" SortExpression="TimeStart" />
                                         <asp:BoundField DataField="TimeEnd" HeaderText="Time End" SortExpression="TimeEnd" />
                                         <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
-
+                                        <asp:BoundField DataField="TimeIn" HeaderText="Time-IN" SortExpression="TimeIn" />
+                                        <asp:BoundField DataField="TimeOut" HeaderText="Time-OUT" SortExpression="TimeOut" />
                                         <asp:ButtonField HeaderText="" ButtonType="Link" Text="Edit" CommandName="editRecord" />
                                         <asp:ButtonField HeaderText="" ButtonType="Link" Text="Delete" CommandName="deleteRecord" />
 

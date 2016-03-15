@@ -153,6 +153,16 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="Locked Out" SortExpression="IsLockedOut">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lbtnLockedOut"
+                                                    runat="server"
+                                                    OnClick="lbtnLockedOut_Click"
+                                                    Text='<%# (Boolean.Parse(Eval("IsLockedOut").ToString())) ? "Yes" : "No" %>'>
+                                                </asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Reset Password">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lblReset"

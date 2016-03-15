@@ -112,7 +112,11 @@ namespace AMS.DAL
 
         public DataTable DisplayAttendance(Guid userId)
         {
-            strSql = "SELECT * FROM Schedule WHERE UserId = @UserId AND TimeIn IS NOT NULL AND TimeOut IS NOT NULL ORDER BY Id DESC";
+            strSql = "SELECT * FROM Schedule " +
+                "WHERE UserId = @UserId " +
+                "AND TimeIn IS NOT NULL " +
+                "AND TimeOut IS NOT NULL " +
+                "ORDER BY Id DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -137,7 +141,7 @@ namespace AMS.DAL
                 "ON EMPLOYEE.UserId = Schedule.UserId " +
                 "AND EMPLOYEE.AccountStatusId = 1 " +
                 "AND (TimeIn IS NOT NULL OR TimeOut IS NOT NULL OR Status = 'DayOff') " +
-                "ORDER BY Schedule.Id DESC";
+                "ORDER BY Schedule.TimeStart DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -162,7 +166,7 @@ namespace AMS.DAL
                 "AND (TimeIn IS NOT NULL OR TimeOut IS NOT NULL) " +
                 "AND ((Schedule.TimeIn >= @startDate AND Schedule.TimeIn < DATEADD(DAY,1,@startDate)) " +
                 "OR (Schedule.TimeOut >= @startDate AND Schedule.TimeOut < DATEADD(DAY,1,@startDate))) " +
-                "ORDER BY Schedule.Id DESC";
+                "ORDER BY Schedule.TimeStart DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -189,7 +193,7 @@ namespace AMS.DAL
                 "AND EMPLOYEE.UserId = @UserId " +
                 "AND ((Schedule.TimeIn >= @startDate AND Schedule.TimeIn < DATEADD(DAY,1,@startDate)) " +
                 "OR (Schedule.TimeOut >= @startDate AND Schedule.TimeOut < DATEADD(DAY,1,@startDate))) " +
-                "ORDER BY Schedule.Id DESC";
+                "ORDER BY Schedule.TimeStart DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -216,7 +220,7 @@ namespace AMS.DAL
                 "AND EMPLOYEE.UserId = @UserId " +
                 "AND ((Schedule.TimeIn >= @startDate AND Schedule.TimeIn < DATEADD(DAY,1,@startDate)) " +
                 "OR (Schedule.TimeOut >= @startDate AND Schedule.TimeOut < DATEADD(DAY,1,@startDate))) " +
-                "ORDER BY Schedule.Id DESC";
+                "ORDER BY Schedule.TimeStart DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -242,7 +246,7 @@ namespace AMS.DAL
                 "AND EMPLOYEE.AccountStatusId = 1 " +
                 "AND (TimeIn IS NOT NULL OR TimeOut IS NOT NULL) " +
                 "AND (Schedule.TimeIn BETWEEN @startDate AND @endDate OR Schedule.TimeOut BETWEEN @startDate AND @endDate) " +
-                "ORDER BY Schedule.Id DESC";
+                "ORDER BY Schedule.TimeStart DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -269,7 +273,7 @@ namespace AMS.DAL
                 "AND EMPLOYEE.AccountStatusId = 1 " +
                 "AND (TimeIn IS NOT NULL OR TimeOut IS NOT NULL) " +
                 "AND EMPLOYEE.UserId = @UserId " +
-                "ORDER BY Schedule.Id DESC";
+                "ORDER BY Schedule.TimeStart DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -293,7 +297,7 @@ namespace AMS.DAL
                 "ON EMPLOYEE.UserId = Schedule.UserId " +
                 "AND EMPLOYEE.AccountStatusId = 1 " +
                 "AND EMPLOYEE.UserId = @UserId " +
-                "ORDER BY Schedule.Id DESC";
+                "ORDER BY Schedule.TimeStart DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -320,7 +324,7 @@ namespace AMS.DAL
                 "AND EMPLOYEE.UserId = @UserId " +
                 "AND (Schedule.TimeIn BETWEEN @startDate AND @endDate " +
                 "OR Schedule.TimeOut BETWEEN @startDate AND @endDate) " +
-                "ORDER BY Schedule.Id DESC";
+                "ORDER BY Schedule.TimeStart DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -348,7 +352,7 @@ namespace AMS.DAL
                 "AND EMPLOYEE.UserId = @UserId " +
                 "AND (Schedule.TimeIn BETWEEN @startDate AND @endDate " +
                 "OR Schedule.TimeOut BETWEEN @startDate AND @endDate) " +
-                "ORDER BY Schedule.Id DESC";
+                "ORDER BY Schedule.TimeStart DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;

@@ -66,13 +66,13 @@
                                         placeholder="Enter reason here if you have no login...leave blank if not"></asp:TextBox>
                                 </div>--%>
                                 <p>
-                                    Select your schedule for todays time-in. 
+                                    Select your schedule for todays time-out. 
                                 If you dont see any value, please contact your supervisor.
                                 </p>
 
                                 <div class="form">
                                     <div class="form-group">
-                                        <label for="ddlTimeOutSched">Timeout Today:</label>
+                                        <label for="ddlTimeOutSched">Your Time-Out Schedule Today:</label>
                                         <asp:DropDownList ID="ddlTimeOutSched" runat="server" CssClass="form-control"></asp:DropDownList>
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@
 
                             <div class="form">
                                 <div class="form-group">
-                                    <label for="ddlTodaysSchedule">Schedule Today:</label>
+                                    <label for="ddlTodaysSchedule">Your Time-In Schedule Today:</label>
                                     <asp:DropDownList ID="ddlSchedule" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
                             </div>

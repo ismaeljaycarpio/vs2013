@@ -77,14 +77,26 @@ namespace AMS.Employee
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
                 dt = sched.GetScheduleById((int)(gvEmployee.DataKeys[index].Value));
-
-                DateTime dateStart = Convert.ToDateTime(dt.Rows[0]["TimeStart"].ToString());
-                DateTime dateEnd = Convert.ToDateTime(dt.Rows[0]["TimeEnd"].ToString());
-
                 lblRowId.Text = dt.Rows[0]["Id"].ToString();
-                txtEditStart.Text = dateStart.ToString("yyyy-MM-ddThh:mm");
-                txtEditEnd.Text = dateEnd.ToString("yyyy-MM-ddThh:mm");
 
+                string timeStart = dt.Rows[0]["TimeStart"].ToString();
+                string timeEnd = dt.Rows[0]["TimeEnd"].ToString();
+
+                //chk if schedule is created
+                if(timeStart.Equals(String.Empty) || timeEnd.Equals(String.Empty))
+                {
+                    txtEditStart.Text = DateTime.Today.ToString("yyyy-MM-ddThh:mm");
+                    txtEditEnd.Text = DateTime.Today.ToString("yyyy-MM-ddThh:mm");
+                }
+                else
+                {
+                    DateTime dateStart = Convert.ToDateTime(timeStart);
+                    DateTime dateEnd = Convert.ToDateTime(timeEnd);
+                    
+                    txtEditStart.Text = dateStart.ToString("yyyy-MM-ddThh:mm");
+                    txtEditEnd.Text = dateEnd.ToString("yyyy-MM-ddThh:mm");
+                }
+               
                 sb.Append(@"<script type='text/javascript'>");
                 sb.Append("$('#updateModal').modal('show');");
                 sb.Append(@"</script>");

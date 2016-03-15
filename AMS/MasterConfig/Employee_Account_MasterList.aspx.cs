@@ -89,7 +89,7 @@ namespace AMS.MasterConfig
             Response.Clear();
             Response.Buffer = true;
             Response.AddHeader("content-disposition",
-             "attachment;filename=EmployeeList.xls");
+             "attachment;filename=" + DateTime.Now.Year + "Employee_MasterList" + ".xls");
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-excel";
             StringWriter sw = new StringWriter();
@@ -109,7 +109,6 @@ namespace AMS.MasterConfig
             Response.Flush();
             Response.End();
         }
-
 
         protected void gvEmployee_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
@@ -175,6 +174,7 @@ namespace AMS.MasterConfig
             {
                 LinkButton lnkStatus = (LinkButton)e.Row.FindControl("lblStatus");
                 LinkButton lnkReset = (LinkButton)e.Row.FindControl("lblReset");
+                LinkButton lbtnLockedOut = (LinkButton)e.Row.FindControl("lbtnLockedOut");
 
                 if (lnkStatus.Text == "Active")
                 {
@@ -186,6 +186,15 @@ namespace AMS.MasterConfig
                 }
                 
                 lnkReset.Attributes.Add("onclick", "return confirm('Do you want to reset the password of this user ? ');");
+
+                if (lbtnLockedOut.Text == "Yes")
+                {
+                    lbtnLockedOut.Attributes.Add("onclick", "return confirm('Do you want to Unlock this user ? ');");
+                }
+                else
+                {
+                    lbtnLockedOut.Attributes.Add("onclick", "return confirm('Do you want to Lock this user ? ');");
+                }
             }
             else if(e.Row.RowType == DataControlRowType.Footer)
             {
@@ -273,6 +282,29 @@ namespace AMS.MasterConfig
             sb.Append("$('#deleteModal').modal('hide');");
             sb.Append(@"</script>");
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteHideModalScript", sb.ToString(), false);
+        }
+
+        protected void lbtnLockedOut_Click(object sender, EventArgs e)
+        {
+            LinkButton lbtnLockedOut_Click = sender as LinkButton;
+            GridViewRow gvrow = lbtnLockedOut_Click.NamingContainer as GridViewRow;
+            Guid UserId = Guid.Parse(gvEmployee.DataKeys[gvrow.RowIndex].Value.ToString());
+
+            MembershipUser getUser = Membership.GetUser(UserId);
+
+            if (lbtnLockedOut_Click.Text == "Yes")
+            {
+                //unlock
+                getUser.UnlockUser();
+            }
+            else
+            {
+                //lock
+                accnt.LockUser(UserId);
+            }
+
+            gvEmployee.DataSource = BindGridView();
+            gvEmployee.DataBind();
         }
     }
 }

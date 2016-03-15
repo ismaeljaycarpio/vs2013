@@ -13,7 +13,6 @@ namespace AMS.HR
     public partial class Attendance : System.Web.UI.Page
     {
         DAL.Attendance attendance = new DAL.Attendance();
-        DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -173,7 +172,7 @@ namespace AMS.HR
             Response.Clear();
             Response.Buffer = true;
             Response.AddHeader("content-disposition",
-                "attachment;filename=EmployeeList.doc");
+                "attachment;filename=TimeKeeping.doc");
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-word ";
             StringWriter sw = new StringWriter();
@@ -195,7 +194,7 @@ namespace AMS.HR
             Response.Clear();
             Response.Buffer = true;
             Response.AddHeader("content-disposition",
-             "attachment;filename=EmployeeList.xls");
+             "attachment;filename=TimeKeeping.xls");
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-excel";
             StringWriter sw = new StringWriter();
