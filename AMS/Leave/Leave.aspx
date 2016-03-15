@@ -43,6 +43,10 @@
                         <ContentTemplate>
                             <asp:Label ID="lblPendingCount" runat="server" CssClass="badge"></asp:Label>
                         </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="btnApprove" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="btnDisapprove" EventName="Click" />
+                        </Triggers>
                     </asp:UpdatePanel>
 
                 </a></li>
@@ -51,6 +55,10 @@
                         <ContentTemplate>
                             <asp:Label ID="lblApprovedCount" runat="server" CssClass="badge"></asp:Label>
                         </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="btnApprove" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="btnDisapprove" EventName="Click" />
+                        </Triggers>
                     </asp:UpdatePanel>
                 </a></li>
                 <li><a href="#cancelledTab" data-toggle="tab">Dispproved Leaves
@@ -58,6 +66,10 @@
                         <ContentTemplate>
                             <asp:Label ID="lblDisapprovedCount" runat="server" CssClass="badge"></asp:Label>
                         </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="btnApprove" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="btnDisapprove" EventName="Click" />
+                        </Triggers>
                     </asp:UpdatePanel>
                 </a></li>
                 <%--<li><a href="#rejectTab" data-toggle="tab">Rejected Leave Approvals</a></li>--%>
@@ -97,7 +109,7 @@
 
                                                 <asp:BoundField DataField="FullName" HeaderText="Name" SortExpression="FullName" />
                                                 <asp:BoundField DataField="LeaveName" HeaderText="Leave" SortExpression="LeaveName" />
-                                                
+
                                                 <asp:TemplateField HeaderText="No Of Days" SortExpression="NumberOfDays">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblNoOfDays" runat="server" Text='<%# Eval("NumberOfDays") %>'></asp:Label>

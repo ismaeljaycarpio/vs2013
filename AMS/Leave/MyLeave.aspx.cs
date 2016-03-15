@@ -24,6 +24,22 @@ namespace AMS.Leave
 
                     gvMyLeaves.DataSource = bindGridView();
                     gvMyLeaves.DataBind();
+
+                    //check ids
+                    Guid loggedUserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
+                    Guid userId = Guid.Parse(hfUserId.Value);
+
+                    if (!loggedUserId.Equals(userId))
+                    {
+                        btnOpenModal.Visible = false;
+
+                        //hide edit
+                        if(gvMyLeaves.Rows.Count > 0)
+                        {
+                            gvMyLeaves.Columns[1].Visible = false;
+                            gvMyLeaves.Columns[9].Visible = false;
+                        }
+                    }
                 }
                 else
                 {
@@ -243,6 +259,7 @@ namespace AMS.Leave
                 {
                     Label lblStatus = (Label)e.Row.FindControl("lblStatus");
                     Button btnDelete = (Button)e.Row.FindControl("btnShowDelete");
+                    LinkButton lbEdit = (LinkButton)e.Row.FindControl("lbEdit");
 
                     if(deptHead.Equals("Disapproved") || hrMang.Equals("Disapproved"))
                     {
@@ -252,11 +269,13 @@ namespace AMS.Leave
                     {
                         lblStatus.Text = "Approved";
                         btnDelete.Visible = false;
+                        lbEdit.Visible = false;
                     }
                     else
                     {
                         lblStatus.Text = "Pending";
                         btnDelete.Visible = false;
+                        lbEdit.Visible = false;
                     }
                 }
                 else

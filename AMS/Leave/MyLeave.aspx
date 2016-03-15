@@ -284,8 +284,11 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:ButtonField HeaderText="" ButtonType="Link" Text="Edit" CommandName="editRecord" />
-
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lbEdit" runat="server" Text="Edit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex %>'></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:BoundField DataField="LeaveName" HeaderText="Leave" SortExpression="LeaveName" />
                                             <asp:BoundField DataField="NumberOfDays" HeaderText="No Of Days" SortExpression="NumberOfDays" />
                                             <asp:BoundField DataField="FiledDate" HeaderText="Filed Date" SortExpression="FiledDate" />
@@ -315,8 +318,6 @@
                                                     <asp:Label ID="lblStatus" runat="server"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-
-                                            <%--<asp:ButtonField HeaderText="" ButtonType="Link" Text="Delete" CommandName="deleteRecord" />--%>
                                             
                                             <asp:TemplateField>
                                                 <ItemTemplate>

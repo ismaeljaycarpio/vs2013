@@ -112,8 +112,11 @@ namespace AMS.Employee
                 FileUpload1.Visible = false;
                 btnUpload.Visible = false;
                 divDocs.Visible = false;
+            }
+
+            if(User.IsInRole("Staff"))
+            {
                 hlSchedule.Visible = false;
-                //openUpdate.Visible = false;
             }
         }
         

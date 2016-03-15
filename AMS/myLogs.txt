@@ -16,22 +16,22 @@
 - reflect user leave in timesheet
 
 http://localhost:26475/Leave/MyLeave.aspx
-	- implement -> cant edit when approved - **DONE**
+	- implement -> cant edit when approved - can edit while pending/disapproved
 	- implement -> cant input negative(-) values in No of Days - **DONE**
 	- implement -> cant exceed no of days to lblRemainingDays - **DONE**
 	- implement -> hide delete if once approve/disapprove by either hr/deptHead - **DONE**
 	- implement -> delete leaveTransaction - **DONE**
-
+	- implement -> cant edit others leave - **DONE**
 http://localhost:26475/Leave/Leave.aspx
 	- implement Reports (printable)
 	- refine process
-
+	- what about approvals of supervisor/manager/gen_manager/hr
 VALIDATION:
 	- dates
-	- 
+	
 ADDITION:
 	- search filters
-
+	- date formats
 ///////////////////////////////////////////////////////////////
 ////////////////////2016-03-13//////////////////////////////
 //////////////////////////////////////////////////////////////

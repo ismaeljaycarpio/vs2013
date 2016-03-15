@@ -96,5 +96,14 @@ namespace AMS
                 Response.Redirect("~/Employee/MySchedule.aspx");
             }
         }
+
+        protected void hlViewMyLeaves_Click(object sender, EventArgs e)
+        {
+            if (Page.User.Identity.IsAuthenticated)
+            {
+                Session["UserId"] = Membership.GetUser().ProviderUserKey;
+                Response.Redirect("~/Leave/MyLeave.aspx");
+            }
+        }
     }
 }

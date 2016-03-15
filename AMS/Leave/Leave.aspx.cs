@@ -137,13 +137,6 @@ namespace AMS.Leave
             return dt = null;
         }
 
-        protected void gvPendingLeaveApprovals_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvPendingLeaveApprovals.PageIndex = e.NewPageIndex;
-            gvPendingLeaveApprovals.DataSource = bindGridview_Pending();
-            gvPendingLeaveApprovals.DataBind();
-        }
-
         protected void gvPendingLeaveApprovals_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName.Equals("approveRecord"))
@@ -170,25 +163,34 @@ namespace AMS.Leave
             }
         }
 
-
         protected void btnApprove_Click(object sender, EventArgs e)
         {
             if(User.IsInRole("Manager") || User.IsInRole("Supervisor"))
             {
                 leaves.approve_Pending_leave(true, false, hfApproveId.Value, "Approved");
             }
-            else if(User.IsInRole("HR") || User.IsInRole("Admin"))
+            else if(User.IsInRole("HR"))
             {
                 //subtract no of days to his leave counts
                 leaves.subtract_valid_days(hfNoOfDays.Value, hfLeaveTypeUserId.Value);
 
                 leaves.approve_Pending_leave(false, true, hfApproveId.Value, "Approved");
-                
+    
+                //insert in timesheet
+
             }
 
             gvPendingLeaveApprovals.DataSource = bindGridview_Pending();
             gvPendingLeaveApprovals.DataBind();
             lblPendingCount.Text = gvPendingLeaveApprovals.Rows.Count.ToString();
+
+            gvApproved.DataSource = bindGridview_Approved();
+            gvApproved.DataBind();
+            lblApprovedCount.Text = gvApproved.Rows.Count.ToString();
+
+            gvRejected.DataSource = bindGridview_Rejected();
+            gvRejected.DataBind();
+            lblDisapprovedCount.Text = gvRejected.Rows.Count.ToString();
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
@@ -212,6 +214,14 @@ namespace AMS.Leave
             gvPendingLeaveApprovals.DataBind();
             lblPendingCount.Text = gvPendingLeaveApprovals.Rows.Count.ToString();
 
+            gvApproved.DataSource = bindGridview_Approved();
+            gvApproved.DataBind();
+            lblApprovedCount.Text = gvApproved.Rows.Count.ToString();
+
+            gvRejected.DataSource = bindGridview_Rejected();
+            gvRejected.DataBind();
+            lblDisapprovedCount.Text = gvRejected.Rows.Count.ToString();
+
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
             sb.Append("$('#approveModal').modal('hide');");
@@ -219,23 +229,28 @@ namespace AMS.Leave
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteHideModalScript", sb.ToString(), false);
         }
 
+        protected void gvPendingLeaveApprovals_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvPendingLeaveApprovals.PageIndex = e.NewPageIndex;
+            gvPendingLeaveApprovals.DataSource = bindGridview_Pending();
+            gvPendingLeaveApprovals.DataBind();
+        }
         protected void gvApproved_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvApproved.PageIndex = e.NewPageIndex;
             gvApproved.DataSource = bindGridview_Approved();
             gvApproved.DataBind();
         }
-
-        protected void gvApproved_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
-
         protected void gvRejected_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvRejected.PageIndex = e.NewPageIndex;
             gvRejected.DataSource = bindGridview_Rejected();
             gvRejected.DataBind();
+        }
+        
+        protected void gvApproved_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
         }
 
         protected void gvRejected_RowCommand(object sender, GridViewCommandEventArgs e)
