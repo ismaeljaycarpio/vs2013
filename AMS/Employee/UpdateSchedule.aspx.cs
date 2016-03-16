@@ -85,16 +85,16 @@ namespace AMS.Employee
                 //chk if schedule is created
                 if(timeStart.Equals(String.Empty) || timeEnd.Equals(String.Empty))
                 {
-                    txtEditStart.Text = DateTime.Today.ToString("yyyy-MM-ddThh:mm");
-                    txtEditEnd.Text = DateTime.Today.ToString("yyyy-MM-ddThh:mm");
+                    txtEditStart.Text = DateTime.Today.ToString("yyyy-MM-ddTHH:mm");
+                    txtEditEnd.Text = DateTime.Today.ToString("yyyy-MM-ddTHH:mm");
                 }
                 else
                 {
                     DateTime dateStart = Convert.ToDateTime(timeStart);
                     DateTime dateEnd = Convert.ToDateTime(timeEnd);
                     
-                    txtEditStart.Text = dateStart.ToString("yyyy-MM-ddThh:mm");
-                    txtEditEnd.Text = dateEnd.ToString("yyyy-MM-ddThh:mm");
+                    txtEditStart.Text = dateStart.ToString("yyyy-MM-ddTHH:mm");
+                    txtEditEnd.Text = dateEnd.ToString("yyyy-MM-ddTHH:mm");
                 }
                
                 sb.Append(@"<script type='text/javascript'>");
