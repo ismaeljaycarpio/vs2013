@@ -20,40 +20,57 @@
 
                                 <div class="form-group">
                                     <label for="gvLeaves">Leaves available</label>
-                                    <asp:GridView ID="gvLeaves"
-                                        runat="server"
-                                        class="table table-striped table-hover dataTable"
-                                        GridLines="None"
-                                        AutoGenerateColumns="false"
-                                        DataKeyNames="Id">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="LeaveTypeId" SortExpression="LeaveTypeId">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblLeaveTypeId" runat="server" Text='<%# Eval("Id") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                    <div class="table-responsive">
+                                        <asp:GridView ID="gvLeaves"
+                                            runat="server"
+                                            class="table table-striped table-hover dataTable"
+                                            GridLines="None"
+                                            AutoGenerateColumns="false"
+                                            DataKeyNames="Id">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="LeaveTypeId" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblLeaveTypeId" runat="server" Text='<%# Eval("Id") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="LeaveTypeName" SortExpression="LeaveTypeName">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblLeaveTypeName" runat="server" Text='<%# Eval("LeaveName") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Leave Name" SortExpression="LeaveTypeName">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblLeaveTypeName" runat="server" Text='<%# Eval("LeaveName") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Default Days" SortExpression="DefaultDays">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblDefaultDays" runat="server" Text='<%# Eval("DefaultDays") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Default Days" SortExpression="DefaultDays">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblDefaultDays" runat="server" Text='<%# Eval("DefaultDays") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Assign Remaining Days" SortExpression="NoOfDays">
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txtRemainingDays" runat="server" CssClass="form-control" Text='<%# Eval("NoOfDays") %>' TextMode="Number"></asp:TextBox>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Assign Remaining Days" SortExpression="NoOfDays">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="txtRemainingDays" runat="server" CssClass="form-control" Text='<%# Eval("NoOfDays") %>' TextMode="Number"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6"
+                                                            runat="server"
+                                                            Display="Dynamic"
+                                                            ControlToValidate="txtRemainingDays"
+                                                            CssClass="label label-danger"
+                                                            ValidationGroup="vgEdit"
+                                                            ErrorMessage="*">*</asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1"
+                                                            runat="server"
+                                                            Display="Dynamic"
+                                                            ControlToValidate="txtRemainingDays"
+                                                            ForeColor="Red"
+                                                            ValidationGroup="vgEdit"
+                                                            ValidationExpression="^[0-9]\d*$"
+                                                            ErrorMessage="*">*</asp:RegularExpressionValidator>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
-                                        </Columns>
-                                        <PagerStyle CssClass="pagination-ys" />
-                                    </asp:GridView>
+                                            </Columns>
+                                            <PagerStyle CssClass="pagination-ys" />
+                                        </asp:GridView>
+                                    </div>
                                 </div>
 
                             </div>
@@ -152,6 +169,8 @@
                                         </asp:TemplateField>
 
                                         <asp:BoundField DataField="FullName" HeaderText="Name" SortExpression="FullName" />
+                                        <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
+                                        <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
                                         <asp:BoundField DataField="Agency" HeaderText="Agency" SortExpression="Agency" />
                                         <asp:BoundField DataField="RoleName" HeaderText="Role" SortExpression="RoleName" />
 

@@ -32,8 +32,8 @@
                         </div>
                     </div>
 
-                    <asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" />
-                    <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" />
+                    <asp:Button runat="server" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" Text="Export to Word" />
+                    <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Export to Excel" />
                     <div class="table-responsive">
                         <asp:UpdatePanel ID="upEmployee" runat="server">
                             <ContentTemplate>
@@ -64,7 +64,9 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:BoundField DataField="Agency" HeaderText="Agency" SortExpression="Agency" />
+                                        <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
+                                        <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
+                                        <asp:BoundField DataField="Agency" HeaderText="Agency" SortExpression="Agency" />                                   
                                         <asp:BoundField DataField="RoleName" HeaderText="Role" SortExpression="RoleName" />
 
                                         <asp:TemplateField HeaderText="Account Status" SortExpression="IsApproved">

@@ -189,7 +189,7 @@
                                                 <asp:Label ID="lblRowId" runat="server" Text='<%# Eval("Id") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:ButtonField HeaderText="" ButtonType="Button" Text="Edit" CommandName="editRecord" />
+                                        <asp:ButtonField HeaderText="" ButtonType="Link" Text="Edit" CommandName="editRecord" />
                                         <asp:BoundField HeaderText="Leave" DataField="LeaveName" />
                                         <asp:BoundField HeaderText="Agency" DataField="Agency" />
                                         <asp:BoundField HeaderText="Default Days" DataField="DefaultDays" />

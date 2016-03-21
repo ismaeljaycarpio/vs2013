@@ -20,6 +20,9 @@ namespace AMS.HR
             if(!Page.IsPostBack)
             {
                 clearButtons();
+
+                //dont remember username, security reasons
+                txtEmpId.Attributes.Add("autocomplete", "off");
             }
         }
 

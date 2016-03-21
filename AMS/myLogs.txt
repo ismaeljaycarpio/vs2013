@@ -7,6 +7,20 @@
 [Admin],admin						|			|						|
 
 
+
+
+///////////////////////////////////////////////////////////////
+////////////////////2016-03-21/////////////////////////////////
+///////////////////////////////////////////////////////////////
+- rework home page - implement content slide
+- put outside the login - hide page name
+- leave report - who can generate report?
+	> restrict who can open that page from other computer
+	> 
+- add position,department column in http://localhost:26475/MasterConfig/LeaveUser.aspx **DONE**
+- validation when entering valid days in http://localhost:26475/MasterConfig/LeaveUser.aspx **DONE**
+- modified authentication mode forms slidingExpiration
+
 ///////////////////////////////////////////////////////////////
 ////////////////////2016-03-16/////////////////////////////////
 ///////////////////////////////////////////////////////////////
@@ -17,22 +31,20 @@
 ////////////////////2016-03-15/////////////////////////////////
 ///////////////////////////////////////////////////////////////
 LIVE TEST:
-http://121.97.255.232/eHRIS/Employee/Profile.aspx
-	- refine image upload
 
 http://121.97.255.232/eHRIS/Employee/UpdateSchedule.aspx
-	- fix editing of sched on why it shows 'A.M' instead of 'P.M'
+	- fix editing of sched on why it shows 'A.M' instead of 'P.M' **DONE**
 
-- add department,position in http://121.97.255.232/eHRIS/MasterConfig/Employee_Account_MasterList.aspx
+- add department,position in http://121.97.255.232/eHRIS/MasterConfig/Employee_Account_MasterList.aspx **DONE**
 - hide leavetypeId column when updating leaves for user in : http://121.97.255.232/eHRIS/MasterConfig/LeaveUser.aspx
-- add default search in: http://121.97.255.232/eHRIS/MasterConfig/Employee_Account_MasterList.aspx
-- change default pass according to role in : http://121.97.255.232/eHRIS/HR/Register.aspx
+- add default search in: http://121.97.255.232/eHRIS/MasterConfig/Employee_Account_MasterList.aspx - **DONE**
+- change default pass according to role in : http://121.97.255.232/eHRIS/HR/Register.aspx - username/password - same (default)
 
 
 - Refine Process of timesheet/leave/approval
 - where to put approved by dept head -> is it pending/approved/disapproved
 - Unlock/Lock user  - **DONE** - http://localhost:26475/MasterConfig/Employee_Account_MasterList.aspx
-- reflect user leave in timesheet
+- reflect user leave in timesheet ***DENIED***
 
 3 areas for viewing timesheet:
 	- http://localhost:26475/Employee/UpdateSchedule.aspx - **DONE**
