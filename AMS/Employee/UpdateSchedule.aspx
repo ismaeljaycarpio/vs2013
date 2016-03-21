@@ -207,7 +207,19 @@
                                                 <asp:Label ID="lblRowId" runat="server" Text='<%# Eval("Id") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="TimeStart" HeaderText="Time Start" SortExpression="TimeStart" />
+
+                                        <asp:TemplateField HeaderText="Day">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblDay" runat="server"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Time Start" SortExpression="TimeStart">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblTimeStart" runat="server" Text='<%# Eval("TimeStart") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:BoundField DataField="TimeEnd" HeaderText="Time End" SortExpression="TimeEnd" />
                                         <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
                                         <asp:BoundField DataField="TimeIn" HeaderText="Time-IN" SortExpression="TimeIn" />

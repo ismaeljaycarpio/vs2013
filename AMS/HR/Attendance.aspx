@@ -12,14 +12,14 @@
         <div class="col-md-12">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h4><strong>Timekeeping Logs</strong></h4>
+                    <h5>Timekeeping Logs</h5>
                 </div>
                 <div class="panel-body">
                     <div class="form-horizontal">
 
                         <div class="form-group">
                             <label for="ddlStatus" class="col-sm-2 control-label">Name:</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-6">
                                 <asp:DropDownList ID="ddlName" runat="server" CssClass="form-control">
                                 </asp:DropDownList>
                             </div>
@@ -40,7 +40,7 @@
 
                         <div class="form-group">
                             <label for="btnSearch" class="col-sm-2 control-label">&nbsp;</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-4">
                                 <asp:Button ID="btnSearch"
                                     runat="server"
                                     CssClass="btn btn-primary form-control"
@@ -50,8 +50,8 @@
                         </div>
                     </div>
 
-                    <asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" />
-                    <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" />
+                    <asp:Button runat="server" Text="Export to Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" />
+                    <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Export to Excel" />
                     <div class="table-responsive">
                         <div class="text-center">
                             <asp:Label ID="lblCount" runat="server"></asp:Label>
@@ -92,13 +92,18 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
+                                <asp:TemplateField HeaderText="Status">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblStatus" runat="server" ForeColor="Red"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="Hours Rendered" SortExpression="HoursRendered">
                                     <ItemTemplate>
                                         <asp:Label ID="lblHoursRendered" runat="server"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
                                 <asp:BoundField DataField="Remarks" HeaderText="Remarks" SortExpression="Remarks" />
 
                                 <asp:TemplateField HeaderText="Schedule" SortExpression="TimeStart">
@@ -106,6 +111,10 @@
                                         <asp:Label ID="lblTimeStart" runat="server" Text='<%# Eval("TimeStart") %>'></asp:Label>
                                         <asp:Label ID="lblTo" runat="server" Text=" - "></asp:Label>
                                         <asp:Label ID="lblTimeEnd" runat="server" Text='<%# Eval("TimeEnd") %>'></asp:Label>
+                                        <asp:Label ID="Label1" runat="server" Text="<BR>"></asp:Label>
+                                        <asp:Label ID="lblOpenB" runat="server" Text=" < "></asp:Label>
+                                        <asp:Label ID="lblSchedStatus" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
+                                        <asp:Label ID="lblCloseB" runat="server" Text=" > "></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 

@@ -78,6 +78,7 @@
       <siteMapNode url="~/Reports/Employee_Tenure.aspx" title="Employee Tenure"></siteMapNode>
       <siteMapNode url="~/Reports/NewlyHired.aspx" title="Newly Hired"></siteMapNode>
       <siteMapNode url="~/Reports/Duration_of_Contracts.aspx" title="Duration of Contracts"></siteMapNode>
+      <siteMapNode url="~/Reports/LeaveReport.aspx" title="Leave Report"></siteMapNode>
     </siteMapNode>
 
     <siteMapNode url="~/Leave/Leave.aspx" title="Leaves">

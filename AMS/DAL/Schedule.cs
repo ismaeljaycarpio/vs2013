@@ -172,7 +172,7 @@ namespace AMS.DAL
 
         public void updateTimeIn(string rowId, string remarks)
         {
-            strSql = "UPDATE Schedule SET TimeIn=@TimeIn, Remarks=@Remarks WHERE Id=@Id";
+            strSql = "UPDATE Schedule SET TimeIn=@TimeIn, Remarks=(Remarks + @Remarks) WHERE Id=@Id";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -192,7 +192,7 @@ namespace AMS.DAL
 
         public void updateTimeOut(string rowId,string remarks)
         {
-            strSql = "UPDATE Schedule SET TimeOut=@TimeOut, Remarks=@Remarks WHERE Id=@Id";
+            strSql = "UPDATE Schedule SET TimeOut=@TimeOut, Remarks=(Remarks + @Remarks) WHERE Id=@Id";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;

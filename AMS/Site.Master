@@ -123,6 +123,7 @@
                                                 <li><a runat="server" href="~/Reports/Employee_Tenure.aspx">Employee Tenure</a></li>
                                                 <li><a runat="server" href="~/Reports/NewlyHired.aspx">Newly Hired</a></li>
                                                 <li><a runat="server" href="~/Reports/Duration_of_Contracts.aspx">Duration of Contracts</a></li>
+                                                <li><a runat="server" href="~/Reports/LeaveReport.aspx">Leave Report</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HR<span class="caret"></span></a>
@@ -200,6 +201,7 @@
                                                 <li><a runat="server" href="~/Reports/Employee_Tenure.aspx">Employee Tenure</a></li>
                                                 <li><a runat="server" href="~/Reports/NewlyHired.aspx">Newly Hired</a></li>
                                                 <li><a runat="server" href="~/Reports/Duration_of_Contracts.aspx">Duration of Contracts</a></li>
+                                                <li><a runat="server" href="~/Reports/LeaveReport.aspx">Leave Report</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HR<span class="caret"></span></a>

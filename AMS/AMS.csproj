@@ -418,6 +418,7 @@
     <Content Include="Reports\Employee_Age.aspx" />
     <Content Include="Reports\Employee_MasterList.aspx" />
     <Content Include="Reports\Employee_Tenure.aspx" />
+    <Content Include="Reports\LeaveReport.aspx" />
     <Content Include="Reports\NewlyHired.aspx" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
@@ -1067,6 +1068,13 @@
     </Compile>
     <Compile Include="Reports\Employee_Tenure.aspx.designer.cs">
       <DependentUpon>Employee_Tenure.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\LeaveReport.aspx.cs">
+      <DependentUpon>LeaveReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\LeaveReport.aspx.designer.cs">
+      <DependentUpon>LeaveReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\NewlyHired.aspx.cs">
       <DependentUpon>NewlyHired.aspx</DependentUpon>

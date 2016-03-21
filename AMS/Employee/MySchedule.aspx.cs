@@ -97,6 +97,7 @@ namespace AMS.Employee
             {
                 string timeIn = ((Label)e.Row.FindControl("lblTimeIn")).Text;
                 string timeOut = ((Label)e.Row.FindControl("lblTimeOut")).Text;
+                string strTimeStart = ((Label)e.Row.FindControl("lblTimeStart")).Text;
 
                 if (timeIn != String.Empty && timeOut != String.Empty)
                 {
@@ -116,6 +117,13 @@ namespace AMS.Employee
                     {
                         lblRenderedHours.ForeColor = System.Drawing.Color.Green;
                     }
+                }
+
+                if(strTimeStart != String.Empty)
+                {
+                    DateTime dStart = Convert.ToDateTime(strTimeStart);
+                    Label lblDay = (Label)e.Row.FindControl("lblDay");
+                    lblDay.Text = dStart.ToString("dddd");
                 }
             }
 

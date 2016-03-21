@@ -16,6 +16,7 @@ namespace AMS.Employee
         DAL.PositionManagement pos = new DAL.PositionManagement();
         DAL.Agency agency = new DAL.Agency();
         DAL.Filler fill = new DAL.Filler();
+        DAL.Account accnt = new DAL.Account();
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -102,7 +103,7 @@ namespace AMS.Employee
 
         protected void btnUpdateJob_Click(object sender, EventArgs e)
         {
-                emp.UpdateJobDetails(
+            emp.UpdateJobDetails(
                     txtEmpId.Text,
                     ddlPosition.SelectedValue.ToString(),
                     ddlEmpStatus.SelectedValue.ToString(),
@@ -113,8 +114,11 @@ namespace AMS.Employee
                     ddlAgency.SelectedValue,
                     ddlAccountStatus.SelectedValue,
                     Guid.Parse(hfUserId.Value));
+            
+            //update membership
+            accnt.changeUsername(Guid.Parse(hfUserId.Value), txtEmpId.Text.Trim());
 
-                Response.Redirect(Request.Url.AbsoluteUri + "?s=1");
+            Response.Redirect(Request.Url.AbsoluteUri + "?s=1");
         }
 
         public void fillPosition()

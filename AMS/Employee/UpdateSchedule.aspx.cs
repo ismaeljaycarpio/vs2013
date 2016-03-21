@@ -65,7 +65,17 @@ namespace AMS.Employee
 
         protected void gvEmployee_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string strTimeStart = ((Label)e.Row.FindControl("lblTimeStart")).Text;
 
+                if(strTimeStart != String.Empty)
+                {
+                    DateTime dStart = Convert.ToDateTime(strTimeStart);
+                    Label lblDay = (Label)e.Row.FindControl("lblDay");
+                    lblDay.Text = dStart.ToString("dddd");
+                }
+            }
         }
 
         protected void gvEmployee_RowCommand(object sender, GridViewCommandEventArgs e)

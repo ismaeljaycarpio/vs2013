@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Web.Security;
 using System.Data;
 using System.IO;
+using System.Drawing;
 
 namespace AMS.HR
 {
@@ -121,6 +122,13 @@ namespace AMS.HR
             {
                 string timeIn = ((Label)e.Row.FindControl("lblTimeIn")).Text;
                 string timeOut = ((Label)e.Row.FindControl("lblTimeOut")).Text;
+                
+                string strTimeStart = ((Label)e.Row.FindControl("lblTimeStart")).Text;
+                string strTimeEnd = ((Label)e.Row.FindControl("lblTimeEnd")).Text;
+
+                string strSchedStatus = ((Label)e.Row.FindControl("lblSchedStatus")).Text;
+
+                Label lblSchedStatus = (Label)e.Row.FindControl("lblSchedStatus");
 
                 if(timeIn != String.Empty && timeOut != String.Empty)
                 {
@@ -140,7 +148,51 @@ namespace AMS.HR
                     {
                         lblRenderedHours.ForeColor = System.Drawing.Color.Green;
                     }
-                }    
+                }
+
+                //chk status
+                if(timeIn != String.Empty && strTimeStart != String.Empty)
+                {
+                    Label lblStatus = (Label)e.Row.FindControl("lblStatus");
+
+                    DateTime timeInned = Convert.ToDateTime(timeIn);
+                    DateTime timeStartSched = Convert.ToDateTime(strTimeStart);
+                    DateTime timeEndSched = Convert.ToDateTime(strTimeEnd);
+
+                    if(timeInned > timeStartSched)
+                    {
+                        //late
+                        lblStatus.Text += "Late";
+                    }
+
+                    //chk undertime
+                    if(timeOut != String.Empty)
+                    {
+                        DateTime timeOuted = Convert.ToDateTime(timeOut);
+
+                        if (timeOuted < timeEndSched)
+                        {
+                            lblStatus.Text += "<BR>";
+                            lblStatus.Text += "Undertime";
+                        }
+
+                        //chk ot
+                        if (timeOuted > timeEndSched)
+                        {
+                            lblStatus.Text += "<BR>";
+                            lblStatus.Text += "<span style='color:Green'>OT</span>";
+                        }
+                    }
+                }
+    
+                if(strSchedStatus.Equals("DayOff"))
+                {
+                    lblSchedStatus.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    lblSchedStatus.ForeColor = System.Drawing.Color.Green;
+                }
             }
 
             if (e.Row.RowType == DataControlRowType.Footer)

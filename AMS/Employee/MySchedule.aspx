@@ -62,6 +62,12 @@
                             <Columns>
                                 <asp:BoundField DataField="Emp_Id" HeaderText="ID" SortExpression="Emp_Id" />
 
+                                <asp:TemplateField HeaderText="Day">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblDay" runat="server"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="Schedule" SortExpression="TimeStart">
                                     <ItemTemplate>
                                         <asp:Label ID="lblTimeStart" runat="server" Text='<%# Eval("TimeStart") %>'></asp:Label>

@@ -165,5 +165,24 @@ namespace AMS.DAL
             comm.Dispose();
             conn.Dispose();
         }
+
+        public void changeUsername(Guid UserId, string userName)
+        {
+            strSql = "UPDATE Users SET UserName = @UserName WHERE UserId = @UserId";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+
+            using (comm = new SqlCommand(strSql, conn))
+            {
+                conn.Open();
+                comm.Parameters.AddWithValue("@UserName", userName);
+                comm.Parameters.AddWithValue("@UserId", UserId);
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+            comm.Dispose();
+            conn.Dispose();
+        }
     }
 }
