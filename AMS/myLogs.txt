@@ -21,6 +21,7 @@
 - add EPPlus for exporting to excel files - has problems rendering datetime
 - on filing leave - set status to Pending
 - improve generating report to excel file
+	 - not good with dates
 
 
 ///////////////////////////////////////////////////////////////
