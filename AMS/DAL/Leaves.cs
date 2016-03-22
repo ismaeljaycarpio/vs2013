@@ -308,8 +308,8 @@ namespace AMS.DAL
             Guid userId)
         {
             //add leave to user
-            strSql = "INSERT INTO LeaveTransaction(LeaveTypeUserId,NumberOfDays,FromDate,ToDate,UserId,FiledDate) " +
-                    "VALUES(@LeaveTypeUserId,@NumberOfDays,@FromDate,@ToDate,@UserId,@FiledDate)";
+            strSql = "INSERT INTO LeaveTransaction(LeaveTypeUserId,NumberOfDays,FromDate,ToDate,UserId,FiledDate,Status) " +
+                    "VALUES(@LeaveTypeUserId,@NumberOfDays,@FromDate,@ToDate,@UserId,@FiledDate,@Status)";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -323,6 +323,7 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@FromDate", Convert.ToDateTime(fromDate));
                 comm.Parameters.AddWithValue("@ToDate", Convert.ToDateTime(toDate));
                 comm.Parameters.AddWithValue("@FiledDate", DateTime.Now);
+                comm.Parameters.AddWithValue("@Status", "Pending");
                 comm.ExecuteNonQuery();
                 conn.Close();
             }
@@ -430,6 +431,139 @@ namespace AMS.DAL
             return dt;
         }
 
+        //display leave report
+        public DataTable DisplayLeaveApproval_Admin(string status)
+        {
+            strSql = "SELECT LeaveTransaction.Id, LeaveTransaction.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                "AGENCY.Agency AS [Agency], " +
+                "LeaveTransaction.NumberOfDays, LeaveTransaction.DepartmentHeadApproval, " +
+                "LeaveTransaction.HRApproval," +
+                "LeaveTransaction.FromDate," +
+                "LeaveTransaction.ToDate, " +
+                "LeaveTransaction.FiledDate, " +
+                "LeaveType.LeaveName " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency, " +
+                "LeaveTransaction, LeaveTypeUser, LeaveType WHERE " +
+                "LeaveTransaction.UserId = Memberships.UserId AND " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "EMPLOYEE.AccountStatusId = 1 " +
+                "AND LeaveTransaction.LeaveTypeUserId = LeaveTypeUser.Id " +
+                "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
+                "AND LeaveTransaction.Status = @Status " +
+                "ORDER BY LeaveTransaction.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Status", status);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        //display leave report
+        public DataTable DisplayLeaveApproval_Admin(string status, string startDate)
+        {
+            strSql = "SELECT LeaveTransaction.Id, LeaveTransaction.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                "AGENCY.Agency AS [Agency], " +
+                "LeaveTransaction.NumberOfDays, LeaveTransaction.DepartmentHeadApproval, " +
+                "LeaveTransaction.HRApproval," +
+                "LeaveTransaction.FromDate," +
+                "LeaveTransaction.ToDate, " +
+                "LeaveTransaction.FiledDate, " +
+                "LeaveType.LeaveName " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency, " +
+                "LeaveTransaction, LeaveTypeUser, LeaveType WHERE " +
+                "LeaveTransaction.UserId = Memberships.UserId AND " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "EMPLOYEE.AccountStatusId = 1 " +
+                "AND LeaveTransaction.LeaveTypeUserId = LeaveTypeUser.Id " +
+                "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
+                "AND LeaveTransaction.Status = @Status " +
+                "AND (LeaveTransaction.FiledDate = @StartDate OR LeaveTransaction.FromDate = @StartDate OR LeaveTransaction.ToDate = @StartDate) " + 
+                "ORDER BY LeaveTransaction.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Status", status);
+            comm.Parameters.AddWithValue("@StartDate", Convert.ToDateTime(startDate));
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        //display leave report
+        public DataTable DisplayLeaveApproval_Admin(string status, string startDate, string endDate)
+        {
+            strSql = "SELECT LeaveTransaction.Id, LeaveTransaction.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                "AGENCY.Agency AS [Agency], " +
+                "LeaveTransaction.NumberOfDays, LeaveTransaction.DepartmentHeadApproval, " +
+                "LeaveTransaction.HRApproval," +
+                "LeaveTransaction.FromDate," +
+                "LeaveTransaction.ToDate, " +
+                "LeaveTransaction.FiledDate, " +
+                "LeaveType.LeaveName " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency, " +
+                "LeaveTransaction, LeaveTypeUser, LeaveType WHERE " +
+                "LeaveTransaction.UserId = Memberships.UserId AND " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "EMPLOYEE.AccountStatusId = 1 " +
+                "AND LeaveTransaction.LeaveTypeUserId = LeaveTypeUser.Id " +
+                "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
+                "AND LeaveTransaction.Status = @Status " +
+                "AND (LeaveTransaction.FiledDate = @StartDate OR LeaveTransaction.FromDate = @StartDate OR LeaveTransaction.ToDate = @StartDate) " +
+                "ORDER BY LeaveTransaction.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Status", status);
+            comm.Parameters.AddWithValue("@StartDate", Convert.ToDateTime(startDate));
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         //for hr manager only
         public DataTable DisplayPendingLeaveApproval_HR()
         {
@@ -473,6 +607,7 @@ namespace AMS.DAL
             return dt;
         }
 
+        //for manager only
         public DataTable DisplayPendingLeaveApproval_Mang(string deptId)
         {
             strSql = "SELECT LeaveTransaction.Id, LeaveTransaction.UserId, EMPLOYEE.Emp_Id, " +
@@ -518,6 +653,149 @@ namespace AMS.DAL
             return dt;
         }
 
+        //for manager only
+        public DataTable DisplayLeaveApproval_Mang(string deptId, string status)
+        {
+            strSql = "SELECT LeaveTransaction.Id, LeaveTransaction.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                "AGENCY.Agency AS [Agency], " +
+                "LeaveTransaction.NumberOfDays, LeaveTransaction.DepartmentHeadApproval, " +
+                "LeaveTransaction.HRApproval," +
+                "LeaveTransaction.FromDate," +
+                "LeaveTransaction.ToDate, " +
+                "LeaveTransaction.FiledDate, " +
+                "LeaveType.LeaveName " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency, " +
+                "LeaveTransaction, LeaveTypeUser, LeaveType WHERE " +
+                "LeaveTransaction.UserId = Memberships.UserId AND " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "(Roles.RoleName = 'Supervisor' OR Roles.RoleName = 'Staff') AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "EMPLOYEE.AccountStatusId = 1 " +
+                "AND DEPARTMENT.Id = @DepartmentId " +
+                "AND LeaveTransaction.LeaveTypeUserId = LeaveTypeUser.Id " +
+                "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
+                "AND LeaveTransaction.Status = @Status " +
+                "ORDER BY LeaveTransaction.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            comm.Parameters.AddWithValue("@Status", status);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        //for manager only
+        public DataTable DisplayLeaveApproval_Mang(string deptId, string status, string startDate)
+        {
+            strSql = "SELECT LeaveTransaction.Id, LeaveTransaction.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                "AGENCY.Agency AS [Agency], " +
+                "LeaveTransaction.NumberOfDays, LeaveTransaction.DepartmentHeadApproval, " +
+                "LeaveTransaction.HRApproval," +
+                "LeaveTransaction.FromDate," +
+                "LeaveTransaction.ToDate, " +
+                "LeaveTransaction.FiledDate, " +
+                "LeaveType.LeaveName " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency, " +
+                "LeaveTransaction, LeaveTypeUser, LeaveType WHERE " +
+                "LeaveTransaction.UserId = Memberships.UserId AND " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "(Roles.RoleName = 'Supervisor' OR Roles.RoleName = 'Staff') AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "EMPLOYEE.AccountStatusId = 1 " +
+                "AND DEPARTMENT.Id = @DepartmentId " +
+                "AND LeaveTransaction.LeaveTypeUserId = LeaveTypeUser.Id " +
+                "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
+                "AND LeaveTransaction.Status = @Status " +
+                "AND (LeaveTransaction.FiledDate = @StartDate OR LeaveTransaction.FromDate = @StartDate OR LeaveTransaction.ToDate = @StartDate) " + 
+                "ORDER BY LeaveTransaction.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            comm.Parameters.AddWithValue("@Status", status);
+            comm.Parameters.AddWithValue("@StartDate", Convert.ToDateTime(startDate));
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        //for manager only
+        public DataTable DisplayLeaveApproval_Mang(string deptId, string status, string startDate, string endDate)
+        {
+            strSql = "SELECT LeaveTransaction.Id, LeaveTransaction.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                "AGENCY.Agency AS [Agency], " +
+                "LeaveTransaction.NumberOfDays, LeaveTransaction.DepartmentHeadApproval, " +
+                "LeaveTransaction.HRApproval," +
+                "LeaveTransaction.FromDate," +
+                "LeaveTransaction.ToDate, " +
+                "LeaveTransaction.FiledDate, " +
+                "LeaveType.LeaveName " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency, " +
+                "LeaveTransaction, LeaveTypeUser, LeaveType WHERE " +
+                "LeaveTransaction.UserId = Memberships.UserId AND " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "(Roles.RoleName = 'Supervisor' OR Roles.RoleName = 'Staff') AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "EMPLOYEE.AccountStatusId = 1 " +
+                "AND DEPARTMENT.Id = @DepartmentId " +
+                "AND LeaveTransaction.LeaveTypeUserId = LeaveTypeUser.Id " +
+                "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
+                "AND LeaveTransaction.Status = @Status " +
+                "AND (LeaveTransaction.FiledDate = @StartDate OR LeaveTransaction.FromDate = @StartDate OR LeaveTransaction.ToDate = @StartDate) " +
+                "ORDER BY LeaveTransaction.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            comm.Parameters.AddWithValue("@Status", status);
+            comm.Parameters.AddWithValue("@StartDate", Convert.ToDateTime(startDate));
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        //for sup
         public DataTable DisplayPendingLeaveApproval_Sup(string deptId)
         {
             strSql = "SELECT LeaveTransaction.Id, LeaveTransaction.UserId, EMPLOYEE.Emp_Id, " +
@@ -563,6 +841,148 @@ namespace AMS.DAL
             return dt;
         }
 
+        //for sup
+        public DataTable DisplayLeaveApproval_Sup(string deptId, string status)
+        {
+            strSql = "SELECT LeaveTransaction.Id, LeaveTransaction.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                "AGENCY.Agency AS [Agency], " +
+                "LeaveTransaction.NumberOfDays, LeaveTransaction.DepartmentHeadApproval, " +
+                "LeaveTransaction.HRApproval," +
+                "LeaveTransaction.FromDate," +
+                "LeaveTransaction.ToDate, " +
+                "LeaveTransaction.FiledDate, " +
+                "LeaveType.LeaveName " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency, " +
+                "LeaveTransaction, LeaveTypeUser, LeaveType WHERE " +
+                "LeaveTransaction.UserId = Memberships.UserId AND " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "Roles.RoleName = 'Staff' AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "EMPLOYEE.AccountStatusId = 1 " +
+                "AND DEPARTMENT.Id = @DepartmentId " +
+                "AND LeaveTransaction.LeaveTypeUserId = LeaveTypeUser.Id " +
+                "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
+                "AND LeaveTransaction.Status = @Status " +
+                "ORDER BY LeaveTransaction.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            comm.Parameters.AddWithValue("@Status", status);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        //for sup
+        public DataTable DisplayLeaveApproval_Sup(string deptId, string status, string startDate)
+        {
+            strSql = "SELECT LeaveTransaction.Id, LeaveTransaction.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                "AGENCY.Agency AS [Agency], " +
+                "LeaveTransaction.NumberOfDays, LeaveTransaction.DepartmentHeadApproval, " +
+                "LeaveTransaction.HRApproval," +
+                "LeaveTransaction.FromDate," +
+                "LeaveTransaction.ToDate, " +
+                "LeaveTransaction.FiledDate, " +
+                "LeaveType.LeaveName " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency, " +
+                "LeaveTransaction, LeaveTypeUser, LeaveType WHERE " +
+                "LeaveTransaction.UserId = Memberships.UserId AND " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "Roles.RoleName = 'Staff' AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "EMPLOYEE.AccountStatusId = 1 " +
+                "AND DEPARTMENT.Id = @DepartmentId " +
+                "AND LeaveTransaction.LeaveTypeUserId = LeaveTypeUser.Id " +
+                "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
+                "AND LeaveTransaction.Status = @Status " +
+                "AND (LeaveTransaction.FiledDate = @StartDate OR LeaveTransaction.FromDate = @StartDate OR LeaveTransaction.ToDate = @StartDate) " + 
+                "ORDER BY LeaveTransaction.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            comm.Parameters.AddWithValue("@Status", status);
+            comm.Parameters.AddWithValue("@StartDate", Convert.ToDateTime(startDate));
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        //for sup
+        public DataTable DisplayLeaveApproval_Sup(string deptId, string status, string startDate, string endDate)
+        {
+            strSql = "SELECT LeaveTransaction.Id, LeaveTransaction.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT], " +
+                "AGENCY.Agency AS [Agency], " +
+                "LeaveTransaction.NumberOfDays, LeaveTransaction.DepartmentHeadApproval, " +
+                "LeaveTransaction.HRApproval," +
+                "LeaveTransaction.FromDate," +
+                "LeaveTransaction.ToDate, " +
+                "LeaveTransaction.FiledDate, " +
+                "LeaveType.LeaveName " +
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency, " +
+                "LeaveTransaction, LeaveTypeUser, LeaveType WHERE " +
+                "LeaveTransaction.UserId = Memberships.UserId AND " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "Roles.RoleName = 'Staff' AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "Roles.RoleName != 'Admin' AND " +
+                "EMPLOYEE.AccountStatusId = 1 " +
+                "AND DEPARTMENT.Id = @DepartmentId " +
+                "AND LeaveTransaction.LeaveTypeUserId = LeaveTypeUser.Id " +
+                "AND LeaveTypeUser.LeaveTypeId = LeaveType.Id " +
+                "AND LeaveTransaction.Status = @Status " +
+                "AND (LeaveTransaction.FiledDate = @StartDate OR LeaveTransaction.FromDate = @StartDate OR LeaveTransaction.ToDate = @StartDate) " +
+                "ORDER BY LeaveTransaction.Id DESC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            comm.Parameters.AddWithValue("@Status", status);
+            comm.Parameters.AddWithValue("@StartDate", Convert.ToDateTime(startDate));
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         public void approve_Pending_leave(bool deptHead, bool Hr, string rowId, string approvalDesc)
         {
             if(deptHead == true)
@@ -584,7 +1004,7 @@ namespace AMS.DAL
 
             if (Hr == true)
             {
-                strSql = "UPDATE LeaveTransaction SET HRApproval = @Approval WHERE Id = @Id";
+                strSql = "UPDATE LeaveTransaction SET HRApproval = @Approval, Status=@Status WHERE Id = @Id";
                 conn = new SqlConnection();
                 conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
                 using (comm = new SqlCommand(strSql, conn))
@@ -592,6 +1012,7 @@ namespace AMS.DAL
                     conn.Open();
                     comm.Parameters.AddWithValue("@Id", rowId);
                     comm.Parameters.AddWithValue("@Approval", approvalDesc);
+                    comm.Parameters.AddWithValue("@Status", approvalDesc);
                     comm.ExecuteNonQuery();
                     conn.Close();
                 }
@@ -995,5 +1416,7 @@ namespace AMS.DAL
 
             return dt;
         }
+
+        
     }
 }

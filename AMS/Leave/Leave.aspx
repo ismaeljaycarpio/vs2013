@@ -72,7 +72,7 @@
                         </Triggers>
                     </asp:UpdatePanel>
                 </a></li>
-                <%--<li><a href="#rejectTab" data-toggle="tab">Rejected Leave Approvals</a></li>--%>
+                <li><a href="#leaveReportTab" data-toggle="tab">Leave Report</a></li>
             </ul>
 
             <div id="myTabContent" class="tab-content">
@@ -251,8 +251,6 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                <%--<asp:ButtonField HeaderText="" ButtonType="Link" Text="Approve" CommandName="approveRecord" />--%>
-
                                                 <asp:BoundField DataField="FullName" HeaderText="Name" SortExpression="FullName" />
                                                 <asp:BoundField DataField="LeaveName" HeaderText="Leave" SortExpression="LeaveName" />
                                                 <asp:BoundField DataField="NumberOfDays" HeaderText="No Of Days" SortExpression="NumberOfDays" />
@@ -290,17 +288,122 @@
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="rejectTab">
+                <div class="tab-pane" id="leaveReportTab">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h5 class="panel-title">Rejected Leave Approvals</h5>
+                            <h5 class="panel-title">Leave Report</h5>
                         </div>
                         <div class="panel-body">
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label for="ddlStatus" class="col-sm-2 control-label">Status:</label>
+                                    <div class="col-sm-6">
+                                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control">
+                                            <asp:ListItem Value="1" Selected="True">Pending</asp:ListItem>
+                                            <asp:ListItem Value="2">Approved</asp:ListItem>
+                                            <asp:ListItem Value="3">Disapproved</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtStartDate" class="col-sm-2 control-label">Date:</label>
+                                    <div class="col-lg-4">
+                                        <div class="input-daterange">
+                                            <div class="input-group">
+                                                <asp:TextBox ID="txtStartDate" runat="server" data-provide="datepicker" CssClass="form-control" placeholder="Start Date"></asp:TextBox>
+                                                <span class="input-group-addon">to</span>
+                                                <asp:TextBox ID="txtEndDate" runat="server" data-provide="datepicker" CssClass="form-control" placeholder="End Date"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="btnSearch" class="col-sm-2 control-label">&nbsp;</label>
+                                    <div class="col-sm-4">
+                                        <asp:Button ID="btnSearch"
+                                            runat="server"
+                                            CssClass="btn btn-primary form-control"
+                                            Text="Go"
+                                            OnClick="btnSearch_Click" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <asp:Button runat="server" 
+                                ID="btnExcel" 
+                                OnClick="btnExcel_Click" 
+                                Text="Export to Excel" />
+                            <div class="table-responsive">
+                                <asp:GridView ID="gvLeaves"
+                                    runat="server"
+                                    class="table table-striped table-hover dataTable"
+                                    GridLines="None"
+                                    ShowHeader="true"
+                                    ShowHeaderWhenEmpty="true"
+                                    AutoGenerateColumns="false"
+                                    AllowPaging="true"
+                                    AllowSorting="true"
+                                    DataKeyNames="UserId"
+                                    ShowFooter="true"
+                                    EmptyDataText="No Record(s) found"
+                                    OnSorting="gvLeaves_Sorting"
+                                    OnPageIndexChanging="gvLeaves_PageIndexChanging"
+                                    OnRowDataBound="gvLeaves_RowDataBound"
+                                    OnSelectedIndexChanging="gvLeaves_SelectedIndexChanging">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Row Id" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblRowId" runat="server" Text='<%# Eval("Id") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:BoundField DataField="FullName" HeaderText="Name" SortExpression="FullName" />
+                                        <asp:BoundField DataField="LeaveName" HeaderText="Leave" SortExpression="LeaveName" />
+                                        <asp:BoundField DataField="NumberOfDays" HeaderText="No Of Days" SortExpression="NumberOfDays" />
+                                        <asp:BoundField DataField="FiledDate" HeaderText="Filed Date" SortExpression="FiledDate" />
+
+                                        <asp:TemplateField HeaderText="Duration" SortExpression="FromDate">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblFromDate" runat="server" Text='<%# Eval("FromDate") %>'></asp:Label>
+                                                <asp:Label ID="Label1" runat="server" Text=" - "></asp:Label>
+                                                <asp:Label ID="lblToDate" runat="server" Text='<%# Eval("ToDate") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Department Head Approval" SortExpression="DepartmentHeadApproval">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblDepartmentHeadApproval" runat="server" Text='<%# Eval("DepartmentHeadApproval") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="HR Approval" SortExpression="HRApproval">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblHRApproval" runat="server" Text='<%# Eval("HRApproval") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                    <PagerStyle CssClass="pagination-ys" />
+                                </asp:GridView>
+                            </div>
+
                         </div>
                     </div>
                 </div>
 
             </div>
         </div>
+        <asp:HiddenField ID="TabName" runat="server" />
     </div>
+    <script type="text/javascript">
+        $(function () {
+            var tabName = $("[id*=TabName]").val() != "" ? $("[id*=TabName]").val() : "leaveReportTab";
+            $('#myTab a[href="#' + tabName + '"]').tab('show');
+            $("#myTab a").click(function () {
+                $("[id*=TabName]").val($(this).attr("href").replace("#", ""));
+            });
+        });
+    </script>
 </asp:Content>

@@ -7,6 +7,20 @@
 [Admin],admin						|			|						|
 
 
+///////////////////////////////////////////////////////////////
+////////////////////2016-03-22/////////////////////////////////
+///////////////////////////////////////////////////////////////
+- create folder that 'loginadmin' can only access
+- add guidelines on the sidebar for external login/logout
+	http://localhost:26475/timesheet/default.aspx
+- Leave Report
+	who can generate reports - admin,hr, and managers(respective staff)
+	filters:
+		- start date / end date
+		- All / Pending / Approved / Disapproved
+- add EPPlus for exporting to excel files - has problems rendering datetime
+- on filing leave - set status to Pending
+- improve generating report to excel file
 
 
 ///////////////////////////////////////////////////////////////

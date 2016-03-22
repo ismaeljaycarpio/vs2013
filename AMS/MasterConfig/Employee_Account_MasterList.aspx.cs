@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.IO;
 using System.Web.Security;
+using OfficeOpenXml;
 
 namespace AMS.MasterConfig
 {
@@ -80,34 +81,32 @@ namespace AMS.MasterConfig
 
         protected void btnExcel_Click(object sender, EventArgs e)
         {
-            //Create a dummy GridView
-            GridView GridView1 = new GridView();
-            GridView1.AllowPaging = false;
-            GridView1.DataSource = BindGridView();
-            GridView1.DataBind();
+            var products = BindGridView();
+            ExcelPackage excel = new ExcelPackage();
+            var workSheet = excel.Workbook.Worksheets.Add("Employee");
+            var totalCols = products.Columns.Count;
+            var totalRows = products.Rows.Count;
 
-            Response.Clear();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition",
-             "attachment;filename=" + DateTime.Now.Year + "Employee_MasterList" + ".xls");
-            Response.Charset = "";
-            Response.ContentType = "application/vnd.ms-excel";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter hw = new HtmlTextWriter(sw);
-
-            for (int i = 0; i < GridView1.Rows.Count; i++)
+            for (var col = 1; col <= totalCols; col++)
             {
-                //Apply text style to each Row
-                GridView1.Rows[i].Attributes.Add("class", "textmode");
+                workSheet.Cells[1, col].Value = products.Columns[col - 1].ColumnName;
             }
-            GridView1.RenderControl(hw);
-
-            //style to format numbers to string
-            string style = @"<style> .textmode { mso-number-format:\@; } </style>";
-            Response.Write(style);
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
-            Response.End();
+            for (var row = 1; row <= totalRows; row++)
+            {
+                for (var col = 0; col < totalCols; col++)
+                {
+                    workSheet.Cells[row + 1, col + 1].Value = products.Rows[row - 1][col];
+                }
+            }
+            using (var memoryStream = new MemoryStream())
+            {
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("content-disposition", "attachment;  filename=employee.xlsx");
+                excel.SaveAs(memoryStream);
+                memoryStream.WriteTo(Response.OutputStream);
+                Response.Flush();
+                Response.End();
+            }
         }
 
         protected void gvEmployee_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)

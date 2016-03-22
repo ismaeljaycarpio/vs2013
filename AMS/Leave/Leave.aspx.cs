@@ -1,6 +1,8 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -35,6 +37,8 @@ namespace AMS.Leave
                 gvRejected.DataSource = bindGridview_Rejected();
                 gvRejected.DataBind();
                 lblDisapprovedCount.Text = gvRejected.Rows.Count.ToString();
+
+                TabName.Value = Request.Form[TabName.UniqueID];
             }
         }
 
@@ -255,6 +259,156 @@ namespace AMS.Leave
 
         protected void gvRejected_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+        }
+
+        protected void gvLeaves_Sorting(object sender, GridViewSortEventArgs e)
+        {
+
+        }
+
+        protected void gvLeaves_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void gvLeaves_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void gvLeaves_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            gvLeaves.DataSource = bind_generateGrid();
+            gvLeaves.DataBind();
+        }
+
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+            //Create a dummy GridView
+            GridView GridView1 = new GridView();
+            GridView1.AllowPaging = false;
+            GridView1.DataSource = bind_generateGrid();
+            GridView1.DataBind();
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition",
+             "attachment;filename=Leave_Report.xls");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-excel";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            for (int i = 0; i < GridView1.Rows.Count; i++)
+            {
+                //Apply text style to each Row
+                GridView1.Rows[i].Attributes.Add("class", "textmode");
+            }
+            GridView1.RenderControl(hw);
+
+            //style to format numbers to string
+            string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+            Response.Write(style);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
+            //var leaves = bind_generateGrid();
+            //ExcelPackage excel = new ExcelPackage();
+            //var workSheet = excel.Workbook.Worksheets.Add("Leaves");
+            //var totalCols = leaves.Columns.Count;
+            //var totalRows = leaves.Rows.Count;
+
+            //for (var col = 1; col <= totalCols; col++)
+            //{
+            //    workSheet.Cells[1, col].Value = leaves.Columns[col - 1].ColumnName;
+            //}
+            //for (var row = 1; row <= totalRows; row++)
+            //{
+            //    for (var col = 0; col < totalCols; col++)
+            //    {
+            //        workSheet.Cells[row + 1, col + 1].Value = leaves.Rows[row - 1][col];
+            //    }
+            //}
+            //using (var memoryStream = new MemoryStream())
+            //{
+            //    Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            //    Response.AddHeader("content-disposition", "attachment;  filename=Leave_Report.xlsx");
+            //    excel.SaveAs(memoryStream);
+            //    memoryStream.WriteTo(Response.OutputStream);
+            //    Response.Flush();
+            //    Response.End();
+            //}
+        }
+
+        protected DataTable bind_generateGrid()
+        {
+            //get user from membership
+            Guid _userId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
+
+            //get departmentId
+            string deptId = emp.GetDepartmentId(_userId);
+            string leaveStatus = ddlStatus.SelectedItem.Text;
+            dt = new DataTable();
+
+            //no date filter
+            if(txtStartDate.Text.Equals(String.Empty) && txtEndDate.Text.Equals(String.Empty))
+            {
+                if(User.IsInRole("Admin") || User.IsInRole("HR"))
+                {
+                    //display all leaves
+                    return dt = leaves.DisplayLeaveApproval_Admin(leaveStatus);
+                }
+                else if (User.IsInRole("Manager"))
+                {
+                    return dt = leaves.DisplayLeaveApproval_Mang(deptId, leaveStatus);
+                }
+                else if(User.IsInRole("Supervisor"))
+                {
+                    return dt = leaves.DisplayLeaveApproval_Sup(deptId, leaveStatus);
+                }
+            }
+                //start date
+            else if(!txtStartDate.Text.Equals(String.Empty) && txtEndDate.Text.Equals(String.Empty))
+            {
+                if (User.IsInRole("Admin") || User.IsInRole("HR"))
+                {
+                    //display all leaves
+                    return dt = leaves.DisplayLeaveApproval_Admin(leaveStatus, txtStartDate.Text);
+                }
+                else if (User.IsInRole("Manager"))
+                {
+                    return dt = leaves.DisplayLeaveApproval_Mang(deptId, leaveStatus, txtStartDate.Text);
+                }
+                else if (User.IsInRole("Supervisor"))
+                {
+                    return dt = leaves.DisplayLeaveApproval_Sup(deptId, leaveStatus, txtStartDate.Text);
+                }
+            }
+                //date range
+            else if (!txtStartDate.Text.Equals(String.Empty) && !txtEndDate.Text.Equals(String.Empty))
+            {
+                if (User.IsInRole("Admin") || User.IsInRole("HR"))
+                {
+                    //display all leaves
+                    return dt = leaves.DisplayLeaveApproval_Admin(leaveStatus, txtStartDate.Text, txtEndDate.Text);
+                }
+                else if (User.IsInRole("Manager"))
+                {
+                    return dt = leaves.DisplayLeaveApproval_Mang(deptId, leaveStatus, txtStartDate.Text, txtEndDate.Text);
+                }
+                else if (User.IsInRole("Supervisor"))
+                {
+                    return dt = leaves.DisplayLeaveApproval_Sup(deptId, leaveStatus, txtStartDate.Text, txtEndDate.Text);
+                }
+            }
+
+            return dt = null;
         }
 
     }

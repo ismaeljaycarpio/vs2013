@@ -84,5 +84,7 @@
     <siteMapNode url="~/Leave/Leave.aspx" title="Leaves">
       
     </siteMapNode>
+
+    <siteMapNode url="~/timesheet/default.aspx" title="Timesheet"></siteMapNode>
   </siteMapNode>
 </siteMap>

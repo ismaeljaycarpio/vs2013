@@ -5,6 +5,8 @@ using System.Net.NetworkInformation;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
+using System.Web.Configuration;
 
 namespace AMS
 {
@@ -12,23 +14,13 @@ namespace AMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write(getMacaddress());
+            Roles.CreateRole("loginadmin");
 
-            Response.Write(DateTime.Now.ToString("d"));
-        }
+            Membership.CreateUser("loginadmin", "loginadmin");
 
-        protected string getMacaddress()
-        {
-            NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
-            String sMacAddress = string.Empty;
-            foreach (NetworkInterface adapter in nics)
-            {
-                if (sMacAddress == String.Empty)// only return MAC Address from first card  
-                {
-                    IPInterfaceProperties properties = adapter.GetIPProperties();
-                    sMacAddress = adapter.GetPhysicalAddress().ToString();
-                }
-            } return sMacAddress;
+            Roles.AddUserToRole("loginadmin", "loginadmin");
+
+            Response.Write("Accounts created successfully");
         }
     }
 }
