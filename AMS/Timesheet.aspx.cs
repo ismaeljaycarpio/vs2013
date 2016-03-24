@@ -14,13 +14,27 @@ namespace AMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Roles.CreateRole("loginadmin");
+            //one time script run only
+            if(!Roles.RoleExists("loginadmin"))
+            {
+                Roles.CreateRole("loginadmin");
+            }
 
-            Membership.CreateUser("loginadmin", "loginadmin123");
+            if (!Roles.RoleExists("Developer"))
+            {
+                Roles.CreateRole("Developer");
+            }
+            
 
-            Roles.AddUserToRole("loginadmin", "loginadmin");
+            //Membership.CreateUser("loginadmin", "loginadmin123");
+            //Membership.CreateUser("sysdev", "sysdev123");
+
+            //Roles.AddUserToRole("loginadmin", "loginadmin");
+            Roles.AddUserToRole("sysdev", "Developer");
 
             Response.Write("Accounts created successfully");
+
+
         }
     }
 }

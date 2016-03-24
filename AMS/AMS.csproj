@@ -413,6 +413,7 @@
       <LastGenOutput>eHRISContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="dev\Web.config" />
     <None Include="HR\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

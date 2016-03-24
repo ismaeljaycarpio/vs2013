@@ -123,13 +123,11 @@
                                                 <li><a runat="server" href="~/Reports/Employee_Tenure.aspx">Employee Tenure</a></li>
                                                 <li><a runat="server" href="~/Reports/NewlyHired.aspx">Newly Hired</a></li>
                                                 <li><a runat="server" href="~/Reports/Duration_of_Contracts.aspx">Duration of Contracts</a></li>
-                                                <li><a runat="server" href="~/Reports/LeaveReport.aspx">Leave Report</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HR<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a runat="server" href="~/HR/Register.aspx">Register Employee</a></li>
-                                                <li><a runat="server" href="~/HR/TimeInTimeOut.aspx">Time In / Time Out</a></li>
                                                 <li><a runat="server" href="~/HR/Attendance.aspx">Timekeeping Logs</a></li>
                                             </ul>
                                         </li>
@@ -201,13 +199,11 @@
                                                 <li><a runat="server" href="~/Reports/Employee_Tenure.aspx">Employee Tenure</a></li>
                                                 <li><a runat="server" href="~/Reports/NewlyHired.aspx">Newly Hired</a></li>
                                                 <li><a runat="server" href="~/Reports/Duration_of_Contracts.aspx">Duration of Contracts</a></li>
-                                                <li><a runat="server" href="~/Reports/LeaveReport.aspx">Leave Report</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HR<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a runat="server" href="~/HR/Register.aspx">Register Employee</a></li>
-                                                <li><a runat="server" href="~/HR/TimeInTimeOut.aspx">Time In / Time Out</a></li>
                                                 <li><a runat="server" href="~/HR/Attendance.aspx">Timekeeping Logs</a></li>
                                             </ul>
                                         </li>
@@ -440,6 +436,37 @@
                                     </ul>--%>
                                 </ContentTemplate>
                             </asp:RoleGroup>
+
+                            <%-- SysDevs --%>
+                            <asp:RoleGroup Roles="Developer">
+                                <ContentTemplate>
+                                    <ul class="nav navbar-nav">
+                                        <li><a runat="server" href="~/dev/default.aspx">dev</a></li>
+                                    </ul>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="dropdown">
+                                            <a runat="server"
+                                                href="#"
+                                                class="dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                role="button"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <asp:LoginName ID="LoginName1" runat="server" />
+                                                <span class="caret"></span>
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Default.aspx" />
+                                        </li>
+                                    </ul>
+                                </ContentTemplate>
+                            </asp:RoleGroup>
+
                         </RoleGroups>
                     </asp:LoginView>
                 </div>

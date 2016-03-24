@@ -246,7 +246,7 @@ namespace AMS.HR
             Response.Clear();
             Response.Buffer = true;
             Response.AddHeader("content-disposition",
-             "attachment;filename=TimeKeeping.xls");
+             "attachment;filename=TimeKeeping.xlsx");
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-excel";
             StringWriter sw = new StringWriter();

@@ -38,6 +38,9 @@ namespace AMS.Leave
                 gvRejected.DataBind();
                 lblDisapprovedCount.Text = gvRejected.Rows.Count.ToString();
 
+                gvLeaves.DataSource = bind_generateGrid();
+                gvLeaves.DataBind();
+
                 TabName.Value = Request.Form[TabName.UniqueID];
             }
         }
