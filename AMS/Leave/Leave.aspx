@@ -399,7 +399,7 @@
     </div>
     <script type="text/javascript">
         $(function () {
-            var tabName = $("[id*=TabName]").val() != "" ? $("[id*=TabName]").val() : "leaveReportTab";
+            var tabName = $("[id*=TabName]").val() != "" ? $("[id*=TabName]").val() : "pendingTab";
             $('#myTab a[href="#' + tabName + '"]').tab('show');
             $("#myTab a").click(function () {
                 $("[id*=TabName]").val($(this).attr("href").replace("#", ""));

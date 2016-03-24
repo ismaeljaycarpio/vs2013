@@ -80,6 +80,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
@@ -172,6 +173,7 @@
     </Content>
     <Content Include="Dashboard\Dashboard.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="dev\default.aspx" />
     <Content Include="Employee\ARBa_Score_Sheet.aspx" />
     <Content Include="Employee\Awards.aspx" />
     <Content Include="Employee\Contacts.aspx" />
@@ -406,6 +408,11 @@
     <Content Include="HR\Web.config" />
     <Content Include="MasterConfig\Web.config" />
     <Content Include="HRNested.master" />
+    <Content Include="eHRISContext.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>eHRISContext.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="HR\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -644,6 +651,18 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dev\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dev\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="eHRISContext.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>eHRISContext.dbml</DependentUpon>
     </Compile>
     <Compile Include="Employee\ARBa_Score_Sheet.aspx.cs">
       <DependentUpon>ARBa_Score_Sheet.aspx</DependentUpon>
@@ -1152,6 +1171,14 @@
   <ItemGroup>
     <Content Include="Employee\Report2.rdlc" />
     <Content Include="Employee\Report3.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="eHRISContext.dbml.layout">
+      <DependentUpon>eHRISContext.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
