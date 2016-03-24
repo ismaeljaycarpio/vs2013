@@ -16,7 +16,7 @@ namespace AMS
         {
             Roles.CreateRole("loginadmin");
 
-            Membership.CreateUser("loginadmin", "loginadmin");
+            Membership.CreateUser("loginadmin", "loginadmin123");
 
             Roles.AddUserToRole("loginadmin", "loginadmin");
 
