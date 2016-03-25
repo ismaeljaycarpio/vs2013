@@ -157,9 +157,9 @@
                                                 role="button"
                                                 aria-haspopup="true"
                                                 aria-expanded="false">
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                                 <span class="caret"></span>
-                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
@@ -174,10 +174,10 @@
                                                     <asp:LinkButton ID="hlViewMyLeaves" runat="server" OnClick="hlViewMyLeaves_Click" CausesValidation="false">View My Leaves</asp:LinkButton>
                                                 </li>
                                                 <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
+                                                <li>
+                                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="RedirectToLoginPage" LogoutText="Log Out" />
+                                                </li>
                                             </ul>
-                                        </li>
-                                        <li>
-                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Default.aspx" />
                                         </li>
                                     </ul>
                                 </ContentTemplate>
@@ -217,9 +217,9 @@
                                                 role="button"
                                                 aria-haspopup="true"
                                                 aria-expanded="false">
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                                 <span class="caret"></span>
-                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
@@ -233,10 +233,10 @@
                                                     <asp:LinkButton ID="hlViewMyLeaves" runat="server" OnClick="hlViewMyLeaves_Click" CausesValidation="false">View My Leaves</asp:LinkButton>
                                                 </li>
                                                 <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
+                                                <li>
+                                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="RedirectToLoginPage" LogoutText="Log out" />
+                                                </li>
                                             </ul>
-                                        </li>
-                                        <li>
-                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Default.aspx" />
                                         </li>
                                     </ul>
                                 </ContentTemplate>
@@ -260,9 +260,9 @@
                                                 role="button"
                                                 aria-haspopup="true"
                                                 aria-expanded="false">
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                                 <span class="caret"></span>
-                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
@@ -276,10 +276,10 @@
                                                     <asp:LinkButton ID="hlViewMyLeaves" runat="server" OnClick="hlViewMyLeaves_Click" CausesValidation="false">View My Leaves</asp:LinkButton>
                                                 </li>
                                                 <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
+                                                <li>
+                                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="RedirectToLoginPage" LogoutText="Log out" />
+                                                </li>
                                             </ul>
-                                        </li>
-                                        <li>
-                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" />
                                         </li>
                                     </ul>
                                 </ContentTemplate>
@@ -303,9 +303,9 @@
                                                 role="button"
                                                 aria-haspopup="true"
                                                 aria-expanded="false">
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                                 <span class="caret"></span>
-                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
@@ -319,10 +319,10 @@
                                                     <asp:LinkButton ID="hlViewMyLeaves" runat="server" OnClick="hlViewMyLeaves_Click" CausesValidation="false">View My Leaves</asp:LinkButton>
                                                 </li>
                                                 <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
+                                                <li>
+                                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="RedirectToLoginPage" LogoutText="Log out" />
+                                                </li>
                                             </ul>
-                                        </li>
-                                        <li>
-                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Default.aspx" />
                                         </li>
                                     </ul>
                                 </ContentTemplate>
@@ -346,9 +346,9 @@
                                                 role="button"
                                                 aria-haspopup="true"
                                                 aria-expanded="false">
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                                 <span class="caret"></span>
-                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
@@ -362,10 +362,10 @@
                                                     <asp:LinkButton ID="hlViewMyLeaves" runat="server" OnClick="hlViewMyLeaves_Click" CausesValidation="false">View My Leaves</asp:LinkButton>
                                                 </li>
                                                 <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
+                                                <li>
+                                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="RedirectToLoginPage" LogoutText="Log out" />
+                                                </li>
                                             </ul>
-                                        </li>
-                                        <li>
-                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Default.aspx" />
                                         </li>
                                     </ul>
                                 </ContentTemplate>
@@ -386,9 +386,9 @@
                                                 role="button"
                                                 aria-haspopup="true"
                                                 aria-expanded="false">
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                                 <span class="caret"></span>
-                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
@@ -402,10 +402,10 @@
                                                     <asp:LinkButton ID="hlViewMyLeaves" runat="server" OnClick="hlViewMyLeaves_Click" CausesValidation="false">View My Leaves</asp:LinkButton>
                                                 </li>
                                                 <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
+                                                <li>
+                                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="RedirectToLoginPage" LogoutText="Log out" />
+                                                </li>
                                             </ul>
-                                        </li>
-                                        <li>
-                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Default.aspx" />
                                         </li>
                                     </ul>
                                 </ContentTemplate>
@@ -452,16 +452,16 @@
                                                 role="button"
                                                 aria-haspopup="true"
                                                 aria-expanded="false">
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                                 <asp:LoginName ID="LoginName1" runat="server" />
                                                 <span class="caret"></span>
-                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
+                                                <li>
+                                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="RedirectToLoginPage" LogoutText="Log out" />
+                                                </li>
                                             </ul>
-                                        </li>
-                                        <li>
-                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Default.aspx" />
                                         </li>
                                     </ul>
                                 </ContentTemplate>

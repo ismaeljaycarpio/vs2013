@@ -160,7 +160,7 @@ namespace AMS.Employee
             Response.Clear();
             Response.Buffer = true;
             Response.AddHeader("content-disposition",
-                "attachment;filename=EmployeeList.doc");
+                "attachment;filename=Timesheet.doc");
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-word ";
             StringWriter sw = new StringWriter();
@@ -182,7 +182,7 @@ namespace AMS.Employee
             Response.Clear();
             Response.Buffer = true;
             Response.AddHeader("content-disposition",
-             "attachment;filename=EmployeeList.xls");
+             "attachment;filename=Timesheet.xls");
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-excel";
             StringWriter sw = new StringWriter();

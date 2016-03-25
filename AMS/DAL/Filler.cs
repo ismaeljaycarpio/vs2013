@@ -49,7 +49,7 @@ namespace AMS.DAL
         public DataTable fillRoles()
         {
             dt = new DataTable();
-            dt = getList("SELECT * FROM Roles");
+            dt = getList("SELECT * FROM Roles WHERE RoleName != 'Developer' AND RoleName != 'loginadmin'");
             return dt;
         }
 

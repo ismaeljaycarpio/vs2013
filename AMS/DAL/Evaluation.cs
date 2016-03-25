@@ -1443,6 +1443,8 @@ namespace AMS.DAL
                 "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
                 "INNER JOIN UsersInRoles ON Evaluation.UserId = UsersInRoles.UserId " +
                 "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
+                "INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
+                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
                 "WHERE " +
                 "(Roles.RoleName = 'Manager' OR Roles.RoleName = 'HR') AND " +
                 "POSITION.Position != 'HR Assistant' AND " +

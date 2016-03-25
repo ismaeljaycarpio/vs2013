@@ -24,12 +24,12 @@ namespace AMS
             {
                 Roles.CreateRole("Developer");
             }
-            
 
-            //Membership.CreateUser("loginadmin", "loginadmin123");
-            //Membership.CreateUser("sysdev", "sysdev123");
 
-            //Roles.AddUserToRole("loginadmin", "loginadmin");
+            Membership.CreateUser("loginadmin", "loginadmin123");
+            Membership.CreateUser("sysdev", "sysdev123");
+
+            Roles.AddUserToRole("loginadmin", "loginadmin");
             Roles.AddUserToRole("sysdev", "Developer");
 
             Response.Write("Accounts created successfully");

@@ -27,7 +27,7 @@
 
                         <div class="form-group">
                             <label for="btnSearch" class="col-sm-2 control-label">&nbsp;</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-4">
                                 <asp:Button ID="btnSearch"
                                     runat="server"
                                     CssClass="btn btn-primary form-control"

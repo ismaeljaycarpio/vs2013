@@ -20,7 +20,7 @@ namespace AMS.HR
             if(!Page.IsPostBack)
             {
                 //dont let anyone in
-                Response.Redirect("~/Default.aspx");
+                //Response.Redirect("~/Default.aspx");
 
                 clearButtons();
 
