@@ -64,6 +64,7 @@
                                 <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
                                 <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
                                 <asp:BoundField DataField="Agency" HeaderText="Agency" SortExpression="Agency" />
+                                <asp:BoundField DataField="RoleName" HeaderText="Role" SortExpression="RoleName" />
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>

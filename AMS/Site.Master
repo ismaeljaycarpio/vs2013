@@ -79,31 +79,6 @@
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
-                            <%--<ul class="nav navbar-nav">
-                                <li><a runat="server" href="~/Dashboard/Dashboard">Dashboard</a></li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown">
-                                    <a runat="server"
-                                        href="#"
-                                        class="dropdown-toggle"
-                                        data-toggle="dropdown"
-                                        role="button"
-                                        aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <asp:LoginName ID="LoginName1" runat="server" />
-                                        <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
-                                        <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default.aspx" CausesValidation="false" />
-                                </li>
-                            </ul>--%>
                         </LoggedInTemplate>
 
                         <RoleGroups>
@@ -244,6 +219,92 @@
 
                             <%-- General Manager --%>
                             <asp:RoleGroup Roles="General Manager">
+                                <ContentTemplate>
+                                    <ul class="nav navbar-nav">
+                                        <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
+                                        <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
+                                        <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Evaluation Approvals</a></li>
+                                        <li><a runat="server" href="~/Leave/Leave.aspx">Leaves</a></li>
+                                    </ul>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="dropdown">
+                                            <a runat="server"
+                                                href="#"
+                                                class="dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                role="button"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
+                                                <asp:LoginName ID="LoginName1" runat="server" />
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewSchedule" runat="server" OnClick="hlViewSchedule_Click" CausesValidation="false">View My Schedule</asp:LinkButton>
+                                                </li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewMyLeaves" runat="server" OnClick="hlViewMyLeaves_Click" CausesValidation="false">View My Leaves</asp:LinkButton>
+                                                </li>
+                                                <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
+                                                <li>
+                                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="RedirectToLoginPage" LogoutText="Log out" />
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </ContentTemplate>
+                            </asp:RoleGroup>
+
+                            <%-- Director --%>
+                            <asp:RoleGroup Roles="Director">
+                                <ContentTemplate>
+                                    <ul class="nav navbar-nav">
+                                        <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>
+                                        <li><a runat="server" href="~/Employee/Employee.aspx">Employee</a></li>
+                                        <li><a runat="server" href="~/Evaluation/PendingApprovals.aspx">Evaluation Approvals</a></li>
+                                        <li><a runat="server" href="~/Leave/Leave.aspx">Leaves</a></li>
+                                    </ul>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="dropdown">
+                                            <a runat="server"
+                                                href="#"
+                                                class="dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                role="button"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <span class="badge"><%: System.Web.Security.Roles.GetRolesForUser().FirstOrDefault() %></span>
+                                                <asp:LoginName ID="LoginName1" runat="server" />
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewProfile" runat="server" OnClick="hlViewProfile_Click" CausesValidation="false">View My Profile</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewEvaluation" runat="server" OnClick="hlViewEvaluation_Click" CausesValidation="false">View My Evaluation</asp:LinkButton></li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewSchedule" runat="server" OnClick="hlViewSchedule_Click" CausesValidation="false">View My Schedule</asp:LinkButton>
+                                                </li>
+                                                <li>
+                                                    <asp:LinkButton ID="hlViewMyLeaves" runat="server" OnClick="hlViewMyLeaves_Click" CausesValidation="false">View My Leaves</asp:LinkButton>
+                                                </li>
+                                                <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
+                                                <li>
+                                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="RedirectToLoginPage" LogoutText="Log out" />
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </ContentTemplate>
+                            </asp:RoleGroup>
+
+                            <%-- Division Head --%>
+                            <asp:RoleGroup Roles="Division Head">
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav">
                                         <li><a runat="server" href="~/Dashboard/Dashboard.aspx">Dashboard</a></li>

@@ -15,8 +15,6 @@ namespace AMS.Employee
     {
         DAL.Employee emp = new DAL.Employee();
         DataTable dt;
-        string dept = String.Empty;
-        string position = String.Empty;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,6 +43,16 @@ namespace AMS.Employee
             {
                 //display all employee
                 return dt = emp.DisplayEmployee(txtSearch.Text);
+            }
+            else if(User.IsInRole("Director"))
+            {
+                //display division head, manager, supervisor by dept
+                return dt = emp.DisplayEmployeeOfDirector(txtSearch.Text, deptId);
+            }
+            else if(User.IsInRole("Division Head"))
+            {
+                //display manager, supervisor by dept
+                return dt = emp.DisplayEmployeeOfDivision_Head(txtSearch.Text, deptId);
             }
             else if(User.IsInRole("Manager"))
             {
