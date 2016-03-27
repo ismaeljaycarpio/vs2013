@@ -28,6 +28,7 @@ namespace AMS.Evaluation
                 MembershipUser mu = Membership.GetUser();
                 Guid logged_UserId = Guid.Parse(mu.ProviderUserKey.ToString());
 
+                //avoid HR Assistant evaluating
                 if(emp.GetPosition(logged_UserId) == "HR Assistant")
                 {
                     Response.Redirect("~/UnauthorizedAccess.aspx");
@@ -47,7 +48,8 @@ namespace AMS.Evaluation
             {
                 dt = eval.GetPendingApprovalGM();
             }
-            else if(User.IsInRole("HR") || User.IsInRole("Admin"))
+            else if(User.IsInRole("HR") || 
+                User.IsInRole("Admin"))
             {
                 dt = eval.GetPendingApprovalHR();
             }

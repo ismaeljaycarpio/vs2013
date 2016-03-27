@@ -199,7 +199,7 @@ namespace AMS.Employee
                 int _CurrentRecEnd = gvEmployee.PageIndex * gvEmployee.PageSize + gvEmployee.Rows.Count;
 
                 e.Row.Cells[0].ColumnSpan = 2;
-                e.Row.Cells[0].Text = string.Format("Displaying <b style=color:red>{0}</b> to <b style=color:red>{1}</b> of {2} records found", _CurrentRecStart, _CurrentRecEnd, _TotalRecs);
+                e.Row.Cells[0].Text = string.Format("Displaying <b style=color:red>{0}</b> to <b style=color:red>{1}</b> of {2} <b style=color:green>active employee</b> found", _CurrentRecStart, _CurrentRecEnd, _TotalRecs);
             }
         }
     }
