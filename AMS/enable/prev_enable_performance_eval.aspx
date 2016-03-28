@@ -114,6 +114,7 @@
                                     class="table table-striped table-hover"
                                     ShowHeaderWhenEmpty="true"
                                     AutoGenerateColumns="false"
+                                    OnRowDataBound="gvOrientation_RowDataBound"
                                     DataKeyNames="Id">
                                     <Columns>
                                         <asp:TemplateField HeaderText="" Visible="false">
@@ -191,6 +192,7 @@
                                     ShowFooter="true"
                                     class="table table-striped table-hover"
                                     ShowHeaderWhenEmpty="true"
+                                    OnRowDataBound="gvBehavior_RowDataBound"
                                     AutoGenerateColumns="false"
                                     DataKeyNames="Id">
                                     <Columns>
@@ -269,6 +271,7 @@
                                     ShowFooter="true"
                                     class="table table-striped table-hover"
                                     ShowHeaderWhenEmpty="true"
+                                    OnRowDataBound="gvManagement_RowDataBound"
                                     AutoGenerateColumns="false"
                                     DataKeyNames="Id">
                                     <Columns>
@@ -348,44 +351,41 @@
                     </div>
                 </div>
 
-                <div class="panel-body">
-                    <asp:Panel ID="pnlStaffOnly" runat="server" Visible="false">
-                        <table class="table">
-                            <tr>
-                                <td colspan="2"><b>D. Narrative Evaluation</b></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">1. What would you identify as the manager/administrator’s strengths, expressed in terms of principal results achieved during the evaluation period?
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <asp:TextBox ID="txtEnableManagerStength" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
-                            </tr>
+                <asp:Panel ID="pnlStaffOnly" runat="server" Visible="false" CssClass="panel-body">
+                    <table class="table">
+                        <tr>
+                            <td colspan="2"><b>D. Narrative Evaluation</b></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">1. What would you identify as the manager/administrator’s strengths, expressed in terms of principal results achieved during the evaluation period?
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <asp:TextBox ID="txtEnableManagerStength" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
+                        </tr>
 
-                            <tr>
-                                <td colspan="2">2. What performance areas would you identify as needing improvement? Why? What constructive, positive suggestions can you offer to enhance performance?
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <asp:TextBox ID="txtEnableNeedImprovement" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
-                            </tr>
-                        </table>
-                    </asp:Panel>
-                </div>
+                        <tr>
+                            <td colspan="2">2. What performance areas would you identify as needing improvement? Why? What constructive, positive suggestions can you offer to enhance performance?
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <asp:TextBox ID="txtEnableNeedImprovement" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
+                        </tr>
+                    </table>
+                </asp:Panel>
 
-                <div class="panel-body">
-                    <asp:Panel ID="pnlEvaluatorsOnly" runat="server" Visible="false">
-                        <table class="table">
-                            <tr>
-                                <td colspan="2"><b>Rater's Recommendation/Additional Notes:	</b>
-                                    <asp:TextBox ID="txtEnableRemarks" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
-                                </td>
-                            </tr>
-                        </table>
-                    </asp:Panel>
-                </div>
+
+                <asp:Panel ID="pnlEvaluatorsOnly" runat="server" Visible="false" CssClass="panel-body">
+                    <table class="table">
+                        <tr>
+                            <td colspan="2"><b>Rater's Recommendation/Additional Notes:	</b>
+                                <asp:TextBox ID="txtEnableRemarks" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
 
                 <div class="panel-body">
                     <table class="table">

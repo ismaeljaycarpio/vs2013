@@ -184,7 +184,6 @@ namespace AMS.Leave
                 leaves.approve_Pending_leave(false, true, hfApproveId.Value, "Approved");
     
                 //should reflect in timesheet
-
             }
 
             gvPendingLeaveApprovals.DataSource = bindGridview_Pending();

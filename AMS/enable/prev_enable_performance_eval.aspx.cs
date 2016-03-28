@@ -68,6 +68,10 @@ namespace AMS.enable
                     lblApprovedByHRManager.Text = emp.GetFullName(Guid.Parse(dt.Rows[0]["ApprovedByHRId"].ToString()));
                 }
 
+                txtEnableManagerStength.Text = dt.Rows[0]["EnableManagerStrength"].ToString();
+                txtEnableNeedImprovement.Text = dt.Rows[0]["EnableNeedImprovement"].ToString();
+                txtEnableRemarks.Text = dt.Rows[0]["EnableRemarks"].ToString();
+
                 lblAckBy.Text = lblEmpName.Text;
                 lblEvalDate.Text = dt.Rows[0]["DateEvaluated"].ToString();
                 txtNextEvaluationDate.Text = dt.Rows[0]["NextEvaluationDate"].ToString();
@@ -94,6 +98,10 @@ namespace AMS.enable
                     gvBehavior.Columns[3].Visible = false;
                     gvManagement.Columns[3].Visible = false;
 
+                    gvOrientation.Columns[5].Visible = false;
+                    gvBehavior.Columns[5].Visible = false;
+                    gvManagement.Columns[5].Visible = false;
+
                     txtNextEvaluationDate.Enabled = false;
                     RequiredFieldValidator3.Enabled = false;
                     pnlStaffOnly.Visible = true;
@@ -101,10 +109,12 @@ namespace AMS.enable
                 else
                 {
                     //hide staff rating
-                    gvOrientation.Columns[2].Visible = false;
-                    gvBehavior.Columns[2].Visible = false;
-                    gvManagement.Columns[2].Visible = false;
+                    //gvOrientation.Columns[2].Visible = false;
+                    //gvBehavior.Columns[2].Visible = false;
+                    //gvManagement.Columns[2].Visible = false;
                     pnlEvaluatorsOnly.Visible = true;
+                    pnlStaffOnly.Visible = true;
+                    pnlStaffOnly.Enabled = false;
                 }
             }
         }
@@ -125,6 +135,65 @@ namespace AMS.enable
             if(!myUserId.Equals(userId))
             {
                 //rater
+                ev.NextEvaluationDate = txtNextEvaluationDate.Text;
+                ev.EnableRemarks = txtEnableRemarks.Text;
+
+                db.SubmitChanges();
+
+                //insert scores
+                foreach (GridViewRow row in gvOrientation.Rows)
+                {
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        int Id = int.Parse((row.FindControl("lblId") as Label).Text);
+                        decimal rating = decimal.Parse((row.FindControl("txtEvaluatorRating") as TextBox).Text);
+                        string strRemarks = (row.FindControl("txtRemarks") as TextBox).Text;
+
+                        var sc = (from s in db.Evaluation_Scores
+                                  where s.Id == Id
+                                  select s).FirstOrDefault();
+
+                        sc.EvaluatorRating = rating;
+                        sc.Remarks = strRemarks;
+                        db.SubmitChanges();
+                    }
+                }
+
+                foreach (GridViewRow row in gvBehavior.Rows)
+                {
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        int Id = int.Parse((row.FindControl("lblId") as Label).Text);
+                        decimal rating = decimal.Parse((row.FindControl("txtEvaluatorRating") as TextBox).Text);
+                        string strRemarks = (row.FindControl("txtRemarks") as TextBox).Text;
+
+                        var sc = (from s in db.Evaluation_Scores
+                                  where s.Id == Id
+                                  select s).FirstOrDefault();
+
+                        sc.EvaluatorRating = rating;
+                        sc.Remarks = strRemarks;
+                        db.SubmitChanges();
+                    }
+                }
+
+                foreach (GridViewRow row in gvManagement.Rows)
+                {
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        int Id = int.Parse((row.FindControl("lblId") as Label).Text);
+                        decimal rating = decimal.Parse((row.FindControl("txtEvaluatorRating") as TextBox).Text);
+                        string strRemarks = (row.FindControl("txtRemarks") as TextBox).Text;
+
+                        var sc = (from s in db.Evaluation_Scores
+                                  where s.Id == Id
+                                  select s).FirstOrDefault();
+
+                        sc.EvaluatorRating = rating;
+                        sc.Remarks = strRemarks;
+                        db.SubmitChanges();
+                    }
+                }
             }
             else
             {
@@ -135,24 +204,19 @@ namespace AMS.enable
                 db.SubmitChanges();
 
                 //insert scores
-
-                //orientation
                 foreach (GridViewRow row in gvOrientation.Rows)
                 {
                     if (row.RowType == DataControlRowType.DataRow)
                     {
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
                         decimal rating = decimal.Parse((row.FindControl("txtStaffRating") as TextBox).Text);
-                        string strRemarks = (row.FindControl("txtRemarks") as TextBox).Text;
+                        //string strRemarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
                         var sc = (from s in db.Evaluation_Scores
                                   where s.Id == Id
                                   select s).FirstOrDefault();
 
                         sc.StaffRating = rating;
-                        sc.Remarks = strRemarks;
-
-                        db.Evaluation_Scores.InsertOnSubmit(sc);
                         db.SubmitChanges();
                     }
                 }
@@ -161,17 +225,15 @@ namespace AMS.enable
                 {
                     if (row.RowType == DataControlRowType.DataRow)
                     {
-                        int competenceCatQId = int.Parse((row.FindControl("lblId") as Label).Text);
-                        decimal evaluatorRating = decimal.Parse((row.FindControl("txtStaffRating") as TextBox).Text);
-                        string strRemarks = (row.FindControl("txtRemarks") as TextBox).Text;
+                        int Id = int.Parse((row.FindControl("lblId") as Label).Text);
+                        decimal rating = decimal.Parse((row.FindControl("txtStaffRating") as TextBox).Text);
+                        //string strRemarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
-                        Evaluation_Score sc = new Evaluation_Score();
-                        sc.EvaluationId = evId;
-                        sc.CompetenceCatQId = competenceCatQId;
-                        sc.EvaluatorRating = evaluatorRating;
-                        sc.Remarks = strRemarks;
+                        var sc = (from s in db.Evaluation_Scores
+                                  where s.Id == Id
+                                  select s).FirstOrDefault();
 
-                        db.Evaluation_Scores.InsertOnSubmit(sc);
+                        sc.StaffRating = rating;
                         db.SubmitChanges();
                     }
                 }
@@ -180,21 +242,35 @@ namespace AMS.enable
                 {
                     if (row.RowType == DataControlRowType.DataRow)
                     {
-                        int competenceCatQId = int.Parse((row.FindControl("lblId") as Label).Text);
-                        decimal evaluatorRating = decimal.Parse((row.FindControl("txtStaffRating") as TextBox).Text);
-                        string strRemarks = (row.FindControl("txtRemarks") as TextBox).Text;
+                        int Id = int.Parse((row.FindControl("lblId") as Label).Text);
+                        decimal rating = decimal.Parse((row.FindControl("txtStaffRating") as TextBox).Text);
+                        //string strRemarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
-                        Evaluation_Score sc = new Evaluation_Score();
-                        sc.EvaluationId = evId;
-                        sc.CompetenceCatQId = competenceCatQId;
-                        sc.EvaluatorRating = evaluatorRating;
-                        sc.Remarks = strRemarks;
+                        var sc = (from s in db.Evaluation_Scores
+                                  where s.Id == Id
+                                  select s).FirstOrDefault();
 
-                        db.Evaluation_Scores.InsertOnSubmit(sc);
+                        sc.StaffRating = rating;
                         db.SubmitChanges();
                     }
                 }
             }
+            Response.Redirect("~/Employee/Evaluation.aspx");
+        }
+
+        protected void gvOrientation_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void gvBehavior_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void gvManagement_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
         }
     }
 }

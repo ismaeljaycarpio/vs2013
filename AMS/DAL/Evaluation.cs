@@ -1446,7 +1446,65 @@ namespace AMS.DAL
                 "INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
                 "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
                 "WHERE " +
-                "(Roles.RoleName = 'Manager' OR Roles.RoleName = 'HR') AND " +
+                "(Roles.RoleName = 'Director' OR Roles.RoleName = 'Division Head' OR Roles.RoleName = 'HR') AND " +
+                "POSITION.Position != 'HR Assistant' AND " +
+                "Evaluation.ApprovedByManagerId = @ManagerId";
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@ManagerId", Guid.Empty);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable GetPendingApprovalDirector()
+        {
+            strSql = "SELECT Evaluation.UserId,Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+                "Evaluation.DateEvaluated, " +
+                "Evaluation.ApprovedByHRId, " +
+                "Evaluation.ApprovedByManagerId " +
+                "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
+                "INNER JOIN UsersInRoles ON Evaluation.UserId = UsersInRoles.UserId " +
+                "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
+                "INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
+                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
+                "WHERE " +
+                "(Roles.RoleName = 'Division Head' OR Roles.RoleName = 'Manager') AND " +
+                "POSITION.Position != 'HR Assistant' AND " +
+                "Evaluation.ApprovedByManagerId = @ManagerId";
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@ManagerId", Guid.Empty);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable GetPendingApprovalDivisionHead()
+        {
+            strSql = "SELECT Evaluation.UserId,Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+                "Evaluation.DateEvaluated, " +
+                "Evaluation.ApprovedByHRId, " +
+                "Evaluation.ApprovedByManagerId " +
+                "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
+                "INNER JOIN UsersInRoles ON Evaluation.UserId = UsersInRoles.UserId " +
+                "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
+                "INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
+                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
+                "WHERE " +
+                "(Roles.RoleName = 'Manager') AND " +
                 "POSITION.Position != 'HR Assistant' AND " +
                 "Evaluation.ApprovedByManagerId = @ManagerId";
             conn = new SqlConnection();
@@ -1542,6 +1600,7 @@ namespace AMS.DAL
             comm.Dispose();
             conn.Close();
         }
+        //approve by manager / supervisor
         public void ApprovePendingApprovalManager(string evaluationId, Guid signatory)
         {
             strSql = "UPDATE Evaluation SET ApprovedByManagerId = @ApprovedByManagerId WHERE Id = @Id";
