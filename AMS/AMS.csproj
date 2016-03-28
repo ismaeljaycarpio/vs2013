@@ -201,6 +201,7 @@
     <Content Include="Employee\vPerformanceEvaluation.aspx" />
     <Content Include="Employee\vPrime_Performance_Evaluation.aspx" />
     <Content Include="enable\enable_performance_eval.aspx" />
+    <Content Include="enable\prev_enable_performance_eval.aspx" />
     <Content Include="EvaluationSelf\Evaluation_Self.aspx" />
     <Content Include="EvaluationSelf\ScoreSheet.aspx" />
     <Content Include="EvaluationSelf\Score_Sheet.aspx" />
@@ -847,6 +848,13 @@
     </Compile>
     <Compile Include="enable\enable_performance_eval.aspx.designer.cs">
       <DependentUpon>enable_performance_eval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="enable\prev_enable_performance_eval.aspx.cs">
+      <DependentUpon>prev_enable_performance_eval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="enable\prev_enable_performance_eval.aspx.designer.cs">
+      <DependentUpon>prev_enable_performance_eval.aspx</DependentUpon>
     </Compile>
     <Compile Include="EvaluationNested.master.cs">
       <DependentUpon>EvaluationNested.master</DependentUpon>
