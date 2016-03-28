@@ -14,6 +14,11 @@
                 <div class="panel-body">
                     <table class="table">
                         <tr class="text-center">
+                            <td colspan="3">
+                                <asp:Label ID="lblAgency" runat="server"></asp:Label></td>
+                        </tr>
+
+                        <tr class="text-center">
                             <td colspan="3">PERFORMANCE EVALUATION FORM (MANAGERS & EXECUTIVES)</td>
                         </tr>
                         <tr>
@@ -105,6 +110,7 @@
                                 <asp:GridView ID="gvOrientation"
                                     runat="server"
                                     GridLines="None"
+                                    ShowFooter="true"
                                     class="table table-striped table-hover"
                                     ShowHeaderWhenEmpty="true"
                                     AutoGenerateColumns="false"
@@ -124,7 +130,7 @@
 
                                         <asp:TemplateField HeaderText="Ratee">
                                             <ItemTemplate>
-                                                <asp:TextBox runat="server" ID="txtStaffRating" Width="50" MaxLength="3"></asp:TextBox>
+                                                <asp:TextBox runat="server" ID="txtStaffRating" Width="50" MaxLength="3" CssClass="form-control"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
                                                     runat="server"
                                                     Display="Dynamic"
@@ -144,7 +150,7 @@
 
                                         <asp:TemplateField HeaderText="Rater" ControlStyle-Width="50">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtEvaluatorRating" runat="server" MaxLength="3"></asp:TextBox>
+                                                <asp:TextBox ID="txtEvaluatorRating" runat="server" MaxLength="3" CssClass="form-control"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
                                                     runat="server"
                                                     Display="Dynamic"
@@ -162,6 +168,19 @@
                                                     ErrorMessage="must be 1-5 (can contain decimal)"></asp:RangeValidator>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Total Grade">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblTotalGrade" runat="server">-</asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Remarks">
+                                            <ItemTemplate>
+                                                <asp:TextBox runat="server" ID="txtRemarks" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                     </Columns>
                                     <PagerStyle CssClass="pagination" />
                                 </asp:GridView>
@@ -169,6 +188,7 @@
                                 <asp:GridView ID="gvBehavior"
                                     runat="server"
                                     GridLines="None"
+                                    ShowFooter="true"
                                     class="table table-striped table-hover"
                                     ShowHeaderWhenEmpty="true"
                                     AutoGenerateColumns="false"
@@ -188,7 +208,7 @@
 
                                         <asp:TemplateField HeaderText="Ratee">
                                             <ItemTemplate>
-                                                <asp:TextBox runat="server" ID="txtStaffRating" Width="50" MaxLength="3"></asp:TextBox>
+                                                <asp:TextBox runat="server" ID="txtStaffRating" Width="50" MaxLength="3" CssClass="form-control"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
                                                     runat="server"
                                                     Display="Dynamic"
@@ -208,7 +228,7 @@
 
                                         <asp:TemplateField HeaderText="Rater" ControlStyle-Width="50">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtEvaluatorRating" runat="server" MaxLength="3"></asp:TextBox>
+                                                <asp:TextBox ID="txtEvaluatorRating" runat="server" MaxLength="3" CssClass="form-control"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
                                                     runat="server"
                                                     Display="Dynamic"
@@ -226,6 +246,19 @@
                                                     ErrorMessage="must be 1-5 (can contain decimal)"></asp:RangeValidator>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Total Grade">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblTotalGrade" runat="server">-</asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Remarks">
+                                            <ItemTemplate>
+                                                <asp:TextBox runat="server" ID="txtRemarks" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                     </Columns>
                                     <PagerStyle CssClass="pagination" />
                                 </asp:GridView>
@@ -233,6 +266,7 @@
                                 <asp:GridView ID="gvManagement"
                                     runat="server"
                                     GridLines="None"
+                                    ShowFooter="true"
                                     class="table table-striped table-hover"
                                     ShowHeaderWhenEmpty="true"
                                     AutoGenerateColumns="false"
@@ -252,7 +286,7 @@
 
                                         <asp:TemplateField HeaderText="Ratee">
                                             <ItemTemplate>
-                                                <asp:TextBox runat="server" ID="txtStaffRating" Width="50" MaxLength="3"></asp:TextBox>
+                                                <asp:TextBox runat="server" ID="txtStaffRating" Width="50" MaxLength="3" CssClass="form-control"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
                                                     runat="server"
                                                     Display="Dynamic"
@@ -272,7 +306,7 @@
 
                                         <asp:TemplateField HeaderText="Rater" ControlStyle-Width="50">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtEvaluatorRating" runat="server" MaxLength="3"></asp:TextBox>
+                                                <asp:TextBox ID="txtEvaluatorRating" runat="server" MaxLength="3" CssClass="form-control"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
                                                     runat="server"
                                                     Display="Dynamic"
@@ -290,6 +324,19 @@
                                                     ErrorMessage="must be 1-5 (can contain decimal)"></asp:RangeValidator>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Total Grade">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblTotalGrade" runat="server">-</asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Remarks">
+                                            <ItemTemplate>
+                                                <asp:TextBox runat="server" ID="txtRemarks" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                     </Columns>
                                     <PagerStyle CssClass="pagination" />
                                 </asp:GridView>
@@ -302,7 +349,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <asp:Panel ID="pnlStaffOnly" runat="server">
+                    <asp:Panel ID="pnlStaffOnly" runat="server" Visible="false">
                         <table class="table">
                             <tr>
                                 <td colspan="2"><b>D. Narrative Evaluation</b></td>
@@ -329,7 +376,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <asp:Panel ID="pnlEvaluatorsOnly" runat="server">
+                    <asp:Panel ID="pnlEvaluatorsOnly" runat="server" Visible="false">
                         <table class="table">
                             <tr>
                                 <td colspan="2"><b>Rater's Recommendation/Additional Notes:	</b>
@@ -341,7 +388,7 @@
                 </div>
 
                 <div class="panel-footer text-center">
-                    <asp:Button ID="btnSumbit" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="btnSumbit_Click" />
+                    <asp:Button ID="btnSumbit" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="btnSumbit_Click" CausesValidation="true" />
                 </div>
             </div>
         </div>

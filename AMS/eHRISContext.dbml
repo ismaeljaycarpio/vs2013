@@ -8,4 +8,78 @@
       <Column Name="Description" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Evaluation" Member="EvaluationLINQs">
+    <Type Name="EvaluationLINQ">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="EvaluationType" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EvaluatedById" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DateEvaluated" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TotalScore" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="RemarksName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ImpUnacceptable" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ImpFallShort" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ImpEffective" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ImpHighlyEffective" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ImpExceptional" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Recommendation" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="NeedImprovement" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ApprovedByManagerId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ApprovedByHRId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="EmployeesCreativeContribution" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EmployeesNewSkills" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EmployeesStrength" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EmployeesImprovement" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EmployeesChanges" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EmployeesPersonalGoals" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EmployeesRecommendation" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Agency" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Section1A" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Section1B" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Section1C" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Section2A" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Section2B" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Section2C" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Section3A" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Section3B" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Section3C" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Section3D" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Section3E" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Section3F" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CommentSection1A" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommentSection1B" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommentSection1C" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommentSection2A" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommentSection2B" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommentSection2C" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommentSection3A" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommentSection3B" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommentSection3C" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommentSection3D" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommentSection3E" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommentSection3F" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DaysSick" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DaysTardy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="primeComments" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="NextEvaluationDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EnableManagerStrength" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EnableNeedImprovement" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EnableRemarks" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Evaluation_Evaluation_Score" Member="Evaluation_Scores" ThisKey="Id" OtherKey="EvaluationId" Type="Evaluation_Score" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Evaluation_Score" Member="Evaluation_Scores">
+    <Type Name="Evaluation_Score">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EvaluationId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CompetenceCatId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Rating" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CompetenceCatQId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StaffRating" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="EvaluatorRating" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TotalRating" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Remarks" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Evaluation_Evaluation_Score" Member="EvaluationLINQ" ThisKey="EvaluationId" OtherKey="Id" Type="EvaluationLINQ" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
 </Database>

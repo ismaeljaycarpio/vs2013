@@ -42,7 +42,7 @@ namespace AMS.Employee
                 btnPerfEval.Enabled = false;
                 btnPerfEval.Visible = false;
 
-                //evaluator
+                //evaluator can initiate evaluation only
                 if (!loggedUserId.Equals(UserId))
                 {                  
                     if (User.IsInRole("General Manager"))

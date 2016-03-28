@@ -2252,5 +2252,130 @@ namespace AMS.DAL
         }
         #endregion
 
+        #region EHI Evaluation
+        public DataTable getOrientation()
+        {
+            strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 27 ORDER BY Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getBehavior()
+        {
+            strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 28 ORDER BY Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getManagement()
+        {
+            strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 29 ORDER BY Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getOrientation_filled(int evaluationId)
+        {
+            strSql = "SELECT Evaluation_Score.Id, " +
+                "CompetenceCatQ.Question, Evaluation_Score.StaffRating, Evaluation_Score.EvaluatorRating " +
+                ", Evaluation_Score.TotalRating, Evaluation_Score.Remarks " +
+                "FROM Evaluation_Score, CompetenceCatQ " +
+                "WHERE Evaluation_Score.CompetenceCatQId = CompetenceCatQ.Id AND " +
+                "CompetenceCatQ.CompetenceCatId = 27 AND " +
+                "Evaluation_Score.EvaluationId = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Id", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getBehavior_filled(int evaluationId)
+        {
+            strSql = "SELECT Evaluation_Score.Id, " +
+                "CompetenceCatQ.Question, Evaluation_Score.StaffRating, Evaluation_Score.EvaluatorRating " +
+                ", Evaluation_Score.TotalRating, Evaluation_Score.Remarks " +
+                "FROM Evaluation_Score, CompetenceCatQ " +
+                "WHERE Evaluation_Score.CompetenceCatQId = CompetenceCatQ.Id AND " +
+                "CompetenceCatQ.CompetenceCatId = 28 AND " +
+                "Evaluation_Score.EvaluationId = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Id", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getManagement_filled(int evaluationId)
+        {
+            strSql = "SELECT Evaluation_Score.Id, " +
+                "CompetenceCatQ.Question, Evaluation_Score.StaffRating, Evaluation_Score.EvaluatorRating " +
+                ", Evaluation_Score.TotalRating, Evaluation_Score.Remarks " +
+                "FROM Evaluation_Score, CompetenceCatQ " +
+                "WHERE Evaluation_Score.CompetenceCatQId = CompetenceCatQ.Id AND " +
+                "CompetenceCatQ.CompetenceCatId = 29 AND " +
+                "Evaluation_Score.EvaluationId = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Id", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        #endregion
     }
 }
