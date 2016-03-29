@@ -18,13 +18,6 @@ namespace AMS.timesheet
         {
             if (!Page.IsPostBack)
             {
-                //chk the clients computer
-                if (!checkClient())
-                {
-                    FormsAuthentication.SignOut();
-                    Response.Redirect("~/Default.aspx");
-                };
-
                 clearButtons();
 
                 //dont remember username, security reasons
@@ -148,15 +141,6 @@ namespace AMS.timesheet
             txtPassword.Text = String.Empty;
             txtRemarks.Text = String.Empty;
             lblError.Text = String.Empty;
-        }
-
-        protected bool checkClient()
-        {
-            Response.Write(System.Net.Dns.GetHostEntry(Request.ServerVariables["REMOTE_ADDR"]).HostName);
-            Response.Write("<BR>");
-            Response.Write(Request.ServerVariables["REMOTE-HOST"]);
-
-            return true;
         }
     }
 }

@@ -34,9 +34,6 @@
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav" id="nav">
                             <li id="Register"><a runat="server" href="~/HR/Register.aspx">Register Employee</a></li>
-                            <li id="TimeInTimeOut">
-                                <a runat="server" href="~/HR/TimeInTimeOut.aspx">Time In / Time Out</a>
-                            </li>
                             <li id="Attendance">
                                 <a runat="server" href="~/HR/Attendance.aspx">Timekeeping Logs</a>
                             </li>

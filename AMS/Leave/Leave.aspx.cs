@@ -38,6 +38,9 @@ namespace AMS.Leave
                 gvRejected.DataBind();
                 lblDisapprovedCount.Text = gvRejected.Rows.Count.ToString();
 
+                gvLeaves.DataSource = bind_generateGrid();
+                gvLeaves.DataBind();
+
                 TabName.Value = Request.Form[TabName.UniqueID];
             }
         }
@@ -181,7 +184,6 @@ namespace AMS.Leave
                 leaves.approve_Pending_leave(false, true, hfApproveId.Value, "Approved");
     
                 //should reflect in timesheet
-
             }
 
             gvPendingLeaveApprovals.DataSource = bindGridview_Pending();

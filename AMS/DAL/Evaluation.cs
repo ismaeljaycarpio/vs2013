@@ -1443,8 +1443,68 @@ namespace AMS.DAL
                 "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
                 "INNER JOIN UsersInRoles ON Evaluation.UserId = UsersInRoles.UserId " +
                 "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
+                "INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
+                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
                 "WHERE " +
-                "(Roles.RoleName = 'Manager' OR Roles.RoleName = 'HR') AND " +
+                "(Roles.RoleName = 'Director' OR Roles.RoleName = 'Division Head' OR Roles.RoleName = 'HR') AND " +
+                "POSITION.Position != 'HR Assistant' AND " +
+                "Evaluation.ApprovedByManagerId = @ManagerId";
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@ManagerId", Guid.Empty);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable GetPendingApprovalDirector()
+        {
+            strSql = "SELECT Evaluation.UserId,Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+                "Evaluation.DateEvaluated, " +
+                "Evaluation.ApprovedByHRId, " +
+                "Evaluation.ApprovedByManagerId " +
+                "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
+                "INNER JOIN UsersInRoles ON Evaluation.UserId = UsersInRoles.UserId " +
+                "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
+                "INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
+                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
+                "WHERE " +
+                "(Roles.RoleName = 'Division Head' OR Roles.RoleName = 'Manager') AND " +
+                "POSITION.Position != 'HR Assistant' AND " +
+                "Evaluation.ApprovedByManagerId = @ManagerId";
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@ManagerId", Guid.Empty);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable GetPendingApprovalDivisionHead()
+        {
+            strSql = "SELECT Evaluation.UserId,Evaluation.Id,(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS [FullName], " +
+                "Evaluation.DateEvaluated, " +
+                "Evaluation.ApprovedByHRId, " +
+                "Evaluation.ApprovedByManagerId " +
+                "FROM EMPLOYEE INNER JOIN Evaluation ON EMPLOYEE.UserId = Evaluation.UserId " +
+                "INNER JOIN UsersInRoles ON Evaluation.UserId = UsersInRoles.UserId " +
+                "INNER JOIN Roles ON UsersInRoles.RoleId = Roles.RoleId " +
+                "INNER JOIN POSITION ON EMPLOYEE.PositionId = POSITION.Id " +
+                "INNER JOIN DEPARTMENT ON POSITION.DepartmentId = DEPARTMENT.Id " +
+                "WHERE " +
+                "(Roles.RoleName = 'Manager') AND " +
                 "POSITION.Position != 'HR Assistant' AND " +
                 "Evaluation.ApprovedByManagerId = @ManagerId";
             conn = new SqlConnection();
@@ -1540,6 +1600,7 @@ namespace AMS.DAL
             comm.Dispose();
             conn.Close();
         }
+        //approve by manager / supervisor
         public void ApprovePendingApprovalManager(string evaluationId, Guid signatory)
         {
             strSql = "UPDATE Evaluation SET ApprovedByManagerId = @ApprovedByManagerId WHERE Id = @Id";
@@ -2248,6 +2309,132 @@ namespace AMS.DAL
             comm.Dispose();
             conn.Dispose();
         }
+        #endregion
+
+        #region EHI Evaluation
+        public DataTable getOrientation()
+        {
+            strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 27 ORDER BY Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getBehavior()
+        {
+            strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 28 ORDER BY Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getManagement()
+        {
+            strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 29 ORDER BY Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getOrientation_filled(int evaluationId)
+        {
+            strSql = "SELECT Evaluation_Score.Id, " +
+                "CompetenceCatQ.Question, Evaluation_Score.StaffRating, Evaluation_Score.EvaluatorRating " +
+                ", Evaluation_Score.TotalRating, Evaluation_Score.Remarks " +
+                "FROM Evaluation_Score, CompetenceCatQ " +
+                "WHERE Evaluation_Score.CompetenceCatQId = CompetenceCatQ.Id AND " +
+                "CompetenceCatQ.CompetenceCatId = 27 AND " +
+                "Evaluation_Score.EvaluationId = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Id", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getBehavior_filled(int evaluationId)
+        {
+            strSql = "SELECT Evaluation_Score.Id, " +
+                "CompetenceCatQ.Question, Evaluation_Score.StaffRating, Evaluation_Score.EvaluatorRating " +
+                ", Evaluation_Score.TotalRating, Evaluation_Score.Remarks " +
+                "FROM Evaluation_Score, CompetenceCatQ " +
+                "WHERE Evaluation_Score.CompetenceCatQId = CompetenceCatQ.Id AND " +
+                "CompetenceCatQ.CompetenceCatId = 28 AND " +
+                "Evaluation_Score.EvaluationId = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Id", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getManagement_filled(int evaluationId)
+        {
+            strSql = "SELECT Evaluation_Score.Id, " +
+                "CompetenceCatQ.Question, Evaluation_Score.StaffRating, Evaluation_Score.EvaluatorRating " +
+                ", Evaluation_Score.TotalRating, Evaluation_Score.Remarks " +
+                "FROM Evaluation_Score, CompetenceCatQ " +
+                "WHERE Evaluation_Score.CompetenceCatQId = CompetenceCatQ.Id AND " +
+                "CompetenceCatQ.CompetenceCatId = 29 AND " +
+                "Evaluation_Score.EvaluationId = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Id", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         #endregion
     }
 }

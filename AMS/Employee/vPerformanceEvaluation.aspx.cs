@@ -45,9 +45,14 @@ namespace AMS.Employee
                     Response.Redirect("~/Employee/vSelf_Evaluation.aspx");
                 }
 
-                if (dt.Rows[0]["Agency"].ToString().Equals("PrimePower"))
+                //chk agency to redirect to correct page
+                if (dt.Rows[0]["Agency"].ToString().ToLower().Contains("primepower"))
                 {
                     Response.Redirect("~/Employee/vPrime_Performance_Evaluation.aspx");
+                }
+                else if (dt.Rows[0]["Agency"].ToString().ToLower().Contains("enable"))
+                {
+                    Response.Redirect("~/enable/prev_enable_performance_eval.aspx");
                 }
 
                 lblEmpName.Text = emp.GetFullName(UserId);

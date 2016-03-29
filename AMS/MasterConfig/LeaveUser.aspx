@@ -2,6 +2,76 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h5>Configure Leaves for Users</h5>
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <asp:Button ID="btnSearch"
+                                            runat="server"
+                                            CssClass="btn btn-primary"
+                                            Text="Go"
+                                            OnClick="btnSearch_Click" />
+                                    </span>
+                                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <asp:UpdatePanel ID="upEmployee" runat="server">
+                            <ContentTemplate>
+                                <asp:GridView ID="gvEmployee"
+                                    runat="server"
+                                    class="table table-striped table-hover dataTable"
+                                    GridLines="None"
+                                    AutoGenerateColumns="false"
+                                    AllowPaging="true"
+                                    ShowFooter="true"
+                                    AllowSorting="true"
+                                    DataKeyNames="UserId"
+                                    OnSorting="gvEmployee_Sorting"
+                                    OnRowDataBound="gvEmployee_RowDataBound"
+                                    OnRowCommand="gvEmployee_RowCommand"
+                                    OnPageIndexChanging="gvEmployee_PageIndexChanging"
+                                    OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="ID" SortExpression="Emp_Id">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblEmp_Id" runat="server" Text='<%# Eval("Emp_Id") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:BoundField DataField="FullName" HeaderText="Name" SortExpression="FullName" />
+                                        <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
+                                        <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
+                                        <asp:BoundField DataField="Agency" HeaderText="Agency" SortExpression="Agency" />
+                                        <asp:BoundField DataField="RoleName" HeaderText="Role" SortExpression="RoleName" />
+
+                                        <asp:ButtonField HeaderText="" ButtonType="Link" Text="Edit Leaves" CommandName="editRecord" />
+                                    </Columns>
+                                    <PagerStyle CssClass="pagination-ys" />
+                                </asp:GridView>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="gvEmployee" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="updateModal" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" role="dialog">
         <div class="modal-dialog">
             <!-- Update Modal content-->
@@ -120,74 +190,5 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <h5>Configure Leaves for Users</h5>
-                </div>
-                <div class="panel-body">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <asp:Button ID="btnSearch"
-                                            runat="server"
-                                            CssClass="btn btn-primary"
-                                            Text="Go"
-                                            OnClick="btnSearch_Click" />
-                                    </span>
-                                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="table-responsive">
-                        <asp:UpdatePanel ID="upEmployee" runat="server">
-                            <ContentTemplate>
-                                <asp:GridView ID="gvEmployee"
-                                    runat="server"
-                                    class="table table-striped table-hover dataTable"
-                                    GridLines="None"
-                                    AutoGenerateColumns="false"
-                                    AllowPaging="true"
-                                    ShowFooter="true"
-                                    AllowSorting="true"
-                                    DataKeyNames="UserId"
-                                    OnSorting="gvEmployee_Sorting"
-                                    OnRowDataBound="gvEmployee_RowDataBound"
-                                    OnRowCommand="gvEmployee_RowCommand"
-                                    OnPageIndexChanging="gvEmployee_PageIndexChanging"
-                                    OnSelectedIndexChanging="gvEmployee_SelectedIndexChanging">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="ID" SortExpression="Emp_Id">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblEmp_Id" runat="server" Text='<%# Eval("Emp_Id") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:BoundField DataField="FullName" HeaderText="Name" SortExpression="FullName" />
-                                        <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
-                                        <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
-                                        <asp:BoundField DataField="Agency" HeaderText="Agency" SortExpression="Agency" />
-                                        <asp:BoundField DataField="RoleName" HeaderText="Role" SortExpression="RoleName" />
-
-                                        <asp:ButtonField HeaderText="" ButtonType="Link" Text="Edit Leaves" CommandName="editRecord" />
-                                    </Columns>
-                                    <PagerStyle CssClass="pagination-ys" />
-                                </asp:GridView>
-                            </ContentTemplate>
-                            <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="gvEmployee" />
-                            </Triggers>
-                        </asp:UpdatePanel>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <asp:HiddenField ID="hfUserId" runat="server" />
 </asp:Content>

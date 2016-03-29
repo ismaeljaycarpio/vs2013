@@ -42,15 +42,31 @@ namespace AMS.Employee
                 btnPerfEval.Enabled = false;
                 btnPerfEval.Visible = false;
 
-                //evaluator
+                //evaluator can initiate evaluation only
                 if (!loggedUserId.Equals(UserId))
-                {
-                    //GM-> evaluate Managers and HR/Manager                   
+                {                  
                     if (User.IsInRole("General Manager"))
                     {
-                        //show managers/hr only
-                        if (emp.GetRoleName(UserId).Equals("Manager") ||
-                            emp.GetRoleName(UserId).Equals("HR"))
+                        //show director only
+                        if (emp.GetRoleName(UserId).Equals("Director"))
+                        {
+                            btnPerfEval.Enabled = true;
+                            btnPerfEval.Visible = true;
+                        }
+                    }
+                    else if(User.IsInRole("Director"))
+                    {
+                        //show  Division Head
+                        if (emp.GetRoleName(UserId).Equals("Division Head"))
+                        {
+                            btnPerfEval.Enabled = true;
+                            btnPerfEval.Visible = true;
+                        }
+                    }
+                    else if(User.IsInRole("Division Head"))
+                    {
+                        //show Managers
+                        if (emp.GetRoleName(UserId).Equals("Managers"))
                         {
                             btnPerfEval.Enabled = true;
                             btnPerfEval.Visible = true;
@@ -127,6 +143,10 @@ namespace AMS.Employee
             else if (loweredAgency.Contains("primepower"))
             {
                 Response.Redirect("~/Employee/Prime_Performance_Evaluation.aspx");
+            }
+            else if (loweredAgency.Contains("enable"))
+            {
+                Response.Redirect("~/enable/enable_performance_eval.aspx");
             }
             else
             {

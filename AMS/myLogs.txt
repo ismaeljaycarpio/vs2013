@@ -1,10 +1,70 @@
-﻿													Housekeeping		|
-[Staff],2015-1007,Food and Beverage |			|2015-1002				|
-[Supervisor],2015-1021				| 2015-1001	|2015-1004				|2015-1023
-[Manager],2015-461					| 2015-1002	|2015-1013				|
-[GM],2015-462						| 2015-1003	|						|
-[HR],2015-1002						|			|2015-1025,2015-1121	|
-[Admin],admin						|			|						|
+﻿													Housekeeping		|Eng		|
+[Staff],2015-1007,Food and Beverage |			|2015-1003				|2015-1003	|2016-1235
+[Supervisor],2015-1021				| 2015-1001	|2015-1004				|2015-1006	|2016-1238
+[Manager],2015-461					| 2015-1002	|2015-1013				|2015-1026	|2016-1248
+[GM],2015-462						| 2015-1003	|						|			|2015-1002
+[HR],2015-1002						|			|2015-1025,2015-1121	|			|2015-1025
+[Admin],admin						|			|						|			|
+
+
+
+///////////////////////////////////////////////////////////////
+////////////////////2016-03-28/////////////////////////////////
+///////////////////////////////////////////////////////////////
+- Disable gridview validators when viewing as rater
+- what can GM, Director, Division Head do in Approvals
+	- what can they see
+
+///////////////////////////////////////////////////////////////
+////////////////////2016-03-27/////////////////////////////////
+///////////////////////////////////////////////////////////////
+- Finance Manager 'position' w/ a role 'Manager' can view Finance,Purchasing,Accounting
+
+
+///////////////////////////////////////////////////////////////
+////////////////////2016-03-26/////////////////////////////////
+///////////////////////////////////////////////////////////////
+- http://localhost:26475/HR/Attendance.aspx - OT if 1hr or more
+- add Director, Division Head as Role - **DONE**
+	- GM
+	- Director
+	- Division head
+	- Manager
+	- supervisor
+	- Staff
+
+- include Role in http://localhost:26475/Employee/Employee.aspx - **DONE**
+- rework on getting manager/supervisor on http://localhost:26475/Employee/JobDetails.aspx - based on role
+- access of Director and Division Head
+- Evaluation and Approval of Director/Division Head
+- Leave and Approval of Director/Divison Head
+
+///////////////////////////////////////////////////////////////
+////////////////////2016-03-24/////////////////////////////////
+///////////////////////////////////////////////////////////////
+- modified logout placing to align from drop down - **DONE**
+- add page counts in http://localhost:26475/MasterConfig/LeaveUser.aspx - **DONE**
+- limit sysdev/loginadmin in Register **DONE**
+- fix error on : http://localhost:26475/Evaluation/PendingApprovals.aspx - **DONE**
+- implement [dont overwrite time-in/time-out fields]
+	- chk latest time-in and should be less than 15 hrs
+
+- improve date formatting in: http://localhost:26475/Employee/MySchedule.aspx - ***HOLD***
+
+///////////////////////////////////////////////////////////////
+////////////////////2016-03-24/////////////////////////////////
+///////////////////////////////////////////////////////////////
+- create for developers only area. - **DONE**
+	- can create role
+- leave report
+
+
+
+///////////////////////////////////////////////////////////////
+////////////////////2016-03-23/////////////////////////////////
+///////////////////////////////////////////////////////////////
+- auto compute no of days when selecting date range in filing leave
+
 
 
 

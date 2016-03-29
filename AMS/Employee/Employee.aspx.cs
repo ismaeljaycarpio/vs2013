@@ -15,8 +15,6 @@ namespace AMS.Employee
     {
         DAL.Employee emp = new DAL.Employee();
         DataTable dt;
-        string dept = String.Empty;
-        string position = String.Empty;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,6 +43,16 @@ namespace AMS.Employee
             {
                 //display all employee
                 return dt = emp.DisplayEmployee(txtSearch.Text);
+            }
+            else if(User.IsInRole("Director"))
+            {
+                //display division head, manager, supervisor by dept
+                return dt = emp.DisplayEmployeeOfDirector(txtSearch.Text, deptId);
+            }
+            else if(User.IsInRole("Division Head"))
+            {
+                //display manager, supervisor by dept
+                return dt = emp.DisplayEmployeeOfDivision_Head(txtSearch.Text, deptId);
             }
             else if(User.IsInRole("Manager"))
             {
@@ -191,7 +199,7 @@ namespace AMS.Employee
                 int _CurrentRecEnd = gvEmployee.PageIndex * gvEmployee.PageSize + gvEmployee.Rows.Count;
 
                 e.Row.Cells[0].ColumnSpan = 2;
-                e.Row.Cells[0].Text = string.Format("Displaying <b style=color:red>{0}</b> to <b style=color:red>{1}</b> of {2} records found", _CurrentRecStart, _CurrentRecEnd, _TotalRecs);
+                e.Row.Cells[0].Text = string.Format("Displaying <b style=color:red>{0}</b> to <b style=color:red>{1}</b> of {2} <b style=color:green>active employee</b> found", _CurrentRecStart, _CurrentRecEnd, _TotalRecs);
             }
         }
     }

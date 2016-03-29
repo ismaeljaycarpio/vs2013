@@ -95,6 +95,7 @@ namespace AMS.Employee
                 //chk if schedule is created
                 if(timeStart.Equals(String.Empty) || timeEnd.Equals(String.Empty))
                 {
+                    //set time today
                     txtEditStart.Text = DateTime.Today.ToString("yyyy-MM-ddTHH:mm");
                     txtEditEnd.Text = DateTime.Today.ToString("yyyy-MM-ddTHH:mm");
                 }

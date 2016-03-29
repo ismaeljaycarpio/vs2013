@@ -108,13 +108,13 @@
 
                                 <asp:TemplateField HeaderText="Schedule" SortExpression="TimeStart">
                                     <ItemTemplate>
+                                        <asp:Label ID="lblOpenB" runat="server" Text=" [ "></asp:Label>
+                                        <asp:Label ID="lblSchedStatus" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
+                                        <asp:Label ID="lblCloseB" runat="server" Text=" ] "></asp:Label>
+                                        <asp:Label ID="Label1" runat="server" Text="<BR>"></asp:Label>
                                         <asp:Label ID="lblTimeStart" runat="server" Text='<%# Eval("TimeStart") %>'></asp:Label>
                                         <asp:Label ID="lblTo" runat="server" Text=" - "></asp:Label>
                                         <asp:Label ID="lblTimeEnd" runat="server" Text='<%# Eval("TimeEnd") %>'></asp:Label>
-                                        <asp:Label ID="Label1" runat="server" Text="<BR>"></asp:Label>
-                                        <asp:Label ID="lblOpenB" runat="server" Text=" < "></asp:Label>
-                                        <asp:Label ID="lblSchedStatus" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
-                                        <asp:Label ID="lblCloseB" runat="server" Text=" > "></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 

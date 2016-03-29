@@ -27,7 +27,8 @@ namespace AMS.DAL
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
-                ", AGENCY.Agency AS [Agency] " + 
+                ", AGENCY.Agency AS [Agency] " +
+                ", Roles.RoleName AS [RoleName] " + 
                 "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency WHERE " +
                 "Memberships.UserId = EMPLOYEE.UserId AND " +
                 "EMPLOYEE.PositionId = POSITION.Id AND " +
@@ -59,13 +60,96 @@ namespace AMS.DAL
             return dt;
         }
 
+        //display division head, manager, supervisor and staff
+        public DataTable DisplayEmployeeOfDirector(string strSearch, string deptId)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
+                ", AGENCY.Agency AS [Agency] " +
+                ", Roles.RoleName AS [RoleName] " + 
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "DEPARTMENT.Id = @DepartmentId AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "(Roles.RoleName = 'Division Head' OR Roles.RoleName = 'Manager' OR Roles.RoleName = 'Supervisor' OR Roles.RoleName = 'Staff') AND " +
+                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%' ) " +
+                "AND EMPLOYEE.AccountStatusId = 1 " +
+                "ORDER BY Employee.Emp_Id ASC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@searchKeyWord", strSearch);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        //display manager, supervisor and staff
+        public DataTable DisplayEmployeeOfDivision_Head(string strSearch, string deptId)
+        {
+            strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
+                "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
+                "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
+                ", AGENCY.Agency AS [Agency] " +
+                ", Roles.RoleName AS [RoleName] " + 
+                "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency WHERE " +
+                "Memberships.UserId = EMPLOYEE.UserId AND " +
+                "EMPLOYEE.PositionId = POSITION.Id AND " +
+                "POSITION.DepartmentId = DEPARTMENT.Id AND " +
+                "DEPARTMENT.Id = @DepartmentId AND " +
+                "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
+                "EMPLOYEE.AgencyId = AGENCY.Id AND " +
+                "UsersInRoles.RoleId = Roles.RoleId AND " +
+                "(Roles.RoleName = 'Manager' OR Roles.RoleName = 'Supervisor' OR Roles.RoleName = 'Staff') AND " +
+                "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
+                "OR EMPLOYEE.LastName LIKE '%' + @searchKeyWord + '%' " +
+                "OR POSITION.Position LIKE '%' + @searchKeyWord + '%' " +
+                "OR DEPARTMENT.Department LIKE '%' + @searchKeyWord + '%' ) " +
+                "AND EMPLOYEE.AccountStatusId = 1 " +
+                "ORDER BY Employee.Emp_Id ASC";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@searchKeyWord", strSearch);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         //display supervisor and staff
         public DataTable DisplayEmployeeOfManager(string strSearch, string deptId)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
-                ", AGENCY.Agency AS [Agency] " + 
+                ", AGENCY.Agency AS [Agency] " +
+                ", Roles.RoleName AS [RoleName] " + 
                 "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency WHERE " +
                 "Memberships.UserId = EMPLOYEE.UserId AND " +
                 "EMPLOYEE.PositionId = POSITION.Id AND " +
@@ -105,7 +189,8 @@ namespace AMS.DAL
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
                 "POSITION.Position AS [POSITION], DEPARTMENT.Department AS [DEPARTMENT] " +
-                ", AGENCY.Agency AS [Agency] " + 
+                ", AGENCY.Agency AS [Agency] " +
+                ", Roles.RoleName AS [RoleName] " + 
                 "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency WHERE " +
                 "Memberships.UserId = EMPLOYEE.UserId AND " +
                 "EMPLOYEE.PositionId = POSITION.Id AND " +

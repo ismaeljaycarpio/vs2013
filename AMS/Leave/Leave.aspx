@@ -72,7 +72,7 @@
                         </Triggers>
                     </asp:UpdatePanel>
                 </a></li>
-                <li><a href="#leaveReportTab" data-toggle="tab">Leave Report</a></li>
+                <li><a href="#leaveReportTab" data-toggle="tab">Leave Report &nbsp;<span class="glyphicon glyphicon-print"></span></a></li>
             </ul>
 
             <div id="myTabContent" class="tab-content">
