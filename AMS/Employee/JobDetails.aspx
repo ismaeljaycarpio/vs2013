@@ -23,7 +23,7 @@
                         </asp:Panel>
 
                         <asp:Panel ID="pnlAccountStatus" runat="server" CssClass="alert alert-danger" Visible="false">
-                            <strong>Notice!</strong> This Employee is past Contract End Date
+                            <strong>Notice!</strong> Employee contract has expired.
                         </asp:Panel>
 
                         <div class="form-group">
@@ -84,14 +84,14 @@
                         <asp:UpdatePanel ID="upRank" runat="server">
                             <ContentTemplate>
                                 <div class="form-group">
-                                    <label for="lblManager" class="col-sm-3 control-label">Manager</label>
+                                    <asp:Label ID="lblForManager" CssClass="control-label" runat="server"></asp:Label>
                                     <div class="col-sm-8">
                                         <asp:Label ID="lblManager" runat="server"></asp:Label>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="lblSupervisor" class="col-sm-3 control-label">Supervisor</label>
+                                    <asp:Label ID="lblForSupervisor" CssClass="control-label" runat="server"></asp:Label>
                                     <div class="col-sm-6">
                                         <asp:Label ID="lblSupervisor" runat="server"></asp:Label>
                                     </div>

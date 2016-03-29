@@ -53,9 +53,60 @@ namespace AMS.Employee
                 txtContractStartingDate.Text = dt.Rows[0]["Contract_SD"].ToString();
                 txtContractEndingDate.Text = dt.Rows[0]["Contract_ED"].ToString();
 
-                //get list of supervisor and manager
-                lblManager.Text = emp.GetManagerName(ddlDepartment.SelectedValue.ToString());
-                lblSupervisor.Text = emp.GetSupervisorName(ddlDepartment.SelectedValue.ToString());
+                //get userid
+                Guid userId = Guid.Parse(Membership.GetUser(hfUserId.Value).ProviderUserKey.ToString());
+                
+                string deptId = ddlDepartment.SelectedValue.ToString();
+
+                if(User.IsInRole("General Manager"))
+                {
+                    lblForSupervisor.Text = "Director: ";
+                    lblSupervisor.Text = emp.GetDirectors();
+                }
+                else if(User.IsInRole("Director"))
+                {
+                    lblForManager.Text = "General Manager: ";
+                    lblForSupervisor.Text = "Division Head ";
+
+                    //assume dept based
+                    lblManager.Text = emp.getGM();
+                    lblSupervisor.Text = emp.getDivisionHead(deptId);
+                }
+                else if(User.IsInRole("Division Head"))
+                {
+                    lblForManager.Text = "Director: ";
+                    lblForSupervisor.Text = "Manager: ";
+
+                    //assume dept based
+                    lblManager.Text = emp.GetDirectors(deptId);
+                    lblSupervisor.Text = emp.GetManagerName(deptId);
+                }
+                else if(User.IsInRole("Manager"))
+                {
+                    lblForManager.Text = "Division Head: ";
+                    lblForSupervisor.Text = "Supervisor: ";
+
+                    lblManager.Text = emp.getDivisionHead(deptId);
+                    lblSupervisor.Text = emp.GetSupervisorName(deptId);
+                }
+                else if(User.IsInRole("Supervisor"))
+                {
+                    lblForManager.Text = "Manager: ";
+                    lblManager.Text = emp.GetManagerName(deptId);         
+                }
+                else if(User.IsInRole("Staff"))
+                {
+                    lblForManager.Text = "Manager: ";
+                    lblForSupervisor.Text = "Supervisor: ";
+
+                    lblManager.Text = emp.GetManagerName(deptId);
+                    lblSupervisor.Text = emp.GetSupervisorName(deptId);
+                }
+                else if (User.IsInRole("Admin"))
+                {
+                    lblForManager.Text = "Admin :";
+                    lblManager.Text = emp.getAdmin(userId);
+                }
 
                 //chk user account
                 if (dt.Rows[0]["Contract_ED"].ToString() != String.Empty)
@@ -67,7 +118,7 @@ namespace AMS.Employee
                         pnlAccountStatus.Visible = true;
                         //ddlAccountStatus.ClearSelection();
                         //ddlAccountStatus.Items.FindByText("Expired").Selected = true;
-                    }                    
+                    }             
                 }
 
                 if (!User.IsInRole("Admin") && !User.IsInRole("HR"))

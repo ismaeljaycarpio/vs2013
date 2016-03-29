@@ -503,6 +503,211 @@ namespace AMS.DAL
             return dt.Rows[0]["DepartmentId"].ToString();
         }
 
+        //get list of username based from roles
+        public string getAdmin(Guid myUserId)
+        {
+            //dont include self to list
+
+            strSql = "SELECT EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName] " +
+                "FROM EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
+                "WHERE " +
+                "EMPLOYEE.PositionId = POSITION.Id " +
+                "AND POSITION.DepartmentId = DEPARTMENT.Id " +
+                "AND UsersInRoles.RoleId = Roles.RoleId " +
+                "AND EMPLOYEE.UserId = UsersInRoles.UserId " +
+                "AND EMPLOYEE.UserId = @MyUserId " +
+                "AND Roles.RoleName = 'Admin'";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@MyUserId", myUserId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            StringBuilder sb = new StringBuilder();
+            if (dt.Rows.Count > 1)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    sb.AppendLine(row["FullName"].ToString());
+                    sb.AppendLine("<BR>");
+                }
+                return sb.ToString();
+            }
+            else if (dt.Rows.Count == 1)
+            {
+                return dt.Rows[0]["FullName"].ToString();
+            }
+
+            return "N/A";
+        }
+
+        public string getGM()
+        {
+            strSql = "SELECT EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName] " +
+                "FROM EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
+                "WHERE " +
+                "EMPLOYEE.PositionId = POSITION.Id " +
+                "AND POSITION.DepartmentId = DEPARTMENT.Id " +
+                "AND UsersInRoles.RoleId = Roles.RoleId " +
+                "AND EMPLOYEE.UserId = UsersInRoles.UserId " +
+                "AND Roles.RoleName = 'General Manager'";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            StringBuilder sb = new StringBuilder();
+            if (dt.Rows.Count > 1)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    sb.AppendLine(row["FullName"].ToString());
+                    sb.AppendLine("<BR>");
+                }
+                return sb.ToString();
+            }
+            else if (dt.Rows.Count == 1)
+            {
+                return dt.Rows[0]["FullName"].ToString();
+            }
+
+            return "N/A";
+        }
+
+        //get all director - use by GM
+        public string GetDirectors()
+        {
+            strSql = "SELECT EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName] " +
+                "FROM EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
+                "WHERE " +
+                "EMPLOYEE.PositionId = POSITION.Id " +
+                "AND POSITION.DepartmentId = DEPARTMENT.Id " +
+                "AND UsersInRoles.RoleId = Roles.RoleId " +
+                "AND EMPLOYEE.UserId = UsersInRoles.UserId " +
+                "AND Roles.RoleName = 'Director'";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            StringBuilder sb = new StringBuilder();
+            if (dt.Rows.Count > 1)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    sb.AppendLine(row["FullName"].ToString());
+                    sb.AppendLine("<BR>");
+                }
+                return sb.ToString();
+            }
+            else if (dt.Rows.Count == 1)
+            {
+                return dt.Rows[0]["FullName"].ToString();
+            }
+
+            return "N/A";
+        }
+
+        public string GetDirectors(string deptId)
+        {
+            strSql = "SELECT EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName] " +
+                "FROM EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
+                "WHERE " +
+                "EMPLOYEE.PositionId = POSITION.Id " +
+                "AND POSITION.DepartmentId = DEPARTMENT.Id " +
+                "AND POSITION.DepartmentId = @DepartmentId " +
+                "AND UsersInRoles.RoleId = Roles.RoleId " +
+                "AND EMPLOYEE.UserId = UsersInRoles.UserId " +
+                "AND Roles.RoleName = 'Director'";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            StringBuilder sb = new StringBuilder();
+            if (dt.Rows.Count > 1)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    sb.AppendLine(row["FullName"].ToString());
+                    sb.AppendLine("<BR>");
+                }
+                return sb.ToString();
+            }
+            else if (dt.Rows.Count == 1)
+            {
+                return dt.Rows[0]["FullName"].ToString();
+            }
+
+            return "N/A";
+        }
+
+        public string getDivisionHead(string deptId)
+        {
+            strSql = "SELECT EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName] " +
+                "FROM EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles " +
+                "WHERE " +
+                "EMPLOYEE.PositionId = POSITION.Id " +
+                "AND POSITION.DepartmentId = DEPARTMENT.Id " +
+                "AND POSITION.DepartmentId = @DepartmentId " +
+                "AND UsersInRoles.RoleId = Roles.RoleId " +
+                "AND EMPLOYEE.UserId = UsersInRoles.UserId " +
+                "AND Roles.RoleName = 'Division Head'";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@DepartmentId", deptId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            StringBuilder sb = new StringBuilder();
+            if (dt.Rows.Count > 1)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    sb.AppendLine(row["FullName"].ToString());
+                    sb.AppendLine("<BR>");
+                }
+                return sb.ToString();
+            }
+            else if (dt.Rows.Count == 1)
+            {
+                return dt.Rows[0]["FullName"].ToString();
+            }
+
+            return "N/A";
+        }
+
         public string GetManagerName(string deptId)
         {
             strSql = "SELECT EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName AS [FullName] " +

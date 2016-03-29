@@ -136,7 +136,7 @@
                             <label for="txtDoB" class="col-sm-2 control-label">Date of Birth</label>
                             <div class="col-sm-4">
                                 <div class="input-group date" id="dtpDOB">
-                                    <asp:TextBox ID="txtDoB" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtDoB" runat="server" CssClass="form-control"></asp:TextBox>
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>

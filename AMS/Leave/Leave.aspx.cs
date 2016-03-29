@@ -66,6 +66,18 @@ namespace AMS.Leave
                 //display leaves whos hrApproval is empty but departmenthead approval is signed
                 return dt = leaves.DisplayPendingLeaveApproval_HR();
             }
+            else if (User.IsInRole("General Manager"))
+            {
+                //display director
+            }
+            else if(User.IsInRole("Director"))
+            {
+                //dispaly division head
+            }
+            else if(User.IsInRole("Division Head"))
+            {
+                //display manager
+            }
             else if (User.IsInRole("Manager"))
             {
                 //display supervisors and staff by dept
@@ -172,7 +184,11 @@ namespace AMS.Leave
 
         protected void btnApprove_Click(object sender, EventArgs e)
         {
-            if(User.IsInRole("Manager") || User.IsInRole("Supervisor"))
+            if(User.IsInRole("General Manager") || 
+                User.IsInRole("Director") || 
+                User.IsInRole("Division Head") ||
+                User.IsInRole("Manager") ||
+                User.IsInRole("Supervisor"))
             {
                 leaves.approve_Pending_leave(true, false, hfApproveId.Value, "Approved");
             }
@@ -207,7 +223,11 @@ namespace AMS.Leave
 
         protected void btnDisapprove_Click(object sender, EventArgs e)
         {
-            if (User.IsInRole("Manager") || User.IsInRole("Supervisor"))
+            if (User.IsInRole("General Manager") ||
+                User.IsInRole("Director") ||
+                User.IsInRole("Division Head") ||
+                User.IsInRole("Manager") ||
+                User.IsInRole("Supervisor"))
             {
                 leaves.approve_Pending_leave(true, false, hfApproveId.Value, "Disapproved");
             }
