@@ -3,10 +3,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <%--<script src="/jquery.bxslider/jquery.bxslider.min.js"></script>
+    <!-- bxSlider CSS file -->
+    <link href="/jquery.bxslider/jquery.bxslider.css" rel="stylesheet" />--%>
+
     <div class="row">
-
-
-        <div class="col-lg-4">
+        <%--<div class="col-md-12">
+            <ul class="bxslider">
+                <asp:Repeater ID="Repeater1" runat="server">
+                    <ItemTemplate>
+                        <li></li>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </ul>
+        </div>--%>
+                <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;Announcements</h4>
@@ -66,6 +78,11 @@
                 </div>
             </div>
         </div>
-
     </div>
+
+    <%--<script>
+        $(document).ready(function () {
+            $('.bxslider').bxSlider();
+        });
+    </script>--%>
 </asp:Content>

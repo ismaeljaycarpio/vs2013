@@ -515,7 +515,7 @@ namespace AMS.DAL
                 "AND POSITION.DepartmentId = DEPARTMENT.Id " +
                 "AND UsersInRoles.RoleId = Roles.RoleId " +
                 "AND EMPLOYEE.UserId = UsersInRoles.UserId " +
-                "AND EMPLOYEE.UserId = @MyUserId " +
+                "AND EMPLOYEE.UserId != @MyUserId " +
                 "AND Roles.RoleName = 'Admin'";
 
             conn = new SqlConnection();

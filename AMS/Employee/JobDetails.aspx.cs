@@ -54,16 +54,17 @@ namespace AMS.Employee
                 txtContractEndingDate.Text = dt.Rows[0]["Contract_ED"].ToString();
 
                 //get userid
-                Guid userId = Guid.Parse(Membership.GetUser(hfUserId.Value).ProviderUserKey.ToString());
-                
+                Guid userId = Guid.Parse(hfUserId.Value);
+                string userName = Membership.GetUser(userId).UserName;
+
                 string deptId = ddlDepartment.SelectedValue.ToString();
 
-                if(User.IsInRole("General Manager"))
+                if(Roles.IsUserInRole(userName, "General Manager"))
                 {
                     lblForSupervisor.Text = "Director: ";
                     lblSupervisor.Text = emp.GetDirectors();
                 }
-                else if(User.IsInRole("Director"))
+                else if (Roles.IsUserInRole(userName, "Director"))
                 {
                     lblForManager.Text = "General Manager: ";
                     lblForSupervisor.Text = "Division Head ";
@@ -72,7 +73,7 @@ namespace AMS.Employee
                     lblManager.Text = emp.getGM();
                     lblSupervisor.Text = emp.getDivisionHead(deptId);
                 }
-                else if(User.IsInRole("Division Head"))
+                else if (Roles.IsUserInRole(userName, "Division Head"))
                 {
                     lblForManager.Text = "Director: ";
                     lblForSupervisor.Text = "Manager: ";
@@ -81,7 +82,7 @@ namespace AMS.Employee
                     lblManager.Text = emp.GetDirectors(deptId);
                     lblSupervisor.Text = emp.GetManagerName(deptId);
                 }
-                else if(User.IsInRole("Manager"))
+                else if (Roles.IsUserInRole(userName, "Manager"))
                 {
                     lblForManager.Text = "Division Head: ";
                     lblForSupervisor.Text = "Supervisor: ";
@@ -89,12 +90,12 @@ namespace AMS.Employee
                     lblManager.Text = emp.getDivisionHead(deptId);
                     lblSupervisor.Text = emp.GetSupervisorName(deptId);
                 }
-                else if(User.IsInRole("Supervisor"))
+                else if (Roles.IsUserInRole(userName, "Supervisor"))
                 {
                     lblForManager.Text = "Manager: ";
                     lblManager.Text = emp.GetManagerName(deptId);         
                 }
-                else if(User.IsInRole("Staff"))
+                else if (Roles.IsUserInRole(userName, "Staff"))
                 {
                     lblForManager.Text = "Manager: ";
                     lblForSupervisor.Text = "Supervisor: ";
@@ -102,9 +103,9 @@ namespace AMS.Employee
                     lblManager.Text = emp.GetManagerName(deptId);
                     lblSupervisor.Text = emp.GetSupervisorName(deptId);
                 }
-                else if (User.IsInRole("Admin"))
+                else if (Roles.IsUserInRole(userName, "Admin"))
                 {
-                    lblForManager.Text = "Admin :";
+                    lblForManager.Text = "Other Admin :";
                     lblManager.Text = emp.getAdmin(userId);
                 }
 
@@ -226,9 +227,9 @@ namespace AMS.Employee
         protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)
         {
             //lblRole.Text = emp.GetRoleNameBypPosition(ddlPosition.SelectedValue.ToString());
-            ddlDepartment.SelectedValue = pos.GetDepartmentIdBypPosition(ddlPosition.SelectedValue.ToString());
-            lblManager.Text = emp.GetManagerName(ddlDepartment.SelectedValue.ToString());
-            lblSupervisor.Text = emp.GetSupervisorName(ddlDepartment.SelectedValue.ToString());
+            //ddlDepartment.SelectedValue = pos.GetDepartmentIdBypPosition(ddlPosition.SelectedValue.ToString());
+            //lblManager.Text = emp.GetManagerName(ddlDepartment.SelectedValue.ToString());
+            //lblSupervisor.Text = emp.GetSupervisorName(ddlDepartment.SelectedValue.ToString());
         }
     }
 }
