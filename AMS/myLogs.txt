@@ -7,6 +7,33 @@
 [Admin],admin						|			|						|			|
 
 
+///////////////////////////////////////////////////////////////
+////////////////////2016-03-30/////////////////////////////////
+///////////////////////////////////////////////////////////////
+- include division
+		GM
+
+		[Director]
+		 - Director of Finance and Admin
+		 - Director of Sales
+		 - Director of Engineering
+		 - Director of Rooms
+
+		 [Division Head]
+		 - F and B Manager
+		 - Rooms Division Manager
+
+		 [Manager]
+		 - Purchasing Manager
+		 - Asst. Executive Housekeeper
+		 - Reservations Manager
+		 - Sous Chef
+		 - Service Manager for ICT
+		 - Finance Manager
+		 - Executive Housekeeper
+		 - Marketing Communications Manager
+		 - Area Sales Manager
+
 
 
 ///////////////////////////////////////////////////////////////
