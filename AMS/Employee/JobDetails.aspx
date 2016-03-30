@@ -84,14 +84,14 @@
                         <asp:UpdatePanel ID="upRank" runat="server">
                             <ContentTemplate>
                                 <div class="form-group">
-                                    <asp:Label ID="lblForManager" CssClass="control-label" runat="server"></asp:Label>
+                                    <asp:Label ID="lblForManager" CssClass="col-sm-3 control-label" runat="server" Font-Bold="true"></asp:Label>
                                     <div class="col-sm-8">
                                         <asp:Label ID="lblManager" runat="server"></asp:Label>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <asp:Label ID="lblForSupervisor" CssClass="control-label" runat="server"></asp:Label>
+                                    <asp:Label ID="lblForSupervisor" CssClass="col-sm-3 control-label" runat="server" Font-Bold="true"></asp:Label>
                                     <div class="col-sm-6">
                                         <asp:Label ID="lblSupervisor" runat="server"></asp:Label>
                                     </div>
