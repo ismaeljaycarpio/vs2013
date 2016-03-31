@@ -152,7 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Manage.aspx" />
-    <Content Include="app_offline.html" />
+    <Content Include="app_offline.htm" />
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
