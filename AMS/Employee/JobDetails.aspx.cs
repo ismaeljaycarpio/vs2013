@@ -61,6 +61,7 @@ namespace AMS.Employee
 
                 if(Roles.IsUserInRole(userName, "General Manager"))
                 {
+                    //get all directors
                     lblForSupervisor.Text = "Director: ";
                     lblSupervisor.Text = emp.GetDirectors();
                 }

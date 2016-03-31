@@ -60,8 +60,8 @@ namespace AMS.DAL
             return dt;
         }
 
-        //display division head, manager, supervisor and staff
-        public DataTable DisplayEmployeeOfDirector(string strSearch, string deptId)
+        //display other director, division head, manager, supervisor
+        public DataTable DisplayEmployeeOfDirector(string strSearch)
         {
             strSql = "SELECT EMPLOYEE.UserId, EMPLOYEE.Emp_Id, " +
                 "(EMPLOYEE.LastName + ', ' + EMPLOYEE.FirstName + ' ' + EMPLOYEE.MiddleName) AS FullName, " +
@@ -72,11 +72,10 @@ namespace AMS.DAL
                 "Memberships.UserId = EMPLOYEE.UserId AND " +
                 "EMPLOYEE.PositionId = POSITION.Id AND " +
                 "POSITION.DepartmentId = DEPARTMENT.Id AND " +
-                "DEPARTMENT.Id = @DepartmentId AND " +
                 "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
                 "EMPLOYEE.AgencyId = AGENCY.Id AND " +
                 "UsersInRoles.RoleId = Roles.RoleId AND " +
-                "(Roles.RoleName = 'Division Head' OR Roles.RoleName = 'Manager' OR Roles.RoleName = 'Supervisor' OR Roles.RoleName = 'Staff') AND " +
+                "(Roles.RoleName = 'Division Head' OR Roles.RoleName = 'Manager' OR Roles.RoleName = 'Supervisor') AND " +
                 "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
                 "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
                 "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +
@@ -90,7 +89,6 @@ namespace AMS.DAL
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
             comm.Parameters.AddWithValue("@searchKeyWord", strSearch);
-            comm.Parameters.AddWithValue("@DepartmentId", deptId);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 
@@ -117,7 +115,7 @@ namespace AMS.DAL
                 "EMPLOYEE.UserId = UsersInRoles.UserId AND " +
                 "EMPLOYEE.AgencyId = AGENCY.Id AND " +
                 "UsersInRoles.RoleId = Roles.RoleId AND " +
-                "(Roles.RoleName = 'Manager' OR Roles.RoleName = 'Supervisor' OR Roles.RoleName = 'Staff') AND " +
+                "(Roles.RoleName = 'Manager' OR Roles.RoleName = 'Supervisor') AND " +
                 "(EMPLOYEE.Emp_Id LIKE '%' + @searchKeyWord + '%' " +
                 "OR EMPLOYEE.FirstName LIKE '%' + @searchKeyWord + '%' " +
                 "OR EMPLOYEE.MiddleName LIKE '%' + @searchKeyWord + '%' " +

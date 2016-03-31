@@ -46,8 +46,8 @@ namespace AMS.Employee
             }
             else if(User.IsInRole("Director"))
             {
-                //display division head, manager, supervisor by dept
-                return dt = emp.DisplayEmployeeOfDirector(txtSearch.Text, deptId);
+                //display division head, manager, supervisor
+                return dt = emp.DisplayEmployeeOfDirector(txtSearch.Text);
             }
             else if(User.IsInRole("Division Head"))
             {
@@ -70,7 +70,8 @@ namespace AMS.Employee
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             gvEmployee.DataSource = BindGridView();
-            gvEmployee.DataBind(); 
+            gvEmployee.DataBind();
+            txtSearch.Focus();
         }
 
         protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -132,7 +133,6 @@ namespace AMS.Employee
             Session["SortedView"] = sortedView;
             gvEmployee.DataSource = sortedView;
             gvEmployee.DataBind();
-
         }
 
 
