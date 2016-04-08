@@ -152,7 +152,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Manage.aspx" />
-    <Content Include="app_offline.htm" />
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
@@ -173,6 +172,7 @@
     <Content Include="Dashboard\Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="dev\default.aspx" />
+    <Content Include="dev\Users.aspx" />
     <Content Include="Employee\ARBa_Score_Sheet.aspx" />
     <Content Include="Employee\Awards.aspx" />
     <Content Include="Employee\Contacts.aspx" />
@@ -668,6 +668,13 @@
     </Compile>
     <Compile Include="dev\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dev\Users.aspx.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dev\Users.aspx.designer.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
     <Compile Include="eHRISContext.designer.cs">
       <AutoGen>True</AutoGen>
