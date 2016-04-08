@@ -229,13 +229,13 @@ namespace AMS.MasterConfig
             if (e.CommandName.Equals("editRecord"))
             {
                 int index = Convert.ToInt32(e.CommandArgument);
-                System.Text.StringBuilder sb = new System.Text.StringBuilder();
-
+              
                 dt = accnt.SelectUserAccounts((Guid)(gvEmployee.DataKeys[index].Value));
                 lblRowId.Text = dt.Rows[0]["UserId"].ToString();
                 txtEditName.Text = dt.Rows[0]["FullName"].ToString();
                 DDLRole.SelectedValue = dt.Rows[0]["RoleId"].ToString();
 
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
                 sb.Append(@"<script type='text/javascript'>");
                 sb.Append("$('#updateModal').modal('show');");
                 sb.Append(@"</script>");

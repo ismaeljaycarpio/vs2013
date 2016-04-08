@@ -478,7 +478,7 @@
                                     <ul class="nav navbar-nav">
                                         <li><a runat="server" href="~/timesheet/default.aspx">Timesheet</a></li>
                                     </ul>
-                                    <%--<ul class="nav navbar-nav navbar-right">
+                                    <ul class="nav navbar-nav navbar-right">
                                         <li class="dropdown">
                                             <a runat="server"
                                                 href="#"
@@ -490,11 +490,12 @@
                                                 <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu">
-                                                <li><a runat="server" href="~/Account/Manage.aspx">Change Password</a></li>
-                                                <li><asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log out" LogoutPageUrl="~/Default.aspx" /></li>
+                                                <li>
+                                                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="RedirectToLoginPage" LogoutText="Log out" />
+                                                </li>
                                             </ul>
                                         </li>
-                                    </ul>--%>
+                                    </ul>
                                 </ContentTemplate>
                             </asp:RoleGroup>
 

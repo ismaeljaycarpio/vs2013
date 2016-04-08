@@ -119,7 +119,6 @@
 
     <div id="updateModal" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" role="dialog">
         <div class="modal-dialog">
-
             <!-- Update Modal content-->
             <div class="modal-content">
                 <asp:UpdatePanel ID="upEdit" runat="server">
