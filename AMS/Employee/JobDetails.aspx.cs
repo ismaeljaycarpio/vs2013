@@ -168,8 +168,8 @@ namespace AMS.Employee
                     ddlAccountStatus.SelectedValue,
                     Guid.Parse(hfUserId.Value));
             
-            //update membership
-            accnt.changeUsername(Guid.Parse(hfUserId.Value), txtEmpId.Text.Trim());
+            //update membership - UPATE Employee ID discontinued
+            //accnt.changeUsername(Guid.Parse(hfUserId.Value), txtEmpId.Text.Trim());
 
             Response.Redirect(Request.Url.AbsoluteUri + "?s=1");
         }

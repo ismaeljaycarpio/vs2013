@@ -24,7 +24,11 @@
                             <div class="col-sm-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                    <asp:TextBox ID="txtEmpId" runat="server" CssClass="form-control" placeholder="Employee ID"></asp:TextBox>
+                                    <asp:TextBox ID="txtEmpId" 
+                                        runat="server" 
+                                        CssClass="form-control"
+                                        Enabled="false"
+                                        placeholder="Employee ID"></asp:TextBox>
                                     <asp:Button ID="btnGenerateId"
                                         runat="server"
                                         Text="Generate"
