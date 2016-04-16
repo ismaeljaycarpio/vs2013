@@ -96,7 +96,6 @@ namespace AMS.Employee
             Response.Redirect("~/Employee/ViewEmployee.aspx");
         }
 
-
         public SortDirection direction
         {
             get
