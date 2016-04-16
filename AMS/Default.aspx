@@ -24,7 +24,7 @@
                     <h4><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;Announcements</h4>
                 </div>
                 <div class="panel-body">
-                    <asp:ListView ID="lvAnn" runat="server">
+                    <asp:ListView ID="lvAnn" runat="server" >
                         <EmptyDataTemplate>
                             <p>No Announcement</p>
                         </EmptyDataTemplate>
