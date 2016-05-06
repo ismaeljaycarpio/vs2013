@@ -88,7 +88,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Hours Rendered" SortExpression="HoursRendered">
+                                <asp:TemplateField HeaderText="Hours Rendered">
                                     <ItemTemplate>
                                         <asp:Label ID="lblHoursRendered" runat="server"></asp:Label>
                                     </ItemTemplate>
