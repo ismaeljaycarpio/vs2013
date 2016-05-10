@@ -48,6 +48,9 @@ namespace AMS
     partial void InsertUsersInRole(UsersInRole instance);
     partial void UpdateUsersInRole(UsersInRole instance);
     partial void DeleteUsersInRole(UsersInRole instance);
+    partial void InsertSiteStatus(SiteStatus instance);
+    partial void UpdateSiteStatus(SiteStatus instance);
+    partial void DeleteSiteStatus(SiteStatus instance);
     #endregion
 		
 		public eHRISContextDataContext() : 
@@ -125,6 +128,14 @@ namespace AMS
 			get
 			{
 				return this.GetTable<UsersInRole>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SiteStatus> SiteStatus
+		{
+			get
+			{
+				return this.GetTable<SiteStatus>();
 			}
 		}
 	}
@@ -2452,7 +2463,7 @@ namespace AMS
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Membership", Storage="_User", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_MembershipLINQ", Storage="_User", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
 		public User User
 		{
 			get
@@ -2650,7 +2661,7 @@ namespace AMS
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Membership", Storage="_MembershipLINQ", ThisKey="UserId", OtherKey="UserId", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_MembershipLINQ", Storage="_MembershipLINQ", ThisKey="UserId", OtherKey="UserId", IsUnique=true, IsForeignKey=false)]
 		public MembershipLINQ MembershipLINQ
 		{
 			get
@@ -2868,6 +2879,92 @@ namespace AMS
 						this._UserId = default(System.Guid);
 					}
 					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SiteStatus")]
+	public partial class SiteStatus : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<bool> _SetValue;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnSetValueChanging(System.Nullable<bool> value);
+    partial void OnSetValueChanged();
+    #endregion
+		
+		public SiteStatus()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SetValue", DbType="Bit")]
+		public System.Nullable<bool> SetValue
+		{
+			get
+			{
+				return this._SetValue;
+			}
+			set
+			{
+				if ((this._SetValue != value))
+				{
+					this.OnSetValueChanging(value);
+					this.SendPropertyChanging();
+					this._SetValue = value;
+					this.SendPropertyChanged("SetValue");
+					this.OnSetValueChanged();
 				}
 			}
 		}

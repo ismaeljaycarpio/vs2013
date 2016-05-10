@@ -15,6 +15,7 @@ namespace AMS
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
         DAL.Employee emp = new DAL.Employee();
+        eHRISContextDataContext db = new eHRISContextDataContext();
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -69,6 +70,18 @@ namespace AMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!Page.IsPostBack)
+            {
+                //chk if it is locked
+                var status = (from s in db.SiteStatus
+                              where s.Id == 1
+                              select s).FirstOrDefault();
+
+                if(status.SetValue == true)
+                {
+                    Response.Redirect("~/LockedOut.html");
+                }
+            }
         }
         protected void hlViewProfile_Click(object sender, EventArgs e)
         {

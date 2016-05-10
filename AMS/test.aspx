@@ -1,6 +1,17 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="test.aspx.cs" Inherits="AMS.test" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Button runat="server" ID="btnSample" OnClick="btnSample_Click" />
-</asp:Content>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="test.aspx.cs" Inherits="AMS.test" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <asp:TextBox ID="txtpass" runat="server"></asp:TextBox>
+        <asp:Button ID="btnClick" runat="server" OnClick="btnClick_Click" Text="Click" /> 
+    </div>
+    </form>
+</body>
+</html>

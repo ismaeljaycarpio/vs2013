@@ -20,7 +20,7 @@
         <elementListCompartment Id="e657d64e-e4c9-49e9-be9c-49fc0757cffd" absoluteBounds="4.265, 3.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.375 : 4.39505126953125); (4.25 : 4.39505126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.375 : 4.39505126953125); (4.25 : 4.39505126953125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eHRISContextDataContext/EvaluationLINQ/EvaluationLINQ_Evaluation_Score" />
       <nodes>
         <classShapeMoniker Id="2590659c-abde-42ad-92bd-40cda006b82f" />
@@ -39,32 +39,38 @@
         <elementListCompartment Id="bec474cf-718f-4656-a7eb-32c15f955f1f" absoluteBounds="5.265, 13.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.25 : 13.9479484049479); (4.80208333333333 : 13.9479484049479 : JumpStart); (4.63541666666667 : 13.9479484049479 : JumpEnd); (2.5 : 13.9479484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/eHRISContextDataContext/User/User_Membership" />
-      <nodes>
-        <classShapeMoniker Id="c827113c-802a-439b-a679-6e8bf2227a1a" />
-        <classShapeMoniker Id="7aa251c6-b4de-46ea-b8f4-ab5ab43ad148" />
-      </nodes>
-    </associationConnector>
     <classShape Id="b9019810-2c54-4a6d-a290-690a54ff9242" absoluteBounds="3.875, 16, 2, 1.1939925130208333">
       <DataClassMoniker Name="/eHRISContextDataContext/UsersInRole" />
       <nestedChildShapes>
         <elementListCompartment Id="485c47b4-5027-4d4e-85a9-3550681d288c" absoluteBounds="3.89, 16.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.71875 : 7.57859537760417); (4.71875 : 16)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.71875 : 7.57859537760417); (4.71875 : 16)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eHRISContextDataContext/Role/Role_UsersInRole" />
       <nodes>
         <classShapeMoniker Id="dfcb8224-d410-4a6d-802e-e92099b2a828" />
         <classShapeMoniker Id="b9019810-2c54-4a6d-a290-690a54ff9242" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5625 : 14.6458968098958); (5.5625 : 16)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5625 : 14.6458968098958); (5.5625 : 16)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eHRISContextDataContext/User/User_UsersInRole" />
       <nodes>
         <classShapeMoniker Id="c827113c-802a-439b-a679-6e8bf2227a1a" />
         <classShapeMoniker Id="b9019810-2c54-4a6d-a290-690a54ff9242" />
       </nodes>
     </associationConnector>
+    <associationConnector edgePoints="[(5.25 : 13.9479484049479); (4.80208333333333 : 13.9479484049479 : JumpStart); (4.63541666666667 : 13.9479484049479 : JumpEnd); (2.5 : 13.9479484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/eHRISContextDataContext/User/User_MembershipLINQ" />
+      <nodes>
+        <classShapeMoniker Id="c827113c-802a-439b-a679-6e8bf2227a1a" />
+        <classShapeMoniker Id="7aa251c6-b4de-46ea-b8f4-ab5ab43ad148" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ebb6f864-d386-4598-8c4e-7c71bbd4bbb9" absoluteBounds="6.875, 8.75, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/eHRISContextDataContext/SiteStatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d938f633-4759-4d85-83bd-5c820e1ae80f" absoluteBounds="6.89, 9.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
