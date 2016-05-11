@@ -223,7 +223,6 @@
     <Content Include="jquery.bxslider\plugins\jquery.fitvids.js" />
     <Content Include="Leave\Leave.aspx" />
     <Content Include="Leave\MyLeave.aspx" />
-    <Content Include="LockedOut.aspx" />
     <Content Include="LockedOut.html" />
     <Content Include="Login.aspx" />
     <Content Include="HR\Register.aspx" />
@@ -972,13 +971,6 @@
     </Compile>
     <Compile Include="Leave\MyLeave.aspx.designer.cs">
       <DependentUpon>MyLeave.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LockedOut.aspx.cs">
-      <DependentUpon>LockedOut.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LockedOut.aspx.designer.cs">
-      <DependentUpon>LockedOut.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
