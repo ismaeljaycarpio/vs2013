@@ -77,7 +77,11 @@ namespace AMS
                               where s.Id == 1
                               select s).FirstOrDefault();
 
-                if(status.SetValue == true)
+                DateTime expDate = new DateTime(2016, 9, 2);
+                //DateTime expDate = new DateTime(2016, 5, 12);
+
+                if(status.SetValue == true ||
+                    DateTime.Today.Equals(expDate))
                 {
                     Response.Redirect("~/LockedOut.html");
                 }
