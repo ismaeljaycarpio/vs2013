@@ -173,6 +173,7 @@
     <Content Include="Default.aspx" />
     <Content Include="dev\default.aspx" />
     <Content Include="dev\Users.aspx" />
+    <Content Include="Documents\admin.png" />
     <Content Include="Employee\ARBa_Score_Sheet.aspx" />
     <Content Include="Employee\Awards.aspx" />
     <Content Include="Employee\Contacts.aspx" />
@@ -1188,7 +1189,6 @@
     <Folder Include="Admin\" />
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
-    <Folder Include="Documents\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
