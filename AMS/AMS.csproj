@@ -214,7 +214,9 @@
     <Content Include="Global.asax" />
     <Content Include="HR\Attendance.aspx" />
     <Content Include="HR\TimeInTimeOut.aspx" />
+    <Content Include="Images\primepower-logo.jpg" />
     <Content Include="Images\PrimePowerLogo.png" />
+    <Content Include="Images\toplis-logo.gif" />
     <Content Include="jquery.bxslider\images\bx_loader.gif" />
     <Content Include="jquery.bxslider\images\controls.png" />
     <Content Include="jquery.bxslider\jquery.bxslider.css" />
@@ -224,6 +226,7 @@
     <Content Include="jquery.bxslider\plugins\jquery.fitvids.js" />
     <Content Include="Leave\Leave.aspx" />
     <Content Include="Leave\MyLeave.aspx" />
+    <Content Include="Leave\print-leave-form.aspx" />
     <Content Include="LockedOut.html" />
     <Content Include="Login.aspx" />
     <Content Include="HR\Register.aspx" />
@@ -434,6 +437,17 @@
     <Content Include="Leave\Web.config" />
     <Content Include="jquery.bxslider\bower.json" />
     <Content Include="jquery.bxslider\readme.md" />
+    <Content Include="Leave\LeaveReport.xsc">
+      <DependentUpon>LeaveReport.xsd</DependentUpon>
+    </Content>
+    <None Include="Leave\LeaveReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LeaveReport.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Leave\LeaveReport.xss">
+      <DependentUpon>LeaveReport.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\eHRIS.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="ReleaseResources.aspx" />
@@ -635,6 +649,7 @@
     <Compile Include="DAL\Dashboard.cs" />
     <Compile Include="DAL\Department.cs" />
     <Compile Include="DAL\Education.cs" />
+    <Compile Include="DAL\EHRISExtension.cs" />
     <Compile Include="DAL\Employee.cs" />
     <Compile Include="DAL\EmployeeMovement.cs" />
     <Compile Include="DAL\Evaluation.cs" />
@@ -966,12 +981,24 @@
     <Compile Include="Leave\Leave.aspx.designer.cs">
       <DependentUpon>Leave.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Leave\LeaveReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeaveReport.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Leave\MyLeave.aspx.cs">
       <DependentUpon>MyLeave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Leave\MyLeave.aspx.designer.cs">
       <DependentUpon>MyLeave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Leave\print-leave-form.aspx.cs">
+      <DependentUpon>print-leave-form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Leave\print-leave-form.aspx.designer.cs">
+      <DependentUpon>print-leave-form.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -1205,6 +1232,9 @@
     <None Include="eHRISContext.dbml.layout">
       <DependentUpon>eHRISContext.dbml</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Leave\Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

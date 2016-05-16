@@ -82,9 +82,14 @@
     </siteMapNode>
 
     <siteMapNode url="~/Leave/Leave.aspx" title="Leaves">
-      
     </siteMapNode>
 
     <siteMapNode url="~/timesheet/default.aspx" title="Timesheet"></siteMapNode>
-  </siteMapNode>
+
+    <siteMapNode title="Print">
+      <siteMapNode url="~/Leave/print-leave-form.aspx" title="Leave Form">
+    </siteMapNode>
+    </siteMapNode>
+  
+</siteMapNode>
 </siteMap>

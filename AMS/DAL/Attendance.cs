@@ -141,7 +141,7 @@ namespace AMS.DAL
                 "ON EMPLOYEE.UserId = Schedule.UserId " +
                 "AND EMPLOYEE.AccountStatusId = 1 " +
                 "AND (TimeIn IS NOT NULL OR TimeOut IS NOT NULL OR Status = 'DayOff') " +
-                "ORDER BY Schedule.TimeStart DESC";
+                "ORDER BY Schedule.TimeIn DESC, Schedule.TimeOut DESC";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;

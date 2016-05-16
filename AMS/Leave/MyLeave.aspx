@@ -325,6 +325,17 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <asp:Button ID="btnPrintReport" 
+                                                        runat="server" 
+                                                        Text="Print" 
+                                                        CommandName="printRecord" 
+                                                        CssClass="btn btn-default" 
+                                                        CommandArgument='<%#((GridViewRow) Container).RowIndex %>'/>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
                                         </Columns>
                                         <PagerStyle CssClass="pagination-ys" />
                                     </asp:GridView>

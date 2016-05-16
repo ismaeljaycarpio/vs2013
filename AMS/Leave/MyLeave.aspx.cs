@@ -29,15 +29,22 @@ namespace AMS.Leave
                     Guid loggedUserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
                     Guid userId = Guid.Parse(hfUserId.Value);
 
-                    if (!loggedUserId.Equals(userId))
+                    if(User.IsInRole("Admin"))
                     {
                         btnOpenModal.Visible = false;
-
-                        //hide edit
-                        if(gvMyLeaves.Rows.Count > 0)
+                    }
+                    else
+                    {
+                        if (!loggedUserId.Equals(userId))
                         {
-                            gvMyLeaves.Columns[1].Visible = false;
-                            gvMyLeaves.Columns[9].Visible = false;
+                            btnOpenModal.Visible = false;
+
+                            //hide edit
+                            if (gvMyLeaves.Rows.Count > 0)
+                            {
+                                //gvMyLeaves.Columns[1].Visible = false;
+                                //gvMyLeaves.Columns[9].Visible = false;
+                            }
                         }
                     }
                 }
@@ -137,6 +144,13 @@ namespace AMS.Leave
                 sb.Append("$('#deleteModal').modal('show');");
                 sb.Append(@"</script>");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteShowModalScript", sb.ToString(), false);
+            }
+            else if (e.CommandName.Equals("printRecord"))
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                string rowId = ((Label)gvMyLeaves.Rows[index].FindControl("lblRowId")).Text;
+
+                Response.Redirect("~/Leave/print-leave-form.aspx?Id=" + rowId);
             }
         }
 

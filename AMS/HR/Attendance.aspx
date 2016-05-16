@@ -67,6 +67,7 @@
                             AllowSorting="true"
                             DataKeyNames="UserId"
                             ShowFooter="true"
+                            PageSize="20"
                             EmptyDataText="No Record(s) found"
                             OnSorting="gvEmployee_Sorting"
                             OnPageIndexChanging="gvEmployee_PageIndexChanging"
