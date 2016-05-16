@@ -140,7 +140,7 @@ namespace AMS.Employee
                 BindDocuments(UserId);
 
                 lblFileStatus.Text = "File(s) uploaded successfully";
-            }         
+            }
         }
 
         protected void lnkDownload_Click(object sender, EventArgs e)

@@ -148,7 +148,9 @@ namespace AMS.Employee
 
                 FileUpload1.FileContent.Dispose();
                 FileUpload1.Dispose();
-                imgProfile.ImageUrl = "~/ProfileImages/" + hfUserId.Value + ".png";
+
+                imgProfile.ImageUrl = "~/ProfileImages/" + hfUserId.Value + ".png?t=" + DateTime.Now.ToString();
+                upImageUpload.Update();
             }
         }
     }

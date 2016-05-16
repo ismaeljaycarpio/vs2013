@@ -16,28 +16,41 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-horizontal">
+
                         <asp:Panel ID="pnlSuccess" runat="server" CssClass="alert alert-success" Visible="false">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             <strong>Success!</strong> User successfully updated.
                         </asp:Panel>
-                        <div class="form-group">
-                            <label for="imgProfile" class="col-sm-2 control-label">&nbsp;</label>
-                            <div class="col-sm-10">
-                                <asp:Image ID="imgProfile" runat="server" AlternateText="Profile Image" Height="200" Width="200" />
-                                <asp:FileUpload ID="FileUpload1" runat="server" />
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <asp:Button ID="btnUpload"
-                                    runat="server"
-                                    Text="Upload"
-                                    OnClick="btnUpload_Click"
-                                    CausesValidation="false"
-                                    CssClass="btn btn-default" />
-                            </div>
-                        </div>
+                        <asp:UpdatePanel ID="upImageUpload" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <div class="form-group">
+                                    <label for="imgProfile" class="col-sm-2 control-label">&nbsp;</label>
+                                    <div class="col-sm-10">
+                                        <asp:Image ID="imgProfile" 
+                                            runat="server" 
+                                            AlternateText="Profile Image"
+                                            Height="200" 
+                                            Width="200" />
+                                        <asp:FileUpload ID="FileUpload1" runat="server" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <asp:Button ID="btnUpload"
+                                            runat="server"
+                                            Text="Upload"
+                                            OnClick="btnUpload_Click"
+                                            CausesValidation="false"
+                                            CssClass="btn btn-default" />
+                                    </div>
+                                </div>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:PostBackTrigger ControlID="btnUpload" />
+                            </Triggers>
+                        </asp:UpdatePanel>
 
                         <div class="form-group">
                             <label for="txtFirstName" class="col-sm-2 control-label">First Name</label>
