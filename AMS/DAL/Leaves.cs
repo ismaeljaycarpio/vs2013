@@ -389,6 +389,7 @@ namespace AMS.DAL
         #region LeaveApproval
 
         //for admin only
+        //edit 5-16-2016 >> show all roles
         public DataTable DisplayPendingLeaveApproval()
         {
             strSql = "SELECT LeaveTransaction.Id, LeaveTransaction.UserId, EMPLOYEE.Emp_Id, " +
@@ -402,7 +403,8 @@ namespace AMS.DAL
                 "LeaveTransaction.FiledDate, " +
                 "LeaveType.LeaveName " +
                 "FROM Memberships, EMPLOYEE, POSITION, DEPARTMENT, UsersInRoles, Roles, Agency, " +
-                "LeaveTransaction, LeaveTypeUser, LeaveType WHERE " +
+                "LeaveTransaction, LeaveTypeUser, LeaveType " +
+                "WHERE " +
                 "LeaveTransaction.UserId = Memberships.UserId AND " +
                 "Memberships.UserId = EMPLOYEE.UserId AND " +
                 "EMPLOYEE.PositionId = POSITION.Id AND " +
