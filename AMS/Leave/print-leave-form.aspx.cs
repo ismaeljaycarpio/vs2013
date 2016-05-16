@@ -62,6 +62,29 @@ namespace AMS.Leave
             //first param: name of the dataset
             ReportDataSource rdsLeaves = new ReportDataSource("LeaveReport", dtLeaves);
 
+            //get details for leave tran
+            string filedDate = String.Empty;
+
+            var leave_temp = (from lt in db.LeaveTypes
+                              join ltu in db.LeaveTypeUsers
+                              on lt.Id equals ltu.LeaveTypeId
+                              join lr in db.LeaveTransactions
+                              on ltu.Id equals lr.LeaveTypeUserId
+                              where lr.Id == Convert.ToInt32(Id)
+                              select new
+                              {
+                                  Id = lt.Id,
+                                  LeaveName = lt.LeaveName,
+                                  From = lr.FromDate,
+                                  To = lr.ToDate,
+                                  Status = lr.Status,
+                                  DateFiled = lr.FiledDate,
+                                  NoOfDays = lr.NumberOfDays,
+                                  UserId = lr.UserId
+                              }).FirstOrDefault();
+
+            Guid userId = Guid.Parse(leave_temp.UserId.ToString());
+
             //querty tran
             var tran = (from e in db.EMPLOYEEs
                        join p in db.POSITIONs
@@ -70,6 +93,8 @@ namespace AMS.Leave
                        on p.DepartmentId equals d.Id
                        join a in db.AGENCies
                        on e.AgencyId equals a.Id
+                       where
+                        e.UserId == userId
                        select new
                        {
                            IDNumber = e.Emp_Id,
@@ -79,25 +104,7 @@ namespace AMS.Leave
                            Company = a.Agency1,
                        }).FirstOrDefault();
 
-            //get details for leave tran
-            string filedDate = String.Empty;
-
-            var leave_temp = (from lt in db.LeaveTypes
-                          join ltu in db.LeaveTypeUsers
-                          on lt.Id equals ltu.LeaveTypeId
-                          join lr in db.LeaveTransactions
-                          on ltu.Id equals lr.LeaveTypeUserId
-                          where lr.Id == Convert.ToInt32(Id)
-                          select new
-                          {
-                              Id = lt.Id,
-                              LeaveName = lt.LeaveName,
-                              From = lr.FromDate,
-                              To = lr.ToDate,
-                              Status = lr.Status,
-                              DateFiled = lr.FiledDate,
-                              NoOfDays = lr.NumberOfDays
-                          }).FirstOrDefault();
+            
 
             if(leave_temp.DateFiled != null)
             {

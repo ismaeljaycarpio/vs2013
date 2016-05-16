@@ -214,11 +214,15 @@
     <Content Include="Global.asax" />
     <Content Include="HR\Attendance.aspx" />
     <Content Include="HR\TimeInTimeOut.aspx" />
+    <Content Include="Images\enable-logo.gif" />
     <Content Include="Images\primepower-logo.jpg" />
     <Content Include="Images\PrimePowerLogo.png" />
     <Content Include="Images\toplis-logo.gif" />
+    <Content Include="jquery.bxslider\images\azalea-baguio-tent-event-venue.jpg" />
+    <Content Include="jquery.bxslider\images\azalea.jpg" />
     <Content Include="jquery.bxslider\images\bx_loader.gif" />
     <Content Include="jquery.bxslider\images\controls.png" />
+    <Content Include="jquery.bxslider\images\tradisyon.jpg" />
     <Content Include="jquery.bxslider\jquery.bxslider.css" />
     <Content Include="jquery.bxslider\jquery.bxslider.js" />
     <Content Include="jquery.bxslider\jquery.bxslider.min.js" />

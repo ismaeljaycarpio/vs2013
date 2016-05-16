@@ -15,12 +15,12 @@
 - [bug] uploading profile pics - ***DONE***
 - [bug] error dividing by zero when uploading and resizing profile pics - ***DOME***
 - [bug] file attachment cannot be uploaded - ***DONE***
-- [add] Printable leave forms   
+- [add] Printable leave forms - ***DONE***
 - [add] score sheet- same as the evaluation form - ***DELAY***
 - [enchance] attendance time-in - ***DONE***
 - [add] function to transfer time-in/timeout to timesheetrecord
 - [add] Print form of EHI
-
+- [add] slider in default page
 - [enchance] - image in IR
 
 SQL login:
