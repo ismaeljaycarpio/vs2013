@@ -18,6 +18,7 @@
 - [add] score sheet- same as the evaluation form
 - [enchance] attendance time-in
 - [add] function to transfer time-in/timeout to timesheetrecord
+- [enchance] - image in IR
 
 SQL login:
 - server is mix mode
