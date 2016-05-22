@@ -43,13 +43,15 @@
                                 <div class="form-group">
                                     <label for="txtSearch" class="col-sm-2 control-label">&nbsp;</label>
                                     <div class="col-sm-10">
-                                        <div class="input-group input-group-btn">
+                                        <div class="input-group">
                                             <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
-                                            <asp:Button ID="btnSearch"
-                                                runat="server"
-                                                CssClass="btn btn-primary form"
-                                                Text="Go"
-                                                OnClick="btnSearch_Click" />
+                                            <div class="input-group-btn">
+                                                <asp:Button ID="btnSearch"
+                                                    runat="server"
+                                                    CssClass="btn btn-primary form"
+                                                    Text="Go"
+                                                    OnClick="btnSearch_Click" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

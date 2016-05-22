@@ -37,6 +37,12 @@
         <siteMapNode url="~/Employee/vPrime_Performance_Evaluation.aspx" title="Update Prime Performance Evaluation">
           <siteMapNode url="~/Employee/pPrime_Performance_Evaluation.aspx" title="Print Prime Performance Evaluation"/>
         </siteMapNode>
+
+        <siteMapNode url="~/enable/enable_performance_eval.aspx" title="EHI Performance Evaluation" />
+        <siteMapNode url="~/enable/prev_enable_performance_eval.aspx" title="Update EHI Performance Evaluation">
+          <siteMapNode url="~/enable/print_enable_performance_eval.aspx" title="Print EHI Performance Evaluation"/>
+        </siteMapNode>
+        
       </siteMapNode>
     </siteMapNode>
 
