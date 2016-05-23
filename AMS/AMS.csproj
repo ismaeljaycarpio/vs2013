@@ -201,6 +201,9 @@
     <Content Include="Employee\vPrime_Performance_Evaluation.aspx" />
     <Content Include="enable\enable_performance_eval.aspx" />
     <Content Include="enable\prev_enable_performance_eval.aspx" />
+    <Content Include="eval-colleague\evaluation-colleague.aspx" />
+    <Content Include="eval-employee\evaluation-employee.aspx" />
+    <Content Include="eval-self\evaluation-self.aspx" />
     <Content Include="EvaluationSelf\Evaluation_Self.aspx" />
     <Content Include="EvaluationSelf\ScoreSheet.aspx" />
     <Content Include="EvaluationSelf\Score_Sheet.aspx" />
@@ -890,6 +893,27 @@
     </Compile>
     <Compile Include="enable\prev_enable_performance_eval.aspx.designer.cs">
       <DependentUpon>prev_enable_performance_eval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="eval-colleague\evaluation-colleague.aspx.cs">
+      <DependentUpon>evaluation-colleague.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-colleague\evaluation-colleague.aspx.designer.cs">
+      <DependentUpon>evaluation-colleague.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="eval-employee\evaluation-employee.aspx.cs">
+      <DependentUpon>evaluation-employee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-employee\evaluation-employee.aspx.designer.cs">
+      <DependentUpon>evaluation-employee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="eval-self\evaluation-self.aspx.cs">
+      <DependentUpon>evaluation-self.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-self\evaluation-self.aspx.designer.cs">
+      <DependentUpon>evaluation-self.aspx</DependentUpon>
     </Compile>
     <Compile Include="EvaluationNested.master.cs">
       <DependentUpon>EvaluationNested.master</DependentUpon>

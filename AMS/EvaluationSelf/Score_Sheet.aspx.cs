@@ -7,12 +7,14 @@ using System.Web.UI.WebControls;
 using System.Web.Security;
 using System.Data;
 using System.IO;
+using System.Collections;
 
 
 namespace AMS.Employee
 {
     public partial class Score_Sheet : System.Web.UI.Page
     {
+        eHRISContextDataContext db = new eHRISContextDataContext();
         DAL.Evaluation eval = new DAL.Evaluation();
         DAL.Employee emp = new DAL.Employee();
         DataTable dt;
