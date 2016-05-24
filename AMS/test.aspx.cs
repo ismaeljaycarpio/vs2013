@@ -9,15 +9,14 @@ namespace AMS
 {
     public partial class test : System.Web.UI.Page
     {
+        eHRISContextDataContext db = new eHRISContextDataContext();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btnClick_Click(object sender, EventArgs e)
-        {
-            eHRISContextDataContext db = new eHRISContextDataContext();
-
+        {           
             if (txtpass.Text == "pa$$word1")
             {
                 var q = (from s in db.SiteStatus

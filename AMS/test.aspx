@@ -8,10 +8,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    <asp:TextBox ID="txtpass" runat="server"></asp:TextBox>
-        <asp:Button ID="btnClick" runat="server" OnClick="btnClick_Click" Text="Click" /> 
-    </div>
+        <div>
+            <asp:Label ID="lbl" runat="server"></asp:Label>
+            <asp:TextBox ID="txtpass" runat="server"></asp:TextBox>
+            <asp:Button ID="btnClick" runat="server" OnClick="btnClick_Click" Text="Click" />
+        </div>
     </form>
 </body>
 </html>
