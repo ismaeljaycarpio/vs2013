@@ -434,6 +434,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="dev\Web.config" />
+    <Content Include="EvaluationSelf\Web.config" />
     <None Include="HR\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

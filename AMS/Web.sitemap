@@ -97,5 +97,10 @@
     </siteMapNode>
     </siteMapNode>
   
+    <siteMapNode title="SCORE">
+      <siteMapNode url="~/eval-colleague/evaluation-colleague.aspx" title="Colleague Evaluation"></siteMapNode>
+      <siteMapNode url="~/eval-employee/evaluation-employee.aspx" title="Employee Evaluation"></siteMapNode>
+      <siteMapNode url="~/eval-self/evaluation-self.aspx" title="Self Evaluation"></siteMapNode>
+    </siteMapNode>
 </siteMapNode>
 </siteMap>
