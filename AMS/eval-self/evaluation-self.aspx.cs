@@ -26,10 +26,16 @@ namespace AMS.eval_self
         protected void SelfEvaluationDataSource_Selecting(object sender, LinqDataSourceSelectEventArgs e)
         {
             e.Result = (from se in db.SELF_EVALUATIONs
-                        where 
+                        where
                         (se.UserId == Guid.Parse(Membership.GetUser().ProviderUserKey.ToString())) &&
                         (se.Type == "Self")
-                        select se).ToList();
+                        select new
+                        {
+                            Id = se.Id,
+                            UserId = se.UserId,
+                            DateEvaluated = se.DateEvaluated,
+                            FullName = se.EMPLOYEE.LastName + ", " + se.EMPLOYEE.FirstName + " " + se.EMPLOYEE.MiddleName
+                        }).ToList();
         }
     }
 }

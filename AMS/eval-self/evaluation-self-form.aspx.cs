@@ -63,7 +63,8 @@ namespace AMS.eval_self
                 int evaluationId = eval.InsertEvaluation_Self(
                     UserId,
                     loggedUserId,
-                    DateTime.Now.ToShortDateString());
+                    DateTime.Now.ToShortDateString(),
+                    "Self");
 
                 foreach (GridViewRow row in gvCustomerService.Rows)
                 {

@@ -65,7 +65,8 @@ namespace AMS.eval_employee
                 int evaluationId = eval.InsertEvaluation_Self(
                     UserId,
                     loggedUserId,
-                    DateTime.Now.ToShortDateString());
+                    DateTime.Now.ToShortDateString(),
+                    "Employee");
 
                 foreach (GridViewRow row in gvOriginality.Rows)
                 {

@@ -1837,13 +1837,14 @@ namespace AMS.DAL
         public int InsertEvaluation_Self(
             Guid UserId,
             Guid evaluatedBy,
-            string dateEvaluated
+            string dateEvaluated,
+            string type
             )
         {
             int _newlyInsertedId = 0;
 
-            strSql = "INSERT INTO SELF_EVALUATION(UserId,EvaluatedBy,DateEvaluated) " +
-                "VALUES(@UserId,@EvaluatedBy,@DateEvaluated);" +
+            strSql = "INSERT INTO SELF_EVALUATION(UserId,EvaluatedBy,DateEvaluated,Type) " +
+                "VALUES(@UserId,@EvaluatedBy,@DateEvaluated,@Type);" +
                 "SELECT SCOPE_IDENTITY()";
 
             conn = new SqlConnection();
@@ -1855,6 +1856,7 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@UserId", UserId);
                 comm.Parameters.AddWithValue("@EvaluatedBy", evaluatedBy);
                 comm.Parameters.AddWithValue("@DateEvaluated", dateEvaluated);
+                comm.Parameters.AddWithValue("@Type", type);
 
                 object exScalar = comm.ExecuteScalar();
                 _newlyInsertedId = (exScalar == null ? -1 : Convert.ToInt32(exScalar.ToString()));

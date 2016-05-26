@@ -159,6 +159,7 @@
       <Column Name="AgencyId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="AccountStatusId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DateAccountStatusModified" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="EMPLOYEE_SELF_EVALUATION" Member="SELF_EVALUATIONs" ThisKey="UserId" OtherKey="UserId" Type="SELF_EVALUATION" />
       <Association Name="MembershipLINQ_EMPLOYEE" Member="MembershipLINQ" ThisKey="UserId" OtherKey="UserId" Type="MembershipLINQ" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="POSITION_EMPLOYEE" Member="POSITION" ThisKey="PositionId" OtherKey="Id" Type="POSITION" IsForeignKey="true" />
       <Association Name="AGENCY_EMPLOYEE" Member="AGENCY" ThisKey="AgencyId" OtherKey="Id" Type="AGENCY" IsForeignKey="true" />
@@ -249,6 +250,7 @@
       <Column Name="DateEvaluated" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="SELF_EVALUATION_Evaluation_Self" Member="Evaluation_Selfs" ThisKey="Id" OtherKey="EvaluationId" Type="Evaluation_Self" />
+      <Association Name="EMPLOYEE_SELF_EVALUATION" Member="EMPLOYEE" ThisKey="UserId" OtherKey="UserId" Type="EMPLOYEE" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
 </Database>

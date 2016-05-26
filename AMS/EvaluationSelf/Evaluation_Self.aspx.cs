@@ -118,7 +118,8 @@ namespace AMS.EvaluationSelf
                 int evaluationId = eval.InsertEvaluation_Self(
                     UserId,
                     loggedUserId,
-                    DateTime.Now.ToShortDateString());
+                    DateTime.Now.ToShortDateString(),
+                    "Sample");
 
                 //get grid values
                 foreach(GridViewRow row in gvSocialSkills.Rows)

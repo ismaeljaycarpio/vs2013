@@ -65,7 +65,8 @@ namespace AMS.eval_colleague
                 int evaluationId = eval.InsertEvaluation_Self(
                     UserId,
                     loggedUserId,
-                    DateTime.Now.ToShortDateString());
+                    DateTime.Now.ToShortDateString(),
+                    "Colleague");
 
                 //get grid values
                 foreach (GridViewRow row in gvSocialSkills.Rows)

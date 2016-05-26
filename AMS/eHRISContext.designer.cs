@@ -3201,6 +3201,8 @@ namespace AMS
 		
 		private string _DateAccountStatusModified;
 		
+		private EntitySet<SELF_EVALUATION> _SELF_EVALUATIONs;
+		
 		private EntityRef<MembershipLINQ> _MembershipLINQ;
 		
 		private EntityRef<POSITION> _POSITION;
@@ -3261,6 +3263,7 @@ namespace AMS
 		
 		public EMPLOYEE()
 		{
+			this._SELF_EVALUATIONs = new EntitySet<SELF_EVALUATION>(new Action<SELF_EVALUATION>(this.attach_SELF_EVALUATIONs), new Action<SELF_EVALUATION>(this.detach_SELF_EVALUATIONs));
 			this._MembershipLINQ = default(EntityRef<MembershipLINQ>);
 			this._POSITION = default(EntityRef<POSITION>);
 			this._AGENCY = default(EntityRef<AGENCY>);
@@ -3739,6 +3742,19 @@ namespace AMS
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="EMPLOYEE_SELF_EVALUATION", Storage="_SELF_EVALUATIONs", ThisKey="UserId", OtherKey="UserId")]
+		public EntitySet<SELF_EVALUATION> SELF_EVALUATIONs
+		{
+			get
+			{
+				return this._SELF_EVALUATIONs;
+			}
+			set
+			{
+				this._SELF_EVALUATIONs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MembershipLINQ_EMPLOYEE", Storage="_MembershipLINQ", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public MembershipLINQ MembershipLINQ
 		{
@@ -3859,6 +3875,18 @@ namespace AMS
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_SELF_EVALUATIONs(SELF_EVALUATION entity)
+		{
+			this.SendPropertyChanging();
+			entity.EMPLOYEE = this;
+		}
+		
+		private void detach_SELF_EVALUATIONs(SELF_EVALUATION entity)
+		{
+			this.SendPropertyChanging();
+			entity.EMPLOYEE = null;
 		}
 	}
 	
@@ -5427,6 +5455,8 @@ namespace AMS
 		
 		private EntitySet<Evaluation_Self> _Evaluation_Selfs;
 		
+		private EntityRef<EMPLOYEE> _EMPLOYEE;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -5446,6 +5476,7 @@ namespace AMS
 		public SELF_EVALUATION()
 		{
 			this._Evaluation_Selfs = new EntitySet<Evaluation_Self>(new Action<Evaluation_Self>(this.attach_Evaluation_Selfs), new Action<Evaluation_Self>(this.detach_Evaluation_Selfs));
+			this._EMPLOYEE = default(EntityRef<EMPLOYEE>);
 			OnCreated();
 		}
 		
@@ -5480,6 +5511,10 @@ namespace AMS
 			{
 				if ((this._UserId != value))
 				{
+					if (this._EMPLOYEE.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnUserIdChanging(value);
 					this.SendPropertyChanging();
 					this._UserId = value;
@@ -5559,6 +5594,40 @@ namespace AMS
 			set
 			{
 				this._Evaluation_Selfs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="EMPLOYEE_SELF_EVALUATION", Storage="_EMPLOYEE", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true, DeleteRule="CASCADE")]
+		public EMPLOYEE EMPLOYEE
+		{
+			get
+			{
+				return this._EMPLOYEE.Entity;
+			}
+			set
+			{
+				EMPLOYEE previousValue = this._EMPLOYEE.Entity;
+				if (((previousValue != value) 
+							|| (this._EMPLOYEE.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._EMPLOYEE.Entity = null;
+						previousValue.SELF_EVALUATIONs.Remove(this);
+					}
+					this._EMPLOYEE.Entity = value;
+					if ((value != null))
+					{
+						value.SELF_EVALUATIONs.Add(this);
+						this._UserId = value.UserId;
+					}
+					else
+					{
+						this._UserId = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("EMPLOYEE");
+				}
 			}
 		}
 		
