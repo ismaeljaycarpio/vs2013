@@ -21,6 +21,10 @@ Sta:2015-1142
 - print (leave)
 - SCORE summary
 
+- Self Evaluation - only you, higher ups, hr, admin can view your self evaluation
+- colleague evaluation - higher ups, hr, admin can view your colleague evaluation
+- employee evaluation - higher ups, admin can view your employee evaluation
+
 ///////////////////////////////////////////////////////////////
 ////////////		May 25 2016			///////////////////////
 ///////////////////////////////////////////////////////////////

@@ -48,7 +48,11 @@
                             <li id="Contacts"><a runat="server" href="~/Employee/Contacts.aspx">Emergency Contacts</a></li>
                             <li id="PersonalCards"><a runat="server" href="~/Employee/PersonalCards.aspx">Membership Cards</a></li>
                             <li class="nav-divider"></li>
-                            <li id="Evaluation"><a runat="server" href="~/Employee/Evaluation.aspx">Evaluations</a></li>
+                            <li id="Evaluation"><a runat="server" href="~/Employee/Evaluation.aspx">Performance Evaluations</a></li>
+                            <li class="nav-divider"></li>
+                            <li id="selfEvaluation"><a runat="server" href="~/eval-self/evaluation-self.aspx">SCORE - Self Evaluation</a></li>
+                            <li id="colleagueEvaluation"><a runat="server" href="~/eval-self/evaluation-self.aspx">SCORE - Colleague Evaluation</a></li>
+                            <li id="employeeEvaluation"><a runat="server" href="~/eval-self/evaluation-self.aspx">SCORE - Employee Evaluation</a></li>
                             <li class="nav-divider"></li>
                             <li id="MySchedule"><a runat="server" href="~/Employee/MySchedule.aspx">Schedule & Timekeeping</a></li>
                             <li class="nav-divider"></li>

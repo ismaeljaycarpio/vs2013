@@ -24,7 +24,7 @@ namespace AMS.eval_colleague
             {
                 if (Session["UserId"] == null)
                 {
-                    Response.Redirect("~/EvaluationSelf/Score_Sheet");
+                    Response.Redirect("~/eval-colleague/evaluation-colleague.aspx");
                 }
 
 

@@ -103,7 +103,7 @@
                                         <li class="dropdown"><a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SCORE<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a runat="server" href="~/eval-self/evaluation-self.aspx">Self</a></li>
-                                                <li><a runat="server" href="~/EvaluationSelf/Score_Sheet.aspx">Colleague</a></li>
+                                                <li><a runat="server" href="~/eval-colleague/evaluation-colleague.aspx">Colleague</a></li>
                                                 <li><a runat="server" href="~/eval-employee/evaluation-employee.aspx">Employee</a></li>
                                             </ul>
                                         </li>

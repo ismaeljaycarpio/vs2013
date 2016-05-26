@@ -72,6 +72,12 @@ namespace AMS
     partial void InsertLeaveTransaction(LeaveTransaction instance);
     partial void UpdateLeaveTransaction(LeaveTransaction instance);
     partial void DeleteLeaveTransaction(LeaveTransaction instance);
+    partial void InsertSELF_EVALUATION(SELF_EVALUATION instance);
+    partial void UpdateSELF_EVALUATION(SELF_EVALUATION instance);
+    partial void DeleteSELF_EVALUATION(SELF_EVALUATION instance);
+    partial void InsertEvaluation_Self(Evaluation_Self instance);
+    partial void UpdateEvaluation_Self(Evaluation_Self instance);
+    partial void DeleteEvaluation_Self(Evaluation_Self instance);
     #endregion
 		
 		public eHRISContextDataContext() : 
@@ -213,6 +219,22 @@ namespace AMS
 			get
 			{
 				return this.GetTable<LeaveTransaction>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SELF_EVALUATION> SELF_EVALUATIONs
+		{
+			get
+			{
+				return this.GetTable<SELF_EVALUATION>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Evaluation_Self> Evaluation_Selfs
+		{
+			get
+			{
+				return this.GetTable<Evaluation_Self>();
 			}
 		}
 	}
@@ -5163,6 +5185,367 @@ namespace AMS
 						this._LeaveTypeUserId = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("LeaveTypeUser");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SELF_EVALUATION")]
+	public partial class SELF_EVALUATION : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<System.Guid> _UserId;
+		
+		private System.Nullable<System.Guid> _EvaluatedBy;
+		
+		private string _DateEvaluated;
+		
+		private EntitySet<Evaluation_Self> _Evaluation_Selfs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnUserIdChanging(System.Nullable<System.Guid> value);
+    partial void OnUserIdChanged();
+    partial void OnEvaluatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnEvaluatedByChanged();
+    partial void OnDateEvaluatedChanging(string value);
+    partial void OnDateEvaluatedChanged();
+    #endregion
+		
+		public SELF_EVALUATION()
+		{
+			this._Evaluation_Selfs = new EntitySet<Evaluation_Self>(new Action<Evaluation_Self>(this.attach_Evaluation_Selfs), new Action<Evaluation_Self>(this.detach_Evaluation_Selfs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EvaluatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> EvaluatedBy
+		{
+			get
+			{
+				return this._EvaluatedBy;
+			}
+			set
+			{
+				if ((this._EvaluatedBy != value))
+				{
+					this.OnEvaluatedByChanging(value);
+					this.SendPropertyChanging();
+					this._EvaluatedBy = value;
+					this.SendPropertyChanged("EvaluatedBy");
+					this.OnEvaluatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateEvaluated", DbType="VarChar(50)")]
+		public string DateEvaluated
+		{
+			get
+			{
+				return this._DateEvaluated;
+			}
+			set
+			{
+				if ((this._DateEvaluated != value))
+				{
+					this.OnDateEvaluatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateEvaluated = value;
+					this.SendPropertyChanged("DateEvaluated");
+					this.OnDateEvaluatedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SELF_EVALUATION_Evaluation_Self", Storage="_Evaluation_Selfs", ThisKey="Id", OtherKey="EvaluationId")]
+		public EntitySet<Evaluation_Self> Evaluation_Selfs
+		{
+			get
+			{
+				return this._Evaluation_Selfs;
+			}
+			set
+			{
+				this._Evaluation_Selfs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Evaluation_Selfs(Evaluation_Self entity)
+		{
+			this.SendPropertyChanging();
+			entity.SELF_EVALUATION = this;
+		}
+		
+		private void detach_Evaluation_Selfs(Evaluation_Self entity)
+		{
+			this.SendPropertyChanging();
+			entity.SELF_EVALUATION = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Evaluation_Self")]
+	public partial class Evaluation_Self : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _EvaluationId;
+		
+		private System.Nullable<int> _CompetenceCatQId;
+		
+		private System.Nullable<int> _Rating;
+		
+		private string _Remarks;
+		
+		private EntityRef<SELF_EVALUATION> _SELF_EVALUATION;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnEvaluationIdChanging(System.Nullable<int> value);
+    partial void OnEvaluationIdChanged();
+    partial void OnCompetenceCatQIdChanging(System.Nullable<int> value);
+    partial void OnCompetenceCatQIdChanged();
+    partial void OnRatingChanging(System.Nullable<int> value);
+    partial void OnRatingChanged();
+    partial void OnRemarksChanging(string value);
+    partial void OnRemarksChanged();
+    #endregion
+		
+		public Evaluation_Self()
+		{
+			this._SELF_EVALUATION = default(EntityRef<SELF_EVALUATION>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EvaluationId", DbType="Int")]
+		public System.Nullable<int> EvaluationId
+		{
+			get
+			{
+				return this._EvaluationId;
+			}
+			set
+			{
+				if ((this._EvaluationId != value))
+				{
+					if (this._SELF_EVALUATION.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEvaluationIdChanging(value);
+					this.SendPropertyChanging();
+					this._EvaluationId = value;
+					this.SendPropertyChanged("EvaluationId");
+					this.OnEvaluationIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompetenceCatQId", DbType="Int")]
+		public System.Nullable<int> CompetenceCatQId
+		{
+			get
+			{
+				return this._CompetenceCatQId;
+			}
+			set
+			{
+				if ((this._CompetenceCatQId != value))
+				{
+					this.OnCompetenceCatQIdChanging(value);
+					this.SendPropertyChanging();
+					this._CompetenceCatQId = value;
+					this.SendPropertyChanged("CompetenceCatQId");
+					this.OnCompetenceCatQIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rating", DbType="Int")]
+		public System.Nullable<int> Rating
+		{
+			get
+			{
+				return this._Rating;
+			}
+			set
+			{
+				if ((this._Rating != value))
+				{
+					this.OnRatingChanging(value);
+					this.SendPropertyChanging();
+					this._Rating = value;
+					this.SendPropertyChanged("Rating");
+					this.OnRatingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remarks", DbType="VarChar(MAX)")]
+		public string Remarks
+		{
+			get
+			{
+				return this._Remarks;
+			}
+			set
+			{
+				if ((this._Remarks != value))
+				{
+					this.OnRemarksChanging(value);
+					this.SendPropertyChanging();
+					this._Remarks = value;
+					this.SendPropertyChanged("Remarks");
+					this.OnRemarksChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SELF_EVALUATION_Evaluation_Self", Storage="_SELF_EVALUATION", ThisKey="EvaluationId", OtherKey="Id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public SELF_EVALUATION SELF_EVALUATION
+		{
+			get
+			{
+				return this._SELF_EVALUATION.Entity;
+			}
+			set
+			{
+				SELF_EVALUATION previousValue = this._SELF_EVALUATION.Entity;
+				if (((previousValue != value) 
+							|| (this._SELF_EVALUATION.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SELF_EVALUATION.Entity = null;
+						previousValue.Evaluation_Selfs.Remove(this);
+					}
+					this._SELF_EVALUATION.Entity = value;
+					if ((value != null))
+					{
+						value.Evaluation_Selfs.Add(this);
+						this._EvaluationId = value.Id;
+					}
+					else
+					{
+						this._EvaluationId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("SELF_EVALUATION");
 				}
 			}
 		}

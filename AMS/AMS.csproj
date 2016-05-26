@@ -204,12 +204,15 @@
     <Content Include="eval-colleague\evaluation-colleague-form-view.aspx" />
     <Content Include="eval-colleague\evaluation-colleague-form.aspx" />
     <Content Include="eval-colleague\evaluation-colleague.aspx" />
+    <Content Include="eval-colleague\print-form.aspx" />
     <Content Include="eval-employee\evaluation-employee-form-view.aspx" />
     <Content Include="eval-employee\evaluation-employee-form.aspx" />
     <Content Include="eval-employee\evaluation-employee.aspx" />
+    <Content Include="eval-employee\print-form.aspx" />
     <Content Include="eval-self\evaluation-self-form-view.aspx" />
     <Content Include="eval-self\evaluation-self-form.aspx" />
     <Content Include="eval-self\evaluation-self.aspx" />
+    <Content Include="eval-self\print-form.aspx" />
     <Content Include="EvaluationSelf\Evaluation_Self.aspx" />
     <Content Include="EvaluationSelf\ScoreSheet.aspx" />
     <Content Include="EvaluationSelf\Score_Sheet.aspx" />
@@ -922,6 +925,13 @@
     <Compile Include="eval-colleague\evaluation-colleague.aspx.designer.cs">
       <DependentUpon>evaluation-colleague.aspx</DependentUpon>
     </Compile>
+    <Compile Include="eval-colleague\print-form.aspx.cs">
+      <DependentUpon>print-form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-colleague\print-form.aspx.designer.cs">
+      <DependentUpon>print-form.aspx</DependentUpon>
+    </Compile>
     <Compile Include="eval-employee\evaluation-employee-form-view.aspx.cs">
       <DependentUpon>evaluation-employee-form-view.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -943,6 +953,13 @@
     <Compile Include="eval-employee\evaluation-employee.aspx.designer.cs">
       <DependentUpon>evaluation-employee.aspx</DependentUpon>
     </Compile>
+    <Compile Include="eval-employee\print-form.aspx.cs">
+      <DependentUpon>print-form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-employee\print-form.aspx.designer.cs">
+      <DependentUpon>print-form.aspx</DependentUpon>
+    </Compile>
     <Compile Include="eval-self\evaluation-self-form-view.aspx.cs">
       <DependentUpon>evaluation-self-form-view.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -963,6 +980,13 @@
     </Compile>
     <Compile Include="eval-self\evaluation-self.aspx.designer.cs">
       <DependentUpon>evaluation-self.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="eval-self\print-form.aspx.cs">
+      <DependentUpon>print-form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-self\print-form.aspx.designer.cs">
+      <DependentUpon>print-form.aspx</DependentUpon>
     </Compile>
     <Compile Include="EvaluationNested.master.cs">
       <DependentUpon>EvaluationNested.master</DependentUpon>

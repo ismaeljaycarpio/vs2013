@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 27.75" name="eHRISContext">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14, 27.75" name="eHRISContext">
   <DataContextMoniker Name="/eHRISContextDataContext" />
   <nestedChildShapes>
     <classShape Id="dfcb8224-d410-4a6d-802e-e92099b2a828" absoluteBounds="4.25, 6, 2, 1.5785953776041666">
@@ -59,7 +59,7 @@
         <classShapeMoniker Id="b9019810-2c54-4a6d-a290-690a54ff9242" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.25 : 13.9479484049479); (4.80208333333333 : 13.9479484049479 : JumpStart); (4.63541666666667 : 13.9479484049479 : JumpEnd); (4.08333333333333 : 13.9479484049479 : JumpStart); (3.91666666666667 : 13.9479484049479 : JumpEnd); (2.5 : 13.9479484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.25 : 13.9479484049479); (2.5 : 13.9479484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eHRISContextDataContext/User/User_MembershipLINQ" />
       <nodes>
         <classShapeMoniker Id="c827113c-802a-439b-a679-6e8bf2227a1a" />
@@ -78,7 +78,7 @@
         <elementListCompartment Id="51c1065c-7815-4135-b72c-62fcc647fc81" absoluteBounds="0.515, 19.21, 2.5949999999999998, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.5 : 17.7131168619792); (1.5 : 18.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.5 : 17.7131168619792); (1.5 : 18.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eHRISContextDataContext/MembershipLINQ/MembershipLINQ_EMPLOYEE" />
       <nodes>
         <classShapeMoniker Id="7aa251c6-b4de-46ea-b8f4-ab5ab43ad148" />
@@ -91,14 +91,14 @@
         <elementListCompartment Id="c84d07ca-cc27-460b-99c3-c8cb3ad32e3c" absoluteBounds="5.14, 20.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.125 : 21.2892976888021); (3.125 : 21.2892976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.125 : 21.2892976888021); (3.125 : 21.2892976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eHRISContextDataContext/POSITION/POSITION_EMPLOYEE" />
       <nodes>
         <classShapeMoniker Id="4a5a3527-2450-40df-b7a3-2c2275cc64e3" />
         <classShapeMoniker Id="2b1de33a-9961-44b4-962a-c3c11f32c44d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.25 : 6.78929768880208); (4 : 6.78929768880208); (4 : 15.75); (6.5312495 : 15.75); (6.5312495 : 20.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(4.25 : 6.78929768880208); (4 : 6.78929768880208); (4 : 15.75); (4.63541666666667 : 15.75 : JumpStart); (4.80208333333333 : 15.75 : JumpEnd); (6.5312495 : 15.75); (6.5312495 : 20.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eHRISContextDataContext/Role/Role_POSITION" />
       <nodes>
         <classShapeMoniker Id="dfcb8224-d410-4a6d-802e-e92099b2a828" />
@@ -124,7 +124,7 @@
         <elementListCompartment Id="9a1e9321-4342-4bc7-b2a9-fe88f9d4660d" absoluteBounds="1.1400000000000001, 25.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.09375 : 25.25); (2.09375 : 23.9823225911458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.09375 : 25.25); (2.09375 : 23.9823225911458)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eHRISContextDataContext/AGENCY/AGENCY_EMPLOYEE" />
       <nodes>
         <classShapeMoniker Id="56eb3d1a-ed33-4543-8f83-bc001872d46b" />
@@ -143,7 +143,7 @@
         <elementListCompartment Id="bdf3ce98-49eb-4d1e-8317-563821a7895a" absoluteBounds="5.265, 26.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8 : 25.3790511067708); (6.40625 : 25.3790511067708); (6.40625 : 25.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8 : 25.3790511067708); (6.40625 : 25.3790511067708); (6.40625 : 25.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eHRISContextDataContext/LeaveType/LeaveType_LeaveTypeUser" />
       <nodes>
         <classShapeMoniker Id="a8989d61-54e3-473b-97a7-3eb965a8c10d" />
@@ -156,11 +156,30 @@
         <elementListCompartment Id="f81d1c3b-aede-434a-8f3d-909a3a78cecf" absoluteBounds="3.64, 22.835, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.4375 : 25.875); (5.4375 : 25.1074039713542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.4375 : 25.875); (5.4375 : 25.1074039713542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eHRISContextDataContext/LeaveTypeUser/LeaveTypeUser_LeaveTransaction" />
       <nodes>
         <classShapeMoniker Id="23428c59-10f6-4d0f-8d62-73647c03354c" />
         <classShapeMoniker Id="fbd900b8-7fc8-401c-bf05-bf6a374c6b07" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="32dfea9a-d29a-4960-87b9-b2d799822b4a" absoluteBounds="8.25, 2.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/eHRISContextDataContext/SELF_EVALUATION" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4aefd7e7-80d4-4ae3-96b5-75437c25badc" absoluteBounds="8.265, 3.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0c5e0241-1aa2-40eb-98cf-93defe5c350d" absoluteBounds="11.75, 2.25, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/eHRISContextDataContext/Evaluation_Self" />
+      <nestedChildShapes>
+        <elementListCompartment Id="93facbd3-4933-427c-91ea-1d42a3881057" absoluteBounds="11.765, 2.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(10.25 : 3.38544840494792); (11.75 : 3.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/eHRISContextDataContext/SELF_EVALUATION/SELF_EVALUATION_Evaluation_Self" />
+      <nodes>
+        <classShapeMoniker Id="32dfea9a-d29a-4960-87b9-b2d799822b4a" />
+        <classShapeMoniker Id="0c5e0241-1aa2-40eb-98cf-93defe5c350d" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
