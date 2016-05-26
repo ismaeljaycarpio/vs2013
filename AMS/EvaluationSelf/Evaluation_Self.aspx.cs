@@ -184,7 +184,7 @@ namespace AMS.EvaluationSelf
 
                 Session["SelfEvaluationId"] = evaluationId;
                 Response.Redirect("~/EvaluationSelf/vEvaluation_Self");
-            }        
+            }       
         }
 
         protected void gvCustomerService_RowDataBound(object sender, GridViewRowEventArgs e)

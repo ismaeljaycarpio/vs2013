@@ -1746,7 +1746,7 @@ namespace AMS.DAL
 
         public DataTable getSelf_SocialSkill()
         {
-            //11 -> Initiative
+            //23 -> Social Skil
             strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 23";
 
             conn = new SqlConnection();
@@ -1764,7 +1764,7 @@ namespace AMS.DAL
 
         public DataTable getSelf_CustomerService()
         {
-            //11 -> Initiative
+            //24 -> Customer Service
             strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 24";
 
             conn = new SqlConnection();
@@ -1782,7 +1782,7 @@ namespace AMS.DAL
 
         public DataTable getSelf_Originality()
         {
-            //11 -> Initiative
+            //25 -> Originality
             strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 25";
 
             conn = new SqlConnection();
@@ -1800,7 +1800,7 @@ namespace AMS.DAL
 
         public DataTable getSelf_Responsibility()
         {
-            //11 -> Initiative
+            //26 -> Responsibility
             strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 26";
 
             conn = new SqlConnection();
@@ -1818,7 +1818,7 @@ namespace AMS.DAL
 
         public DataTable getSelf_Excellent()
         {
-            //11 -> Initiative
+            //27 -> Excellent
             strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 27";
 
             conn = new SqlConnection();

@@ -201,8 +201,14 @@
     <Content Include="Employee\vPrime_Performance_Evaluation.aspx" />
     <Content Include="enable\enable_performance_eval.aspx" />
     <Content Include="enable\prev_enable_performance_eval.aspx" />
+    <Content Include="eval-colleague\evaluation-colleague-form-view.aspx" />
+    <Content Include="eval-colleague\evaluation-colleague-form.aspx" />
     <Content Include="eval-colleague\evaluation-colleague.aspx" />
+    <Content Include="eval-employee\evaluation-employee-form-view.aspx" />
+    <Content Include="eval-employee\evaluation-employee-form.aspx" />
     <Content Include="eval-employee\evaluation-employee.aspx" />
+    <Content Include="eval-self\evaluation-self-form-view.aspx" />
+    <Content Include="eval-self\evaluation-self-form.aspx" />
     <Content Include="eval-self\evaluation-self.aspx" />
     <Content Include="EvaluationSelf\Evaluation_Self.aspx" />
     <Content Include="EvaluationSelf\ScoreSheet.aspx" />
@@ -895,6 +901,20 @@
     <Compile Include="enable\prev_enable_performance_eval.aspx.designer.cs">
       <DependentUpon>prev_enable_performance_eval.aspx</DependentUpon>
     </Compile>
+    <Compile Include="eval-colleague\evaluation-colleague-form-view.aspx.cs">
+      <DependentUpon>evaluation-colleague-form-view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-colleague\evaluation-colleague-form-view.aspx.designer.cs">
+      <DependentUpon>evaluation-colleague-form-view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="eval-colleague\evaluation-colleague-form.aspx.cs">
+      <DependentUpon>evaluation-colleague-form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-colleague\evaluation-colleague-form.aspx.designer.cs">
+      <DependentUpon>evaluation-colleague-form.aspx</DependentUpon>
+    </Compile>
     <Compile Include="eval-colleague\evaluation-colleague.aspx.cs">
       <DependentUpon>evaluation-colleague.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -902,12 +922,40 @@
     <Compile Include="eval-colleague\evaluation-colleague.aspx.designer.cs">
       <DependentUpon>evaluation-colleague.aspx</DependentUpon>
     </Compile>
+    <Compile Include="eval-employee\evaluation-employee-form-view.aspx.cs">
+      <DependentUpon>evaluation-employee-form-view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-employee\evaluation-employee-form-view.aspx.designer.cs">
+      <DependentUpon>evaluation-employee-form-view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="eval-employee\evaluation-employee-form.aspx.cs">
+      <DependentUpon>evaluation-employee-form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-employee\evaluation-employee-form.aspx.designer.cs">
+      <DependentUpon>evaluation-employee-form.aspx</DependentUpon>
+    </Compile>
     <Compile Include="eval-employee\evaluation-employee.aspx.cs">
       <DependentUpon>evaluation-employee.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="eval-employee\evaluation-employee.aspx.designer.cs">
       <DependentUpon>evaluation-employee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="eval-self\evaluation-self-form-view.aspx.cs">
+      <DependentUpon>evaluation-self-form-view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-self\evaluation-self-form-view.aspx.designer.cs">
+      <DependentUpon>evaluation-self-form-view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="eval-self\evaluation-self-form.aspx.cs">
+      <DependentUpon>evaluation-self-form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-self\evaluation-self-form.aspx.designer.cs">
+      <DependentUpon>evaluation-self-form.aspx</DependentUpon>
     </Compile>
     <Compile Include="eval-self\evaluation-self.aspx.cs">
       <DependentUpon>evaluation-self.aspx</DependentUpon>
