@@ -46,6 +46,7 @@ namespace AMS.eval_employee
                 dt = eval.Get_Self_Evaluated(evaluationId);
 
                 lblEvalDate.Text = dt.Rows[0]["DateEvaluated"].ToString();
+                lblEvaluatedBy.Text = emp.GetFullName(Guid.Parse(dt.Rows[0]["EvaluatedBy"].ToString()));
 
                 //load grids values
                 gvOriginality.DataSource = eval.getSelf_Originality_filled(evaluationId);

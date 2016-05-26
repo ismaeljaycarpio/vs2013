@@ -98,9 +98,30 @@
     </siteMapNode>
   
     <siteMapNode title="SCORE">
-      <siteMapNode url="~/eval-colleague/evaluation-colleague.aspx" title="Colleague Evaluation"></siteMapNode>
-      <siteMapNode url="~/eval-employee/evaluation-employee.aspx" title="Employee Evaluation"></siteMapNode>
-      <siteMapNode url="~/eval-self/evaluation-self.aspx" title="Self Evaluation"></siteMapNode>
+      
+      <siteMapNode url="~/eval-colleague/evaluation-colleague.aspx" title="Colleague Evaluation">
+        <siteMapNode url="~/eval-colleague/evaluation-colleague-form.aspx" title="Evaluation"></siteMapNode>
+        <siteMapNode url="~/eval-colleague/evaluation-colleague-form-view.aspx" title="View Colleague Evaluation">
+          <siteMapNode url="~/eval-colleague/print-form.aspx" title="Print Colleague Evaluation"></siteMapNode>
+        </siteMapNode>
+      </siteMapNode>
+      
+      
+      <siteMapNode url="~/eval-employee/evaluation-employee.aspx" title="Employee Evaluation">
+        <siteMapNode url="~/eval-employee/evaluation-employee-form.aspx" title="Evaluation"></siteMapNode>
+        <siteMapNode url="~/eval-employee/evaluation-employee-form-view.aspx" title="View Employee Evaluation">
+          <siteMapNode url="~/eval-employee/print-form.aspx" title="Print Employee Evaluation"></siteMapNode>
+        </siteMapNode>
+      </siteMapNode>
+      
+      
+      <siteMapNode url="~/eval-self/evaluation-self.aspx" title="Self Evaluation">
+        <siteMapNode url="~/eval-self/evaluation-self-form.aspx" title="Evaluation"></siteMapNode>
+        <siteMapNode url="~/eval-self/evaluation-self-form-view.aspx" title="View Self Evaluation">
+          <siteMapNode url="~/eval-self/print-form.aspx" title="Print Self Evaluation"></siteMapNode>
+        </siteMapNode>
+      </siteMapNode>
+      
     </siteMapNode>
 </siteMapNode>
 </siteMap>

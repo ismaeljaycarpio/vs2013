@@ -231,15 +231,6 @@
       <Association Name="LeaveTypeUser_LeaveTransaction" Member="LeaveTypeUser" ThisKey="LeaveTypeUserId" OtherKey="Id" Type="LeaveTypeUser" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
-  <Table Name="dbo.SELF_EVALUATION" Member="SELF_EVALUATIONs">
-    <Type Name="SELF_EVALUATION">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="EvaluatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DateEvaluated" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="SELF_EVALUATION_Evaluation_Self" Member="Evaluation_Selfs" ThisKey="Id" OtherKey="EvaluationId" Type="Evaluation_Self" />
-    </Type>
-  </Table>
   <Table Name="dbo.Evaluation_Self" Member="Evaluation_Selfs">
     <Type Name="Evaluation_Self">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -248,6 +239,16 @@
       <Column Name="Rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Remarks" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="SELF_EVALUATION_Evaluation_Self" Member="SELF_EVALUATION" ThisKey="EvaluationId" OtherKey="Id" Type="SELF_EVALUATION" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SELF_EVALUATION" Member="SELF_EVALUATIONs">
+    <Type Name="SELF_EVALUATION">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="EvaluatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DateEvaluated" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="SELF_EVALUATION_Evaluation_Self" Member="Evaluation_Selfs" ThisKey="Id" OtherKey="EvaluationId" Type="Evaluation_Self" />
     </Type>
   </Table>
 </Database>

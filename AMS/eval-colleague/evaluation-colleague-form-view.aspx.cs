@@ -46,6 +46,7 @@ namespace AMS.eval_colleague
                 dt = eval.Get_Self_Evaluated(evaluationId);
 
                 lblEvalDate.Text = dt.Rows[0]["DateEvaluated"].ToString();
+                lblEvaluatedBy.Text = emp.GetFullName(Guid.Parse(dt.Rows[0]["EvaluatedBy"].ToString()));
 
                 //load grids values
                 gvSocialSkills.DataSource = eval.getSelf_SocialSkill_filled(evaluationId);

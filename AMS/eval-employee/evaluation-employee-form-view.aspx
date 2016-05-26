@@ -92,6 +92,16 @@
                         </asp:GridView>
                     </div>
                 </div>
+
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <td><b>Evaluated By:</b>
+                                <asp:Label ID="lblEvaluatedBy" runat="server"></asp:Label></td>
+                        </tr>
+                    </table>
+                </div>
+
                 <div class="panel-footer text-center">
                     <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-primary" OnClick="btnUpdate_Click" />
                 </div>

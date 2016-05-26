@@ -72,12 +72,12 @@ namespace AMS
     partial void InsertLeaveTransaction(LeaveTransaction instance);
     partial void UpdateLeaveTransaction(LeaveTransaction instance);
     partial void DeleteLeaveTransaction(LeaveTransaction instance);
-    partial void InsertSELF_EVALUATION(SELF_EVALUATION instance);
-    partial void UpdateSELF_EVALUATION(SELF_EVALUATION instance);
-    partial void DeleteSELF_EVALUATION(SELF_EVALUATION instance);
     partial void InsertEvaluation_Self(Evaluation_Self instance);
     partial void UpdateEvaluation_Self(Evaluation_Self instance);
     partial void DeleteEvaluation_Self(Evaluation_Self instance);
+    partial void InsertSELF_EVALUATION(SELF_EVALUATION instance);
+    partial void UpdateSELF_EVALUATION(SELF_EVALUATION instance);
+    partial void DeleteSELF_EVALUATION(SELF_EVALUATION instance);
     #endregion
 		
 		public eHRISContextDataContext() : 
@@ -222,19 +222,19 @@ namespace AMS
 			}
 		}
 		
-		public System.Data.Linq.Table<SELF_EVALUATION> SELF_EVALUATIONs
-		{
-			get
-			{
-				return this.GetTable<SELF_EVALUATION>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Evaluation_Self> Evaluation_Selfs
 		{
 			get
 			{
 				return this.GetTable<Evaluation_Self>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SELF_EVALUATION> SELF_EVALUATIONs
+		{
+			get
+			{
+				return this.GetTable<SELF_EVALUATION>();
 			}
 		}
 	}
@@ -5210,168 +5210,6 @@ namespace AMS
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SELF_EVALUATION")]
-	public partial class SELF_EVALUATION : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<System.Guid> _UserId;
-		
-		private System.Nullable<System.Guid> _EvaluatedBy;
-		
-		private string _DateEvaluated;
-		
-		private EntitySet<Evaluation_Self> _Evaluation_Selfs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnUserIdChanging(System.Nullable<System.Guid> value);
-    partial void OnUserIdChanged();
-    partial void OnEvaluatedByChanging(System.Nullable<System.Guid> value);
-    partial void OnEvaluatedByChanged();
-    partial void OnDateEvaluatedChanging(string value);
-    partial void OnDateEvaluatedChanged();
-    #endregion
-		
-		public SELF_EVALUATION()
-		{
-			this._Evaluation_Selfs = new EntitySet<Evaluation_Self>(new Action<Evaluation_Self>(this.attach_Evaluation_Selfs), new Action<Evaluation_Self>(this.detach_Evaluation_Selfs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EvaluatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> EvaluatedBy
-		{
-			get
-			{
-				return this._EvaluatedBy;
-			}
-			set
-			{
-				if ((this._EvaluatedBy != value))
-				{
-					this.OnEvaluatedByChanging(value);
-					this.SendPropertyChanging();
-					this._EvaluatedBy = value;
-					this.SendPropertyChanged("EvaluatedBy");
-					this.OnEvaluatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateEvaluated", DbType="VarChar(50)")]
-		public string DateEvaluated
-		{
-			get
-			{
-				return this._DateEvaluated;
-			}
-			set
-			{
-				if ((this._DateEvaluated != value))
-				{
-					this.OnDateEvaluatedChanging(value);
-					this.SendPropertyChanging();
-					this._DateEvaluated = value;
-					this.SendPropertyChanged("DateEvaluated");
-					this.OnDateEvaluatedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SELF_EVALUATION_Evaluation_Self", Storage="_Evaluation_Selfs", ThisKey="Id", OtherKey="EvaluationId")]
-		public EntitySet<Evaluation_Self> Evaluation_Selfs
-		{
-			get
-			{
-				return this._Evaluation_Selfs;
-			}
-			set
-			{
-				this._Evaluation_Selfs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Evaluation_Selfs(Evaluation_Self entity)
-		{
-			this.SendPropertyChanging();
-			entity.SELF_EVALUATION = this;
-		}
-		
-		private void detach_Evaluation_Selfs(Evaluation_Self entity)
-		{
-			this.SendPropertyChanging();
-			entity.SELF_EVALUATION = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Evaluation_Self")]
 	public partial class Evaluation_Self : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -5568,6 +5406,192 @@ namespace AMS
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SELF_EVALUATION")]
+	public partial class SELF_EVALUATION : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<System.Guid> _UserId;
+		
+		private System.Nullable<System.Guid> _EvaluatedBy;
+		
+		private string _DateEvaluated;
+		
+		private string _Type;
+		
+		private EntitySet<Evaluation_Self> _Evaluation_Selfs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnUserIdChanging(System.Nullable<System.Guid> value);
+    partial void OnUserIdChanged();
+    partial void OnEvaluatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnEvaluatedByChanged();
+    partial void OnDateEvaluatedChanging(string value);
+    partial void OnDateEvaluatedChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
+    #endregion
+		
+		public SELF_EVALUATION()
+		{
+			this._Evaluation_Selfs = new EntitySet<Evaluation_Self>(new Action<Evaluation_Self>(this.attach_Evaluation_Selfs), new Action<Evaluation_Self>(this.detach_Evaluation_Selfs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EvaluatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> EvaluatedBy
+		{
+			get
+			{
+				return this._EvaluatedBy;
+			}
+			set
+			{
+				if ((this._EvaluatedBy != value))
+				{
+					this.OnEvaluatedByChanging(value);
+					this.SendPropertyChanging();
+					this._EvaluatedBy = value;
+					this.SendPropertyChanged("EvaluatedBy");
+					this.OnEvaluatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateEvaluated", DbType="VarChar(50)")]
+		public string DateEvaluated
+		{
+			get
+			{
+				return this._DateEvaluated;
+			}
+			set
+			{
+				if ((this._DateEvaluated != value))
+				{
+					this.OnDateEvaluatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateEvaluated = value;
+					this.SendPropertyChanged("DateEvaluated");
+					this.OnDateEvaluatedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(50)")]
+		public string Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SELF_EVALUATION_Evaluation_Self", Storage="_Evaluation_Selfs", ThisKey="Id", OtherKey="EvaluationId")]
+		public EntitySet<Evaluation_Self> Evaluation_Selfs
+		{
+			get
+			{
+				return this._Evaluation_Selfs;
+			}
+			set
+			{
+				this._Evaluation_Selfs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Evaluation_Selfs(Evaluation_Self entity)
+		{
+			this.SendPropertyChanging();
+			entity.SELF_EVALUATION = this;
+		}
+		
+		private void detach_Evaluation_Selfs(Evaluation_Self entity)
+		{
+			this.SendPropertyChanging();
+			entity.SELF_EVALUATION = null;
 		}
 	}
 }

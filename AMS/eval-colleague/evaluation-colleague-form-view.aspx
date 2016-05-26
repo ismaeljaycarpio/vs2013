@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="evaluation-colleague-form-view.aspx.cs" Inherits="AMS.eval_colleague.evaluation_colleague_form_view" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -93,6 +94,14 @@
                     </div>
                 </div>
 
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <td><b>Evaluated By:</b>
+                                <asp:Label ID="lblEvaluatedBy" runat="server"></asp:Label></td>
+                        </tr>
+                    </table>
+                </div>
 
                 <div class="panel-footer text-center">
                     <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-primary" OnClick="btnUpdate_Click" />
