@@ -2400,6 +2400,23 @@ namespace AMS.DAL
             return dt;
         }
 
+        public DataTable getScoresheet()
+        {
+            strSql = "SELECT Id, Question FROM CompetenceCatQ WHERE CompetenceCatId = 30 ORDER BY Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
         public DataTable getOrientation_filled(int evaluationId)
         {
             strSql = "SELECT Evaluation_Score.Id, " +
@@ -2456,6 +2473,30 @@ namespace AMS.DAL
                 "FROM Evaluation_Score, CompetenceCatQ " +
                 "WHERE Evaluation_Score.CompetenceCatQId = CompetenceCatQ.Id AND " +
                 "CompetenceCatQ.CompetenceCatId = 29 AND " +
+                "Evaluation_Score.EvaluationId = @Id";
+
+            conn = new SqlConnection();
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
+            comm = new SqlCommand(strSql, conn);
+            comm.Parameters.AddWithValue("@Id", evaluationId);
+            dt = new DataTable();
+            adp = new SqlDataAdapter(comm);
+
+            conn.Open();
+            adp.Fill(dt);
+            conn.Close();
+
+            return dt;
+        }
+
+        public DataTable getScoresheet_filled(int evaluationId)
+        {
+            strSql = "SELECT Evaluation_Score.Id, " +
+                "CompetenceCatQ.Question, Evaluation_Score.StaffRating, Evaluation_Score.EvaluatorRating " +
+                ", Evaluation_Score.TotalRating, Evaluation_Score.Remarks " +
+                "FROM Evaluation_Score, CompetenceCatQ " +
+                "WHERE Evaluation_Score.CompetenceCatQId = CompetenceCatQ.Id AND " +
+                "CompetenceCatQ.CompetenceCatId = 30 AND " +
                 "Evaluation_Score.EvaluationId = @Id";
 
             conn = new SqlConnection();
