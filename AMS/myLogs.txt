@@ -21,8 +21,8 @@ Staff: 2015-1004
 ///////////////////////////////////////////////////////////////
 ////////////		May 27 2016			///////////////////////
 ///////////////////////////////////////////////////////////////
-- removed SCORE in GM navigation
-- 
+- removed SCORE in GM navigation ***DONE***
+- fix leave report
 
 C -> add name of guest/s, room no/s, date of stay
 O -> Specific Situations, Instances  and Accomplishments, Remarks, Date
@@ -32,6 +32,9 @@ DOWNLOAD:
 - Sql server
 - sql server management studio
 - iis
+
+>>script for admin logins
+
 
 ///////////////////////////////////////////////////////////////
 ////////////		May 26 2016			///////////////////////

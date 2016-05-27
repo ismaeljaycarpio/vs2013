@@ -70,22 +70,22 @@ namespace AMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!Page.IsPostBack)
-            {
-                //chk if it is locked
-                var status = (from s in db.SiteStatus
-                              where s.Id == 1
-                              select s).FirstOrDefault();
+            //if(!Page.IsPostBack)
+            //{
+            //    //chk if it is locked
+            //    var status = (from s in db.SiteStatus
+            //                  where s.Id == 1
+            //                  select s).FirstOrDefault();
 
-                DateTime expDate = new DateTime(2016, 12, 25);
-                //DateTime expDate = new DateTime(2016, 5, 12);
+            //    DateTime expDate = new DateTime(2016, 12, 25);
+            //    //DateTime expDate = new DateTime(2016, 5, 12);
 
-                if(status.SetValue == true ||
-                    DateTime.Today.Equals(expDate))
-                {
-                    Response.Redirect("~/LockedOut.html");
-                }
-            }
+            //    if(status.SetValue == true ||
+            //        DateTime.Today.Equals(expDate))
+            //    {
+            //        Response.Redirect("~/LockedOut.html");
+            //    }
+            //}
         }
         protected void hlViewProfile_Click(object sender, EventArgs e)
         {

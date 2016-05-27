@@ -480,8 +480,10 @@
     <Content Include="Reports\Employee_MasterList.aspx" />
     <Content Include="Reports\Employee_Tenure.aspx" />
     <Content Include="Reports\NewlyHired.aspx" />
+    <Content Include="score-sheet\print-form.aspx" />
     <Content Include="score-sheet\score-sheet-form.aspx" />
     <Content Include="score-sheet\score-sheet-logs.aspx" />
+    <Content Include="score-sheet\score-sheet-view.aspx" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1284,6 +1286,13 @@
     <Compile Include="Reports\NewlyHired.aspx.designer.cs">
       <DependentUpon>NewlyHired.aspx</DependentUpon>
     </Compile>
+    <Compile Include="score-sheet\print-form.aspx.cs">
+      <DependentUpon>print-form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="score-sheet\print-form.aspx.designer.cs">
+      <DependentUpon>print-form.aspx</DependentUpon>
+    </Compile>
     <Compile Include="score-sheet\score-sheet-form.aspx.cs">
       <DependentUpon>score-sheet-form.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1297,6 +1306,13 @@
     </Compile>
     <Compile Include="score-sheet\score-sheet-logs.aspx.designer.cs">
       <DependentUpon>score-sheet-logs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="score-sheet\score-sheet-view.aspx.cs">
+      <DependentUpon>score-sheet-view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="score-sheet\score-sheet-view.aspx.designer.cs">
+      <DependentUpon>score-sheet-view.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
