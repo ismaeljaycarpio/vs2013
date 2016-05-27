@@ -29,21 +29,19 @@ namespace AMS.eval_self
                 Guid UserId = Guid.Parse(hfUserId.Value);
                 Guid loggedUserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
 
-                //chk if logged user already evaluated selected user
-                if (eval.IfUserIsAlreadyEvaluated(UserId, loggedUserId, DateTime.Now.ToShortDateString(), "Self").Rows.Count > 0)
-                {
-                    //redirect to edit
-                    Session["SelfEvaluationId"] = eval.Get_Self_Evaluation(UserId, loggedUserId, DateTime.Now.ToShortDateString());
-                    Response.Redirect("~/eval-self/evaluation-self-form-view.aspx");
-                }
+                ////chk if logged user already evaluated selected user
+                //if (eval.IfUserIsAlreadyEvaluated(UserId, loggedUserId, DateTime.Now.ToShortDateString(), "Self").Rows.Count > 0)
+                //{
+                //    //redirect to edit
+                //    Session["SelfEvaluationId"] = eval.Get_Self_Evaluation(UserId, loggedUserId, DateTime.Now.ToShortDateString());
+                //    Response.Redirect("~/eval-self/evaluation-self-form-view.aspx");
+                //}
 
                 lblEmpName.Text = emp.GetFullName(UserId);
                 lblDepartment.Text = emp.GetDepartment(UserId);
                 lblDateHired.Text = emp.GetHiredDate(UserId);
                 lblPosition.Text = emp.GetPosition(UserId);
                 lblEvalDate.Text = DateTime.Now.ToShortDateString();
-
-
 
                 gvCustomerService.DataSource = eval.getSelf_CustomerService();
                 gvCustomerService.DataBind();
@@ -90,8 +88,9 @@ namespace AMS.eval_self
                     }
                 }
 
-                Session["SelfEvaluationId"] = evaluationId;
-                Response.Redirect("~/eval-self/evaluation-self-form-view.aspx");
+                //Session["SelfEvaluationId"] = evaluationId;
+                //Response.Redirect("~/eval-self/evaluation-self-form-view.aspx");
+                Response.Redirect("~/eval-self/evaluation-self.aspx");
             }
         }
     }

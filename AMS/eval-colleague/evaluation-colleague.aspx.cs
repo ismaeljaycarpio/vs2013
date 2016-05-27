@@ -126,6 +126,14 @@ namespace AMS.eval_colleague
                 //display all employee
                 return dt = emp.DisplayEmployee(txtSearch.Text);
             }
+            else if (User.IsInRole("Director"))
+            {
+
+            }
+            else if (User.IsInRole("Division Head"))
+            {
+
+            }
             else if (User.IsInRole("Manager"))
             {
                 //display supervisors and staff by dept

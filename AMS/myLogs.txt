@@ -7,18 +7,31 @@
 [Admin],admin						|			|						|			|
 
 
+GM: 2016-1248
+Director: 2016-1252
+DH: 2016-1253
+M: 2015-1012
 
-Purchasing:
 
-Man:
 Sup:2015-1096
 Sta:2015-1142
+Sup: 2015-1095
+Staff: 2015-1004
 
 ///////////////////////////////////////////////////////////////
 ////////////		May 27 2016			///////////////////////
 ///////////////////////////////////////////////////////////////
+- removed SCORE in GM navigation
+- 
+
 C -> add name of guest/s, room no/s, date of stay
 O -> Specific Situations, Instances  and Accomplishments, Remarks, Date
+
+
+DOWNLOAD:
+- Sql server
+- sql server management studio
+- iis
 
 ///////////////////////////////////////////////////////////////
 ////////////		May 26 2016			///////////////////////

@@ -81,8 +81,9 @@ namespace AMS.eval_colleague
                     }
                 }
 
-                Session["SelfEvaluationId"] = evaluationId;
-                Response.Redirect("~/eval-colleague/evaluation-colleague-form-view.aspx");
+                //Session["SelfEvaluationId"] = evaluationId;
+                //Response.Redirect("~/eval-colleague/evaluation-colleague-form-view.aspx");
+                Response.Redirect("~/eval-colleague/evaluation-colleague.aspx");
             } 
         }
     }

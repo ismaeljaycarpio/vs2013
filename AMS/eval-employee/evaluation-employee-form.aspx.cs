@@ -83,8 +83,9 @@ namespace AMS.eval_employee
                     }
                 }
 
-                Session["SelfEvaluationId"] = evaluationId;
-                Response.Redirect("~/eval-employee/evaluation-employee-form-view.aspx");
+                //Session["SelfEvaluationId"] = evaluationId;
+                //Response.Redirect("~/eval-employee/evaluation-employee-form-view.aspx");
+                Response.Redirect("~/eval-employee/evaluation-employee.aspx");
             }
         }
     }

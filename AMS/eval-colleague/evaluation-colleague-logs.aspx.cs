@@ -24,7 +24,18 @@ namespace AMS.eval_colleague
 
         protected void gvColleagueEvaluation_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            if (e.CommandName.Equals("deleteRecord"))
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                string rowId = ((Label)gvColleagueEvaluation.Rows[index].FindControl("lblRowId")).Text;
+                hfDeleteId.Value = rowId;
 
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb.Append(@"<script type='text/javascript'>");
+                sb.Append("$('#deleteModal').modal('show');");
+                sb.Append(@"</script>");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteShowModalScript", sb.ToString(), false);
+            }
         }
 
         protected void gvColleagueEvaluation_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
@@ -49,6 +60,21 @@ namespace AMS.eval_colleague
                             DateEvaluated = se.DateEvaluated,
                             EvaluatedBy = emp.LastName + ", " + emp.FirstName + " " + emp.MiddleName
                         }).ToList();
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            var eval = db.SELF_EVALUATIONs.Single(i => i.Id == Convert.ToInt32(hfDeleteId.Value));
+            db.SELF_EVALUATIONs.DeleteOnSubmit(eval);
+            db.SubmitChanges();
+
+            this.gvColleagueEvaluation.DataBind();
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append(@"<script type='text/javascript'>");
+            sb.Append("$('#deleteModal').modal('hide');");
+            sb.Append(@"</script>");
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteShowModalScript", sb.ToString(), false);
         }
     }
 }

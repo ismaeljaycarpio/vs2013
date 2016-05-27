@@ -53,6 +53,7 @@
                             <li id="selfEvaluation"><a runat="server" href="~/eval-self/evaluation-self.aspx">SCORE - Self Evaluation</a></li>
                             <li id="colleagueEvaluation"><a runat="server" href="~/eval-colleague/evaluation-colleague-logs.aspx">SCORE - Colleague Evaluation</a></li>
                             <li id="employeeEvaluation"><a runat="server" href="~/eval-employee/evaluation-employee-logs.aspx">SCORE - Employee Evaluation</a></li>
+                            <li id="employeeScoreSheet"><a runat="server" href="~/score-sheet/score-sheet-logs.aspx">SCORE Sheet</a></li>
                             <li class="nav-divider"></li>
                             <li id="MySchedule"><a runat="server" href="~/Employee/MySchedule.aspx">Schedule & Timekeeping</a></li>
                             <li class="nav-divider"></li>
