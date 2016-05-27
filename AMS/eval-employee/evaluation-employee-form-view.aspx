@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="evaluation-employee-form-view.aspx.cs" Inherits="AMS.eval_employee.evaluation_employee_form_view" %>
+﻿<%@ Page Title="Employee Evaluation Form" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="evaluation-employee-form-view.aspx.cs" Inherits="AMS.eval_employee.evaluation_employee_form_view" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -84,6 +84,18 @@
                                 <asp:TemplateField HeaderText="Remarks">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" CssClass="form-control" Text='<%# Eval("Remarks") %>'></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Specific Situations, Instances  and Accomplishments">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtSituations" runat="server" TextMode="MultiLine" CssClass="form-control" Text='<%# Eval("Situations") %>'></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Date">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" TextMode="Date" Text='<%# Eval("Date") %>'></asp:TextBox>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 

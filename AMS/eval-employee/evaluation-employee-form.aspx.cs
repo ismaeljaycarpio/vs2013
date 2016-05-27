@@ -34,7 +34,7 @@ namespace AMS.eval_employee
                 Guid loggedUserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
 
                 //chk if logged user already evaluated selected user
-                if (eval.IfUserIsAlreadyEvaluated(UserId, loggedUserId, DateTime.Now.ToShortDateString()).Rows.Count > 0)
+                if (eval.IfUserIsAlreadyEvaluated(UserId, loggedUserId, DateTime.Now.ToShortDateString(), "Employee").Rows.Count > 0)
                 {
                     //redirect to edit
                     Session["SelfEvaluationId"] = eval.Get_Self_Evaluation(UserId, loggedUserId, DateTime.Now.ToShortDateString());
@@ -75,8 +75,11 @@ namespace AMS.eval_employee
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
                         string rating = (row.FindControl("txtRating") as TextBox).Text;
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
+                        string situation = (row.FindControl("txtSituations") as TextBox).Text;
+                        string date = (row.FindControl("txtDate") as TextBox).Text;
 
-                        eval.addSelf_Evaluation_Rating(evaluationId, Id, rating, remarks);
+
+                        eval.addSelf_Evaluation_Rating(evaluationId, Id, rating, remarks, "","","", situation, date);
                     }
                 }
 

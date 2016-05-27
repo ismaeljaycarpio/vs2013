@@ -232,16 +232,6 @@
       <Association Name="LeaveTypeUser_LeaveTransaction" Member="LeaveTypeUser" ThisKey="LeaveTypeUserId" OtherKey="Id" Type="LeaveTypeUser" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
-  <Table Name="dbo.Evaluation_Self" Member="Evaluation_Selfs">
-    <Type Name="Evaluation_Self">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="EvaluationId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CompetenceCatQId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Remarks" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Association Name="SELF_EVALUATION_Evaluation_Self" Member="SELF_EVALUATION" ThisKey="EvaluationId" OtherKey="Id" Type="SELF_EVALUATION" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
   <Table Name="dbo.SELF_EVALUATION" Member="SELF_EVALUATIONs">
     <Type Name="SELF_EVALUATION">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -251,6 +241,21 @@
       <Column Name="Type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="SELF_EVALUATION_Evaluation_Self" Member="Evaluation_Selfs" ThisKey="Id" OtherKey="EvaluationId" Type="Evaluation_Self" />
       <Association Name="EMPLOYEE_SELF_EVALUATION" Member="EMPLOYEE" ThisKey="UserId" OtherKey="UserId" Type="EMPLOYEE" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Evaluation_Self" Member="Evaluation_Selfs">
+    <Type Name="Evaluation_Self">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EvaluationId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CompetenceCatQId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Remarks" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="NameOfGuests" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="RoomNos" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DateOfStay" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Situations" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Date" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="SELF_EVALUATION_Evaluation_Self" Member="SELF_EVALUATION" ThisKey="EvaluationId" OtherKey="Id" Type="SELF_EVALUATION" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
 </Database>

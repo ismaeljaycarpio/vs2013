@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14, 27.75" name="eHRISContext">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15.25, 27.75" name="eHRISContext">
   <DataContextMoniker Name="/eHRISContextDataContext" />
   <nestedChildShapes>
     <classShape Id="dfcb8224-d410-4a6d-802e-e92099b2a828" absoluteBounds="4.25, 6, 2, 1.5785953776041666">
@@ -59,7 +59,7 @@
         <classShapeMoniker Id="b9019810-2c54-4a6d-a290-690a54ff9242" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.25 : 13.9479484049479); (2.5 : 13.9479484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.25 : 13.9479484049479); (4.80208333333333 : 13.9479484049479 : JumpStart); (4.63541666666667 : 13.9479484049479 : JumpEnd); (4.08333333333333 : 13.9479484049479 : JumpStart); (3.91666666666667 : 13.9479484049479 : JumpEnd); (2.5 : 13.9479484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eHRISContextDataContext/User/User_MembershipLINQ" />
       <nodes>
         <classShapeMoniker Id="c827113c-802a-439b-a679-6e8bf2227a1a" />
@@ -163,30 +163,30 @@
         <classShapeMoniker Id="fbd900b8-7fc8-401c-bf05-bf6a374c6b07" />
       </nodes>
     </associationConnector>
-    <classShape Id="0c5e0241-1aa2-40eb-98cf-93defe5c350d" absoluteBounds="11.75, 2.25, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/eHRISContextDataContext/Evaluation_Self" />
-      <nestedChildShapes>
-        <elementListCompartment Id="93facbd3-4933-427c-91ea-1d42a3881057" absoluteBounds="11.765, 2.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="2715272d-f9a0-4d49-86e1-4800a11c5020" absoluteBounds="9, 2.75, 2, 1.7708968098958331">
       <DataClassMoniker Name="/eHRISContextDataContext/SELF_EVALUATION" />
       <nestedChildShapes>
         <elementListCompartment Id="e4367b72-dc41-4d87-827d-a52e56e0a2b2" absoluteBounds="9.015, 3.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11 : 3.38544840494792); (11.75 : 3.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/eHRISContextDataContext/SELF_EVALUATION/SELF_EVALUATION_Evaluation_Self" />
-      <nodes>
-        <classShapeMoniker Id="2715272d-f9a0-4d49-86e1-4800a11c5020" />
-        <classShapeMoniker Id="0c5e0241-1aa2-40eb-98cf-93defe5c350d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(3.125 : 22.2267976888021); (10.53125 : 22.2267976888021); (10.53125 : 4.52089680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.125 : 22.2267976888021); (10.53125 : 22.2267976888021); (10.53125 : 4.52089680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eHRISContextDataContext/EMPLOYEE/EMPLOYEE_SELF_EVALUATION" />
       <nodes>
         <classShapeMoniker Id="2b1de33a-9961-44b4-962a-c3c11f32c44d" />
         <classShapeMoniker Id="2715272d-f9a0-4d49-86e1-4800a11c5020" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="7d006530-f9d5-4894-bee3-0c35bdfed383" absoluteBounds="13, 3.125, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/eHRISContextDataContext/Evaluation_Self" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8779fcc8-d1e8-4090-b739-c7f33272fe3b" absoluteBounds="13.015, 3.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(11 : 3.82294840494792); (13 : 3.82294840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/eHRISContextDataContext/SELF_EVALUATION/SELF_EVALUATION_Evaluation_Self" />
+      <nodes>
+        <classShapeMoniker Id="2715272d-f9a0-4d49-86e1-4800a11c5020" />
+        <classShapeMoniker Id="7d006530-f9d5-4894-bee3-0c35bdfed383" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

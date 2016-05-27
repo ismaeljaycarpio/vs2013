@@ -59,7 +59,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Score">
+                                <asp:TemplateField HeaderText="Score (1-99)">
                                     <ItemTemplate>
                                         <asp:TextBox runat="server" ID="txtRating" Width="30" MaxLength="2"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
@@ -84,6 +84,24 @@
                                 <asp:TemplateField HeaderText="Remarks">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Name of Guest/s">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtNameOfGuests" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Room No/s">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtRoomNos" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Date Of Stay">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtDateOfStay" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 

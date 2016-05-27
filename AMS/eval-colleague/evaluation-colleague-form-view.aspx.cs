@@ -78,7 +78,14 @@ namespace AMS.eval_colleague
                         int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
-                        eval.updateSelf_Evaluation_Rating(rating, remarks, Id);
+                        eval.updateSelf_Evaluation_Rating(rating,
+                            remarks,
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            Id);
                     }
                 }
 

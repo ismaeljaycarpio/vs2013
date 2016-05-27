@@ -77,8 +77,17 @@ namespace AMS.eval_employee
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
                         int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
+                        string situation = (row.FindControl("txtSituations") as TextBox).Text;
+                        string date = (row.FindControl("txtDate") as TextBox).Text;
 
-                        eval.updateSelf_Evaluation_Rating(rating, remarks, Id);
+                        eval.updateSelf_Evaluation_Rating(rating,
+                            remarks,
+                            "",
+                            "",
+                            "",
+                            situation,
+                            date,
+                            Id);
                     }
                 }
 

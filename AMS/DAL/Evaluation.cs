@@ -1893,10 +1893,15 @@ namespace AMS.DAL
             int evaluationId,
             int competencyCatQId,
             string rating,
-            string remarks)
+            string remarks,
+            string nameOfGuests,
+            string roomNos,
+            string dateofStay,
+            string situation,
+            string date)
         {
-            strSql = "INSERT INTO Evaluation_Self(EvaluationId, CompetenceCatQId, Rating,Remarks) " +
-                "VALUES(@Agency, @CompetenceCatId, @Rating, @Remarks)";
+            strSql = "INSERT INTO Evaluation_Self(EvaluationId, CompetenceCatQId, Rating,Remarks,NameOfGuests,RoomNos,DateOfStay,Situations,Date) " +
+                "VALUES(@Agency, @CompetenceCatId, @Rating, @Remarks,@NameOfGuests,@RoomNos,@DateOfStay,@Situations,@Date)";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -1908,6 +1913,11 @@ namespace AMS.DAL
                 comm.Parameters.AddWithValue("@CompetenceCatId", competencyCatQId);
                 comm.Parameters.AddWithValue("@Rating", rating);
                 comm.Parameters.AddWithValue("@Remarks", remarks);
+                comm.Parameters.AddWithValue("@NameOfGuests", nameOfGuests);
+                comm.Parameters.AddWithValue("@RoomNos", roomNos);
+                comm.Parameters.AddWithValue("@DateOfStay", dateofStay);
+                comm.Parameters.AddWithValue("@Situations", situation);
+                comm.Parameters.AddWithValue("@Date", date);
                 comm.ExecuteNonQuery();
                 conn.Close();
             }
@@ -1940,7 +1950,10 @@ namespace AMS.DAL
         public DataTable getSelf_CustomerService_filled(int evaluationId)
         {
             strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
-                "Evaluation_Self.CompetenceCatQId,Evaluation_Self.Rating, Evaluation_Self.Remarks " +
+                "Evaluation_Self.CompetenceCatQId,Evaluation_Self.Rating, Evaluation_Self.Remarks, " +
+                "Evaluation_Self.NameOfGuests," +
+                "Evaluation_Self.RoomNos," +
+                "Evaluation_Self.DateOfStay " +
                 "FROM Evaluation_Self, CompetenceCatQ " +
                 "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
                 "AND CompetenceCatQ.CompetenceCatId  = 24 " +
@@ -1963,7 +1976,9 @@ namespace AMS.DAL
         public DataTable getSelf_Originality_filled(int evaluationId)
         {
             strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
-                "Evaluation_Self.Rating, Evaluation_Self.Remarks " +
+                "Evaluation_Self.Rating, Evaluation_Self.Remarks, " +
+                "Evaluation_Self.Situations," +
+                "Evaluation_Self.Date " +
                 "FROM Evaluation_Self, CompetenceCatQ " +
                 "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
                 "AND CompetenceCatQ.CompetenceCatId  = 25 " +
@@ -2032,9 +2047,20 @@ namespace AMS.DAL
         public void updateSelf_Evaluation_Rating(
             int rating,
             string remarks,
+            string nameOfGuests,
+            string roomNos,
+            string dateofStay,
+            string situation,
+            string date,
             int Id)
         {
-            strSql = "UPDATE Evaluation_Self SET Rating=@Rating, Remarks=@Remarks " +
+            strSql = "UPDATE Evaluation_Self SET Rating=@Rating, " +
+                "Remarks=@Remarks, " +
+                "NameOfGuests=@NameOfGuests, " +
+                "RoomNos=@RoomNos, " +
+                "DateOfStay=@DateOfStay, " +
+                "Situations=@Situations, " +
+                "Date=@Date " +
                 "WHERE Id = @Id";
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -2044,6 +2070,11 @@ namespace AMS.DAL
                 conn.Open();
                 comm.Parameters.AddWithValue("@Rating", rating);
                 comm.Parameters.AddWithValue("@Remarks", remarks);
+                comm.Parameters.AddWithValue("@NameOfGuests", nameOfGuests);
+                comm.Parameters.AddWithValue("@RoomNos", roomNos);
+                comm.Parameters.AddWithValue("@DateOfStay", dateofStay);
+                comm.Parameters.AddWithValue("@Situations", situation);
+                comm.Parameters.AddWithValue("@Date", date);
                 comm.Parameters.AddWithValue("@Id", Id);
                 comm.ExecuteNonQuery();
                 conn.Close();
@@ -2274,9 +2305,9 @@ namespace AMS.DAL
             return dt;
         }
 
-        public DataTable IfUserIsAlreadyEvaluated(Guid UserId, Guid EvaluatedBy, string DateEvaluated)
+        public DataTable IfUserIsAlreadyEvaluated(Guid UserId, Guid EvaluatedBy, string DateEvaluated, string type)
         {
-            strSql = "SELECT *  FROM SELF_EVALUATION WHERE UserId = @UserId AND EvaluatedBy = @EvaluatedBy AND DateEvaluated = @DateEvaluated";
+            strSql = "SELECT *  FROM SELF_EVALUATION WHERE UserId = @UserId AND EvaluatedBy = @EvaluatedBy AND DateEvaluated = @DateEvaluated AND Type=@Type";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
@@ -2284,6 +2315,7 @@ namespace AMS.DAL
             comm.Parameters.AddWithValue("@UserId", UserId);
             comm.Parameters.AddWithValue("@EvaluatedBy", EvaluatedBy);
             comm.Parameters.AddWithValue("@DateEvaluated", DateEvaluated);
+            comm.Parameters.AddWithValue("@Type", type);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 

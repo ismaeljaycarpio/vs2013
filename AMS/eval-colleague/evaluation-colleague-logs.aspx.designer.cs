@@ -7,37 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AMS.eval_self {
+namespace AMS.eval_colleague {
     
     
-    public partial class evaluation_self {
+    public partial class evaluation_colleague_logs {
         
         /// <summary>
-        /// gvSelfEvaluation control.
+        /// gvColleagueEvaluation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvSelfEvaluation;
+        protected global::System.Web.UI.WebControls.GridView gvColleagueEvaluation;
         
         /// <summary>
-        /// hlSelfEvaluation control.
+        /// ColleagueEvaluationDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlSelfEvaluation;
-        
-        /// <summary>
-        /// SelfEvaluationDataSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource SelfEvaluationDataSource;
+        protected global::System.Web.UI.WebControls.LinqDataSource ColleagueEvaluationDataSource;
         
         /// <summary>
         /// hfUserId control.

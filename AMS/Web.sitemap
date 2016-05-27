@@ -44,6 +44,9 @@
         </siteMapNode>
         
       </siteMapNode>
+
+      <siteMapNode url="~/eval-colleague/evaluation-colleague-logs.aspx" title="My Colleague Evaluations"></siteMapNode>
+      <siteMapNode url="~/eval-employee/evaluation-employee-logs.aspx" title="My Employee Evaluations"></siteMapNode>
     </siteMapNode>
 
     <siteMapNode title="Evaluation">

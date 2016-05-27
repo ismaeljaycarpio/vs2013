@@ -1,27 +1,22 @@
-﻿<%@ Page Title="Self Evaluation"
-    Language="C#"
-    MasterPageFile="~/ProfileNested.master"
-    AutoEventWireup="true"
-    CodeBehind="evaluation-self.aspx.cs"
-    Inherits="AMS.eval_self.evaluation_self" %>
+﻿<%@ Page Title="Employee Evaluation Logs" Language="C#" MasterPageFile="~/ProfileNested.master" AutoEventWireup="true" CodeBehind="evaluation-employee-logs.aspx.cs" Inherits="AMS.eval_employee.evaluation_employee_logs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">My Self Evaluation</div>
+                <div class="panel-heading">My Employee Evaluations</div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <asp:GridView ID="gvSelfEvaluation"
+                        <asp:GridView ID="gvEmployeeEvaluation"
                             runat="server"
                             class="table table-striped table-hover dataTable"
                             GridLines="None"
-                            DataSourceID="SelfEvaluationDataSource"
+                            DataSourceID="EmployeeEvaluationDataSource"
                             EmptyDataText="No Record/s found."
                             AutoGenerateColumns="false"
                             ShowHeaderWhenEmpty="true"
-                            OnRowCommand="gvSelfEvaluation_RowCommand"
-                            OnSelectedIndexChanging="gvSelfEvaluation_SelectedIndexChanging"
+                            OnRowCommand="gvEmployeeEvaluation_RowCommand"
+                            OnSelectedIndexChanging="gvEmployeeEvaluation_SelectedIndexChanging"
                             DataKeyNames="Id">
                             <Columns>
                                 <asp:TemplateField HeaderText="Row Id" Visible="false">
@@ -36,21 +31,20 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Name" SortExpression="FullName">
+                                <asp:TemplateField HeaderText="Evaluated By" SortExpression="EvaluatedBy">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblFullName" runat="server" Text='<%# Eval("FullName") %>'></asp:Label>
+                                        <asp:Label ID="lblEvaluatedBy" runat="server" Text='<%# Eval("EvaluatedBy") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>
                     </div>
-                    <asp:HyperLink ID="hlSelfEvaluation" runat="server" NavigateUrl="~/eval-self/evaluation-self-form.aspx">Create Self Evaluation</asp:HyperLink>
                 </div>
             </div>
         </div>
     </div>
 
-    <asp:LinqDataSource ID="SelfEvaluationDataSource" runat="server" OnSelecting="SelfEvaluationDataSource_Selecting"></asp:LinqDataSource>
+    <asp:LinqDataSource ID="EmployeeEvaluationDataSource" runat="server" OnSelecting="EmployeeEvaluationDataSource_Selecting"></asp:LinqDataSource>
     <asp:HiddenField ID="hfUserId" runat="server" />
 </asp:Content>

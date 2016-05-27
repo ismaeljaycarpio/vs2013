@@ -87,6 +87,18 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
+                                <asp:TemplateField HeaderText="Specific Situations, Instances  and Accomplishments">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtSituations" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Date">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
                             </Columns>
                             <PagerStyle CssClass="pagination" />
                         </asp:GridView>

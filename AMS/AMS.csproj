@@ -203,10 +203,12 @@
     <Content Include="enable\prev_enable_performance_eval.aspx" />
     <Content Include="eval-colleague\evaluation-colleague-form-view.aspx" />
     <Content Include="eval-colleague\evaluation-colleague-form.aspx" />
+    <Content Include="eval-colleague\evaluation-colleague-logs.aspx" />
     <Content Include="eval-colleague\evaluation-colleague.aspx" />
     <Content Include="eval-colleague\print-form.aspx" />
     <Content Include="eval-employee\evaluation-employee-form-view.aspx" />
     <Content Include="eval-employee\evaluation-employee-form.aspx" />
+    <Content Include="eval-employee\evaluation-employee-logs.aspx" />
     <Content Include="eval-employee\evaluation-employee.aspx" />
     <Content Include="eval-employee\print-form.aspx" />
     <Content Include="eval-self\evaluation-self-form-view.aspx" />
@@ -444,6 +446,9 @@
     </Content>
     <Content Include="dev\Web.config" />
     <Content Include="EvaluationSelf\Web.config" />
+    <Content Include="eval-self\Web.config" />
+    <Content Include="eval-colleague\Web.config" />
+    <Content Include="eval-employee\Web.config" />
     <None Include="HR\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -918,6 +923,13 @@
     <Compile Include="eval-colleague\evaluation-colleague-form.aspx.designer.cs">
       <DependentUpon>evaluation-colleague-form.aspx</DependentUpon>
     </Compile>
+    <Compile Include="eval-colleague\evaluation-colleague-logs.aspx.cs">
+      <DependentUpon>evaluation-colleague-logs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-colleague\evaluation-colleague-logs.aspx.designer.cs">
+      <DependentUpon>evaluation-colleague-logs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="eval-colleague\evaluation-colleague.aspx.cs">
       <DependentUpon>evaluation-colleague.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -945,6 +957,13 @@
     </Compile>
     <Compile Include="eval-employee\evaluation-employee-form.aspx.designer.cs">
       <DependentUpon>evaluation-employee-form.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="eval-employee\evaluation-employee-logs.aspx.cs">
+      <DependentUpon>evaluation-employee-logs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eval-employee\evaluation-employee-logs.aspx.designer.cs">
+      <DependentUpon>evaluation-employee-logs.aspx</DependentUpon>
     </Compile>
     <Compile Include="eval-employee\evaluation-employee.aspx.cs">
       <DependentUpon>evaluation-employee.aspx</DependentUpon>

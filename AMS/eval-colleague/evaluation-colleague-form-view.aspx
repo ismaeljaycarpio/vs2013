@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="evaluation-colleague-form-view.aspx.cs" Inherits="AMS.eval_colleague.evaluation_colleague_form_view" %>
+﻿<%@ Page Title="Colleague Evaluation Form" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="evaluation-colleague-form-view.aspx.cs" Inherits="AMS.eval_colleague.evaluation_colleague_form_view" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>

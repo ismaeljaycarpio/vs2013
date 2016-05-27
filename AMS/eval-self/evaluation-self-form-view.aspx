@@ -65,7 +65,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Score">
+                                <asp:TemplateField HeaderText="Score (1-99)">
                                     <ItemTemplate>
                                         <asp:TextBox runat="server" ID="txtRating" Width="30" MaxLength="2" Text='<%# Eval("Rating") %>'></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
@@ -90,6 +90,24 @@
                                 <asp:TemplateField HeaderText="Remarks">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" CssClass="form-control" Text='<%# Eval("Remarks") %>'></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Name of Guest/s">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtNameOfGuests" runat="server" TextMode="MultiLine" CssClass="form-control" Text='<%# Eval("NameOfGuests") %>'></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Room No/s">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtRoomNos" runat="server" TextMode="MultiLine" CssClass="form-control" Text='<%# Eval("RoomNos") %>'></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Date Of Stay">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtDateOfStay" runat="server" CssClass="form-control" TextMode="Date" Text='<%# Eval("DateOfStay") %>'></asp:TextBox>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 

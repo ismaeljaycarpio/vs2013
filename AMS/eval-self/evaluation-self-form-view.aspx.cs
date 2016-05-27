@@ -76,8 +76,18 @@ namespace AMS.eval_self
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
                         int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
+                        string nameOfGuests = (row.FindControl("txtNameOfGuests") as TextBox).Text;
+                        string roomNos = (row.FindControl("txtRoomNos") as TextBox).Text;
+                        string dateOfStay = (row.FindControl("txtDateOfStay") as TextBox).Text;
 
-                        eval.updateSelf_Evaluation_Rating(rating, remarks, Id);
+                        eval.updateSelf_Evaluation_Rating(rating,
+                            remarks,
+                            nameOfGuests,
+                            roomNos,
+                            dateOfStay,
+                            "",
+                            "",
+                            Id);
                     }
                 }
 
