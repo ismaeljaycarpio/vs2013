@@ -2045,7 +2045,7 @@ namespace AMS.DAL
         }
 
         public void updateSelf_Evaluation_Rating(
-            int rating,
+            string rating,
             string remarks,
             string nameOfGuests,
             string roomNos,
@@ -2491,18 +2491,20 @@ namespace AMS.DAL
 
         public DataTable getScoresheet_filled(int evaluationId)
         {
-            strSql = "SELECT Evaluation_Score.Id, " +
-                "CompetenceCatQ.Question, Evaluation_Score.StaffRating, Evaluation_Score.EvaluatorRating " +
-                ", Evaluation_Score.TotalRating, Evaluation_Score.Remarks " +
-                "FROM Evaluation_Score, CompetenceCatQ " +
-                "WHERE Evaluation_Score.CompetenceCatQId = CompetenceCatQ.Id AND " +
-                "CompetenceCatQ.CompetenceCatId = 30 AND " +
-                "Evaluation_Score.EvaluationId = @Id";
+            strSql = "SELECT Evaluation_Self.Id, CompetenceCatQ.Question, " +
+                "Evaluation_Self.CompetenceCatQId,Evaluation_Self.Rating, Evaluation_Self.Remarks, " +
+                "Evaluation_Self.NameOfGuests," +
+                "Evaluation_Self.RoomNos," +
+                "Evaluation_Self.DateOfStay " +
+                "FROM Evaluation_Self, CompetenceCatQ " +
+                "WHERE Evaluation_Self.CompetenceCatQId = CompetenceCatQ.Id " +
+                "AND CompetenceCatQ.CompetenceCatId  = 30 " +
+                "AND Evaluation_Self.EvaluationId = @EvaluationId";
 
             conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["dbAMS"].ConnectionString;
             comm = new SqlCommand(strSql, conn);
-            comm.Parameters.AddWithValue("@Id", evaluationId);
+            comm.Parameters.AddWithValue("@EvaluationId", evaluationId);
             dt = new DataTable();
             adp = new SqlDataAdapter(comm);
 

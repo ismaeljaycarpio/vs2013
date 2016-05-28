@@ -5477,7 +5477,7 @@ namespace AMS
 		
 		private System.Nullable<int> _CompetenceCatQId;
 		
-		private System.Nullable<int> _Rating;
+		private string _Rating;
 		
 		private string _Remarks;
 		
@@ -5503,7 +5503,7 @@ namespace AMS
     partial void OnEvaluationIdChanged();
     partial void OnCompetenceCatQIdChanging(System.Nullable<int> value);
     partial void OnCompetenceCatQIdChanged();
-    partial void OnRatingChanging(System.Nullable<int> value);
+    partial void OnRatingChanging(string value);
     partial void OnRatingChanged();
     partial void OnRemarksChanging(string value);
     partial void OnRemarksChanged();
@@ -5589,8 +5589,8 @@ namespace AMS
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rating", DbType="Int")]
-		public System.Nullable<int> Rating
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rating", DbType="VarChar(50)")]
+		public string Rating
 		{
 			get
 			{
