@@ -248,6 +248,7 @@
     <Content Include="Global.asax" />
     <Content Include="HR\Attendance.aspx" />
     <Content Include="HR\TimeInTimeOut.aspx" />
+    <Content Include="Images\azalearesidences.png" />
     <Content Include="Images\enable-logo.gif" />
     <Content Include="Images\primepower-logo.jpg" />
     <Content Include="Images\PrimePowerLogo.png" />
