@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace AMS
 {
@@ -13,6 +14,21 @@ namespace AMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            int i = 0;
+            foreach(MembershipUser us in Membership.GetAllUsers())
+            {
+                if(us.UserName == "admin" || us.UserName == "hradmin")
+                {
+                    
+                }
+                else
+                {
+                    Membership.DeleteUser(us.UserName, true);
+                    i++;
+                }
+            }
+
+            Console.Write(i.ToString() + " deleted");
         }
 
         protected void btnClick_Click(object sender, EventArgs e)
