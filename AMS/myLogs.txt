@@ -28,7 +28,7 @@ C -> add name of guest/s, room no/s, date of stay
 O -> Specific Situations, Instances  and Accomplishments, Remarks, Date
 
 cant merge commit
-
+- deelte packages
 DOWNLOAD:
 - Sql server
 - sql server management studio
