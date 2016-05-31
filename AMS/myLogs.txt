@@ -27,6 +27,7 @@ Staff: 2015-1004
 C -> add name of guest/s, room no/s, date of stay
 O -> Specific Situations, Instances  and Accomplishments, Remarks, Date
 
+-coore
 
 DOWNLOAD:
 - Sql server
