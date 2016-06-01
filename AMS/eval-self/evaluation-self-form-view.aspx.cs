@@ -74,7 +74,7 @@ namespace AMS.eval_self
                     if (row.RowType == DataControlRowType.DataRow)
                     {
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
-                        int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
+                        string rating = ((row.FindControl("txtRating") as TextBox).Text);
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
                         string nameOfGuests = (row.FindControl("txtNameOfGuests") as TextBox).Text;
                         string roomNos = (row.FindControl("txtRoomNos") as TextBox).Text;

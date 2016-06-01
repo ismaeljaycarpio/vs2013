@@ -128,7 +128,7 @@ namespace AMS.EvaluationSelf
                     if (row.RowType == DataControlRowType.DataRow)
                     {
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
-                        int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
+                        string rating = ((row.FindControl("txtRating") as TextBox).Text);
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
                         eval.updateSelf_Evaluation_Rating(rating, remarks, "","","","","",Id);
@@ -140,7 +140,7 @@ namespace AMS.EvaluationSelf
                     if (row.RowType == DataControlRowType.DataRow)
                     {
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
-                        int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
+                        string rating = ((row.FindControl("txtRating") as TextBox).Text);
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
                         eval.updateSelf_Evaluation_Rating(rating, remarks, "","","","","",Id);
@@ -152,7 +152,7 @@ namespace AMS.EvaluationSelf
                     if (row.RowType == DataControlRowType.DataRow)
                     {
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
-                        int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
+                        string rating = ((row.FindControl("txtRating") as TextBox).Text);
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
                         eval.updateSelf_Evaluation_Rating(rating, remarks,"","","","","",Id);
@@ -164,7 +164,7 @@ namespace AMS.EvaluationSelf
                     if (row.RowType == DataControlRowType.DataRow)
                     {
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
-                        int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
+                        string rating = ((row.FindControl("txtRating") as TextBox).Text);
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
                         eval.updateSelf_Evaluation_Rating(rating, remarks,"","","","","",Id);
@@ -176,7 +176,7 @@ namespace AMS.EvaluationSelf
                     if (row.RowType == DataControlRowType.DataRow)
                     {
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
-                        int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
+                        string rating = ((row.FindControl("txtRating") as TextBox).Text);
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
 
                         eval.updateSelf_Evaluation_Rating(rating, remarks,"","","","","",Id);

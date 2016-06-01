@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15.25, 27.75" name="eHRISContext">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15.5, 27.75" name="eHRISContext">
   <DataContextMoniker Name="/eHRISContextDataContext" />
   <nestedChildShapes>
     <classShape Id="dfcb8224-d410-4a6d-802e-e92099b2a828" absoluteBounds="4.25, 6, 2, 1.5785953776041666">
@@ -176,17 +176,17 @@
         <classShapeMoniker Id="2715272d-f9a0-4d49-86e1-4800a11c5020" />
       </nodes>
     </associationConnector>
-    <classShape Id="7d006530-f9d5-4894-bee3-0c35bdfed383" absoluteBounds="13, 3.125, 2, 2.7324039713541666">
+    <classShape Id="3a9322f1-18e3-4c2a-b7f9-b86fbda36782" absoluteBounds="13.25, 3.5, 2, 2.7324039713541666">
       <DataClassMoniker Name="/eHRISContextDataContext/Evaluation_Self" />
       <nestedChildShapes>
-        <elementListCompartment Id="8779fcc8-d1e8-4090-b739-c7f33272fe3b" absoluteBounds="13.015, 3.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="861060f6-46a2-4361-82bd-727c04bd3b49" absoluteBounds="13.265, 3.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11 : 3.82294840494792); (13 : 3.82294840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 4.01044840494792); (13.25 : 4.01044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/eHRISContextDataContext/SELF_EVALUATION/SELF_EVALUATION_Evaluation_Self" />
       <nodes>
         <classShapeMoniker Id="2715272d-f9a0-4d49-86e1-4800a11c5020" />
-        <classShapeMoniker Id="7d006530-f9d5-4894-bee3-0c35bdfed383" />
+        <classShapeMoniker Id="3a9322f1-18e3-4c2a-b7f9-b86fbda36782" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

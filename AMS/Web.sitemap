@@ -65,7 +65,8 @@
       </siteMapNode>
 
       <siteMapNode url="~/score-sheet/score-sheet-logs.aspx" title="My SCORE Sheet">
-        
+        <siteMapNode url="~/score-sheet/score-sheet-form.aspx" title="Create SCORE Sheet"></siteMapNode>
+        <siteMapNode url="~/score-sheet/score-sheet-view.aspx" title="View SCORE Sheet"></siteMapNode>
       </siteMapNode>
       
     </siteMapNode>

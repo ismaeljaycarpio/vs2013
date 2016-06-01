@@ -248,7 +248,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="EvaluationId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CompetenceCatQId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Rating" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Remarks" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="NameOfGuests" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="RoomNos" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />

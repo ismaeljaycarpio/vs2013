@@ -75,7 +75,7 @@ namespace AMS.eval_employee
                     if (row.RowType == DataControlRowType.DataRow)
                     {
                         int Id = int.Parse((row.FindControl("lblId") as Label).Text);
-                        int rating = Int32.Parse((row.FindControl("txtRating") as TextBox).Text);
+                        string rating = ((row.FindControl("txtRating") as TextBox).Text);
                         string remarks = (row.FindControl("txtRemarks") as TextBox).Text;
                         string situation = (row.FindControl("txtSituations") as TextBox).Text;
                         string date = (row.FindControl("txtDate") as TextBox).Text;
