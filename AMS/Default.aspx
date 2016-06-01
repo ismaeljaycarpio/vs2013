@@ -11,9 +11,9 @@
     <div class="row">
         <div class="col-md-12">
             <ul class="bxslider">
-                <li>
+                <%--<li>
                     <img src="jquery.bxslider/images/azalea.jpg" />
-                </li>
+                </li>--%>
                 <%--<li>
                     <img src="jquery.bxslider/images/tradisyon.jpg" alt="Alternate Text" />
                 </li>
