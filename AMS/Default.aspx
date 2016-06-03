@@ -4,7 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-
     <script src="jquery.bxslider/jquery.bxslider.js" type="text/javascript"></script>
     <link href="jquery.bxslider/jquery.bxslider.css" type="text/css" rel="stylesheet" />
 
