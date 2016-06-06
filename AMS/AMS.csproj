@@ -235,6 +235,7 @@
     <Content Include="Images\toplis-logo.gif" />
     <Content Include="jquery.bxslider\images\azalea-baguio-tent-event-venue.jpg" />
     <Content Include="jquery.bxslider\images\azalea.jpg" />
+    <Content Include="jquery.bxslider\images\azalea_baguio.jpg" />
     <Content Include="jquery.bxslider\images\bx_loader.gif" />
     <Content Include="jquery.bxslider\images\controls.png" />
     <Content Include="jquery.bxslider\images\tradisyon.jpg" />

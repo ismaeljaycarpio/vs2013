@@ -13,12 +13,15 @@
                 <%--<li>
                     <img src="jquery.bxslider/images/azalea.jpg" />
                 </li>--%>
-                <%--<li>
+                <li>
+                    <img src="jquery.bxslider/images/azalea_baguio.jpg" alt="Alternate Text" />
+                </li>
+                <li>
                     <img src="jquery.bxslider/images/tradisyon.jpg" alt="Alternate Text" />
                 </li>
                 <li>
                     <img src="jquery.bxslider/images/azalea-baguio-tent-event-venue.jpg" alt="Alternate Text" />
-                </li>--%>
+                </li>
             </ul>
         </div>
     </div>
