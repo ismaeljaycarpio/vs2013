@@ -22,12 +22,15 @@ namespace AMS.score_sheet
         {
             if (!Page.IsPostBack)
             {
-                Session["UserId"] = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
+                if(Session["UserId"] == null)
+                {
+                    Session["UserId"] = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
+                }
 
                 //get selected user
                 hfUserId.Value = Session["UserId"].ToString();
                 Guid UserId = Guid.Parse(hfUserId.Value);
-                Guid loggedUserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
+                //Guid loggedUserId = Guid.Parse(Membership.GetUser().ProviderUserKey.ToString());
 
                 ////chk if logged user already evaluated selected user
                 //if (eval.IfUserIsAlreadyEvaluated(UserId, loggedUserId, DateTime.Now.ToShortDateString(), "Self").Rows.Count > 0)
