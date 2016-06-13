@@ -1100,6 +1100,7 @@
     <Compile Include="HR\TimeInTimeOut.aspx.designer.cs">
       <DependentUpon>TimeInTimeOut.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Javascript.cs" />
     <Compile Include="Leave\Leave.aspx.cs">
       <DependentUpon>Leave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
