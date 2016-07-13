@@ -296,8 +296,8 @@
                 <div class="form-group" id="divDocs" runat="server">
                     <label for="txtDocs" class="col-sm-2 control-label">Documents</label>
                     <div class="col-sm-10">
-                        <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="true" />
-                        <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" />
+                        <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="true" CssClass="form-control" />
+                        <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" CssClass="btn btn-default"/>
                         <asp:Label ID="lblFileStatus" runat="server" CssClass="label label-success"></asp:Label>
                     </div>
                 </div>
