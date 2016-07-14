@@ -26,7 +26,7 @@
                             <div class="form-horizontal">
                                 <div class="form-group">
                                     <label for="ddlStatus" class="col-sm-2 control-label">Filter By Status:</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-5">
                                         <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control">
                                         </asp:DropDownList>
                                     </div>
@@ -34,7 +34,7 @@
 
                                 <div class="form-group">
                                     <label for="ddlAgency" class="col-sm-2 control-label">Filter By Agency:</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-5">
                                         <asp:DropDownList ID="ddlAgency" runat="server" CssClass="form-control">
                                         </asp:DropDownList>
                                     </div>
@@ -42,7 +42,7 @@
 
                                 <div class="form-group">
                                     <label for="txtSearch" class="col-sm-2 control-label">&nbsp;</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-4">
                                         <div class="input-group">
                                             <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
                                             <div class="input-group-btn">

@@ -13,6 +13,24 @@ namespace AMS.MasterConfig {
     public partial class Department_Master {
         
         /// <summary>
+        /// upDepartments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upDepartments;
+        
+        /// <summary>
+        /// gvDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvDepartment;
+        
+        /// <summary>
         /// upAdd control.
         /// </summary>
         /// <remarks>
@@ -119,24 +137,6 @@ namespace AMS.MasterConfig {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDelete;
-        
-        /// <summary>
-        /// upDepartments control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upDepartments;
-        
-        /// <summary>
-        /// gvDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvDepartment;
         
         /// <summary>
         /// hfUserId control.

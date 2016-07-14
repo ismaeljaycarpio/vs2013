@@ -40,7 +40,6 @@ namespace AMS
             bundles.Add(new StyleBundle("~/Content/bootstrap-datepicker").Include(
                 "~/Content/bootstrap-datepicker.css"));
 
-
             BundleTable.EnableOptimizations = true;
         }
     }

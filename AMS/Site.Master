@@ -11,10 +11,10 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
-    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 
-    <%--<asp:PlaceHolder runat="server">
+    <asp:PlaceHolder runat="server">
         <script src="<%: ResolveUrl("~/Scripts/jquery-2.1.4.js") %>"></script>
         <script src="<%: ResolveUrl("~/Scripts/modernizr-2.6.2.js") %>"></script>
         <script src="<%: ResolveUrl("~/Scripts/bootstrap.js") %>"></script>
@@ -23,6 +23,9 @@
     </asp:PlaceHolder>--%>
 
     <asp:PlaceHolder runat="server">
+        <%-- Modernizr --%>
+        <%: System.Web.Optimization.Scripts.Render("~/bundles/modernizr") %>
+
         <%-- css --%>
         <%: System.Web.Optimization.Styles.Render("~/Content/site") %>
         <%: System.Web.Optimization.Styles.Render("~/Content/bootstrap") %>
@@ -30,7 +33,7 @@
         <%: System.Web.Optimization.Styles.Render("~/Content/bootstrap-datepicker") %>
 
         <%-- js --%>
-        <%: System.Web.Optimization.Scripts.Render("~/bundles/modernizr") %>
+        
         <%: System.Web.Optimization.Scripts.Render("~/bundles/jquery") %>
         <%: System.Web.Optimization.Scripts.Render("~/bundles/bootstrap") %>
         <%: System.Web.Optimization.Scripts.Render("~/bundles/moment") %>

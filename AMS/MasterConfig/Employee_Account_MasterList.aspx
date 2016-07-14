@@ -15,25 +15,23 @@
                     <h5>Accounts</h5>
                 </div>
                 <div class="panel-body">
-                    <div class="form-horizontal">
+                    <div class="form-inline">
                         <div class="form-group">
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <asp:Button ID="btnSearch"
-                                            runat="server"
-                                            CssClass="btn btn-primary"
-                                            Text="Go"
-                                            OnClick="btnSearch_Click" />
-                                    </span>
-                                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
-                                </div>
-                            </div>
+                            <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
+                            <asp:Button ID="btnSearch"
+                                runat="server"
+                                CssClass="btn btn-primary"
+                                Text="Go"
+                                OnClick="btnSearch_Click" />
+                        </div>
+                        <div class="pull-right">
+                            <asp:Button runat="server" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" Text="Export to Word" CssClass="btn btn-default" />
+                            <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Export to Excel" CssClass="btn btn-default" />
                         </div>
                     </div>
+                </div>
 
-                    <asp:Button runat="server" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" Text="Export to Word" />
-                    <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Export to Excel" />
+                <div class="panel-body">
                     <div class="table-responsive">
                         <asp:UpdatePanel ID="upEmployee" runat="server">
                             <ContentTemplate>
@@ -66,7 +64,7 @@
 
                                         <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
                                         <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
-                                        <asp:BoundField DataField="Agency" HeaderText="Agency" SortExpression="Agency" />                                   
+                                        <asp:BoundField DataField="Agency" HeaderText="Agency" SortExpression="Agency" />
                                         <asp:BoundField DataField="RoleName" HeaderText="Role" SortExpression="RoleName" />
 
                                         <asp:TemplateField HeaderText="Account Status" SortExpression="IsApproved">

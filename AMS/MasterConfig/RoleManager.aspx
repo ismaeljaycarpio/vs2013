@@ -8,6 +8,81 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSearch">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addModal">Add</button>
+                        </div>
+                        <h5>Positions</h5>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
+                                <asp:Button ID="btnSearch"
+                                    runat="server"
+                                    CssClass="btn btn-primary"
+                                    Text="Go"
+                                    OnClick="btnSearch_Click" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <asp:UpdatePanel ID="upRoles" runat="server">
+                                <ContentTemplate>
+                                    <asp:GridView ID="gvRoles"
+                                        runat="server"
+                                        CssClass="table table-striped table-hover dataTable"
+                                        GridLines="None"
+                                        AutoGenerateColumns="false"
+                                        AllowPaging="true"
+                                        AllowSorting="true"
+                                        ShowHeaderWhenEmpty="true"
+                                        DataKeyNames="Id"
+                                        OnPageIndexChanging="gvRoles_PageIndexChanging"
+                                        OnRowCommand="gvRoles_RowCommand"
+                                        OnSorting="gvRoles_Sorting"
+                                        PageSize="10">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Row Id" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblRowId" runat="server" Text='<%# Eval("Id") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:ButtonField HeaderText="Action" ButtonType="Button" Text="Edit" CommandName="editRecord" />
+
+                                            <asp:TemplateField HeaderText="Positions" SortExpression="Position">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblPosition" runat="server" Text='<%# Eval("Position") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Department" SortExpression="Department">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDepartment" runat="server" Text='<%# Eval("Department") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:ButtonField HeaderText="" ButtonType="Link" Text="Delete" CommandName="deleteRecord" />
+
+                                        </Columns>
+                                        <PagerStyle CssClass="pagination-ys" />
+                                    </asp:GridView>
+                                </ContentTemplate>
+                                <Triggers></Triggers>
+                            </asp:UpdatePanel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </asp:Panel>
+
     <!-- Add Modal -->
     <div id="addModal" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" role="dialog">
         <div class="modal-dialog">
@@ -130,85 +205,4 @@
             </div>
         </div>
     </div>
-
-    <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSearch">
-        <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addModal">Add</button>
-                    </div>
-                    <h5>Positions</h5>
-                </div>
-
-                <div class="panel-body">
-
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <asp:Button ID="btnSearch"
-                                            runat="server"
-                                            CssClass="btn btn-primary"
-                                            Text="Go"                                            
-                                            OnClick="btnSearch_Click" />
-                                    </span>
-                                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="table-responsive">
-                        <asp:UpdatePanel ID="upRoles" runat="server">
-                            <ContentTemplate>
-                                <asp:GridView ID="gvRoles"
-                                    runat="server"
-                                    cssclass="table table-striped table-hover dataTable"
-                                    GridLines="None"
-                                    AutoGenerateColumns="false"
-                                    AllowPaging="true"
-                                    AllowSorting="true"
-                                    ShowHeaderWhenEmpty="true"
-                                    DataKeyNames="Id"
-                                    OnPageIndexChanging="gvRoles_PageIndexChanging"
-                                    OnRowCommand="gvRoles_RowCommand"
-                                    OnSorting="gvRoles_Sorting"
-                                    PageSize="10">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Row Id" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblRowId" runat="server" Text='<%# Eval("Id") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:ButtonField HeaderText="Action" ButtonType="Button" Text="Edit" CommandName="editRecord" />
-
-                                        <asp:TemplateField HeaderText="Positions" SortExpression="Position">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblPosition" runat="server" Text='<%# Eval("Position") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Department" SortExpression="Department">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblDepartment" runat="server" Text='<%# Eval("Department") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:ButtonField HeaderText="" ButtonType="Link" Text="Delete" CommandName="deleteRecord" />
-
-                                    </Columns>
-                                    <PagerStyle CssClass="pagination-ys" />
-                                </asp:GridView>
-                            </ContentTemplate>
-                            <Triggers></Triggers>
-                        </asp:UpdatePanel>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </asp:Panel>
 </asp:Content>

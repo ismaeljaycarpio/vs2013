@@ -9,23 +9,18 @@
                     <h5>Configure Leaves for Users</h5>
                 </div>
                 <div class="panel-body">
-                    <div class="form-horizontal">
+                    <div class="form-inline">
                         <div class="form-group">
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <asp:Button ID="btnSearch"
-                                            runat="server"
-                                            CssClass="btn btn-primary"
-                                            Text="Go"
-                                            OnClick="btnSearch_Click" />
-                                    </span>
-                                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
-                                </div>
-                            </div>
+                            <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
+                            <asp:Button ID="btnSearch"
+                                runat="server"
+                                CssClass="btn btn-primary"
+                                Text="Go"
+                                OnClick="btnSearch_Click" />
                         </div>
                     </div>
-
+                </div>
+                <div class="panel-body">
                     <div class="table-responsive">
                         <asp:UpdatePanel ID="upEmployee" runat="server">
                             <ContentTemplate>

@@ -10,36 +10,28 @@
                     <h5>Duration Of Contracts</h5>
                 </div>
                 <div class="panel-body">
-                    <div class="form-horizontal">
+                    <div class="form-inline">
                         <div class="form-group">
-                            <div class="col-sm-10">
-
-                                <div class="input-group input-group-btn">
-
-                                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
-                                    <asp:Button ID="btnSearch"
-                                        runat="server"
-                                        CssClass="btn btn-primary"
-                                        Text="Go"
-                                        OnClick="btnSearch_Click" />
-                                </div>
-
-                            </div>
+                            <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..."></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-6">
-                                <div class="input-daterange">
-                                    <div class="input-group">
-                                        <asp:TextBox ID="txtStartDate" runat="server" data-provide="datepicker" CssClass="form-control" placeholder="Start Date"></asp:TextBox>
-                                        <span class="input-group-addon">to</span>
-                                        <asp:TextBox ID="txtEndDate" runat="server" data-provide="datepicker" CssClass="form-control" placeholder="End Date"></asp:TextBox>
-                                    </div>
+                            <div class="input-daterange">
+                                <div class="input-group">
+                                    <asp:TextBox ID="txtStartDate" runat="server" data-provide="datepicker" CssClass="form-control" placeholder="Start Date"></asp:TextBox>
+                                    <span class="input-group-addon">to</span>
+                                    <asp:TextBox ID="txtEndDate" runat="server" data-provide="datepicker" CssClass="form-control" placeholder="End Date"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
+                        <asp:Button ID="btnSearch"
+                            runat="server"
+                            CssClass="btn btn-primary"
+                            Text="Go"
+                            OnClick="btnSearch_Click" />
                     </div>
+                </div>
 
-
+                <div class="panel-body">
                     <div class="table-responsive">
                         <asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" />
                         <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" />
@@ -56,7 +48,7 @@
                             OnSorting="gvEmployee_Sorting"
                             OnPageIndexChanging="gvEmployee_PageIndexChanging">
                             <Columns>
-                                <asp:BoundField DataField="Emp_Id" HeaderText="ID"  SortExpression="Emp_Id" />
+                                <asp:BoundField DataField="Emp_Id" HeaderText="ID" SortExpression="Emp_Id" />
                                 <asp:BoundField DataField="FullName" HeaderText="Full Name" SortExpression="FullName" />
                                 <asp:BoundField DataField="Department" HeaderText="Department" SortExpression="Department" />
                                 <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
@@ -76,7 +68,6 @@
                                         <asp:Label ID="lblMonths" runat="server" Text='<%# Eval("Months") + " Months" %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-
                             </Columns>
                             <PagerStyle CssClass="pagination-ys" />
                         </asp:GridView>
