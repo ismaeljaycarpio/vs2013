@@ -3,44 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Approve Modal -->
-    <div id="approveModal" class="modal fade" tabindex="-1" aria-labelledby="approveModalLabel" aria-hidden="true" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Approve Leave</h4>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure you want to approve this leave ?
-                            <asp:HiddenField ID="hfApproveId" runat="server" />
-                            <asp:HiddenField ID="hfUserId" runat="server" />
-                            <asp:HiddenField ID="hfNoOfDays" runat="server" />
-                            <asp:HiddenField ID="hfLeaveTypeUserId" runat="server" />
-                        </div>
-                        <div class="modal-footer">
-                            <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success" Text="Approve" OnClick="btnApprove_Click" />
-                            <asp:Button ID="btnDisapprove" runat="server" CssClass="btn btn-danger" Text="Disapprove" OnClick="btnDisapprove_Click" />
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="btnApprove" EventName="Click" />
-                    </Triggers>
-                </asp:UpdatePanel>
-            </div>
-        </div>
-    </div>
-
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-tabs" id="myTab">
-                <li><a href="#pendingTab" data-toggle="tab">Pending Leave Approvals 
+                <li><a href="#pendingTab" data-toggle="tab">
                     <asp:UpdatePanel ID="upPendingCount" runat="server">
                         <ContentTemplate>
+                            Pending Leave Approvals
                             <asp:Label ID="lblPendingCount" runat="server" CssClass="badge"></asp:Label>
                         </ContentTemplate>
                         <Triggers>
@@ -50,9 +19,10 @@
                     </asp:UpdatePanel>
 
                 </a></li>
-                <li><a href="#approvedTab" data-toggle="tab">Approved Leaves
+                <li><a href="#approvedTab" data-toggle="tab">
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                         <ContentTemplate>
+                            Approved Leaves
                             <asp:Label ID="lblApprovedCount" runat="server" CssClass="badge"></asp:Label>
                         </ContentTemplate>
                         <Triggers>
@@ -61,9 +31,10 @@
                         </Triggers>
                     </asp:UpdatePanel>
                 </a></li>
-                <li><a href="#cancelledTab" data-toggle="tab">Dispproved Leaves
+                <li><a href="#cancelledTab" data-toggle="tab">
                     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                         <ContentTemplate>
+                            Dispproved Leaves
                             <asp:Label ID="lblDisapprovedCount" runat="server" CssClass="badge"></asp:Label>
                         </ContentTemplate>
                         <Triggers>
@@ -332,10 +303,6 @@
                                 </div>
                             </div>
 
-                            <asp:Button runat="server" 
-                                ID="btnExcel" 
-                                OnClick="btnExcel_Click" 
-                                Text="Export to Excel" />
                             <div class="table-responsive">
                                 <asp:GridView ID="gvLeaves"
                                     runat="server"
@@ -388,7 +355,11 @@
                                     <PagerStyle CssClass="pagination-ys" />
                                 </asp:GridView>
                             </div>
-
+                            <asp:Button runat="server"
+                                ID="btnExcel"
+                                CssClass="btn btn-default btn-sm"
+                                OnClick="btnExcel_Click"
+                                Text="Export to Excel" />
                         </div>
                     </div>
                 </div>
@@ -397,6 +368,7 @@
         </div>
         <asp:HiddenField ID="TabName" runat="server" />
     </div>
+
     <script type="text/javascript">
         $(function () {
             var tabName = $("[id*=TabName]").val() != "" ? $("[id*=TabName]").val() : "pendingTab";
@@ -406,4 +378,36 @@
             });
         });
     </script>
+
+    <!-- Approve Modal -->
+    <div id="approveModal" class="modal fade" tabindex="-1" aria-labelledby="approveModalLabel" aria-hidden="true" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Approve Leave</h4>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to approve this leave ?
+                            <asp:HiddenField ID="hfApproveId" runat="server" />
+                            <asp:HiddenField ID="hfUserId" runat="server" />
+                            <asp:HiddenField ID="hfNoOfDays" runat="server" />
+                            <asp:HiddenField ID="hfLeaveTypeUserId" runat="server" />
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="btnApprove" runat="server" CssClass="btn btn-success" Text="Approve" OnClick="btnApprove_Click" />
+                            <asp:Button ID="btnDisapprove" runat="server" CssClass="btn btn-danger" Text="Disapprove" OnClick="btnDisapprove_Click" />
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="btnApprove" EventName="Click" />
+                    </Triggers>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+    </div>
 </asp:Content>

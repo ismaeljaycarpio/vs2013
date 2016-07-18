@@ -17,6 +17,11 @@
                 <div class="panel-body">
                     <div class="form-horizontal">
 
+                        <div class="pull-right">
+                            <asp:Button runat="server" Text="Export to Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" CssClass="btn btn-default btn-sm" />
+                            <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Export to Excel" CssClass="btn btn-default btn-sm" />
+                        </div>
+
                         <div class="form-group">
                             <label for="ddlStatus" class="col-sm-2 control-label">Name:</label>
                             <div class="col-sm-6">
@@ -50,8 +55,7 @@
                         </div>
                     </div>
 
-                    <asp:Button runat="server" Text="Export to Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" />
-                    <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Export to Excel" />
+
                     <div class="table-responsive">
                         <div class="text-center">
                             <asp:Label ID="lblCount" runat="server"></asp:Label>

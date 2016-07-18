@@ -24,6 +24,12 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-horizontal">
+
+                                <div class="pull-right">
+                                    <asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" CssClass="btn btn-default btn-sm" />
+                                    <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" CssClass="btn btn-default btn-sm" />
+                                </div>
+
                                 <div class="form-group">
                                     <label for="ddlStatus" class="col-sm-2 control-label">Filter By Status:</label>
                                     <div class="col-sm-5">
@@ -57,8 +63,6 @@
                                 </div>
                             </div>
 
-                            <asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" />
-                            <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" />
                             <div class="table-responsive">
                                 <asp:GridView ID="gvEmployee"
                                     runat="server"
@@ -90,6 +94,7 @@
                                     </Columns>
                                     <PagerStyle CssClass="pagination-ys" />
                                 </asp:GridView>
+
                             </div>
                         </div>
                     </div>
@@ -101,8 +106,6 @@
                             <h5><span class="glyphicon glyphicon-alert"></span>&nbsp;Expiring Contracts <b><%= DateTime.Now.ToShortDateString() %> - <%= DateTime.Now.AddDays(14).ToShortDateString() %></b></h5>
                         </div>
                         <div class="panel-body">
-                            <asp:Button runat="server" Text="Word" ID="btnExpiringContract_Word" OnClick="btnExpiraingContract_Word_Click" />
-                            <asp:Button runat="server" Text="Excel" ID="btnExpiringContract_Excel" OnClick="btnExpiringContract_Excel_Click" />
                             <div class="table-responsive">
                                 <asp:GridView ID="gvExpiringContract"
                                     runat="server"
@@ -127,6 +130,8 @@
                                     </Columns>
                                     <PagerStyle CssClass="pagination-ys" />
                                 </asp:GridView>
+                                <asp:Button runat="server" Text="Word" ID="btnExpiringContract_Word" OnClick="btnExpiraingContract_Word_Click" CssClass="btn btn-default btn-sm" />
+                                <asp:Button runat="server" Text="Excel" ID="btnExpiringContract_Excel" OnClick="btnExpiringContract_Excel_Click" CssClass="btn btn-default btn-sm" />
                             </div>
                         </div>
                     </div>

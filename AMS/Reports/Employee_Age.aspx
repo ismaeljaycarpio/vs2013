@@ -25,8 +25,8 @@
                                 OnClick="btnSearch_Click" />
                         </div>
                         <div class="pull-right">
-                            <asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" CssClass="btn btn-default" />
-                            <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" CssClass="btn btn-default" />
+                            <asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" CssClass="btn btn-default btn-sm" />
+                            <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" CssClass="btn btn-default btn-sm" />
                         </div>
                     </div>
                 </div>

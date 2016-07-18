@@ -28,13 +28,16 @@
                             CssClass="btn btn-primary"
                             Text="Go"
                             OnClick="btnSearch_Click" />
+
+                        <div class="pull-right">
+                            <asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" CssClass="btn btn-default btn-sm" />
+                        <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" CssClass="btn btn-default btn-sm"/>
+                        </div>
                     </div>
                 </div>
 
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <asp:Button runat="server" Text="Word" ID="btnExportToPDF" OnClick="btnExportToPDF_Click" />
-                        <asp:Button runat="server" ID="btnExcel" OnClick="btnExcel_Click" Text="Excel" />
                         <asp:GridView ID="gvEmployee"
                             runat="server"
                             class="table table-striped table-hover dataTable"
