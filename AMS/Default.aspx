@@ -10,10 +10,7 @@
     <div class="row">
         <div class="col-md-12">
             <ul class="bxslider">
-                <%--<li>
-                    <img src="jquery.bxslider/images/azalea.jpg" />
-                </li>--%>
-                <%--<li>
+                <li>
                     <img src="jquery.bxslider/images/azalea_baguio.jpg" alt="Alternate Text" />
                 </li>
                 <li>
@@ -21,7 +18,7 @@
                 </li>
                 <li>
                     <img src="jquery.bxslider/images/azalea-baguio-tent-event-venue.jpg" alt="Alternate Text" />
-                </li>--%>
+                </li>
             </ul>
         </div>
     </div>
