@@ -141,13 +141,17 @@ namespace AMS.Employee
 
                 lblFileStatus.Text = "File(s) uploaded successfully";
             }
+            else
+            {
+                lblFileStatus.Text = "No uploaded file(s)";
+            }
         }
 
         protected void lnkDownload_Click(object sender, EventArgs e)
         {
             string filePath = (sender as LinkButton).CommandArgument;
             Response.ContentType = ContentType;
-            Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
+            Response.AppendHeader("Content-Disposition", "attachment; filename=\"" + Path.GetFileName(filePath) + "\"");
             Response.WriteFile(filePath);
             Response.End();
         }
